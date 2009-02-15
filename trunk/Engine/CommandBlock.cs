@@ -8,6 +8,7 @@ namespace SSAU.BlocksConstruct.Engine
 {
 	public class CommandBlock : Block, ICloneable
 	{
+		protected CommandBlock(){}
 		private string _mask;
 
 		public CommandBlock(CommandBlock commandBlock)

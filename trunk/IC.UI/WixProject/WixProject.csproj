@@ -5,14 +5,15 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{1130B8DD-20F2-4B09-879F-499EC16CAE5F}</ProjectGuid>
+    <ProjectGuid>{B6746401-4AB4-474D-89F8-F9CB065D36BB}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SSAU.BlocksConstruct.Engine</RootNamespace>
-    <AssemblyName>SSAU.BlocksConstruct.Engine</AssemblyName>
+    <RootNamespace>IC.UI.WixProject</RootNamespace>
+    <AssemblyName>IC.UI.WixProject</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <SignAssembly>true</SignAssembly>
+    <SignAssembly>false</SignAssembly>
+    <AssemblyOriginatorKeyFile>key.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -32,11 +33,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Practices.Composite, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\3rd party libraries\Composite Application Library\Microsoft.Practices.Composite.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
-    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml.Linq">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
@@ -47,38 +51,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\Version.cs">
+    <Compile Include="..\..\Version.cs">
       <Link>Version.cs</Link>
     </Compile>
-    <Compile Include="Block.cs" />
-    <Compile Include="BlockConnectionPoint.cs" />
-    <Compile Include="BlockFactory.cs" />
-    <Compile Include="BlockInputPoint.cs" />
-    <Compile Include="BlockOutputPoint.cs" />
-    <Compile Include="CommandBlock.cs" />
-    <Compile Include="Common.cs" />
-    <Compile Include="CompileData.cs" />
-    <Compile Include="ConnectionPoint.cs" />
-    <Compile Include="GraphicalObject.cs" />
-    <Compile Include="InputCommandBlock.cs" />
-    <Compile Include="MemoryPool.cs" />
-    <Compile Include="ObjectType.cs" />
-    <Compile Include="Orientation.cs" />
-    <Compile Include="OutParamModifier.cs" />
-    <Compile Include="OutputCommandBlock.cs" />
-    <Compile Include="OutputCommandBufBlock.cs" />
-    <Compile Include="OutputCommandConstBlock.cs" />
-    <Compile Include="Project.cs" />
+    <Compile Include="WixProjectModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RomData.cs" />
-    <Compile Include="Schema.cs" />
-    <Compile Include="SchemaManager.cs" />
-    <Compile Include="State.cs" />
-    <Compile Include="Tool.cs" />
-    <Compile Include="Variable.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="EngineClassDiagram.cd" />
+    <None Include="key.snk" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -8,6 +8,7 @@ namespace SSAU.BlocksConstruct.Engine
 {
 	public class Block : GraphicalObject, ICloneable
 	{
+		protected Block(){}
 		private List<BlockInputPoint> _inputPoints;
 		private List<BlockOutputPoint> _outputPoints;
 		private string _name;
