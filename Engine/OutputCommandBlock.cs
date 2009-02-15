@@ -8,6 +8,7 @@ namespace SSAU.BlocksConstruct.Engine
 {
 	public class OutputCommandBlock : CommandBlock, ICloneable
 	{
+		protected OutputCommandBlock(){}
 		private bool _inputConnected;
 
 		public OutputCommandBlock(OutputCommandBlock outputCommandBlock)

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 
@@ -7,6 +8,7 @@ namespace SSAU.BlocksConstruct.Engine
 {
 	public class ConnectionPoint : GraphicalObject
 	{
+		protected ConnectionPoint(){}
 		public CompileData compileData;
 		private List<ConnectionPoint> outputs;
 		private int dataType;

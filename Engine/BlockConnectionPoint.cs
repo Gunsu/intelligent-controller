@@ -10,6 +10,7 @@ namespace SSAU.BlocksConstruct.Engine
 	{
 		private Block _block;
 
+		protected BlockConnectionPoint(){}
 		public BlockConnectionPoint(Block block, string name, Point pos, Orientation orientation, int dataType)
 		{
 			throw new System.NotImplementedException();
