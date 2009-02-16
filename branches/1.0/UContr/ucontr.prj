@@ -1,0 +1,58 @@
+; ************************************************************
+; PROJECT:
+; AUTHOR:
+; ************************************************************
+
+; Micro + software running
+; ------------------------------------------------------------
+.MICRO "AT90S8535"
+.TOOLCHAIN "GCC"
+.GCCPATH   "C:\WinAVR"
+.GCCMAKE   AUTO
+.TARGET    "ucontr.hex"
+.SOURCE    "ucontr.c" "comproc.c" "blocks.c" "hal.c" "buffers.c"
+
+.TRACE              ; Activate micro trace
+
+; Following lines are optional; if not included
+; exactly these values are taken by default
+; ------------------------------------------------------------
+.POWER VDD=5 VSS=0  ; Power nodes
+.CLOCK 16meg         ; Micro clock
+.STORE 250m         ; Trace (micro+signals) storage time
+
+; Micro nodes: RESET, AREF, PA0-PA7, PB0-PB7, PC0-PC7, PD0-PD7, ACO, TIM1OVF
+; Define here the hardware around the micro
+; ------------------------------------------------------------
+
+X1 _flashrom PB7 PB5 PB6
+
+; Скорость передачи 76800, передача по 8 бит
+X2 TTY2(76800 8) PD0 PD1
+
+; АЦП
+R1 AREF VDD 100K
+V0 PA0 VSS SLIDER_1(0 5)
+V1 PA1 VSS SLIDER_2(0 5)
+V2 PA2 VSS SLIDER_3(0 5)
+V3 PA3 VSS SIN(2.5 2.5 1)
+
+.PLOT V3(PA3)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

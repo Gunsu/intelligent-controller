@@ -1,0 +1,73 @@
+   1               		.file	"ucontr.c"
+   2               		.arch at90s8535
+   3               	__SREG__ = 0x3f
+   4               	__SP_H__ = 0x3e
+   5               	__SP_L__ = 0x3d
+   6               	__tmp_reg__ = 0
+   7               	__zero_reg__ = 1
+   8               		.global __do_copy_data
+   9               		.global __do_clear_bss
+  11               		.text
+  12               	.Ltext0:
+  74               	.global	main
+  76               	main:
+   1:ucontr.c      **** #include <avr\io.h>
+   2:ucontr.c      **** #include <avr\interrupt.h>
+   3:ucontr.c      **** #include "comproc.h"
+   4:ucontr.c      **** #include "hal.h"
+   5:ucontr.c      **** #include "buffers.h"
+   6:ucontr.c      **** 
+   7:ucontr.c      **** int main(void)
+   8:ucontr.c      **** {		
+  77               		main
+  79               	main:
+   9:ucontr.c      **** 	ComProcInit();
+  81               	on
+  82               	main:
+  10:ucontr.c      **** 	HALInit();	
+  84               	on
+  85               	main:
+  87               	.LM0:
+  11:ucontr.c      ****  	
+  12:ucontr.c      ****  	while (1)
+  13:ucontr.c      ****  	{
+  14:ucontr.c      **** 		if (ComProcData.InCommandState == IN_COMMAND_STATE_READY_TO_PROCESS)
+  88               	:
+  90 0004 8091 0000 	.LM0:
+  91 0008 8130      	/* prologue: frame size=0 */
+  92 000a 01F4      	/* prologue end (size=0) */
+  15:ucontr.c      **** 		{
+  16:ucontr.c      **** 			ComProcProcessInCommand();
+  93               	*/
+  94               	/* prologue end (size=0) */
+  17:ucontr.c      **** 			ComProcData.InCommandState = IN_COMMAND_STATE_PROCESSED;
+  96               	) */
+  98 000e 1092 0000 	.LM1:
+  18:ucontr.c      **** 			Buffers[BUFFER_IN_COMMAND_ID].Size = 0;
+  99               	stabn	68,0,9,.LM1-main
+ 100               	.LM1:
+ 101 0012 1092 0000 		rcall ComProcInit
+ 103               	.LM2:
+ 104               		rcall HALInit
+ 105               	.L10:
+ 107               	.LM3:
+ 108               		lds r24,ComProcData+64
+ 109               		cpi r24,lo8(1)
+ 110               		brne .L10
+DEFINED SYMBOLS
+                            *ABS*:00000000 ucontr.c
+C:\DOCUME~1\SERGEY~1\LOCALS~1\Temp/ccAhaaaa.s:3      *ABS*:0000003f __SREG__
+C:\DOCUME~1\SERGEY~1\LOCALS~1\Temp/ccAhaaaa.s:4      *ABS*:0000003e __SP_H__
+C:\DOCUME~1\SERGEY~1\LOCALS~1\Temp/ccAhaaaa.s:5      *ABS*:0000003d __SP_L__
+C:\DOCUME~1\SERGEY~1\LOCALS~1\Temp/ccAhaaaa.s:6      *ABS*:00000000 __tmp_reg__
+C:\DOCUME~1\SERGEY~1\LOCALS~1\Temp/ccAhaaaa.s:7      *ABS*:00000001 __zero_reg__
+C:\DOCUME~1\SERGEY~1\LOCALS~1\Temp/ccAhaaaa.s:76     .text:00000000 main
+
+UNDEFINED SYMBOLS
+__do_copy_data
+__do_clear_bss
+ComProcInit
+HALInit
+ComProcData
+ComProcProcessInCommand
+Buffers

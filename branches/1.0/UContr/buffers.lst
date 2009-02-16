@@ -1,0 +1,93 @@
+   1               		.file	"buffers.c"
+   2               		.arch at90s8535
+   3               	__SREG__ = 0x3f
+   4               	__SP_H__ = 0x3e
+   5               	__SP_L__ = 0x3d
+   6               	__tmp_reg__ = 0
+   7               	__zero_reg__ = 1
+   8               		.global __do_copy_data
+   9               		.global __do_clear_bss
+  11               		.text
+  12               	.Ltext0:
+  32               	.global	Buffers
+  33               		.data
+  36               	Buffers:
+  37 0000 01        		.byte	1
+  38 0001 10        		.byte	16
+  39 0002 00        		.byte	0
+  40 0003 00        		.byte	0
+  41 0004 02        		.byte	2
+  42 0005 0000      		.word	Buffer0Data
+  43 0007 01        		.byte	1
+  44 0008 10        		.byte	16
+  45 0009 00        		.byte	0
+  46 000a 00        		.byte	0
+  47 000b 02        		.byte	2
+  48 000c 0000      		.word	Buffer1Data
+  49 000e 01        		.byte	1
+  50 000f 10        		.byte	16
+  51 0010 00        		.byte	0
+  52 0011 00        		.byte	0
+  53 0012 02        		.byte	2
+  54 0013 0000      		.word	Buffer2Data
+  55 0015 01        		.byte	1
+  56 0016 10        		.byte	16
+  57 0017 00        		.byte	0
+  58 0018 00        		.byte	0
+  59 0019 02        		.byte	2
+  60 001a 0000      		.word	Buffer3Data
+  61 001c 01        		.byte	1
+  62 001d 10        		.byte	16
+  63 001e 00        		.byte	0
+  64 001f 00        		.byte	0
+  65 0020 02        		.byte	2
+  66 0021 0000      		.word	0
+  67 0023 01        		.byte	1
+  68 0024 10        		.byte	16
+  69 0025 00        		.byte	0
+  70 0026 00        		.byte	0
+  71 0027 02        		.byte	2
+  72 0028 0000      		.word	0
+  73 002a 01        		.byte	1
+  74 002b 10        		.byte	16
+  75 002c 00        		.byte	0
+  76 002d 00        		.byte	0
+  77 002e 02        		.byte	2
+  78 002f 0000      		.word	0
+  79 0031 01        		.byte	1
+  80 0032 10        		.byte	16
+  81 0033 00        		.byte	0
+  82 0034 00        		.byte	0
+  83 0035 02        		.byte	2
+  84 0036 0000      		.word	0
+  85 0038 00        		.byte	0
+  86 0039 10        		.byte	16
+  87 003a 00        		.byte	0
+  88 003b 00        		.byte	0
+  89 003c 01        		.byte	1
+  90 003d 0000      		.word	BufferInCommandData
+  91               		.comm Buffer0Data,32,1
+  92               		.comm Buffer1Data,32,1
+  93               		.comm Buffer2Data,32,1
+  94               		.comm Buffer3Data,32,1
+  95               		.comm BufferInCommandData,16,1
+ 102               		.text
+ 104               	.Letext0:
+ 105               	/* File "buffers.c": code    0 = 0x0000 (   0), prologues   0, epilogues   0 */
+DEFINED SYMBOLS
+                            *ABS*:00000000 buffers.c
+C:\DOCUME~1\SERGEY~1\LOCALS~1\Temp/ccsfaaaa.s:3      *ABS*:0000003f __SREG__
+C:\DOCUME~1\SERGEY~1\LOCALS~1\Temp/ccsfaaaa.s:4      *ABS*:0000003e __SP_H__
+C:\DOCUME~1\SERGEY~1\LOCALS~1\Temp/ccsfaaaa.s:5      *ABS*:0000003d __SP_L__
+C:\DOCUME~1\SERGEY~1\LOCALS~1\Temp/ccsfaaaa.s:6      *ABS*:00000000 __tmp_reg__
+C:\DOCUME~1\SERGEY~1\LOCALS~1\Temp/ccsfaaaa.s:7      *ABS*:00000001 __zero_reg__
+C:\DOCUME~1\SERGEY~1\LOCALS~1\Temp/ccsfaaaa.s:36     .data:00000000 Buffers
+                            *COM*:00000020 Buffer0Data
+                            *COM*:00000020 Buffer1Data
+                            *COM*:00000020 Buffer2Data
+                            *COM*:00000020 Buffer3Data
+                            *COM*:00000010 BufferInCommandData
+
+UNDEFINED SYMBOLS
+__do_copy_data
+__do_clear_bss
