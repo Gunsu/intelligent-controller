@@ -4,6 +4,8 @@ namespace IC.UI.WixProject
 {
 	public class WixProjectModule : IModule
 	{
+		//private readonly IRegionManager _regionManager;
+
 		#region IModule Members
 
 		public void Initialize()
