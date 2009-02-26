@@ -54,6 +54,8 @@
     <Compile Include="..\..\Version.cs">
       <Link>Version.cs</Link>
     </Compile>
+    <Compile Include="Mock\MockRegion.cs" />
+    <Compile Include="Mock\MockRegionManager.cs" />
     <Compile Include="WixProjectModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

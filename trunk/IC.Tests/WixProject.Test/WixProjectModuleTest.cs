@@ -1,4 +1,5 @@
 ﻿using IC.UI.WixProject;
+using IC.UI.WixProject.Mock;
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -68,9 +69,12 @@ namespace IC.Tests.WixProjectTest
 		[TestMethod()]
 		public void InitializeTest()
 		{
-			WixProjectModule target = new WixProjectModule(); // TODO: Initialize to an appropriate value
+			var regionManager = new MockRegionManager();
+			var target = new WixProjectModule(regionManager);
+			var menuRegion = new MockRegion();
+			regionManager.Regions.Add("MenuRegion", menuRegion);
 			target.Initialize();
-			Assert.Inconclusive("A method that does not return a value cannot be verified.");
+			Assert.AreEqual(1, menuRegion.AddedViews.Count);
 		}
 	}
 }
