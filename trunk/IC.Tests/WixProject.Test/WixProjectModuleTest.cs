@@ -1,12 +1,10 @@
 ﻿using IC.UI.WixProject;
-using IC.UI.WixProject.Mock;
+using IC.Tests.WixProjectTest.Mock;
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace IC.Tests.WixProjectTest
 {
-    
-    
     /// <summary>
     ///This is a test class for WixProjectModuleTest and is intended
     ///to contain all WixProjectModuleTest Unit Tests

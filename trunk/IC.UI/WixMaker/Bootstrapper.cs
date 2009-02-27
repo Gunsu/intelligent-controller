@@ -11,23 +11,14 @@ namespace IC.UI.WixMaker
 	{
 		protected override DependencyObject CreateShell()
 		{
-
 			Shell shell = Container.Resolve<Shell>();
-
 			shell.Show();
-
 			return shell;
-
 		}
-
 
 		protected override IModuleEnumerator GetModuleEnumerator()
 		{
-
-			return new StaticModuleEnumerator().
-
-				AddModule(typeof(WixProjectModule));
-
+			return new StaticModuleEnumerator().AddModule(typeof(WixProjectModule));
 		}
 	}
 }

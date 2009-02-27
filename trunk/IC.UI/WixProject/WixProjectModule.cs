@@ -11,7 +11,8 @@ namespace IC.UI.WixProject
 
 		public void Initialize()
 		{
-			throw new System.NotImplementedException();
+            IRegion menuRegion = _regionManager.Regions["MenuRegion"];
+            menuRegion.Add(new MainMenu());
 		}
 
 		#endregion
