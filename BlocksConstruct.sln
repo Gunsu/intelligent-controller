@@ -12,6 +12,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{A3E93A55-6F26-48B4-BDED-E437840E2928}"
 	ProjectSection(SolutionItems) = preProject
 		BlocksConstruct.vsmdi = BlocksConstruct.vsmdi
+		BlocksConstruct1.vsmdi = BlocksConstruct1.vsmdi
 		LocalTestRun.testrunconfig = LocalTestRun.testrunconfig
 	EndProjectSection
 EndProject
@@ -24,6 +25,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IC.Core", "IC.Core\IC.Core.csproj", "{321A0837-70B3-49A3-A842-DE690118153C}"
 EndProject
 Global
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = BlocksConstruct1.vsmdi
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
