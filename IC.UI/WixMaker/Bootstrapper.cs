@@ -11,7 +11,7 @@ namespace IC.UI.WixMaker
 	{
 		protected override DependencyObject CreateShell()
 		{
-			Shell shell = Container.Resolve<Shell>();
+			var shell = Container.Resolve<Shell>();
 			shell.Show();
 			return shell;
 		}
