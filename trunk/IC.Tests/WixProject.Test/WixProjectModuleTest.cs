@@ -1,5 +1,5 @@
 ﻿using IC.UI.WixProject;
-using IC.Tests.WixProjectTest.Mock;
+using IC.UI.WixProject.Mock;
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -9,28 +9,16 @@ namespace IC.Tests.WixProjectTest
     ///This is a test class for WixProjectModuleTest and is intended
     ///to contain all WixProjectModuleTest Unit Tests
     ///</summary>
-	[TestClass()]
+	[TestClass]
 	public class WixProjectModuleTest
 	{
-		private TestContext _testContextInstance;
+        /// <summary>
+        ///Gets or sets the test context which provides
+        ///information about and functionality for the current test run.
+        ///</summary>
+        public TestContext TestContext { get; set; }
 
-		/// <summary>
-		///Gets or sets the test context which provides
-		///information about and functionality for the current test run.
-		///</summary>
-		public TestContext TestContext
-		{
-			get
-			{
-				return _testContextInstance;
-			}
-			set
-			{
-				_testContextInstance = value;
-			}
-		}
-
-		#region Additional test attributes
+        #region Additional test attributes
 		// 
 		//You can use the following additional attributes as you write your tests:
 		//
@@ -64,7 +52,7 @@ namespace IC.Tests.WixProjectTest
 		/// <summary>
 		///A test for Initialize
 		///</summary>
-		[TestMethod()]
+		[TestMethod]
 		public void InitializeTest()
 		{
 			var regionManager = new MockRegionManager();
