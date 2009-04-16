@@ -1,0 +1,487 @@
+   1               		.file	"comproc.c"
+   2               		.arch at90s8535
+   3               	__SREG__ = 0x3f
+   4               	__SP_H__ = 0x3e
+   5               	__SP_L__ = 0x3d
+   6               	__tmp_reg__ = 0
+   7               	__zero_reg__ = 1
+   8               		.global __do_copy_data
+   9               		.global __do_clear_bss
+  11               		.text
+  12               	.Ltext0:
+  77               	.global	ComProcInit
+  79               	ComProcInit:
+   1:comproc.c     **** #include <avr\io.h>
+   2:comproc.c     **** #include <avr\interrupt.h>
+   3:comproc.c     **** #include "blocks.h"
+   4:comproc.c     **** #include "hal.h"
+   5:comproc.c     **** #include "comproc.h"
+   6:comproc.c     **** #include "buffers.h"
+   7:comproc.c     **** 
+   8:comproc.c     **** ComProcDataStruct ComProcData;
+   9:comproc.c     **** 
+  10:comproc.c     **** //инициализация ComProc чего?
+  11:comproc.c     **** void ComProcInit (void)
+  12:comproc.c     **** {
+  80               	 end (size=0) */
+  82               	.LM1:
+  83               		sts ComProcData+65,__zero_reg__
+  13:comproc.c     **** 	ComProcData.LastError = 0;
+  84               	abn	68,0,14,.LM2-ComProcInit
+  85               	.LM2:
+  86 0000 1092 0000 		sts ComProcData+64,__zero_reg__
+  14:comproc.c     **** 	ComProcData.InCommandState = IN_COMMAND_STATE_PROCESSED;
+  87               	tabn	68,0,15,.LM3-ComProcInit
+  88               	.LM3:
+  89 0004 1092 0000 		sts Buffers+58,__zero_reg__
+  15:comproc.c     **** 	Buffers[BUFFER_IN_COMMAND_ID].Size = 0;
+  90               	epilogue: frame size=0 */
+  91               		ret
+  92 0008 1092 0000 	/* epilogue end (size=1) */
+  93               	/* function ComProcInit size 7 (6) */
+  95               	.Lscope0:
+  99               	ComProcProcessSchema:
+ 101               	.LM4:
+ 102               	/* prologue: frame size=0 */
+  16:comproc.c     **** }
+  17:comproc.c     **** 
+  18:comproc.c     **** //получение адреса схемы
+  19:comproc.c     **** static unsigned short ComProcGetSchemaAddress (void)
+  20:comproc.c     **** {
+  21:comproc.c     **** 	//похоже, что маска - это маски команд. т.е. определяет допустимые команды
+  22:comproc.c     **** 	
+  23:comproc.c     **** 	unsigned char masksCount; //число масок. зачем?
+  24:comproc.c     **** 	unsigned char i; //для цикла
+  25:comproc.c     **** 	unsigned char j; //для цикла
+  26:comproc.c     **** 	unsigned char maskLength; //длина маски. зачем?
+  27:comproc.c     **** 	unsigned short pos; //позиция. чего в чём?
+  28:comproc.c     **** 	unsigned char curMaskByte; //текущий байт маски
+  29:comproc.c     **** 	unsigned short result; //адрес схемы
+  30:comproc.c     **** 	
+  31:comproc.c     **** 	pos = 0;
+  32:comproc.c     **** 	masksCount = HALGetExtROMByte (pos); //получаем число масок. это что и зачем?
+  33:comproc.c     **** 	pos++;
+  34:comproc.c     **** 
+  35:comproc.c     ****    //для каждой маски находим хз чего. причём результат всегда возвращается уже после первой маски
+  36:comproc.c     **** 	for (i = 0; i < masksCount; i++)
+  37:comproc.c     **** 	{
+  38:comproc.c     **** 		maskLength = HALGetExtROMByte (pos); //читаем длину маски. интересно где она сохраняется?
+  39:comproc.c     **** 
+  40:comproc.c     **** 		if (maskLength != Buffers[BUFFER_IN_COMMAND_ID].Size) //сравниваем длину маски с длиной идентифик
+  41:comproc.c     **** 		{                                                     //непонятно считается pos
+  42:comproc.c     **** 			pos += maskLength + 3;
+  43:comproc.c     **** 			continue;
+  44:comproc.c     **** 		}
+  45:comproc.c     **** 
+  46:comproc.c     **** 		//что мы нашли к этому моменту? позицию чего?
+  47:comproc.c     **** 
+  48:comproc.c     **** 		pos++;
+  49:comproc.c     **** 
+  50:comproc.c     **** 		//обрабатываем текущую маску
+  51:comproc.c     **** 		for (j = 0; j < maskLength; j++)
+  52:comproc.c     **** 		{
+  53:comproc.c     **** 			curMaskByte = HALGetExtROMByte (pos + j); //получаем байт маски
+  54:comproc.c     **** 
+  55:comproc.c     **** 			if (curMaskByte == MASK_ANY_SYMBOL)			//ничё не делаем, если он равен любому символу
+  56:comproc.c     **** 				continue;
+  57:comproc.c     **** 
+  58:comproc.c     **** 			if (curMaskByte != Buffers[BUFFER_IN_COMMAND_ID].Data[j]) //если байт маски не равен данным из б
+  59:comproc.c     **** 				break;
+  60:comproc.c     **** 		}
+  61:comproc.c     **** 
+  62:comproc.c     **** 		if (j < maskLength)	//совсем непонятные вычисления
+  63:comproc.c     **** 		{
+  64:comproc.c     **** 			pos += maskLength + 2;
+  65:comproc.c     **** 			continue;
+  66:comproc.c     **** 		}
+  67:comproc.c     **** 
+  68:comproc.c     **** 		//TODO: проверить BIG endian или LITTLE endian. зачем?
+  69:comproc.c     **** 		//чё за х?
+  70:comproc.c     **** 		result = HALGetExtROMByte (pos + maskLength);
+  71:comproc.c     **** 		result <<= 8;
+  72:comproc.c     **** 		result += HALGetExtROMByte (pos + maskLength + 1);
+  73:comproc.c     **** 		//почему возвращаем результат?
+  74:comproc.c     **** 		return result;
+  75:comproc.c     **** 	}
+  76:comproc.c     **** 	
+  77:comproc.c     **** 	return 0;
+  78:comproc.c     **** }
+  79:comproc.c     **** 
+  80:comproc.c     **** //обработка схемы по полученному адресу
+  81:comproc.c     **** static unsigned char ComProcProcessSchema (unsigned short schemaAddress)
+  82:comproc.c     **** {
+ 103               	sh r14
+ 104               		push r15
+ 105               		push r16
+ 106 000e DF92      		push r17
+ 107 0010 EF92      		push r28
+ 108 0012 FF92      		push r29
+ 109 0014 0F93      	/* prologue end (size=7) */
+ 110 0016 1F93      		mov r16,r24
+ 111 0018 CF93      		mov r17,r25
+ 113               	.LM5:
+ 114 001c 082F      		rcall HALGetExtROMByte
+ 115 001e 192F      		mov r13,r24
+  83:comproc.c     **** 	unsigned char blocksCount; //число блоков
+  84:comproc.c     **** 	unsigned char blockIndex; //непонятно
+  85:comproc.c     **** 	unsigned char i; //для цикла
+  86:comproc.c     **** 	unsigned short pos;
+  87:comproc.c     **** 	unsigned short paramsAddr;
+  88:comproc.c     **** 	unsigned char res;
+  89:comproc.c     **** 
+  90:comproc.c     **** 	pos = schemaAddress;
+  91:comproc.c     **** 	blocksCount = HALGetExtROMByte (pos); //считываем число блоков
+ 116               	92,.LM6-ComProcProcessSchema
+ 117               	.LM6:
+ 118 0020 00D0      		mov r29,r17
+ 119 0022 D82E      		mov r28,r16
+  92:comproc.c     **** 	pos++;
+ 120               	w r28,1
+ 121               		clr r14
+ 122 0024 D12F      		rjmp .L4
+ 123 0026 C02F      	.L5:
+ 125 002a EE24      	.LM7:
+ 126 002c 00C0      		mov r24,r28
+ 127               		mov r25,r29
+  93:comproc.c     **** 	
+  94:comproc.c     **** 	//для каждого блока
+  95:comproc.c     **** 	for (i = 0; i < blocksCount; i++)
+  96:comproc.c     **** 	{
+  97:comproc.c     **** 		blockIndex = HALGetExtROMByte (pos); //получаем номер блока. он соответствует bloack
+ 128               	ALGetExtROMByte
+ 129               		mov r15,r24
+ 131 0030 9D2F      	.LM8:
+ 132 0032 00D0      		mov r24,r28
+ 133 0034 F82E      		mov r25,r29
+  98:comproc.c     **** 		//TODO: проверить BIG endian или LITTLE endian
+  99:comproc.c     **** 		paramsAddr = HALGetExtROMByte (pos + 1);
+ 134               	r24,1
+ 135               		rcall HALGetExtROMByte
+ 136 0036 8C2F      		mov r16,r24
+ 137 0038 9D2F      		clr r17
+ 139 003c 00D0      	.LM9:
+ 140 003e 082F      		mov r17,r16
+ 141 0040 1127      		clr r16
+ 100:comproc.c     **** 		paramsAddr <<= 8;
+ 142               	68,0,101,.LM10-ComProcProcessSchema
+ 143               	.LM10:
+ 144 0042 102F      		mov r24,r28
+ 145 0044 0027      		mov r25,r29
+ 101:comproc.c     **** 		paramsAddr |= HALGetExtROMByte (pos + 2);
+ 146               	w r24,2
+ 147               		rcall HALGetExtROMByte
+ 149 0048 9D2F      	.LM11:
+ 150 004a 0296      		mov r30,r15
+ 151 004c 00D0      		clr r31
+ 102:comproc.c     **** 		res = (BlockHandlers [blockIndex])(paramsAddr); //тут похоже идёт обработка данных данным блоком.
+ 152               	30
+ 153               		rol r31
+ 154 004e EF2D      		subi r30,lo8(-(BlockHandlers))
+ 155 0050 FF27      		sbci r31,hi8(-(BlockHandlers))
+ 156 0052 EE0F      		clr r25
+ 157 0054 FF1F      		ld __tmp_reg__,Z+
+ 158 0056 E050      		ld r31,Z
+ 159 0058 F040      		mov r30,__tmp_reg__
+ 160 005a 9927      		or r24,r16
+ 161 005c 0190      		or r25,r17
+ 162 005e F081      		icall
+ 164 0062 802B      	.LM12:
+ 165 0064 912B      		tst r24
+ 166 0066 0995      		brne .L6
+ 103:comproc.c     **** 		if (res == BLOCK_RES_ERROR)
+ 167               	
+ 168               		ldi r25,hi8(0)
+ 169 0068 8823      		rjmp .L8
+ 170 006a 01F4      	.L6:
+ 172 006e 90E0      	.LM13:
+ 173 0070 00C0      		cpi r24,lo8(2)
+ 174               		breq .L9
+ 104:comproc.c     **** 			return 0;
+ 105:comproc.c     **** 		if (res == BLOCK_RES_SKIP_PROCESSING)
+ 175               		68,0,107,.LM14-ComProcProcessSchema
+ 176               	.LM14:
+ 177 0072 8230      		adiw r28,3
+ 106:comproc.c     **** 			return 1;
+ 107:comproc.c     **** 		pos += 3;
+ 179               	5:
+ 180               		inc r14
+ 181 0076 2396      	.L4:
+ 182               		cp r14,r13
+ 183               		brne .L5
+ 184 0078 E394      	.L9:
+ 185               		ldi r24,lo8(1)
+ 186 007a ED14      		ldi r25,hi8(1)
+ 187 007c 01F4      	.L8:
+ 188               	/* epilogue: frame size=0 */
+ 189 007e 81E0      		pop r29
+ 190 0080 90E0      		pop r28
+ 191               		pop r17
+ 192               		pop r16
+ 193 0082 DF91      		pop r15
+ 194 0084 CF91      		pop r14
+ 195 0086 1F91      		pop r13
+ 196 0088 0F91      		ret
+ 197 008a FF90      	/* epilogue end (size=8) */
+ 198 008c EF90      	/* function ComProcProcessSchema size 66 (51) */
+ 208               	.Lscope1:
+ 211               	ComProcGetSchemaAddress:
+ 213               	.LM16:
+ 214               	/* prologue: frame size=0 */
+ 215               		push r12
+ 216               		push r13
+ 217               		push r14
+ 218               		push r15
+ 219 0092 CF92      		push r16
+ 220 0094 DF92      		push r17
+ 221 0096 EF92      		push r28
+ 222 0098 FF92      		push r29
+ 223 009a 0F93      	/* prologue end (size=8) */
+ 225 009e CF93      	.LM17:
+ 226 00a0 DF93      		ldi r24,lo8(0)
+ 227               		ldi r25,hi8(0)
+ 228               		rcall HALGetExtROMByte
+ 229               		mov r12,r24
+ 230 00a2 80E0      		clr r13
+ 231 00a4 90E0      		ldi r28,lo8(1)
+ 232 00a6 00D0      		ldi r29,hi8(1)
+ 233 00a8 C82E      		rjmp .L13
+ 234 00aa DD24      	.L14:
+ 236 00ae D0E0      	.LM18:
+ 237 00b0 00C0      		mov r24,r28
+ 238               		mov r25,r29
+ 239               		rcall HALGetExtROMByte
+ 240               		mov r14,r24
+ 242 00b4 9D2F      	.LM19:
+ 243 00b6 00D0      		lds r24,Buffers+58
+ 244 00b8 E82E      		cp r14,r24
+ 245               		breq .L15
+ 247 00ba 8091 0000 	.LM20:
+ 248 00be E816      		mov r24,r14
+ 249 00c0 01F0      		clr r25
+ 250               		adiw r24,3
+ 251               		add r28,r24
+ 252 00c2 8E2D      		adc r29,r25
+ 253 00c4 9927      		rjmp .L17
+ 254 00c6 0396      	.L15:
+ 256 00ca D91F      	.LM21:
+ 257 00cc 00C0      		mov r16,r28
+ 258               		mov r17,r29
+ 259               		subi r16,lo8(-(1))
+ 260               		sbci r17,hi8(-(1))
+ 261 00ce 0C2F      		clr r15
+ 262 00d0 1D2F      		rjmp .L18
+ 263 00d2 0F5F      	.L19:
+ 265 00d6 FF24      	.LM22:
+ 266 00d8 00C0      		mov r28,r15
+ 267               		clr r29
+ 268               		mov r25,r17
+ 269               		mov r24,r16
+ 270 00da CF2D      		add r24,r28
+ 271 00dc DD27      		adc r25,r29
+ 272 00de 912F      		rcall HALGetExtROMByte
+ 273 00e0 802F      		mov r18,r24
+ 275 00e4 9D1F      	.LM23:
+ 276 00e6 00D0      		cpi r24,lo8(95)
+ 277 00e8 282F      		breq .L20
+ 279               	.LM24:
+ 280 00ea 8F35      		lds r24,Buffers+61
+ 281 00ec 01F0      		lds r25,(Buffers+61)+1
+ 282               		add r28,r24
+ 283               		adc r29,r25
+ 284 00ee 8091 0000 		ld r24,Y
+ 285 00f2 9091 0000 		cp r18,r24
+ 286 00f6 C80F      		brne .L22
+ 287 00f8 D91F      	.L20:
+ 289 00fc 2817      	.LM25:
+ 290 00fe 01F4      		inc r15
+ 291               	.L18:
+ 292               		cp r15,r14
+ 293               		brne .L19
+ 294 0100 F394      		rjmp .L27
+ 295               	.L22:
+ 297 0104 01F4      	.LM26:
+ 298 0106 00C0      		mov r29,r17
+ 299               		mov r28,r16
+ 300               		adiw r28,2
+ 301               		add r28,r14
+ 302 0108 D12F      		adc r29,__zero_reg__
+ 303 010a C02F      	.L17:
+ 305 010e CE0D      	.LM27:
+ 306 0110 D11D      		inc r13
+ 307               	.L13:
+ 308               		cp r13,r12
+ 309               		brne .L14
+ 310 0112 D394      		ldi r24,lo8(0)
+ 311               		ldi r25,hi8(0)
+ 312 0114 DC14      		rjmp .L25
+ 313 0116 01F4      	.L27:
+ 315 011a 90E0      	.LM28:
+ 316 011c 00C0      		add r16,r14
+ 317               		adc r17,__zero_reg__
+ 318               		mov r14,r16
+ 319               		mov r15,r17
+ 320 011e 0E0D      		mov r25,r17
+ 321 0120 111D      		mov r24,r16
+ 322 0122 E02E      		rcall HALGetExtROMByte
+ 323 0124 F12E      		mov r16,r24
+ 324 0126 912F      		clr r17
+ 326 012a 00D0      	.LM29:
+ 327 012c 082F      		mov r17,r16
+ 328 012e 1127      		clr r16
+ 330               	.LM30:
+ 331 0130 102F      		mov r25,r15
+ 332 0132 0027      		mov r24,r14
+ 333               		adiw r24,1
+ 334               		rcall HALGetExtROMByte
+ 335 0134 9F2D      		add r16,r24
+ 336 0136 8E2D      		adc r17,__zero_reg__
+ 337 0138 0196      		mov r25,r17
+ 338 013a 00D0      		mov r24,r16
+ 339 013c 080F      	.L25:
+ 340 013e 111D      	/* epilogue: frame size=0 */
+ 341 0140 912F      		pop r29
+ 342 0142 802F      		pop r28
+ 343               		pop r17
+ 344               		pop r16
+ 345 0144 DF91      		pop r15
+ 346 0146 CF91      		pop r14
+ 347 0148 1F91      		pop r13
+ 348 014a 0F91      		pop r12
+ 349 014c FF90      		ret
+ 350 014e EF90      	/* epilogue end (size=9) */
+ 351 0150 DF90      	/* function ComProcGetSchemaAddress size 98 (81) */
+ 362               	.Lscope2:
+ 363               		.data
+ 364               	.LC0:
+ 365               		.string	"@ERROR"
+ 366               		.text
+ 368               	.global	ComProcProcessInCommand
+ 370               	ComProcProcessInCommand:
+ 372               	.LM31:
+ 373               	/* prologue: frame size=0 */
+ 374               	/* prologue end (size=0) */
+ 108:comproc.c     **** 	}
+ 109:comproc.c     **** 
+ 110:comproc.c     **** 	return 1;
+ 111:comproc.c     **** }
+ 112:comproc.c     **** 
+ 113:comproc.c     **** static void ComProcFillInCommand (char* data, unsigned char size)
+ 114:comproc.c     **** {
+ 115:comproc.c     **** 	unsigned char i;
+ 116:comproc.c     **** 	
+ 117:comproc.c     **** 	for (i = 0; i < size; i++)
+ 118:comproc.c     **** 		Buffers[BUFFER_IN_COMMAND_ID].Data[i] = data[i];
+ 119:comproc.c     **** 
+ 120:comproc.c     **** 	Buffers[BUFFER_IN_COMMAND_ID].Size = size;
+ 121:comproc.c     **** }
+ 122:comproc.c     **** 
+ 123:comproc.c     **** unsigned char ComProcProcessInCommand (void)
+ 124:comproc.c     **** {
+ 375               	essInCommand
+ 376               	.LM34:
+ 377               		rcall ComProcProcessSchema
+ 378               		tst r24
+ 125:comproc.c     **** 	unsigned short schemaAddress;
+ 126:comproc.c     **** 
+ 127:comproc.c     **** 	schemaAddress = ComProcGetSchemaAddress ();
+ 379               	ProcProcessInCommand
+ 380               	.LM34:
+ 381 0156 00D0      		rcall ComProcProcessSchema
+ 128:comproc.c     **** 	if (schemaAddress != 0)
+ 382               	,.LM34-ComProcProcessInCommand
+ 383               	.LM34:
+ 384 0158 0097      		rcall ComProcProcessSchema
+ 385 015a 01F0      		tst r24
+ 129:comproc.c     **** 	{
+ 130:comproc.c     **** 		if (ComProcProcessSchema (schemaAddress))
+ 386               	ProcProcessInCommand
+ 387               	.LM34:
+ 388 015c 00D0      		rcall ComProcProcessSchema
+ 389 015e 8823      		tst r24
+ 390 0160 01F0      		breq .L31
+ 391 0162 81E0      		ldi r24,lo8(1)
+ 392 0164 90E0      		ldi r25,hi8(1)
+ 393 0166 0895      		ret
+ 394               	.L31:
+ 395 0168 20E0      		ldi r18,lo8(0)
+ 396 016a 30E0      		ldi r19,hi8(0)
+ 397 016c A0E0      		ldi r26,lo8(.LC0)
+ 398 016e B0E0      		ldi r27,hi8(.LC0)
+ 399               	.L34:
+ 400               	.LBB4:
+ 401               	.LBB5:
+ 403               	.LM35:
+ 404 0170 E091 0000 		lds r30,Buffers+61
+ 405 0174 F091 0000 		lds r31,(Buffers+61)+1
+ 406 0178 E20F      		add r30,r18
+ 407 017a F31F      		adc r31,r19
+ 408 017c 8D91      		ld r24,X+
+ 409 017e 8083      		st Z,r24
+ 410 0180 2F5F      		subi r18,lo8(-(1))
+ 411 0182 3F4F      		sbci r19,hi8(-(1))
+ 413               	.LM36:
+ 414 0184 2630      		cpi r18,6
+ 415 0186 3105      		cpc r19,__zero_reg__
+ 416 0188 01F4      		brne .L34
+ 418               	.LM37:
+ 419 018a 86E0      		ldi r24,lo8(6)
+ 420 018c 8093 0000 		sts Buffers+58,r24
+ 421               	.LBE5:
+ 422               	.LBE4:
+ 131:comproc.c     **** 			return 1;
+ 132:comproc.c     **** 		
+ 133:comproc.c     **** 		ComProcFillInCommand (INTERNAL_ERROR_COMMAND, INTERNAL_ERROR_COMMAND_LENGTH);
+ 134:comproc.c     **** 		schemaAddress = ComProcGetSchemaAddress ();
+ 423               	ts Buffers+58,r24
+ 424               	.LBE5:
+ 425 0190 00D0      	.LBE4:
+ 135:comproc.c     **** 		if (schemaAddress != 0)
+ 426               	ts Buffers+58,r24
+ 427               	.LBE5:
+ 428 0192 0097      	.LBE4:
+ 136:comproc.c     **** 			return ComProcProcessSchema (schemaAddress);
+ 430               	,.LM38-ComProcProcessInCommand
+ 431               	.LM38:
+ 432 0196 00D0      		rcall ComProcGetSchemaAddress
+ 434 019a 0895      	.LM39:
+ 435               		sbiw r24,0
+ 436 019c 80E0      		breq .L29
+ 137:comproc.c     **** 
+ 138:comproc.c     **** 		return 0;
+ 139:comproc.c     **** 	}
+ 140:comproc.c     **** 		
+ 141:comproc.c     **** 	return 0;
+ 142:comproc.c     **** }
+ 438               	ComProcProcessInCommand
+ 439               	.LM40:
+ 440 01a0 0895      		rcall ComProcProcessSchema
+ 441               		clr r25
+ 442               		ret
+ 443               	.L29:
+ 444               		ldi r24,lo8(0)
+ 445               		ldi r25,hi8(0)
+ 447               	.LM41:
+ 448               		ret
+ 449               	/* epilogue: frame size=0 */
+ 450               	/* epilogue: noreturn */
+ 451               	/* epilogue end (size=0) */
+ 452               	/* function ComProcProcessInCommand size 38 (38) */
+DEFINED SYMBOLS
+                            *ABS*:00000000 comproc.c
+C:\DOCUME~1\SERGEY~1\LOCALS~1\Temp/cckraaaa.s:3      *ABS*:0000003f __SREG__
+C:\DOCUME~1\SERGEY~1\LOCALS~1\Temp/cckraaaa.s:4      *ABS*:0000003e __SP_H__
+C:\DOCUME~1\SERGEY~1\LOCALS~1\Temp/cckraaaa.s:5      *ABS*:0000003d __SP_L__
+C:\DOCUME~1\SERGEY~1\LOCALS~1\Temp/cckraaaa.s:6      *ABS*:00000000 __tmp_reg__
+C:\DOCUME~1\SERGEY~1\LOCALS~1\Temp/cckraaaa.s:7      *ABS*:00000001 __zero_reg__
+C:\DOCUME~1\SERGEY~1\LOCALS~1\Temp/cckraaaa.s:79     .text:00000000 ComProcInit
+                            *COM*:00000042 ComProcData
+C:\DOCUME~1\SERGEY~1\LOCALS~1\Temp/cckraaaa.s:102    .text:0000000e ComProcProcessSchema
+C:\DOCUME~1\SERGEY~1\LOCALS~1\Temp/cckraaaa.s:215    .text:00000092 ComProcGetSchemaAddress
+C:\DOCUME~1\SERGEY~1\LOCALS~1\Temp/cckraaaa.s:374    .text:00000156 ComProcProcessInCommand
+
+UNDEFINED SYMBOLS
+__do_copy_data
+__do_clear_bss
+Buffers
+HALGetExtROMByte
+BlockHandlers

@@ -1,0 +1,941 @@
+   1               		.file	"hal.c"
+   2               		.arch at90s8535
+   3               	__SREG__ = 0x3f
+   4               	__SP_H__ = 0x3e
+   5               	__SP_L__ = 0x3d
+   6               	__tmp_reg__ = 0
+   7               	__zero_reg__ = 1
+   8               		.global __do_copy_data
+   9               		.global __do_clear_bss
+  11               		.text
+  12               	.Ltext0:
+  75               	.global	HALInitExtROM
+  77               	HALInitExtROM:
+   1:hal.c         **** #include "hal.h"
+   2:hal.c         **** #include "comproc.h"
+   3:hal.c         **** #include "buffers.h"
+   4:hal.c         **** #include <avr\io.h>
+   5:hal.c         **** #include <avr\interrupt.h>
+   6:hal.c         **** 
+   7:hal.c         **** //TODO: это временная структура, заменяет EEPROM
+   8:hal.c         **** 
+   9:hal.c         **** #define EEPROM_SIZE	2 + 7 * 4 + 18
+  10:hal.c         **** unsigned char EEPROMData[EEPROM_SIZE];
+  11:hal.c         **** 
+  12:hal.c         **** // ******************************************************
+  13:hal.c         **** // ********     Чтение внешнего FLASH ПЗУ       *********
+  14:hal.c         **** // ******************************************************
+  15:hal.c         **** 
+  16:hal.c         **** inline void HALInitExtROM (void)
+  17:hal.c         **** {
+  78               	ogue end (size=0) */
+  80               	.LM1:
+  81               		ldi r24,lo8(-96)
+  18:hal.c         **** 	DDRB = _BV(DDB7) | _BV(DDB5);
+  82               	 55-0x20,r24
+  84 0000 80EA      	.LM2:
+  85 0002 87BB      		ldi r24,lo8(80)
+  19:hal.c         **** 	SPCR = _BV(SPE) | _BV(MSTR);
+  86               	 45-0x20,r24
+  87               	/* epilogue: frame size=0 */
+  88 0004 80E5      		ret
+  89 0006 8DB9      	/* epilogue end (size=1) */
+  90               	/* function HALInitExtROM size 5 (4) */
+  92               	.Lscope0:
+  95               	.global	HALGetExtROMByte
+  97               	HALGetExtROMByte:
+  99               	.LM3:
+ 100               	/* prologue: frame size=0 */
+  20:hal.c         **** }
+  21:hal.c         **** 
+  22:hal.c         **** unsigned char HALGetExtROMByte (unsigned short addr)
+  23:hal.c         **** {
+ 101               	 (size=0) */
+ 102               		mov r18,r24
+ 103               		mov r19,r25
+ 105 000a 282F      	.LM4:
+ 106 000c 392F      		mov r24,r19
+  24:hal.c         **** 	unsigned char dataByte = 0;
+  25:hal.c         **** 	
+  26:hal.c         **** 	SPDR = (addr >> 8);				// hi
+ 107               	25
+ 108               		out 47-0x20,r24
+ 109 000e 832F      	.L4:
+ 111 0012 8FB9      	.LM5:
+ 112               		sbis 46-0x20,7
+  27:hal.c         **** 	loop_until_bit_is_set(SPSR, SPIF);
+ 113               	.L4
+ 115 0014 779B      	.LM6:
+ 116 0016 00C0      		out 47-0x20,r18
+  28:hal.c         **** 	SPDR = (unsigned char)addr;	// lo
+ 117               	
+ 119 0018 2FB9      	.LM7:
+ 120               		sbis 46-0x20,7
+  29:hal.c         **** 	loop_until_bit_is_set(SPSR, SPIF);
+ 121               	mp .L6
+ 123 001a 779B      	.LM8:
+ 124 001c 00C0      		ldi r24,lo8(-1)
+  30:hal.c         **** 	SPDR = 0xFF;
+ 125               	 47-0x20,r24
+ 126               	.L8:
+ 128 0020 8FB9      	.LM9:
+ 129               		sbis 46-0x20,7
+  31:hal.c         **** 	loop_until_bit_is_set(SPSR, SPIF);
+ 130               	 .L8
+ 132 0022 779B      	.LM10:
+ 133 0024 00C0      		in r24,47-0x20
+  32:hal.c         **** 	dataByte = SPDR;
+ 134               	abn	68,0,35,.LM11-HALGetExtROMByte
+ 135               	.LM11:
+ 136 0026 8FB1      		clr r25
+  33:hal.c         **** 	
+  34:hal.c         **** 	return dataByte;
+  35:hal.c         **** }
+ 137               	epilogue: frame size=0 */
+ 138               		ret
+ 139 0028 9927      	/* epilogue end (size=1) */
+ 140               	/* function HALGetExtROMByte size 17 (16) */
+ 145               	.Lscope1:
+ 147               	.global	HALInitUART
+ 149               	HALInitUART:
+ 151               	.LM12:
+ 152               	/* prologue: frame size=0 */
+  36:hal.c         **** 
+  37:hal.c         **** // ******************************************************
+  38:hal.c         **** // ********     Чтение\запись команд в UART     *********
+  39:hal.c         **** // ******************************************************
+  40:hal.c         **** 
+  41:hal.c         **** inline void HALInitUART (void)
+  42:hal.c         **** {
+ 153               	(size=0) */
+ 155               	.LM13:
+ 156               		ldi r24,lo8(12)
+  43:hal.c         **** 	UBRR = (F_CPU / (16UL * UART_BAUD)) - 1;
+ 157               	 41-0x20,r24
+ 159 002c 8CE0      	.LM14:
+ 160 002e 89B9      		ldi r24,lo8(-103)
+  44:hal.c         **** 	UCR = _BV(TXEN) | _BV(RXEN) | _BV(TXB8) | _BV(RXCIE);
+ 161               	 42-0x20,r24
+ 162               	/* epilogue: frame size=0 */
+ 163 0030 89E9      		ret
+ 164 0032 8AB9      	/* epilogue end (size=1) */
+ 165               	/* function HALInitUART size 5 (4) */
+ 167               	.Lscope2:
+ 169               	.global	__vector_11
+ 171               	__vector_11:
+ 173               	.LM15:
+ 174               	/* prologue: frame size=0 */
+  45:hal.c         **** }
+  46:hal.c         **** 
+  47:hal.c         **** ISR(UART_RX_vect)
+  48:hal.c         **** {	
+ 175               	eg__
+ 176               		push __tmp_reg__
+ 177               		in __tmp_reg__,__SREG__
+ 178 0036 1F92      		push __tmp_reg__
+ 179 0038 0F92      		clr __zero_reg__
+ 180 003a 0FB6      		push r18
+ 181 003c 0F92      		push r19
+ 182 003e 1124      		push r20
+ 183 0040 2F93      		push r21
+ 184 0042 3F93      		push r24
+ 185 0044 4F93      		push r25
+ 186 0046 5F93      		push r30
+ 187 0048 8F93      		push r31
+ 188 004a 9F93      	/* prologue end (size=13) */
+ 190 004e FF93      	.LM16:
+ 191               		in r21,44-0x20
+  49:hal.c         **** 	unsigned char c;
+  50:hal.c         **** 	unsigned short bufSize;
+  51:hal.c         **** 	
+  52:hal.c         **** 	c = UDR;
+ 192               	LM17-__vector_11
+ 193               	.LM17:
+ 194 0050 5CB1      		lds r24,ComProcData+64
+  53:hal.c         **** 	
+  54:hal.c         **** 	if (ComProcData.InCommandState == IN_COMMAND_STATE_PROCESSED)	
+ 195               	t r24
+ 196               		brne .L28
+ 198 0056 8823      	.LM18:
+ 199 0058 01F4      		lds r20,Buffers+58
+  55:hal.c         **** 	{
+  56:hal.c         **** 		bufSize = Buffers[BUFFER_IN_COMMAND_ID].Size;
+ 200               	r18,r20
+ 201               		clr r19
+ 203 005e 242F      	.LM19:
+ 204 0060 3327      		lds r24,Buffers+57
+  57:hal.c         **** 		if ((bufSize >= Buffers[BUFFER_IN_COMMAND_ID].MaxSize) || (c == EOC))
+ 205               	r25
+ 206               		cp r18,r24
+ 207 0062 8091 0000 		cpc r19,r25
+ 208 0066 9927      		brsh .L22
+ 209 0068 2817      		cpi r21,lo8(13)
+ 210 006a 3907      		brne .L24
+ 211 006c 00F4      	.L22:
+ 213 0070 01F4      	.LM20:
+ 214               		tst r20
+  58:hal.c         **** 		{
+  59:hal.c         **** 			// внутренние команды игнорируются
+  60:hal.c         ****   			if ((bufSize > 0) && (Buffers[BUFFER_IN_COMMAND_ID].Data[0] == INTERNAL_COMMAND_PREFIX))
+ 215               	
+ 216               		lds r30,Buffers+61
+ 217 0072 4423      		lds r31,(Buffers+61)+1
+ 218 0074 01F0      		ld r24,Z
+ 219 0076 E091 0000 		cpi r24,lo8(64)
+ 220 007a F091 0000 		brne .L25
+ 222 0080 8034      	.LM21:
+ 223 0082 01F4      		sts Buffers+58,__zero_reg__
+  61:hal.c         ****   			{
+  62:hal.c         ****   				Buffers[BUFFER_IN_COMMAND_ID].Size = 0;
+ 224               	28
+ 225               	.L25:
+ 227 0088 00C0      	.LM22:
+ 228               		ldi r24,lo8(1)
+  63:hal.c         ****   				return;	
+  64:hal.c         ****   			}
+  65:hal.c         ****   							
+  66:hal.c         **** 			ComProcData.InCommandState = IN_COMMAND_STATE_READY_TO_PROCESS;
+ 229               	ComProcData+64,r24
+ 230               		rjmp .L28
+ 231 008a 81E0      	.L24:
+ 233 0090 00C0      	.LM23:
+ 234               		lds r30,Buffers+61
+  67:hal.c         **** 			return;		
+  68:hal.c         **** 		}
+  69:hal.c         **** 
+  70:hal.c         **** 		Buffers[BUFFER_IN_COMMAND_ID].Data[bufSize] = c;
+ 235               	31,(Buffers+61)+1
+ 236               		add r30,r18
+ 237 0092 E091 0000 		adc r31,r19
+ 238 0096 F091 0000 		st Z,r21
+ 240 009c F31F      	.LM24:
+ 241 009e 5083      		subi r18,lo8(-(1))
+  71:hal.c         **** 		bufSize++;
+  72:hal.c         **** 		Buffers[BUFFER_IN_COMMAND_ID].Size = bufSize;
+ 242               	19,hi8(-(1))
+ 243               		sts Buffers+58,r18
+ 244 00a0 2F5F      	.L28:
+ 245 00a2 3F4F      	/* epilogue: frame size=0 */
+ 246 00a4 2093 0000 		pop r31
+ 247               		pop r30
+ 248               		pop r25
+ 249 00a8 FF91      		pop r24
+ 250 00aa EF91      		pop r21
+ 251 00ac 9F91      		pop r20
+ 252 00ae 8F91      		pop r19
+ 253 00b0 5F91      		pop r18
+ 254 00b2 4F91      		pop __tmp_reg__
+ 255 00b4 3F91      		out __SREG__,__tmp_reg__
+ 256 00b6 2F91      		pop __tmp_reg__
+ 257 00b8 0F90      		pop __zero_reg__
+ 258 00ba 0FBE      		reti
+ 259 00bc 0F90      	/* epilogue end (size=13) */
+ 260 00be 1F90      	/* function __vector_11 size 70 (44) */
+ 266               	.Lscope3:
+ 269               	.global	HALWriteOutCommandByte
+ 271               	HALWriteOutCommandByte:
+ 273               	.LM25:
+ 274               	/* prologue: frame size=0 */
+  73:hal.c         **** 	}
+  74:hal.c         **** }
+  75:hal.c         **** 
+  76:hal.c         **** void HALWriteOutCommandByte (unsigned char byte)
+  77:hal.c         **** {
+ 275               	
+ 277               	.LM26:
+ 278               		sbis 43-0x20,5
+ 279               		rjmp .L31
+  78:hal.c         **** 	loop_until_bit_is_set(USR, UDRE);
+ 280               	abn	68,0,79,.LM27-HALWriteOutCommandByte
+ 281               	.LM27:
+ 282 00c2 5D9B      		out 44-0x20,r24
+ 283 00c4 00C0      	/* epilogue: frame size=0 */
+  79:hal.c         **** 	UDR = byte;
+ 284               	
+ 285               	/* epilogue end (size=1) */
+ 286 00c6 8CB9      	/* function HALWriteOutCommandByte size 4 (3) */
+ 288 00c8 0895      	.Lscope4:
+ 290               	.global	HALInitEEPROM
+ 292               	HALInitEEPROM:
+ 294               	.LM28:
+ 295               	/* prologue: frame size=0 */
+ 296               	/* prologue end (size=0) */
+  80:hal.c         **** }
+  81:hal.c         **** 
+  82:hal.c         **** // ******************************************************
+  83:hal.c         **** // ******** Чтение\запись конфигурации в EEPROM *********
+  84:hal.c         **** // ******************************************************
+  85:hal.c         **** 
+  86:hal.c         **** inline void HALInitEEPROM (void)
+  87:hal.c         **** {
+ 297               	(EEPROMData)
+ 298               		ldi r31,hi8(EEPROMData)
+ 299               	.L37:
+ 301 00ca E0E0      	.LM29:
+ 302 00cc F0E0      		st Z+,__zero_reg__
+  88:hal.c         **** 	//TODO: сделать инициализацию реальной EEPROM (если это вообще нужно)
+  89:hal.c         **** 	unsigned short i;
+  90:hal.c         **** 	
+  91:hal.c         **** 	// сейчас инициализация временной структуры нулями
+  92:hal.c         **** 	for (i = 0; i < EEPROM_SIZE; i++)
+  93:hal.c         **** 		EEPROMData[i] = 0;
+ 304               		ldi r24,hi8(EEPROMData+48)
+ 305               		cpi r30,lo8(EEPROMData+48)
+ 306 00ce 1192      		cpc r31,r24
+ 307               		brne .L37
+ 308               	.LBB20:
+ 309 00d0 80E0      	.LBB21:
+ 311 00d4 F807      	.LM31:
+ 312 00d6 01F4      		sts (EEPROMData+30)+1,__zero_reg__
+ 313               		sts EEPROMData+30,__zero_reg__
+ 314               	.LBE21:
+  94:hal.c         **** 		
+  95:hal.c         **** 	HALSetEEPROMWord(EEPROM_APPROX_TABLES + 0, 0); // code 0
+  96:hal.c         **** 	HALSetEEPROMWord(EEPROM_APPROX_TABLES + 2, 5000); // code 128
+  97:hal.c         **** 	HALSetEEPROMWord(EEPROM_APPROX_TABLES + 4, 10000); // code 256
+  98:hal.c         **** 	HALSetEEPROMWord(EEPROM_APPROX_TABLES + 6, 15000); // code 384
+  99:hal.c         **** 	HALSetEEPROMWord(EEPROM_APPROX_TABLES + 8, 20000); // code 512
+ 100:hal.c         **** 	HALSetEEPROMWord(EEPROM_APPROX_TABLES + 10, 30000); // code 640
+ 101:hal.c         **** 	HALSetEEPROMWord(EEPROM_APPROX_TABLES + 12, 45000); // code 768
+ 102:hal.c         **** 	HALSetEEPROMWord(EEPROM_APPROX_TABLES + 14, 50000); // code 896
+ 103:hal.c         **** 	HALSetEEPROMWord(EEPROM_APPROX_TABLES + 16, 60000); // code 1024
+ 104:hal.c         **** }
+ 105:hal.c         **** 
+ 106:hal.c         **** unsigned char HALGetEEPROMByte(unsigned short addr)
+ 107:hal.c         **** {
+ 108:hal.c         **** 	//TODO: через EEPROM
+ 109:hal.c         **** 	return EEPROMData[addr];
+ 110:hal.c         **** }
+ 111:hal.c         **** 
+ 112:hal.c         **** void HALSetEEPROMByte(unsigned short addr, unsigned char byte)
+ 113:hal.c         **** {
+ 114:hal.c         **** 	//TODO: через EEPROM
+ 115:hal.c         **** 	EEPROMData[addr] = byte;
+ 116:hal.c         **** }
+ 117:hal.c         **** 
+ 118:hal.c         **** unsigned short HALGetEEPROMWord(unsigned short addr)
+ 119:hal.c         **** {
+ 120:hal.c         **** 	//TODO: через EEPROM
+ 121:hal.c         **** 	//unsigned short word;
+ 122:hal.c         **** 	
+ 123:hal.c         **** 	//CREATE_WORD(EEPROMData[addr], EEPROMData[addr + 1], word);
+ 124:hal.c         **** 	return *(unsigned short *)(EEPROMData + addr);
+ 125:hal.c         **** }
+ 126:hal.c         **** 
+ 127:hal.c         **** void HALSetEEPROMWord(unsigned short addr, unsigned short word)
+ 128:hal.c         **** {
+ 129:hal.c         **** 	//TODO: через EEPROM
+ 130:hal.c         **** 	*(unsigned short *)(EEPROMData + addr) = word;
+ 315               	B22:
+ 316               	.LBB23:
+ 317 00d8 1092 0000 		ldi r24,lo8(5000)
+ 318 00dc 1092 0000 		ldi r25,hi8(5000)
+ 319               		sts (EEPROMData+32)+1,r25
+ 320               		sts EEPROMData+32,r24
+ 321               	.LBE23:
+ 322               	.LBE22:
+ 323 00e0 88E8      	.LBB24:
+ 324 00e2 93E1      	.LBB25:
+ 325 00e4 9093 0000 		ldi r24,lo8(10000)
+ 326 00e8 8093 0000 		ldi r25,hi8(10000)
+ 327               		sts (EEPROMData+34)+1,r25
+ 328               		sts EEPROMData+34,r24
+ 329               	.LBE25:
+ 330               	.LBE24:
+ 331 00ec 80E1      	.LBB26:
+ 332 00ee 97E2      	.LBB27:
+ 333 00f0 9093 0000 		ldi r24,lo8(15000)
+ 334 00f4 8093 0000 		ldi r25,hi8(15000)
+ 335               		sts (EEPROMData+36)+1,r25
+ 336               		sts EEPROMData+36,r24
+ 337               	.LBE27:
+ 338               	.LBE26:
+ 339 00f8 88E9      	.LBB28:
+ 340 00fa 9AE3      	.LBB29:
+ 341 00fc 9093 0000 		ldi r24,lo8(20000)
+ 342 0100 8093 0000 		ldi r25,hi8(20000)
+ 343               		sts (EEPROMData+38)+1,r25
+ 344               		sts EEPROMData+38,r24
+ 345               	.LBE29:
+ 346               	.LBE28:
+ 347 0104 80E2      	.LBB30:
+ 348 0106 9EE4      	.LBB31:
+ 349 0108 9093 0000 		ldi r24,lo8(30000)
+ 350 010c 8093 0000 		ldi r25,hi8(30000)
+ 351               		sts (EEPROMData+40)+1,r25
+ 352               		sts EEPROMData+40,r24
+ 353               	.LBE31:
+ 354               	.LBE30:
+ 355 0110 80E3      	.LBB32:
+ 356 0112 95E7      	.LBB33:
+ 357 0114 9093 0000 		ldi r24,lo8(-20536)
+ 358 0118 8093 0000 		ldi r25,hi8(-20536)
+ 359               		sts (EEPROMData+42)+1,r25
+ 360               		sts EEPROMData+42,r24
+ 361               	.LBE33:
+ 362               	.LBE32:
+ 363 011c 88EC      	.LBB34:
+ 364 011e 9FEA      	.LBB35:
+ 365 0120 9093 0000 		ldi r24,lo8(-15536)
+ 366 0124 8093 0000 		ldi r25,hi8(-15536)
+ 367               		sts (EEPROMData+44)+1,r25
+ 368               		sts EEPROMData+44,r24
+ 369               	.LBE35:
+ 370               	.LBE34:
+ 371 0128 80E5      	.LBB36:
+ 372 012a 93EC      	.LBB37:
+ 373 012c 9093 0000 		ldi r24,lo8(-5536)
+ 374 0130 8093 0000 		ldi r25,hi8(-5536)
+ 375               		sts (EEPROMData+46)+1,r25
+ 376               		sts EEPROMData+46,r24
+ 377               	.LBE37:
+ 378               	.LBE36:
+ 379 0134 80E6      	/* epilogue: frame size=0 */
+ 380 0136 9AEE      		ret
+ 381 0138 9093 0000 	/* epilogue end (size=1) */
+ 382 013c 8093 0000 	/* function HALInitEEPROM size 60 (59) */
+ 384               	.Lscope5:
+ 387               	.global	HALGetEEPROMByte
+ 389               	HALGetEEPROMByte:
+ 391               	.LM32:
+ 392               	/* prologue: frame size=0 */
+ 393               	/* prologue end (size=0) */
+ 394               		mov r31,r25
+ 395               		mov r30,r24
+ 396               		subi r30,lo8(-(EEPROMData))
+ 397               		sbci r31,hi8(-(EEPROMData))
+ 398               		ld r24,Z
+ 400 0142 F92F      	.LM33:
+ 401 0144 E82F      		clr r25
+ 402 0146 E050      	/* epilogue: frame size=0 */
+ 403 0148 F040      		ret
+ 404 014a 8081      	/* epilogue end (size=1) */
+ 405               	/* function HALGetEEPROMByte size 7 (6) */
+ 407 014c 9927      	.Lscope6:
+ 411               	.global	HALSetEEPROMByte
+ 413               	HALSetEEPROMByte:
+ 415               	.LM34:
+ 416               	/* prologue: frame size=0 */
+ 417               	/* prologue end (size=0) */
+ 419               	.LM35:
+ 420               		mov r31,r25
+ 421               		mov r30,r24
+ 422               		subi r30,lo8(-(EEPROMData))
+ 423               		sbci r31,hi8(-(EEPROMData))
+ 424               		st Z,r22
+ 425               	/* epilogue: frame size=0 */
+ 426 0150 F92F      		ret
+ 427 0152 E82F      	/* epilogue end (size=1) */
+ 428 0154 E050      	/* function HALSetEEPROMByte size 6 (5) */
+ 430 0158 6083      	.Lscope7:
+ 433               	.global	HALGetEEPROMWord
+ 435               	HALGetEEPROMWord:
+ 437               	.LM36:
+ 438               	/* prologue: frame size=0 */
+ 439               	/* prologue end (size=0) */
+ 440               		mov r31,r25
+ 441               		mov r30,r24
+ 442               		subi r30,lo8(-(EEPROMData))
+ 443               		sbci r31,hi8(-(EEPROMData))
+ 445               	.LM37:
+ 446 015c F92F      		ld r24,Z
+ 447 015e E82F      		ldd r25,Z+1
+ 448 0160 E050      	/* epilogue: frame size=0 */
+ 449 0162 F040      		ret
+ 450               	/* epilogue end (size=1) */
+ 451               	/* function HALGetEEPROMWord size 7 (6) */
+ 453 0166 9181      	.Lscope8:
+ 457               	.global	HALSetEEPROMWord
+ 459               	HALSetEEPROMWord:
+ 461               	.LM38:
+ 462               	/* prologue: frame size=0 */
+ 463               	/* prologue end (size=0) */
+ 465               	.LM39:
+ 466               		mov r31,r25
+ 467               		mov r30,r24
+ 468               		subi r30,lo8(-(EEPROMData))
+ 469               		sbci r31,hi8(-(EEPROMData))
+ 470               		std Z+1,r23
+ 471               		st Z,r22
+ 472 016a F92F      	/* epilogue: frame size=0 */
+ 473 016c E82F      		ret
+ 474 016e E050      	/* epilogue end (size=1) */
+ 475 0170 F040      	/* function HALSetEEPROMWord size 7 (6) */
+ 477 0174 6083      	.Lscope9:
+ 479 0176 0895      	.global	HALInitADC
+ 481               	HALInitADC:
+ 483               	.LM40:
+ 484               	/* prologue: frame size=0 */
+ 485               	/* prologue end (size=0) */
+ 487               	.LM41:
+ 131:hal.c         **** }
+ 132:hal.c         **** 
+ 133:hal.c         **** /*
+ 134:hal.c         **** void HALGetEEPROMData(unsigned short addr, void* data, unsigned short size)
+ 135:hal.c         **** {
+ 136:hal.c         **** 	//TODO: через EEPROM
+ 137:hal.c         **** 	unsigned short i;
+ 138:hal.c         **** 	
+ 139:hal.c         **** 	for (i = 0; i < size; i++, addr++)
+ 140:hal.c         **** 		((unsigned char*)data)[i] = HALGetEEPROMByte(addr);	
+ 141:hal.c         **** }
+ 142:hal.c         **** 
+ 143:hal.c         **** void HALSetEEPROMData(unsigned short addr, void* data, unsigned short size)
+ 144:hal.c         **** {
+ 145:hal.c         **** 	//TODO: через EEPROM
+ 146:hal.c         **** 	unsigned short i;
+ 147:hal.c         **** 	
+ 148:hal.c         **** 	for (i = 0; i < size; i++, addr++)
+ 149:hal.c         **** 		HALSetEEPROMByte(addr, ((unsigned char*)data)[i]);
+ 150:hal.c         **** }
+ 151:hal.c         **** */
+ 152:hal.c         **** 
+ 153:hal.c         **** // ******************************************************
+ 154:hal.c         **** // ********             Работа с АЦП            *********
+ 155:hal.c         **** // ******************************************************
+ 156:hal.c         **** 
+ 157:hal.c         **** typedef struct
+ 158:hal.c         **** {
+ 159:hal.c         **** 	unsigned char ChannelsMask;		   	// маска задействованых каналов
+ 160:hal.c         **** 	unsigned char CurChannelIdx; 				// индекс текущего канала в массиве задействованых каналов
+ 161:hal.c         **** 	unsigned char NotReadyChannelsCount;	// количество не до конца заполненых каналов
+ 162:hal.c         **** } HALADCDataStruct;
+ 163:hal.c         **** 
+ 164:hal.c         **** HALADCDataStruct HALADCData;
+ 165:hal.c         **** 
+ 166:hal.c         **** inline void HALInitADC (void)
+ 167:hal.c         **** {
+ 489               	.LM44:
+ 490               		ldi r24,lo8(-113)
+ 491               		out 38-0x20,r24
+ 168:hal.c         **** 	HALADCData.ChannelsMask = 0;
+ 492               	pilogue: frame size=0 */
+ 493               		ret
+ 494 0178 1092 0000 	/* epilogue end (size=1) */
+ 169:hal.c         **** 	HALADCData.CurChannelIdx = 0;
+ 495               	function HALInitADC size 9 (8) */
+ 497 017c 1092 0000 	.Lscope10:
+ 170:hal.c         **** 	HALADCData.NotReadyChannelsCount = 0; // считаем, что АЦП готов
+ 498               	tabs	"HALSetNextADCChannel:F(0,15)",36,0,0,HALSetNextADCChannel
+ 499               	.global	HALSetNextADCChannel
+ 171:hal.c         **** 	
+ 172:hal.c         **** 	ADCSR = _BV(ADEN) | _BV(ADIE) | _BV(ADPS0) | _BV(ADPS1) | _BV(ADPS2);	
+ 501               	SetNextADCChannel:
+ 503 0184 8FE8      	.LM45:
+ 504 0186 86B9      	/* prologue: frame size=0 */
+ 505               	/* prologue end (size=0) */
+ 507               	.LM46:
+ 508               		lds r24,HALADCData
+ 509               		mov r20,r24
+ 510               		clr r21
+ 511               		lds r18,HALADCData+1
+ 512               	.L54:
+ 514               	.LM47:
+ 173:hal.c         **** }
+ 174:hal.c         **** 
+ 175:hal.c         **** void HALSetNextADCChannel(void)
+ 176:hal.c         **** {
+ 515               	)
+ 516               		brne .L55
+ 517               		ldi r18,lo8(0)
+ 518               		rjmp .L57
+ 177:hal.c         **** 	// переходим к следующему задействованному каналу
+ 178:hal.c         **** 	// внимание, алгоритм зациклится, если маска каналов нулевая	
+ 179:hal.c         **** 	do
+ 180:hal.c         **** 	{
+ 181:hal.c         **** 		if (HALADCData.CurChannelIdx == 7)
+ 182:hal.c         **** 			HALADCData.CurChannelIdx = 0;
+ 183:hal.c         **** 		else
+ 184:hal.c         **** 			HALADCData.CurChannelIdx++;	
+ 185:hal.c         **** 	}
+ 186:hal.c         **** 	while (((HALADCData.ChannelsMask >> HALADCData.CurChannelIdx) & 0x01) == 0);
+ 519               	:
+ 521 018a 8091 0000 	.LM48:
+ 522 018e 482F      		subi r18,lo8(-(1))
+ 523 0190 5527      	.L57:
+ 525               	.LM49:
+ 526               		mov r25,r21
+ 527               		mov r24,r20
+ 528 0196 2730      		mov r0,r18
+ 529 0198 01F4      		rjmp 2f
+ 530 019a 20E0      	1:	asr r25
+ 531 019c 00C0      		ror r24
+ 532               	2:	dec r0
+ 533               		brpl 1b
+ 534               		sbrs r24,0
+ 535 019e 2F5F      		rjmp .L54
+ 536               		sts HALADCData+1,r18
+ 537               	/* epilogue: frame size=0 */
+ 538               		ret
+ 539 01a0 952F      	/* epilogue end (size=1) */
+ 540 01a2 842F      	/* function HALSetNextADCChannel size 24 (23) */
+ 542 01a6 00C0      	.Lscope11:
+ 545 01ac 0A94      	.global	HALRunADC
+ 547 01b0 80FF      	HALRunADC:
+ 549 01b4 2093 0000 	.LM50:
+ 550               	/* prologue: frame size=0 */
+ 551 01b8 0895      	/* prologue end (size=0) */
+ 553               	.LM51:
+ 554               		sts HALADCData,r24
+ 556               	.LM52:
+ 557               		ldi r25,lo8(7)
+ 558               		sts HALADCData+1,r25
+ 560               	.LM53:
+ 187:hal.c         **** }
+ 188:hal.c         **** 
+ 189:hal.c         **** void HALRunADC (unsigned char ChannelsMask)
+ 190:hal.c         **** {
+ 561               	8(0)
+ 562               		ldi r18,lo8(0)
+ 563               		ldi r19,hi8(0)
+ 564               		ldi r30,lo8(Buffers+3)
+ 191:hal.c         **** 	unsigned char i;
+ 192:hal.c         **** 	
+ 193:hal.c         **** 	HALADCData.ChannelsMask = ChannelsMask;
+ 565               	 r31,hi8(Buffers+3)
+ 566               		mov r20,r24
+ 567 01ba 8093 0000 		clr r21
+ 194:hal.c         **** 	HALADCData.CurChannelIdx = 7;
+ 568               	3:
+ 570 01be 97E0      	.LM54:
+ 571 01c0 9093 0000 		mov r25,r21
+ 195:hal.c         **** 	HALADCData.NotReadyChannelsCount = 0;
+ 572               	 r24,r20
+ 573               		mov r0,r18
+ 574 01c4 1092 0000 		rjmp 2f
+ 575 01c8 60E0      	1:	asr r25
+ 576 01ca 20E0      		ror r24
+ 577 01cc 30E0      	2:	dec r0
+ 578 01ce E0E0      		brpl 1b
+ 579 01d0 F0E0      		sbrc r24,0
+ 581 01d4 5527      	.LM55:
+ 582               		subi r22,lo8(-(1))
+ 196:hal.c         **** 	
+ 197:hal.c         **** 	for (i = 0; i < 8; i++)
+ 198:hal.c         **** 	{
+ 199:hal.c         **** 		if ((ChannelsMask >> i) & 0x01)
+ 583               	bn	68,0,202,.LM56-HALRunADC
+ 584               	.LM56:
+ 585 01d6 952F      		st Z,__zero_reg__
+ 586 01d8 842F      		subi r18,lo8(-(1))
+ 587 01da 022E      		sbci r19,hi8(-(1))
+ 588 01dc 00C0      		adiw r30,7
+ 590 01e0 8795      	.LM57:
+ 591 01e2 0A94      		cpi r18,8
+ 592 01e4 02F4      		cpc r19,__zero_reg__
+ 593 01e6 80FD      		brne .L63
+ 200:hal.c         **** 			HALADCData.NotReadyChannelsCount++;
+ 594               	Data+2,r22
+ 596 01e8 6F5F      	.LM58:
+ 597               		tst r22
+ 201:hal.c         **** 			
+ 202:hal.c         **** 		Buffers[BUFFER_ADC_FIRST_BUF_INDEX + i].Pos = 0;
+ 598               	q .L69
+ 600 01ea 1082      	.LM59:
+ 601 01ec 2F5F      		rcall HALSetNextADCChannel
+ 603 01f0 3796      	.LM60:
+ 604               		lds r24,HALADCData+1
+ 605               		out 39-0x20,r24
+ 607 01f4 3105      	.LM61:
+ 608 01f6 01F4      		sbi 38-0x20,6
+ 609 01f8 6093 0000 	.L69:
+ 203:hal.c         **** 	}
+ 204:hal.c         **** 	
+ 205:hal.c         **** 	// запускаем АЦП, если маска не нулевая
+ 206:hal.c         **** 	if (HALADCData.NotReadyChannelsCount > 0)
+ 610               	ogue: frame size=0 */
+ 611               	/* epilogue: noreturn */
+ 612 01fc 6623      	/* epilogue end (size=0) */
+ 613 01fe 01F0      	/* function HALRunADC size 42 (42) */
+ 207:hal.c         **** 	{
+ 208:hal.c         **** 		HALSetNextADCChannel(); 				// переходим к первому из задействованых каналов
+ 614               	ze	HALRunADC, .-HALRunADC
+ 615               	.Lscope12:
+ 209:hal.c         **** 		ADMUX = HALADCData.CurChannelIdx; 	// для этого канала и будем запускать АЦП
+ 617               	obal	HALGetADCReady
+ 619 0202 8091 0000 	HALGetADCReady:
+ 210:hal.c         **** 		ADCSR = ADCSR | _BV(ADSC);	
+ 621               	size 42 (42) */
+ 623 0208 369A      	.Lscope12:
+ 625 020a 0895      	.global	HALGetADCReady
+ 627               	HALGetADCReady:
+ 629               	.LM62:
+ 630               	/* prologue: frame size=0 */
+ 631               	/* prologue end (size=0) */
+ 632               		ldi r18,lo8(0)
+ 633               		ldi r19,hi8(0)
+ 634               		lds r24,HALADCData+2
+ 635               		tst r24
+ 211:hal.c         **** 	}
+ 212:hal.c         **** }
+ 213:hal.c         **** 
+ 214:hal.c         **** unsigned char HALGetADCReady(void)
+ 215:hal.c         **** {
+ 636               	abn	68,0,215,.LM63-HALGetADCReady
+ 637               	.LM63:
+ 638               		ldi r18,lo8(1)
+ 639               		ldi r19,hi8(1)
+ 640 020c 20E0      	.L73:
+ 642 0210 8091 0000 	.LM64:
+ 643 0214 8823      		mov r25,r19
+ 644 0216 01F4      		mov r24,r18
+ 645               	/* epilogue: frame size=0 */
+ 646               		ret
+ 647 0218 21E0      	/* epilogue end (size=1) */
+ 648 021a 30E0      	/* function HALGetADCReady size 11 (10) */
+ 216:hal.c         **** 	if (HALADCData.NotReadyChannelsCount == 0)
+ 217:hal.c         **** 		return 1;
+ 218:hal.c         **** 	return 0;
+ 219:hal.c         **** }
+ 650               	,.LM64-HALGetADCReady
+ 651               	.LM64:
+ 652 021c 932F      		mov r25,r19
+ 653 021e 822F      		mov r24,r18
+ 654               	/* epilogue: frame size=0 */
+ 655 0220 0895      		ret
+ 656               	/* epilogue end (size=1) */
+ 657               	/* function HALGetADCReady size 11 (10) */
+ 659               	.Lscope13:
+ 661               	.global	__vector_14
+ 663               	__vector_14:
+ 220:hal.c         **** 
+ 221:hal.c         **** ISR(ADC_vect)
+ 222:hal.c         **** {
+ 664               	 HALGetADCReady size 11 (10) */
+ 666               	.Lscope13:
+ 668 0224 0F92      	.global	__vector_14
+ 670 0228 0F92      	__vector_14:
+ 672 022c 0F93      	.LM65:
+ 673 022e 1F93      	/* prologue: frame size=0 */
+ 674 0230 2F93      		push __zero_reg__
+ 675 0232 3F93      		push __tmp_reg__
+ 676 0234 4F93      		in __tmp_reg__,__SREG__
+ 677 0236 5F93      		push __tmp_reg__
+ 678 0238 6F93      		clr __zero_reg__
+ 679 023a 7F93      		push r16
+ 680 023c 8F93      		push r17
+ 681 023e 9F93      		push r18
+ 682 0240 AF93      		push r19
+ 683 0242 BF93      		push r20
+ 684 0244 CF93      		push r21
+ 685 0246 DF93      		push r22
+ 686 0248 EF93      		push r23
+ 687 024a FF93      		push r24
+ 688               		push r25
+ 223:hal.c         **** 	unsigned char byteLo;
+ 224:hal.c         **** 	unsigned char byteHi;
+ 225:hal.c         **** 	unsigned short word;
+ 226:hal.c         **** 	unsigned char bufIdx;
+ 227:hal.c         **** 	
+ 228:hal.c         **** 	// кладем значение с АЦП в буфер текущего канала	
+ 229:hal.c         **** 	byteLo = ADCL;
+ 689               	ush __tmp_reg__
+ 690               		in __tmp_reg__,__SREG__
+ 691 024c 04B1      		push __tmp_reg__
+ 230:hal.c         **** 	byteHi = ADCH;	
+ 692               		__vector_14, @function
+ 693               	__vector_14:
+ 231:hal.c         **** 	CREATE_WORD(byteLo, byteHi, word);
+ 695               	ze	HALGetADCReady, .-HALGetADCReady
+ 696               	.Lscope13:
+ 698 0252 322F      	.global	__vector_14
+ 232:hal.c         **** 	
+ 233:hal.c         **** 	// TODO: допусковый контроль
+ 234:hal.c         **** 	
+ 235:hal.c         **** 	bufIdx = BUFFER_ADC_FIRST_BUF_INDEX + HALADCData.CurChannelIdx;
+ 236:hal.c         **** 	((unsigned short*)Buffers[bufIdx].Data)[Buffers[bufIdx].Pos] = word;
+ 700               	*/
+ 701               	/* function HALGetADCReady size 11 (10) */
+ 703 025a 9927      	.Lscope13:
+ 705 025e 70E0      	.global	__vector_14
+ 707 0262 B92F      	__vector_14:
+ 709 0266 A050      	.LM65:
+ 710 0268 B040      	/* prologue: frame size=0 */
+ 711 026a DB2F      		push __zero_reg__
+ 712 026c CA2F      		push __tmp_reg__
+ 713 026e EB81      		in __tmp_reg__,__SREG__
+ 714 0270 FF27      		push __tmp_reg__
+ 715 0272 EE0F      		clr __zero_reg__
+ 716 0274 FF1F      		push r16
+ 717 0276 8D81      		push r17
+ 718 0278 9E81      		push r18
+ 719 027a E80F      		push r19
+ 720 027c F91F      		push r20
+ 721 027e 1127      		push r21
+ 722 0280 202B      		push r22
+ 723 0282 312B      		push r23
+ 724 0284 3183      		push r24
+ 725 0286 2083      		push r25
+ 237:hal.c         ****    Buffers[bufIdx].Pos++;
+ 726               	ush __tmp_reg__
+ 727               		in __tmp_reg__,__SREG__
+ 728 0288 8B81      		push __tmp_reg__
+ 729 028a 8F5F      		clr __zero_reg__
+ 730 028c 8B83      		push r16
+ 238:hal.c         **** 
+ 239:hal.c         **** 	// если текущий буфер заполнен, то декрементируем количество незаполненых буферов
+ 240:hal.c         ****    if (Buffers[bufIdx].Pos >= Buffers[bufIdx].Size)
+ 731               	or_14:
+ 733 028e 9A81      	.LM65:
+ 734 0290 8917      	/* prologue: frame size=0 */
+ 735 0292 00F0      		push __zero_reg__
+ 241:hal.c         ****    	HALADCData.NotReadyChannelsCount--;
+ 736               	vector_14:F(0,15)",36,0,0,__vector_14
+ 737               	.global	__vector_14
+ 739 0298 8150      	__vector_14:
+ 741               	.LM65:
+ 242:hal.c         ****    	
+ 243:hal.c         ****   	// если был заполнен последний незаполненый буфер, то к следующему каналу не переходим
+ 244:hal.c         ****    if (HALADCData.NotReadyChannelsCount == 0)
+ 742               	tADCReady, .-HALGetADCReady
+ 743               	.Lscope13:
+ 745 02a2 8823      	.global	__vector_14
+ 245:hal.c         ****    	return;
+ 246:hal.c         ****    		
+ 247:hal.c         **** 	HALSetNextADCChannel(); 				// переходим к следующему каналу
+ 747               	*/
+ 748               	/* function HALGetADCReady size 11 (10) */
+ 248:hal.c         **** 	ADMUX = HALADCData.CurChannelIdx; 	// для этого канала и будем запускать АЦП
+ 750               	,.LM64-HALGetADCReady
+ 751               	.LM64:
+ 752 02a8 8091 0000 		mov r25,r19
+ 753 02ac 87B9      		mov r24,r18
+ 249:hal.c         **** 	ADCSR = ADCSR | _BV(ADSC);          // и запускаем
+ 754               	9,hi8(0)
+ 755               		lds r24,HALADCData+2
+ 756 02ae 369A      		tst r24
+ 757               		brne .L73
+ 759 02b0 FF91      	.LM63:
+ 760 02b2 EF91      		ldi r18,lo8(1)
+ 761 02b4 DF91      		ldi r19,hi8(1)
+ 762 02b6 CF91      	.L73:
+ 764 02ba AF91      	.LM64:
+ 765 02bc 9F91      		mov r25,r19
+ 766 02be 8F91      		mov r24,r18
+ 767 02c0 7F91      	/* epilogue: frame size=0 */
+ 768 02c2 6F91      		ret
+ 769 02c4 5F91      	/* epilogue end (size=1) */
+ 770 02c6 4F91      	/* function HALGetADCReady size 11 (10) */
+ 772 02ca 2F91      	.Lscope13:
+ 774 02ce 0F91      	.global	__vector_14
+ 776 02d2 0FBE      	__vector_14:
+ 778 02d6 1F90      	.LM65:
+ 779 02d8 1895      	/* prologue: frame size=0 */
+ 780               		push __zero_reg__
+ 781               		push __tmp_reg__
+ 782               		in __tmp_reg__,__SREG__
+ 783               		push __tmp_reg__
+ 784               		clr __zero_reg__
+ 785               		push r16
+ 786               		push r17
+ 787               		push r18
+ 788               		push r19
+ 789               		push r20
+ 790               		push r21
+ 791               		push r22
+ 792               		push r23
+ 250:hal.c         **** }
+ 251:hal.c         **** 
+ 252:hal.c         **** // ******************************************************
+ 253:hal.c         **** // ********          Инициализация HAL          *********
+ 254:hal.c         **** // ******************************************************
+ 255:hal.c         **** 
+ 256:hal.c         **** void HALInit (void)
+ 257:hal.c         **** {	
+ 793               	
+ 794               		push __zero_reg__
+ 795               		push __tmp_reg__
+ 796               		in __tmp_reg__,__SREG__
+ 258:hal.c         **** 	HALInitEEPROM();
+ 797               		__vector_14
+ 799 02da 00D0      	__vector_14:
+ 801               	.LM65:
+ 802               	/* prologue: frame size=0 */
+ 803               		push __zero_reg__
+ 804 02dc 80EA      		push __tmp_reg__
+ 805 02de 87BB      		in __tmp_reg__,__SREG__
+ 806               		push __tmp_reg__
+ 807               		clr __zero_reg__
+ 808 02e0 80E5      		push r16
+ 809 02e2 8DB9      		push r17
+ 810               		push r18
+ 811               		push r19
+ 812               		push r20
+ 813               		push r21
+ 814               		push r22
+ 815               		push r23
+ 816 02e4 1092 0000 		push r24
+ 817               		push r25
+ 818               		push r26
+ 819 02e8 1092 0000 		push r27
+ 820               		push r28
+ 821               		push r29
+ 822 02ec 1092 0000 		push r30
+ 823               		push r31
+ 824               	/* prologue end (size=21) */
+ 826 02f2 86B9      	.LM66:
+ 827               		in r16,36-0x20
+ 829               	.LM67:
+ 830               		in r18,37-0x20
+ 832               	.LM68:
+ 833 02f4 8CE0      		clr r19
+ 834 02f6 89B9      		mov r19,r18
+ 835               		clr r18
+ 837 02f8 89E9      	.LM69:
+ 838 02fa 8AB9      		lds r24,HALADCData+1
+ 839               		clr r25
+ 840               		ldi r22,lo8(7)
+ 259:hal.c         **** 	HALInitExtROM();
+ 260:hal.c         **** 	HALInitADC();	
+ 261:hal.c         **** 	HALInitUART();
+ 262:hal.c         **** 	
+ 263:hal.c         **** 	sei();
+ 841               	68,0,231,.LM68-__vector_14
+ 842               	.LM68:
+ 843               		clr r19
+ 844 02fc 7894      		mov r19,r18
+ 845               		clr r18
+ 847 02fe 0895      	.LM69:
+ 848               		lds r24,HALADCData+1
+ 849               		clr r25
+ 850               		ldi r22,lo8(7)
+ 851               		ldi r23,hi8(7)
+ 852               		rcall __mulhi3
+ 853               		mov r27,r25
+ 854               		mov r26,r24
+ 855               		subi r26,lo8(-(Buffers))
+ 856               		sbci r27,hi8(-(Buffers))
+ 857               		mov r29,r27
+ 858               		mov r28,r26
+DEFINED SYMBOLS
+                            *ABS*:00000000 hal.c
+C:\DOCUME~1\SERGEY~1\LOCALS~1\Temp/ccwzaaaa.s:3      *ABS*:0000003f __SREG__
+C:\DOCUME~1\SERGEY~1\LOCALS~1\Temp/ccwzaaaa.s:4      *ABS*:0000003e __SP_H__
+C:\DOCUME~1\SERGEY~1\LOCALS~1\Temp/ccwzaaaa.s:5      *ABS*:0000003d __SP_L__
+C:\DOCUME~1\SERGEY~1\LOCALS~1\Temp/ccwzaaaa.s:6      *ABS*:00000000 __tmp_reg__
+C:\DOCUME~1\SERGEY~1\LOCALS~1\Temp/ccwzaaaa.s:7      *ABS*:00000001 __zero_reg__
+C:\DOCUME~1\SERGEY~1\LOCALS~1\Temp/ccwzaaaa.s:77     .text:00000000 HALInitExtROM
+C:\DOCUME~1\SERGEY~1\LOCALS~1\Temp/ccwzaaaa.s:100    .text:0000000a HALGetExtROMByte
+C:\DOCUME~1\SERGEY~1\LOCALS~1\Temp/ccwzaaaa.s:152    .text:0000002c HALInitUART
+C:\DOCUME~1\SERGEY~1\LOCALS~1\Temp/ccwzaaaa.s:174    .text:00000036 __vector_11
+C:\DOCUME~1\SERGEY~1\LOCALS~1\Temp/ccwzaaaa.s:274    .text:000000c2 HALWriteOutCommandByte
+C:\DOCUME~1\SERGEY~1\LOCALS~1\Temp/ccwzaaaa.s:296    .text:000000ca HALInitEEPROM
+                            *COM*:00000030 EEPROMData
+C:\DOCUME~1\SERGEY~1\LOCALS~1\Temp/ccwzaaaa.s:395    .text:00000142 HALGetEEPROMByte
+C:\DOCUME~1\SERGEY~1\LOCALS~1\Temp/ccwzaaaa.s:419    .text:00000150 HALSetEEPROMByte
+C:\DOCUME~1\SERGEY~1\LOCALS~1\Temp/ccwzaaaa.s:441    .text:0000015c HALGetEEPROMWord
+C:\DOCUME~1\SERGEY~1\LOCALS~1\Temp/ccwzaaaa.s:465    .text:0000016a HALSetEEPROMWord
+C:\DOCUME~1\SERGEY~1\LOCALS~1\Temp/ccwzaaaa.s:487    .text:00000178 HALInitADC
+                            *COM*:00000003 HALADCData
+C:\DOCUME~1\SERGEY~1\LOCALS~1\Temp/ccwzaaaa.s:514    .text:0000018a HALSetNextADCChannel
+C:\DOCUME~1\SERGEY~1\LOCALS~1\Temp/ccwzaaaa.s:560    .text:000001ba HALRunADC
+C:\DOCUME~1\SERGEY~1\LOCALS~1\Temp/ccwzaaaa.s:635    .text:0000020c HALGetADCReady
+C:\DOCUME~1\SERGEY~1\LOCALS~1\Temp/ccwzaaaa.s:663    .text:00000222 __vector_14
+C:\DOCUME~1\SERGEY~1\LOCALS~1\Temp/ccwzaaaa.s:792    .text:000002da HALInit
+
+UNDEFINED SYMBOLS
+__do_copy_data
+__do_clear_bss
+ComProcData
+Buffers
+__mulhi3
