@@ -1,0 +1,603 @@
+Archive member included because of file (symbol)
+
+c:/winavr/bin/../lib/gcc/avr/4.1.1\libgcc.a(_mulqi3.o)
+                              blocks.o (__mulqi3)
+c:/winavr/bin/../lib/gcc/avr/4.1.1\libgcc.a(_mulhi3.o)
+                              blocks.o (__mulhi3)
+c:/winavr/bin/../lib/gcc/avr/4.1.1\libgcc.a(_udivmodqi4.o)
+                              blocks.o (__udivmodqi4)
+c:/winavr/bin/../lib/gcc/avr/4.1.1\libgcc.a(_udivmodhi4.o)
+                              blocks.o (__udivmodhi4)
+c:/winavr/bin/../lib/gcc/avr/4.1.1\libgcc.a(_udivmodsi4.o)
+                              blocks.o (__udivmodsi4)
+c:/winavr/bin/../lib/gcc/avr/4.1.1\libgcc.a(_copy_data.o)
+                              ucontr.o (__do_copy_data)
+c:/winavr/bin/../lib/gcc/avr/4.1.1\libgcc.a(_clear_bss.o)
+                              ucontr.o (__do_clear_bss)
+
+Allocating common symbols
+Common symbol       size              file
+
+Buffer0Data         0x20              buffers.o
+ComProcData         0x42              comproc.o
+Buffer2Data         0x20              buffers.o
+Buffer3Data         0x20              buffers.o
+BufferInCommandData
+                    0x10              buffers.o
+Buffer1Data         0x20              buffers.o
+HALADCData          0x3               hal.o
+EEPROMData          0x30              hal.o
+
+Discarded input sections
+
+ .stabstr       0x00000000        0x0 c:/winavr/bin/../lib/gcc/avr/4.1.1/../../../../avr/lib/crts8535.o
+ .stabstr       0x00000000        0x0 ucontr.o
+ .stabstr       0x00000000        0x0 comproc.o
+ .stabstr       0x00000000        0x0 blocks.o
+ .stabstr       0x00000000        0x0 hal.o
+ .stabstr       0x00000000        0x0 buffers.o
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+text             0x00000000         0x00002000         xr
+data             0x00800060         0x0000ffa0         rw !x
+eeprom           0x00810000         0x00010000         rw !x
+*default*        0x00000000         0xffffffff
+
+Linker script and memory map
+
+LOAD c:/winavr/bin/../lib/gcc/avr/4.1.1/../../../../avr/lib/crts8535.o
+LOAD ucontr.o
+LOAD comproc.o
+LOAD blocks.o
+LOAD hal.o
+LOAD buffers.o
+LOAD c:/winavr/bin/../lib/gcc/avr/4.1.1/../../../../avr/lib\libm.a
+LOAD c:/winavr/bin/../lib/gcc/avr/4.1.1\libgcc.a
+LOAD c:/winavr/bin/../lib/gcc/avr/4.1.1/../../../../avr/lib\libc.a
+LOAD c:/winavr/bin/../lib/gcc/avr/4.1.1\libgcc.a
+
+.hash
+ *(.hash)
+
+.dynsym
+ *(.dynsym)
+
+.dynstr
+ *(.dynstr)
+
+.gnu.version
+ *(.gnu.version)
+
+.gnu.version_d
+ *(.gnu.version_d)
+
+.gnu.version_r
+ *(.gnu.version_r)
+
+.rel.init
+ *(.rel.init)
+
+.rela.init
+ *(.rela.init)
+
+.rel.text
+ *(.rel.text)
+ *(.rel.text.*)
+ *(.rel.gnu.linkonce.t*)
+
+.rela.text
+ *(.rela.text)
+ *(.rela.text.*)
+ *(.rela.gnu.linkonce.t*)
+
+.rel.fini
+ *(.rel.fini)
+
+.rela.fini
+ *(.rela.fini)
+
+.rel.rodata
+ *(.rel.rodata)
+ *(.rel.rodata.*)
+ *(.rel.gnu.linkonce.r*)
+
+.rela.rodata
+ *(.rela.rodata)
+ *(.rela.rodata.*)
+ *(.rela.gnu.linkonce.r*)
+
+.rel.data
+ *(.rel.data)
+ *(.rel.data.*)
+ *(.rel.gnu.linkonce.d*)
+
+.rela.data
+ *(.rela.data)
+ *(.rela.data.*)
+ *(.rela.gnu.linkonce.d*)
+
+.rel.ctors
+ *(.rel.ctors)
+
+.rela.ctors
+ *(.rela.ctors)
+
+.rel.dtors
+ *(.rel.dtors)
+
+.rela.dtors
+ *(.rela.dtors)
+
+.rel.got
+ *(.rel.got)
+
+.rela.got
+ *(.rela.got)
+
+.rel.bss
+ *(.rel.bss)
+
+.rela.bss
+ *(.rela.bss)
+
+.rel.plt
+ *(.rel.plt)
+
+.rela.plt
+ *(.rela.plt)
+
+.text           0x00000000     0x1728
+ *(.vectors)
+ .vectors       0x00000000       0x22 c:/winavr/bin/../lib/gcc/avr/4.1.1/../../../../avr/lib/crts8535.o
+                0x00000000                __vectors
+                0x00000000                __vector_default
+ *(.vectors)
+ *(.progmem.gcc*)
+ *(.progmem*)
+                0x00000022                . = ALIGN (0x2)
+                0x00000022                __trampolines_start = .
+ *(.trampolines)
+ .trampolines   0x00000022        0x0 linker stubs
+ *(.trampolines*)
+                0x00000022                __trampolines_end = .
+ *(.jumptables)
+ *(.jumptables*)
+ *(.lowtext)
+ *(.lowtext*)
+                0x00000022                __ctors_start = .
+ *(.ctors)
+                0x00000022                __ctors_end = .
+                0x00000022                __dtors_start = .
+ *(.dtors)
+                0x00000022                __dtors_end = .
+ SORT(*)(.ctors)
+ SORT(*)(.dtors)
+ *(.init0)
+ .init0         0x00000022        0x0 c:/winavr/bin/../lib/gcc/avr/4.1.1/../../../../avr/lib/crts8535.o
+                0x00000022                __init
+ *(.init0)
+ *(.init1)
+ *(.init1)
+ *(.init2)
+ .init2         0x00000022        0xc c:/winavr/bin/../lib/gcc/avr/4.1.1/../../../../avr/lib/crts8535.o
+ *(.init2)
+ *(.init3)
+ *(.init3)
+ *(.init4)
+ .init4         0x0000002e       0x18 c:/winavr/bin/../lib/gcc/avr/4.1.1\libgcc.a(_copy_data.o)
+                0x0000002e                __do_copy_data
+ .init4         0x00000046       0x10 c:/winavr/bin/../lib/gcc/avr/4.1.1\libgcc.a(_clear_bss.o)
+                0x00000046                __do_clear_bss
+ *(.init4)
+ *(.init5)
+ *(.init5)
+ *(.init6)
+ *(.init6)
+ *(.init7)
+ *(.init7)
+ *(.init8)
+ *(.init8)
+ *(.init9)
+ .init9         0x00000056        0x2 c:/winavr/bin/../lib/gcc/avr/4.1.1/../../../../avr/lib/crts8535.o
+ *(.init9)
+ *(.text)
+ .text          0x00000058        0x2 c:/winavr/bin/../lib/gcc/avr/4.1.1/../../../../avr/lib/crts8535.o
+                0x00000058                __vector_1
+                0x00000058                __vector_12
+                0x00000058                __bad_interrupt
+                0x00000058                __vector_6
+                0x00000058                __vector_3
+                0x00000058                __vector_13
+                0x00000058                __vector_7
+                0x00000058                __vector_5
+                0x00000058                __vector_4
+                0x00000058                __vector_9
+                0x00000058                __vector_2
+                0x00000058                __vector_15
+                0x00000058                __vector_8
+                0x00000058                __vector_10
+                0x00000058                __vector_16
+ .text          0x0000005a       0x18 ucontr.o
+                0x0000005a                main
+ .text          0x00000072      0x1a2 comproc.o
+                0x00000072                ComProcInit
+                0x000001c8                ComProcProcessInCommand
+ .text          0x00000214     0x114c blocks.o
+                0x00000a5c                BlockConst2
+                0x000006d0                BlockHexStrToWord
+                0x0000046e                BlockDiv
+                0x00000e22                BlockADCChannelConfig
+                0x000005b0                BlockByteToBit
+                0x00000228                BlockWord2DecStr
+                0x00000a84                BlockConst0
+                0x000009ee                BlockBreak
+                0x00001082                BlockModuleAddress
+                0x00000b78                BlockMinus
+                0x0000099a                BlockLastError
+                0x00000bd2                BlockPlus
+                0x000008be                BlockSortBuf
+                0x000009b0                BlockNot
+                0x000010de                BlockADC
+                0x00000214                BlockConst3
+                0x00000784                BlockCRCError
+                0x00000a96                BlockByteToHexStr
+                0x00000cb2                BlockApprox
+                0x00000320                BlockAvgMean
+                0x00000b08                BlockHexStrToByte
+                0x00000a70                BlockConst1
+                0x000011c0                Block1
+                0x000004ec                BlockBufLen
+                0x000007a6                BlockCRC
+                0x00001026                BlockADCMask
+                0x00000600                BlockWordToHexStr
+                0x00000864                BlockAnd
+                0x000002e6                BlockConst00
+                0x00000548                BlockBitToByte
+                0x00000a0a                BlockCmpByte
+                0x00000c2c                Block0
+                0x00000770                BlockInCommandBuffId
+ .text          0x00001360      0x300 hal.o
+                0x000014d8                HALInitADC
+                0x0000142a                HALInitEEPROM
+                0x0000136a                HALGetExtROMByte
+                0x0000138c                HALInitUART
+                0x000014ea                HALSetNextADCChannel
+                0x000014b0                HALSetEEPROMByte
+                0x00001396                __vector_11
+                0x0000163a                HALInit
+                0x000014bc                HALGetEEPROMWord
+                0x0000156c                HALGetADCReady
+                0x00001360                HALInitExtROM
+                0x0000151a                HALRunADC
+                0x00001422                HALWriteOutCommandByte
+                0x000014a2                HALGetEEPROMByte
+                0x000014ca                HALSetEEPROMWord
+                0x00001582                __vector_14
+ .text          0x00001660        0x0 buffers.o
+ .text          0x00001660        0x0 c:/winavr/bin/../lib/gcc/avr/4.1.1\libgcc.a(_mulqi3.o)
+ .text          0x00001660        0x0 c:/winavr/bin/../lib/gcc/avr/4.1.1\libgcc.a(_mulhi3.o)
+ .text          0x00001660        0x0 c:/winavr/bin/../lib/gcc/avr/4.1.1\libgcc.a(_udivmodqi4.o)
+ .text          0x00001660        0x0 c:/winavr/bin/../lib/gcc/avr/4.1.1\libgcc.a(_udivmodhi4.o)
+ .text          0x00001660        0x0 c:/winavr/bin/../lib/gcc/avr/4.1.1\libgcc.a(_udivmodsi4.o)
+ .text          0x00001660        0x0 c:/winavr/bin/../lib/gcc/avr/4.1.1\libgcc.a(_copy_data.o)
+ .text          0x00001660        0x0 c:/winavr/bin/../lib/gcc/avr/4.1.1\libgcc.a(_clear_bss.o)
+                0x00001660                . = ALIGN (0x2)
+ *(.text.*)
+ .text.libgcc   0x00001660       0x12 c:/winavr/bin/../lib/gcc/avr/4.1.1\libgcc.a(_mulqi3.o)
+                0x00001660                __mulqi3
+ .text.libgcc   0x00001672       0x24 c:/winavr/bin/../lib/gcc/avr/4.1.1\libgcc.a(_mulhi3.o)
+                0x00001672                __mulhi3
+ .text.libgcc   0x00001696       0x18 c:/winavr/bin/../lib/gcc/avr/4.1.1\libgcc.a(_udivmodqi4.o)
+                0x00001696                __udivmodqi4
+ .text.libgcc   0x000016ae       0x2c c:/winavr/bin/../lib/gcc/avr/4.1.1\libgcc.a(_udivmodhi4.o)
+                0x000016ae                __udivmodhi4
+ .text.libgcc   0x000016da       0x4e c:/winavr/bin/../lib/gcc/avr/4.1.1\libgcc.a(_udivmodsi4.o)
+                0x000016da                __udivmodsi4
+ .text.libgcc   0x00001728        0x0 c:/winavr/bin/../lib/gcc/avr/4.1.1\libgcc.a(_copy_data.o)
+ .text.libgcc   0x00001728        0x0 c:/winavr/bin/../lib/gcc/avr/4.1.1\libgcc.a(_clear_bss.o)
+                0x00001728                . = ALIGN (0x2)
+ *(.fini9)
+ *(.fini9)
+ *(.fini8)
+ *(.fini8)
+ *(.fini7)
+ *(.fini7)
+ *(.fini6)
+ *(.fini6)
+ *(.fini5)
+ *(.fini5)
+ *(.fini4)
+ *(.fini4)
+ *(.fini3)
+ *(.fini3)
+ *(.fini2)
+ *(.fini2)
+ *(.fini1)
+ *(.fini1)
+ *(.fini0)
+ *(.fini0)
+                0x00001728                _etext = .
+
+.data           0x00800060       0x88 load address 0x00001728
+                0x00800060                PROVIDE (__data_start, .)
+ *(.data)
+ .data          0x00800060        0x0 c:/winavr/bin/../lib/gcc/avr/4.1.1/../../../../avr/lib/crts8535.o
+ .data          0x00800060        0x0 ucontr.o
+ .data          0x00800060        0x7 comproc.o
+ .data          0x00800067       0x42 blocks.o
+                0x00800067                BlockHandlers
+ .data          0x008000a9        0x0 hal.o
+ .data          0x008000a9       0x3f buffers.o
+                0x008000a9                Buffers
+ .data          0x008000e8        0x0 c:/winavr/bin/../lib/gcc/avr/4.1.1\libgcc.a(_mulqi3.o)
+ .data          0x008000e8        0x0 c:/winavr/bin/../lib/gcc/avr/4.1.1\libgcc.a(_mulhi3.o)
+ .data          0x008000e8        0x0 c:/winavr/bin/../lib/gcc/avr/4.1.1\libgcc.a(_udivmodqi4.o)
+ .data          0x008000e8        0x0 c:/winavr/bin/../lib/gcc/avr/4.1.1\libgcc.a(_udivmodhi4.o)
+ .data          0x008000e8        0x0 c:/winavr/bin/../lib/gcc/avr/4.1.1\libgcc.a(_udivmodsi4.o)
+ .data          0x008000e8        0x0 c:/winavr/bin/../lib/gcc/avr/4.1.1\libgcc.a(_copy_data.o)
+ .data          0x008000e8        0x0 c:/winavr/bin/../lib/gcc/avr/4.1.1\libgcc.a(_clear_bss.o)
+ *(.data*)
+ *(.rodata)
+ *(.rodata*)
+ *(.gnu.linkonce.d*)
+                0x008000e8                . = ALIGN (0x2)
+                0x008000e8                _edata = .
+                0x008000e8                PROVIDE (__data_end, .)
+
+.bss            0x008000e8      0x105
+                0x008000e8                PROVIDE (__bss_start, .)
+ *(.bss)
+ .bss           0x008000e8        0x0 c:/winavr/bin/../lib/gcc/avr/4.1.1/../../../../avr/lib/crts8535.o
+ .bss           0x008000e8        0x0 ucontr.o
+ .bss           0x008000e8        0x0 comproc.o
+ .bss           0x008000e8        0x0 blocks.o
+ .bss           0x008000e8        0x0 hal.o
+ .bss           0x008000e8        0x0 buffers.o
+ .bss           0x008000e8        0x0 c:/winavr/bin/../lib/gcc/avr/4.1.1\libgcc.a(_mulqi3.o)
+ .bss           0x008000e8        0x0 c:/winavr/bin/../lib/gcc/avr/4.1.1\libgcc.a(_mulhi3.o)
+ .bss           0x008000e8        0x0 c:/winavr/bin/../lib/gcc/avr/4.1.1\libgcc.a(_udivmodqi4.o)
+ .bss           0x008000e8        0x0 c:/winavr/bin/../lib/gcc/avr/4.1.1\libgcc.a(_udivmodhi4.o)
+ .bss           0x008000e8        0x0 c:/winavr/bin/../lib/gcc/avr/4.1.1\libgcc.a(_udivmodsi4.o)
+ .bss           0x008000e8        0x0 c:/winavr/bin/../lib/gcc/avr/4.1.1\libgcc.a(_copy_data.o)
+ .bss           0x008000e8        0x0 c:/winavr/bin/../lib/gcc/avr/4.1.1\libgcc.a(_clear_bss.o)
+ *(.bss*)
+ *(COMMON)
+ COMMON         0x008000e8       0x42 comproc.o
+                0x008000e8                ComProcData
+ COMMON         0x0080012a       0x33 hal.o
+                0x0080012a                HALADCData
+                0x0080012d                EEPROMData
+ COMMON         0x0080015d       0x90 buffers.o
+                0x0080015d                Buffer0Data
+                0x0080017d                Buffer2Data
+                0x0080019d                Buffer3Data
+                0x008001bd                BufferInCommandData
+                0x008001cd                Buffer1Data
+                0x008001ed                PROVIDE (__bss_end, .)
+                0x00001728                __data_load_start = LOADADDR (.data)
+                0x000017b0                __data_load_end = (__data_load_start + SIZEOF (.data))
+
+.noinit         0x008001ed        0x0
+                0x008001ed                PROVIDE (__noinit_start, .)
+ *(.noinit*)
+                0x008001ed                PROVIDE (__noinit_end, .)
+                0x008001ed                _end = .
+                0x008001ed                PROVIDE (__heap_start, .)
+
+.eeprom         0x00810000        0x0
+ *(.eeprom*)
+                0x00810000                __eeprom_end = .
+
+.stab           0x00000000     0x2acc
+ *(.stab)
+ .stab          0x00000000      0x36c c:/winavr/bin/../lib/gcc/avr/4.1.1/../../../../avr/lib/crts8535.o
+ .stab          0x0000036c      0x348 ucontr.o
+                                0x354 (size before relaxing)
+ .stab          0x000006b4      0x474 comproc.o
+                                0x648 (size before relaxing)
+ .stab          0x00000b28     0x1758 blocks.o
+                               0x1944 (size before relaxing)
+ .stab          0x00002280      0x720 hal.o
+                                0x8f4 (size before relaxing)
+ .stab          0x000029a0      0x12c buffers.o
+                                0x150 (size before relaxing)
+
+.stabstr        0x00000000     0x11a1
+ *(.stabstr)
+ .stabstr       0x00000000     0x11a1 c:/winavr/bin/../lib/gcc/avr/4.1.1/../../../../avr/lib/crts8535.o
+
+.stab.excl
+ *(.stab.excl)
+
+.stab.exclstr
+ *(.stab.exclstr)
+
+.stab.index
+ *(.stab.index)
+
+.stab.indexstr
+ *(.stab.indexstr)
+
+.comment
+ *(.comment)
+
+.debug
+ *(.debug)
+
+.line
+ *(.line)
+
+.debug_srcinfo
+ *(.debug_srcinfo)
+
+.debug_sfnames
+ *(.debug_sfnames)
+
+.debug_aranges
+ *(.debug_aranges)
+
+.debug_pubnames
+ *(.debug_pubnames)
+
+.debug_info
+ *(.debug_info)
+ *(.gnu.linkonce.wi.*)
+
+.debug_abbrev
+ *(.debug_abbrev)
+
+.debug_line
+ *(.debug_line)
+
+.debug_frame
+ *(.debug_frame)
+
+.debug_str
+ *(.debug_str)
+
+.debug_loc
+ *(.debug_loc)
+
+.debug_macinfo
+ *(.debug_macinfo)
+OUTPUT(ucontr.elf elf32-avr)
+LOAD linker stubs
+
+Cross Reference Table
+
+Symbol                                            File
+Block0                                            blocks.o
+Block1                                            blocks.o
+BlockADC                                          blocks.o
+BlockADCChannelConfig                             blocks.o
+BlockADCMask                                      blocks.o
+BlockAnd                                          blocks.o
+BlockApprox                                       blocks.o
+BlockAvgMean                                      blocks.o
+BlockBitToByte                                    blocks.o
+BlockBreak                                        blocks.o
+BlockBufLen                                       blocks.o
+BlockByteToBit                                    blocks.o
+BlockByteToHexStr                                 blocks.o
+BlockCRC                                          blocks.o
+BlockCRCError                                     blocks.o
+BlockCmpByte                                      blocks.o
+BlockConst0                                       blocks.o
+BlockConst00                                      blocks.o
+BlockConst1                                       blocks.o
+BlockConst2                                       blocks.o
+BlockConst3                                       blocks.o
+BlockDiv                                          blocks.o
+BlockHandlers                                     blocks.o
+                                                  comproc.o
+BlockHexStrToByte                                 blocks.o
+BlockHexStrToWord                                 blocks.o
+BlockInCommandBuffId                              blocks.o
+BlockLastError                                    blocks.o
+BlockMinus                                        blocks.o
+BlockModuleAddress                                blocks.o
+BlockNot                                          blocks.o
+BlockPlus                                         blocks.o
+BlockSortBuf                                      blocks.o
+BlockWord2DecStr                                  blocks.o
+BlockWordToHexStr                                 blocks.o
+Buffer0Data                                       buffers.o
+Buffer1Data                                       buffers.o
+Buffer2Data                                       buffers.o
+Buffer3Data                                       buffers.o
+BufferInCommandData                               buffers.o
+Buffers                                           buffers.o
+                                                  hal.o
+                                                  blocks.o
+                                                  comproc.o
+                                                  ucontr.o
+ComProcData                                       hal.o
+                                                  blocks.o
+                                                  comproc.o
+                                                  ucontr.o
+ComProcInit                                       comproc.o
+                                                  ucontr.o
+ComProcProcessInCommand                           comproc.o
+                                                  ucontr.o
+EEPROMData                                        hal.o
+HALADCData                                        hal.o
+HALGetADCReady                                    hal.o
+                                                  blocks.o
+HALGetEEPROMByte                                  hal.o
+                                                  blocks.o
+HALGetEEPROMWord                                  hal.o
+                                                  blocks.o
+HALGetExtROMByte                                  hal.o
+                                                  blocks.o
+                                                  comproc.o
+HALInit                                           hal.o
+                                                  ucontr.o
+HALInitADC                                        hal.o
+HALInitEEPROM                                     hal.o
+HALInitExtROM                                     hal.o
+HALInitUART                                       hal.o
+HALRunADC                                         hal.o
+                                                  blocks.o
+HALSetEEPROMByte                                  hal.o
+                                                  blocks.o
+HALSetEEPROMWord                                  hal.o
+                                                  blocks.o
+HALSetNextADCChannel                              hal.o
+HALWriteOutCommandByte                            hal.o
+                                                  blocks.o
+__bad_interrupt                                   c:/winavr/bin/../lib/gcc/avr/4.1.1/../../../../avr/lib/crts8535.o
+__bss_end                                         c:/winavr/bin/../lib/gcc/avr/4.1.1\libgcc.a(_clear_bss.o)
+__bss_start                                       c:/winavr/bin/../lib/gcc/avr/4.1.1\libgcc.a(_clear_bss.o)
+__data_end                                        c:/winavr/bin/../lib/gcc/avr/4.1.1\libgcc.a(_copy_data.o)
+__data_load_start                                 c:/winavr/bin/../lib/gcc/avr/4.1.1\libgcc.a(_copy_data.o)
+__data_start                                      c:/winavr/bin/../lib/gcc/avr/4.1.1\libgcc.a(_copy_data.o)
+__do_clear_bss                                    c:/winavr/bin/../lib/gcc/avr/4.1.1\libgcc.a(_clear_bss.o)
+                                                  buffers.o
+                                                  hal.o
+                                                  blocks.o
+                                                  comproc.o
+                                                  ucontr.o
+__do_copy_data                                    c:/winavr/bin/../lib/gcc/avr/4.1.1\libgcc.a(_copy_data.o)
+                                                  buffers.o
+                                                  hal.o
+                                                  blocks.o
+                                                  comproc.o
+                                                  ucontr.o
+__heap_end                                        c:/winavr/bin/../lib/gcc/avr/4.1.1/../../../../avr/lib/crts8535.o
+__init                                            c:/winavr/bin/../lib/gcc/avr/4.1.1/../../../../avr/lib/crts8535.o
+__mulhi3                                          c:/winavr/bin/../lib/gcc/avr/4.1.1\libgcc.a(_mulhi3.o)
+                                                  hal.o
+                                                  blocks.o
+__mulqi3                                          c:/winavr/bin/../lib/gcc/avr/4.1.1\libgcc.a(_mulqi3.o)
+                                                  blocks.o
+__stack                                           c:/winavr/bin/../lib/gcc/avr/4.1.1/../../../../avr/lib/crts8535.o
+__udivmodhi4                                      c:/winavr/bin/../lib/gcc/avr/4.1.1\libgcc.a(_udivmodhi4.o)
+                                                  blocks.o
+__udivmodqi4                                      c:/winavr/bin/../lib/gcc/avr/4.1.1\libgcc.a(_udivmodqi4.o)
+                                                  blocks.o
+__udivmodsi4                                      c:/winavr/bin/../lib/gcc/avr/4.1.1\libgcc.a(_udivmodsi4.o)
+                                                  blocks.o
+__vector_1                                        c:/winavr/bin/../lib/gcc/avr/4.1.1/../../../../avr/lib/crts8535.o
+__vector_10                                       c:/winavr/bin/../lib/gcc/avr/4.1.1/../../../../avr/lib/crts8535.o
+__vector_11                                       hal.o
+                                                  c:/winavr/bin/../lib/gcc/avr/4.1.1/../../../../avr/lib/crts8535.o
+__vector_12                                       c:/winavr/bin/../lib/gcc/avr/4.1.1/../../../../avr/lib/crts8535.o
+__vector_13                                       c:/winavr/bin/../lib/gcc/avr/4.1.1/../../../../avr/lib/crts8535.o
+__vector_14                                       hal.o
+                                                  c:/winavr/bin/../lib/gcc/avr/4.1.1/../../../../avr/lib/crts8535.o
+__vector_15                                       c:/winavr/bin/../lib/gcc/avr/4.1.1/../../../../avr/lib/crts8535.o
+__vector_16                                       c:/winavr/bin/../lib/gcc/avr/4.1.1/../../../../avr/lib/crts8535.o
+__vector_2                                        c:/winavr/bin/../lib/gcc/avr/4.1.1/../../../../avr/lib/crts8535.o
+__vector_3                                        c:/winavr/bin/../lib/gcc/avr/4.1.1/../../../../avr/lib/crts8535.o
+__vector_4                                        c:/winavr/bin/../lib/gcc/avr/4.1.1/../../../../avr/lib/crts8535.o
+__vector_5                                        c:/winavr/bin/../lib/gcc/avr/4.1.1/../../../../avr/lib/crts8535.o
+__vector_6                                        c:/winavr/bin/../lib/gcc/avr/4.1.1/../../../../avr/lib/crts8535.o
+__vector_7                                        c:/winavr/bin/../lib/gcc/avr/4.1.1/../../../../avr/lib/crts8535.o
+__vector_8                                        c:/winavr/bin/../lib/gcc/avr/4.1.1/../../../../avr/lib/crts8535.o
+__vector_9                                        c:/winavr/bin/../lib/gcc/avr/4.1.1/../../../../avr/lib/crts8535.o
+__vector_default                                  c:/winavr/bin/../lib/gcc/avr/4.1.1/../../../../avr/lib/crts8535.o
+__vectors                                         c:/winavr/bin/../lib/gcc/avr/4.1.1/../../../../avr/lib/crts8535.o
+main                                              ucontr.o
+                                                  c:/winavr/bin/../lib/gcc/avr/4.1.1/../../../../avr/lib/crts8535.o

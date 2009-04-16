@@ -1,0 +1,82 @@
+set -e; avr-gcc -MM -mmcu=at90s8535 -I. -std=gnu99 -Os -gstabs -Wa,-adhlns=buffers.lst -funsigned-char -funsigned-bitfields -fpack-struct -fshort-enums  -Wall -Wstrict-prototypes buffers.c \
+| sed 's,\(.*\)\.o[ :]*,\1.o \1.d : ,g' > buffers.d; \
+[ -s buffers.d ] || rm -f buffers.d
+set -e; avr-gcc -MM -mmcu=at90s8535 -I. -std=gnu99 -Os -gstabs -Wa,-adhlns=hal.lst -funsigned-char -funsigned-bitfields -fpack-struct -fshort-enums  -Wall -Wstrict-prototypes hal.c \
+| sed 's,\(.*\)\.o[ :]*,\1.o \1.d : ,g' > hal.d; \
+[ -s hal.d ] || rm -f hal.d
+set -e; avr-gcc -MM -mmcu=at90s8535 -I. -std=gnu99 -Os -gstabs -Wa,-adhlns=blocks.lst -funsigned-char -funsigned-bitfields -fpack-struct -fshort-enums  -Wall -Wstrict-prototypes blocks.c \
+| sed 's,\(.*\)\.o[ :]*,\1.o \1.d : ,g' > blocks.d; \
+[ -s blocks.d ] || rm -f blocks.d
+set -e; avr-gcc -MM -mmcu=at90s8535 -I. -std=gnu99 -Os -gstabs -Wa,-adhlns=comproc.lst -funsigned-char -funsigned-bitfields -fpack-struct -fshort-enums  -Wall -Wstrict-prototypes comproc.c \
+| sed 's,\(.*\)\.o[ :]*,\1.o \1.d : ,g' > comproc.d; \
+[ -s comproc.d ] || rm -f comproc.d
+set -e; avr-gcc -MM -mmcu=at90s8535 -I. -std=gnu99 -Os -gstabs -Wa,-adhlns=ucontr.lst -funsigned-char -funsigned-bitfields -fpack-struct -fshort-enums  -Wall -Wstrict-prototypes ucontr.c \
+| sed 's,\(.*\)\.o[ :]*,\1.o \1.d : ,g' > ucontr.d; \
+[ -s ucontr.d ] || rm -f ucontr.d
+
+-------- begin --------
+avr-gcc (GCC) 4.1.1 (WinAVR 20070122)
+Copyright (C) 2006 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+
+Compiling: ucontr.c
+avr-gcc -c -mmcu=at90s8535 -I. -std=gnu99 -Os -gstabs -Wa,-adhlns=ucontr.lst -funsigned-char -funsigned-bitfields -fpack-struct -fshort-enums  -Wall -Wstrict-prototypes ucontr.c -o ucontr.o
+
+Compiling: comproc.c
+avr-gcc -c -mmcu=at90s8535 -I. -std=gnu99 -Os -gstabs -Wa,-adhlns=comproc.lst -funsigned-char -funsigned-bitfields -fpack-struct -fshort-enums  -Wall -Wstrict-prototypes comproc.c -o comproc.o
+
+Compiling: blocks.c
+avr-gcc -c -mmcu=at90s8535 -I. -std=gnu99 -Os -gstabs -Wa,-adhlns=blocks.lst -funsigned-char -funsigned-bitfields -fpack-struct -fshort-enums  -Wall -Wstrict-prototypes blocks.c -o blocks.o
+
+Compiling: hal.c
+avr-gcc -c -mmcu=at90s8535 -I. -std=gnu99 -Os -gstabs -Wa,-adhlns=hal.lst -funsigned-char -funsigned-bitfields -fpack-struct -fshort-enums  -Wall -Wstrict-prototypes hal.c -o hal.o
+
+Compiling: buffers.c
+avr-gcc -c -mmcu=at90s8535 -I. -std=gnu99 -Os -gstabs -Wa,-adhlns=buffers.lst -funsigned-char -funsigned-bitfields -fpack-struct -fshort-enums  -Wall -Wstrict-prototypes buffers.c -o buffers.o
+
+Linking: ucontr.elf
+avr-gcc -mmcu=at90s8535 -I. -std=gnu99 -Os -gstabs -Wa,-adhlns=ucontr.o -funsigned-char -funsigned-bitfields -fpack-struct -fshort-enums  -Wall -Wstrict-prototypes ucontr.o comproc.o blocks.o hal.o buffers.o   --output ucontr.elf -lm -Wl,-Map=ucontr.map -Wl,--cref
+
+Creating load file for Flash: ucontr.hex
+avr-objcopy -O ihex -R .eeprom ucontr.elf ucontr.hex
+
+Creating load file for EEPROM: ucontr.eep
+avr-objcopy -j .eeprom --set-section-flags=.eeprom="alloc,load" \
+--change-section-lma .eeprom=0 -O ihex ucontr.elf ucontr.eep
+c:\winavr\bin\avr-objcopy.exe: there are no sections to be copied!
+c:\winavr\bin\avr-objcopy.exe: --change-section-lma .eeprom=0x00000000 never used
+make: [ucontr.eep] Error 1 (ignored)
+
+Creating Extended Listing: ucontr.lss
+avr-objdump -h -S ucontr.elf > ucontr.lss
+
+Creating Symbol Table: ucontr.sym
+avr-nm -n ucontr.elf > ucontr.sym
+
+Converting to AVR COFF: ucontr.cof
+avr-objcopy --debugging --change-section-address .data-0x800000 --change-section-address .bss-0x800000 --change-section-address .noinit-0x800000 --change-section-address .eeprom-0x810000 -O coff-ext-avr ucontr.elf ucontr.cof   # Extended COFF. Supported in VMLAB from rel. 3.10
+Warning: file C:/DOCUME~1/EWEDDI~1/LOCALS~1/Temp/cc0wbaaa.s not found in symbol table, ignoring
+Warning: ignoring function __vectors() outside any compilation unit
+Warning: ignoring function __bad_interrupt() outside any compilation unit
+c:\winavr\bin\avr-objcopy.exe: --change-section-vma .eeprom+0xff7f0000 never used
+c:\winavr\bin\avr-objcopy.exe: --change-section-lma .eeprom+0xff7f0000 never used
+c:\winavr\bin\avr-objcopy.exe: --change-section-vma .noinit+0xff800000 never used
+c:\winavr\bin\avr-objcopy.exe: --change-section-lma .noinit+0xff800000 never used
+
+Size after:
+ucontr.elf  :
+section     size      addr
+.text       5928         0
+.data        136   8388704
+.bss         261   8388840
+.stab      10956         0
+.stabstr    4513         0
+Total      21794
+
+
+
+Errors: none
+-------- end --------
+
