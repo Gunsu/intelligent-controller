@@ -22,7 +22,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="SSAU.BlocksConstruct.Engine.Block">
-    <Position X="2.25" Y="3.75" Width="1.75" />
+    <Position X="2.5" Y="3.75" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAAQYCAAAAAEggAAAABAACwAAACAAAAAAQAAAAIAABA=</HashCode>
       <FileName>Block.cs</FileName>
@@ -51,14 +51,14 @@
     </TypeIdentifier>
   </Class>
   <Class Name="SSAU.BlocksConstruct.Engine.BlockInputPoint">
-    <Position X="7" Y="5.5" Width="2.25" />
+    <Position X="7" Y="5.75" Width="2.25" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAQAAAAAAAAA=</HashCode>
       <FileName>BlockInputPoint.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SSAU.BlocksConstruct.Engine.BlockOutputPoint">
-    <Position X="9.5" Y="5.5" Width="2.25" />
+    <Position X="9.75" Y="5.75" Width="2.25" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAQAAAAAAAAA=</HashCode>
       <FileName>BlockOutputPoint.cs</FileName>
@@ -82,14 +82,6 @@
   </Class>
   <Class Name="SSAU.BlocksConstruct.Engine.OutputCommandBlock">
     <Position X="0.5" Y="12.25" Width="2.5" />
-    <InheritanceLine Type="SSAU.BlocksConstruct.Engine.CommandBlock" ManuallyRouted="true">
-      <Path>
-        <Point X="1.875" Y="10.555" />
-        <Point X="1.875" Y="11.875" />
-        <Point X="1.75" Y="11.875" />
-        <Point X="1.75" Y="12.25" />
-      </Path>
-    </InheritanceLine>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAACAgAAAAAAAAAAAAAAAAAAAQCAAAAAABA=</HashCode>
       <FileName>OutputCommandBlock.cs</FileName>
