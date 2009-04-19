@@ -50,7 +50,9 @@
     <Compile Include="..\Version.cs">
       <Link>Version.cs</Link>
     </Compile>
-    <Compile Include="Common\Coordinates.cs" />
+    <Compile Include="Common\Coordinates.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="DesignByContract\AssertionException.cs" />
     <Compile Include="DesignByContract\Check.cs" />
     <Compile Include="DesignByContract\DesignByContractException.cs" />
