@@ -47,16 +47,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="SchemaManagement\IBlock.cs" />
+    <Compile Include="Schemas\IBlock.cs" />
     <Compile Include="Compilation\ICompiler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SchemaManagement\IBlocks.cs" />
-    <Compile Include="SchemaManagement\ICommandInputBlock.cs" />
-    <Compile Include="SchemaManagement\ISchema.cs" />
-    <Compile Include="SchemaManagement\ICommandOutputBlock.cs" />
+    <Compile Include="Schemas\IBlocks.cs" />
+    <Compile Include="Schemas\ICommandInputBlock.cs" />
+    <Compile Include="Schemas\ICommandMask.cs" />
+    <Compile Include="Schemas\IProject.cs" />
+    <Compile Include="Schemas\ISchema.cs" />
+    <Compile Include="Schemas\ICommandOutputBlock.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="key.snk" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\IC.Utils\IC.Utils.csproj">
+      <Project>{1FC836EA-429D-4826-A858-2DA01690EA78}</Project>
+      <Name>IC.Utils</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
