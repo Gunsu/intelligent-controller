@@ -55,6 +55,7 @@
     <Compile Include="Enums\Orientation.cs" />
     <Compile Include="Memory\MemoryPool.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Schemas\BlockConnector.cs" />
     <Compile Include="Schemas\Blocks.cs" />
     <Compile Include="Schemas\CommandInputBlock.cs" />
     <Compile Include="Schemas\CommandOutputBlock.cs" />
