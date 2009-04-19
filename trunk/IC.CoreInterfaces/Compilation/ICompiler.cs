@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using IC.CoreInterfaces.SchemaManagement;
+using IC.CoreInterfaces.Schemas;
 
 namespace IC.CoreInterfaces.Compilation
 {

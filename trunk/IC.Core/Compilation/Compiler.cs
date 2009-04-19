@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 
 using IC.CoreInterfaces.Compilation;
-using IC.CoreInterfaces.SchemaManagement;
+using IC.CoreInterfaces.Schemas;
 using IC.Utils.DesignByContract;
 
 namespace IC.Core.Compilation

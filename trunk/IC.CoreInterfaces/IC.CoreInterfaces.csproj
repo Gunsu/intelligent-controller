@@ -53,6 +53,7 @@
     <Compile Include="Schemas\IBlocks.cs" />
     <Compile Include="Schemas\ICommandInputBlock.cs" />
     <Compile Include="Schemas\ICommandMask.cs" />
+    <Compile Include="Schemas\IBlockConnector.cs" />
     <Compile Include="Schemas\IProject.cs" />
     <Compile Include="Schemas\ISchema.cs" />
     <Compile Include="Schemas\ICommandOutputBlock.cs" />
