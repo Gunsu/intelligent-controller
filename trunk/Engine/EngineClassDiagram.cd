@@ -30,7 +30,7 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="SSAU.BlocksConstruct.Engine.GraphicalObject">
-    <Position X="2.25" Y="0.5" Width="1.5" />
+    <Position X="2.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAACAAAAAAAgAAIAAAAIgAAACAAAAAAQAAAgAAAAI=</HashCode>
       <FileName>GraphicalObject.cs</FileName>
@@ -66,6 +66,16 @@
   </Class>
   <Class Name="SSAU.BlocksConstruct.Engine.CommandBlock">
     <Position X="0.75" Y="8.25" Width="2.25" />
+    <InheritanceLine Type="SSAU.BlocksConstruct.Engine.Block" ManuallyRouted="true">
+      <Path>
+        <Point X="3.375" Y="7.916" />
+        <Point X="3.375" Y="8.166" />
+        <Point X="3.021" Y="8.166" />
+        <Point X="3.021" Y="8.083" />
+        <Point X="1.875" Y="8.083" />
+        <Point X="1.875" Y="8.25" />
+      </Path>
+    </InheritanceLine>
     <TypeIdentifier>
       <HashCode>AAAAQAAAAAAAAgAAAAEAAAAAAAAAAAAAAQCAAAAAABA=</HashCode>
       <FileName>CommandBlock.cs</FileName>
