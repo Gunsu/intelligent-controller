@@ -5,15 +5,13 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{1FC836EA-429D-4826-A858-2DA01690EA78}</ProjectGuid>
+    <ProjectGuid>{AFCE2047-6CEC-4A5E-902F-32505F443694}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>IC.Utils</RootNamespace>
-    <AssemblyName>IC.Utils</AssemblyName>
+    <RootNamespace>IC.Presenters</RootNamespace>
+    <AssemblyName>IC.Presenters</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <SignAssembly>true</SignAssembly>
-    <AssemblyOriginatorKeyFile>key.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -33,6 +31,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Practices.Composite, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\3rd party libraries\Microsoft\CAL\Microsoft.Practices.Composite.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity, Version=1.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\3rd party libraries\Microsoft\Unity\Microsoft.Practices.Unity.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -47,22 +53,35 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\Version.cs">
-      <Link>Version.cs</Link>
-    </Compile>
-    <Compile Include="Common\Coordinates.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="DesignByContract\AssertionException.cs" />
-    <Compile Include="DesignByContract\Check.cs" />
-    <Compile Include="DesignByContract\DesignByContractException.cs" />
-    <Compile Include="DesignByContract\InvariantException.cs" />
-    <Compile Include="DesignByContract\PostconditionException.cs" />
-    <Compile Include="DesignByContract\PreconditionException.cs" />
+    <Compile Include="BasePresenter.cs" />
+    <Compile Include="ProjectExplorerPresenter.cs" />
+    <Compile Include="ViewInterfaces\IBaseView.cs" />
+    <Compile Include="ViewInterfaces\IMenuView.cs" />
+    <Compile Include="ViewInterfaces\IProjectExplorerView.cs" />
+    <Compile Include="ViewInterfaces\ISchemaView.cs" />
+    <Compile Include="ViewInterfaces\IShellView.cs" />
+    <Compile Include="MenuPresenter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ShellPresenter.cs" />
+    <Compile Include="ViewInterfaces\IStatusView.cs" />
+    <Compile Include="ViewInterfaces\IToolboxView.cs" />
+    <Compile Include="SchemaPresenter.cs" />
+    <Compile Include="StatusPresenter.cs" />
+    <Compile Include="ToolboxPresenter.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="key.snk" />
+    <ProjectReference Include="..\IC.CoreInterfaces\IC.CoreInterfaces.csproj">
+      <Project>{868B244D-7777-4A70-9DC1-C9C10D1A99D4}</Project>
+      <Name>IC.CoreInterfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IC.Core\IC.Core.csproj">
+      <Project>{321A0837-70B3-49A3-A842-DE690118153C}</Project>
+      <Name>IC.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Project.Utils\Project.Utils.csproj">
+      <Project>{1FC836EA-429D-4826-A858-2DA01690EA78}</Project>
+      <Name>Project.Utils</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
