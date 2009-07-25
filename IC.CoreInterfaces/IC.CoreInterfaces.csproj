@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Objects\IBlock.cs" />
+    <Compile Include="Objects\IBlockConnectionPoint.cs" />
     <Compile Include="Processes\IBlockProcesses.cs" />
     <Compile Include="Processes\IProjectProcesses.cs" />
     <Compile Include="Processes\ISchemaProcesses.cs" />
@@ -61,6 +62,7 @@
     <Compile Include="Objects\ICommandOutputBlock.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Blocks.xsd" />
     <None Include="key.snk" />
   </ItemGroup>
   <ItemGroup>

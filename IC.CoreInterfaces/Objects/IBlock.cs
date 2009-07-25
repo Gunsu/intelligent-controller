@@ -1,4 +1,5 @@
 ﻿using Project.Utils.Common;
+using System.Collections.Generic;
 
 namespace IC.CoreInterfaces.Objects
 {
@@ -8,8 +9,18 @@ namespace IC.CoreInterfaces.Objects
 	public interface IBlock
 	{
 		/// <summary>
-		/// Координаты блока.
+		/// Идентификатор блока.
 		/// </summary>
-		Coordinates Coordinates { get; }
+		int ID { get; }
+
+		/// <summary>
+		/// Входные точки.
+		/// </summary>
+		IList<IBlockConnectionPoint> InputPoints { get; }
+
+		/// <summary>
+		/// Выходные точки.
+		/// </summary>
+		IList<IBlockConnectionPoint> OutputPoints { get; }
 	}
 }

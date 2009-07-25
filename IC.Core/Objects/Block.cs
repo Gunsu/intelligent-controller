@@ -1,5 +1,6 @@
 ﻿using IC.CoreInterfaces.Objects;
-using Project.Utils.Common;
+using System.Collections.Generic;
+using ValidationAspects;
 
 namespace IC.Core.Objects
 {
@@ -8,14 +9,32 @@ namespace IC.Core.Objects
 	/// </summary>
 	public class Block : IBlock
 	{
-		/// <summary>
-		/// Координаты блока.
-		/// </summary>
-		public Coordinates Coordinates { get; private set; }
-
 		private Block()
 		{
-			Coordinates = new Coordinates();
+			InputPoints = new List<IBlockConnectionPoint>();
+			OutputPoints = new List<IBlockConnectionPoint>();
 		}
+
+		/// <remarks>Минимум 2 установлен, потому что 0 и 1 зарезервированы для входного и выходного блоков.</remarks>
+		public Block ([Minimum(2)] int id)
+		{
+			ID = id;
+		}
+
+		#region IBlock Members
+
+		/// <summary>
+		/// Входные точки.
+		/// </summary>
+		public IList<IBlockConnectionPoint> InputPoints { get; private set; }
+
+		/// <summary>
+		/// Выходные точки.
+		/// </summary>
+		public IList<IBlockConnectionPoint> OutputPoints { get; private set; }
+
+		public int ID { get; private set; }
+
+		#endregion
 	}
 }
