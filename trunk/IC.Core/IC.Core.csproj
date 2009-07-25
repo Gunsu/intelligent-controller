@@ -33,6 +33,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="PostSharp.Laos, Version=1.5.0.0, Culture=neutral, PublicKeyToken=b13fd38b8f9c99d7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\3rd party libraries\PostSharp\PostSharp.Laos.dll</HintPath>
+    </Reference>
+    <Reference Include="PostSharp.Public, Version=1.5.0.0, Culture=neutral, PublicKeyToken=b13fd38b8f9c99d7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\3rd party libraries\PostSharp\PostSharp.Public.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -45,6 +53,14 @@
     </Reference>
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="ValidationAspects, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\3rd party libraries\PostSharp\ValidationAspects\ValidationAspects.dll</HintPath>
+    </Reference>
+    <Reference Include="ValidationAspects.PostSharp, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\3rd party libraries\PostSharp\ValidationAspects\ValidationAspects.PostSharp.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\Version.cs">
@@ -52,6 +68,7 @@
     </Compile>
     <Compile Include="Objects\Block.cs" />
     <Compile Include="Enums\Orientation.cs" />
+    <Compile Include="Objects\BlockConnectionPoint.cs" />
     <Compile Include="Objects\MemoryPool.cs" />
     <Compile Include="Processes\BlockProcesses.cs" />
     <Compile Include="Processes\ProjectProcesses.cs" />

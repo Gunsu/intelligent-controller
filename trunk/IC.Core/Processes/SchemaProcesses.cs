@@ -64,14 +64,15 @@ namespace IC.Core.Processes
 				errors.Add("Не все блоки выходной команды соединены в цепочку.");
 			}
 
-			foreach (var block in schema.Blocks)
-			{
-				if (bp.BlockHasHangingInput(block).Result == true)
-				{
-					noErrors = false;
-					errors.Add(string.Format("Блок по координатам {0} имеет висячие входы.", block.Coordinates));
-				}
-			}
+#warning и что делать с координатами?
+			//foreach (var block in schema.Blocks)
+			//{
+			//    if (bp.BlockHasHangingInput(block).Result == true)
+			//    {
+			//        noErrors = false;
+			//        errors.Add(string.Format("Блок по координатам {0} имеет висячие входы.", block.Coordinates));
+			//    }
+			//}
 
 			return new ProcessResult(noErrors, errors);
 		}
