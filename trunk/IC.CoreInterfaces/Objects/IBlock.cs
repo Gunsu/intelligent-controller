@@ -8,19 +8,6 @@ namespace IC.CoreInterfaces.Objects
 	/// </summary>
 	public interface IBlock
 	{
-		/// <summary>
-		/// Идентификатор блока.
-		/// </summary>
-		int ID { get; }
 
-		/// <summary>
-		/// Входные точки.
-		/// </summary>
-		IList<IBlockConnectionPoint> InputPoints { get; }
-
-		/// <summary>
-		/// Выходные точки.
-		/// </summary>
-		IList<IBlockConnectionPoint> OutputPoints { get; }
 	}
 }

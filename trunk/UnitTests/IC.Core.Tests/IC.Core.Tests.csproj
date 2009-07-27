@@ -5,15 +5,13 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{868B244D-7777-4A70-9DC1-C9C10D1A99D4}</ProjectGuid>
+    <ProjectGuid>{146A212E-69AE-4426-A442-E8684364E677}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>IC.CoreInterfaces</RootNamespace>
-    <AssemblyName>IC.CoreInterfaces</AssemblyName>
+    <RootNamespace>IC.Core.Tests</RootNamespace>
+    <AssemblyName>IC.Core.Tests</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <SignAssembly>true</SignAssembly>
-    <AssemblyOriginatorKeyFile>key.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -47,31 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Objects\IBlock.cs" />
-    <Compile Include="Objects\IBlockConnectionPoint.cs" />
-    <Compile Include="Objects\IBlockType.cs" />
-    <Compile Include="Processes\IBlockProcesses.cs" />
-    <Compile Include="Processes\IBlockTypesProcesses.cs" />
-    <Compile Include="Processes\IProjectProcesses.cs" />
-    <Compile Include="Processes\ISchemaProcesses.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Objects\IBlocks.cs" />
-    <Compile Include="Objects\ICommandInputBlock.cs" />
-    <Compile Include="Objects\ICommandMask.cs" />
-    <Compile Include="Objects\IBlockConnector.cs" />
-    <Compile Include="Objects\IProject.cs" />
-    <Compile Include="Objects\ISchema.cs" />
-    <Compile Include="Objects\ICommandOutputBlock.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Blocks.xsd" />
-    <None Include="key.snk" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Project.Utils\Project.Utils.csproj">
-      <Project>{1FC836EA-429D-4826-A858-2DA01690EA78}</Project>
-      <Name>Project.Utils</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
