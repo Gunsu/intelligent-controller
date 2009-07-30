@@ -1,8 +1,9 @@
-﻿using Microsoft.Practices.Composite.Presentation.Events;
+﻿using IC.CoreInterfaces.Objects;
+using Microsoft.Practices.Composite.Presentation.Events;
 
 namespace IC.UI.Infrastructure.Events
 {
-	public sealed class CurrentSchemaChangedEvent : CompositePresentationEvent<string>
+	public sealed class CurrentSchemaChangedEvent : CompositePresentationEvent<ISchema>
 	{
 	}
 }

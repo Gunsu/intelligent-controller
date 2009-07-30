@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using IC.CoreInterfaces.Objects;
 using IC.Modules.ProjectExplorer.Interfaces.Views;
 
 namespace IC.Modules.ProjectExplorer.Interfaces.PresentationModels
@@ -9,8 +10,8 @@ namespace IC.Modules.ProjectExplorer.Interfaces.PresentationModels
 
 		string ProjectName { get; }
 
-	    ObservableCollection<string> SchemasListItems { get; }
+		ObservableCollection<ISchema> SchemasListItems { get; }
 
-        string CurrentSchemaItem { get; }
+		ISchema CurrentSchemaItem { get; }
 	}
 }

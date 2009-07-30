@@ -1,8 +1,11 @@
 ﻿using IC.Modules.ProjectExplorer;
+using IC.Modules.Toolbox;
 using IC.UI.Views;
 using Microsoft.Practices.Composite.Modularity;
 using Microsoft.Practices.Composite.UnityExtensions;
 using System.Windows;
+using IC.CoreInterfaces.Processes;
+using IC.Core.Processes;
 
 namespace IC.UI
 {
@@ -20,7 +23,9 @@ namespace IC.UI
 		protected override void ConfigureContainer()
 		{
 			Container.RegisterType<IShellView, Shell>();
-		
+			Container.RegisterType<IC.Core.Core>();
+			Container.Resolve<IC.Core.Core>().Initialize();
+
 			base.ConfigureContainer();
 		}
 
@@ -28,6 +33,7 @@ namespace IC.UI
 		{
 			var moduleCatalog = new ModuleCatalog();
 			moduleCatalog.AddModule(typeof (ProjectExplorerModule));
+			moduleCatalog.AddModule(typeof (ToolboxModule));
 			return moduleCatalog;
 		}
 	}

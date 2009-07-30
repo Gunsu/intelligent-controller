@@ -5,7 +5,7 @@ using ValidationAspects;
 namespace IC.Core.Objects
 {
 	/// <summary>
-	/// Блок команды, выполняющий определённое действие, например, проверку на ноль, и, в общем случае, имеющий точки входа и выхода.
+	/// Тип блока.
 	/// </summary>
 	public class BlockType : IBlockType
 	{
@@ -23,7 +23,28 @@ namespace IC.Core.Objects
 			Name = name;
 		}
 
+		public BlockType(int id, string name, [NotNullOrEmpty] string description)
+			: this(id, name)
+		{
+			Description = description;
+		}
+
 		#region IBlock Members
+
+		/// <summary>
+		/// Название.
+		/// </summary>
+		public string Name { get; private set; }
+
+		/// <summary>
+		/// Идентификатор.
+		/// </summary>
+		public int ID { get; private set; }
+
+		/// <summary>
+		/// Описание о предназначении данного типа блока.
+		/// </summary>
+		public string Description { get; private set; }
 
 		/// <summary>
 		/// Входные точки.
@@ -34,10 +55,6 @@ namespace IC.Core.Objects
 		/// Выходные точки.
 		/// </summary>
 		public IList<IBlockConnectionPoint> OutputPoints { get; private set; }
-
-		public int ID { get; private set; }
-
-		public string Name { get; private set; }
 
 		#endregion
 	}

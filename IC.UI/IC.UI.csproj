@@ -160,6 +160,10 @@
       <Project>{405A2997-5D8F-4A9D-9BD6-B21C991496BD}</Project>
       <Name>IC.Modules.ProjectExplorer</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Modules\IC.Modules.Toolbox\IC.Modules.Toolbox.csproj">
+      <Project>{BB5157DA-66BD-4BC8-AFDA-6B3AC23A7279}</Project>
+      <Name>IC.Modules.Toolbox</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

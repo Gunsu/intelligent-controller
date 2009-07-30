@@ -42,376 +42,200 @@
 		</Input>
 		<Output>
 			<Name>B</Name>
-			<Size>
-				1
-			</Size>
+			<Size>1</Size>
 		</Output>
 	</BlockType>
 
 	<BlockType>
-		<Name>
-			Byte2Hex
-		</Name>
-		<ID>
-			5
-		</ID>
+		<Name>Byte2Hex</Name>
+		<ID>5</ID>
 		<Input>
-			<Name>
-				B
-			</Name>
-			<Size>
-				1
-			</Size>
+			<Name>B</Name>
+			<Size>1</Size>
 		</Input>
 		<Output>
-			<Name>
-				H
-			</Name>
-			<Size>
-				2
-			</Size>
+			<Name>H</Name>
+			<Size>2</Size>
 		</Output>
 	</BlockType>
 
 
 	<BlockType>
-		<Name>
-			Const0
-		</Name>
-		<ID>
-			6
-		</ID>
+		<Name>Const0</Name>
+		<ID>6</ID>
 		<Output>
-			<Name>
-				C0
-			</Name>
-			<Size>
-				1
-			</Size>
+			<Name>C0</Name>
+			<Size>1</Size>
 		</Output>
 	</BlockType>
 
 	<BlockType>
-		<Name>
-			Const1
-		</Name>
-		<ID>
-			7
-		</ID>
+		<Name>Const1</Name>
+		<ID>7</ID>
 		<Output>
-			<Name>
-				C1
-			</Name>
-			<Size>
-				1
-			</Size>
+			<Name>C1</Name>
+			<Size>1</Size>
 		</Output>
 	</BlockType>
 
 	<BlockType>
-		<Name>
-			Const2
-		</Name>
-		<ID>
-			8
-		</ID>
+		<Name>Const2</Name>
+		<ID>8</ID>
 		<Output>
-			<Name>
-				C2
+			<Name>C2
 			</Name>
-			<Size>
-				1
-			</Size>
+			<Size>1</Size>
 		</Output>
 	</BlockType>
 
 	<BlockType>
-		<Name>
-			ModAddr
-		</Name>
-		<ID>
-			9
-		</ID>
+		<Name>ModAddr</Name>
+		<ID>9</ID>
 		<Input>
-			<Name>
-				R0W1
-			</Name>
-			<Size>
-				1
-			</Size>
+			<Name>R0W1</Name>
+			<Size>1</Size>
 		</Input>
 		<Input>
-			<Name>
-				Addr
-			</Name>
-			<Size>
-				1
-			</Size>
+			<Name>Addr</Name>
+			<Size>1</Size>
 		</Input>
 		<Input>
-			<Name>
-				Nxt
-			</Name>
-			<Size>
-				1
-			</Size>
+			<Name>Nxt</Name>
+			<Size>1</Size>
 		</Input>
 		<Output>
-			<Name>
-				Addr
-			</Name>
-			<Size>
-				1
-			</Size>
+			<Name>Addr</Name>
+			<Size>1</Size>
 		</Output>
 	</BlockType>
 
 	<BlockType>
-		<Name>
-			Cmp
-		</Name>
-		<ID>
-			10
-		</ID>
+		<Name>Cmp</Name>
+		<ID>10</ID>
 		<Input>
-			<Name>
-				V1
-			</Name>
-			<Size>
-				1
-			</Size>
+			<Name>V1</Name>
+			<Size>1</Size>
 		</Input>
 		<Input>
-			<Name>
-				V2
-			</Name>
-			<Size>
-				1
-			</Size>
+			<Name>V2</Name>
+			<Size>1</Size>
 		</Input>
 		<Output>
-			<Name>
-				Res
-			</Name>
-			<Size>
-				1
-			</Size>
+			<Name>Res</Name>
+			<Size>1</Size>
 		</Output>
 	</BlockType>
 
 	<BlockType>
-		<Name>
-			Break
-		</Name>
-		<ID>
-			11
-		</ID>
+		<Name>Break</Name>
+		<ID>11</ID>
 		<Input>
-			<Name>
-				Enbl
-			</Name>
-			<Size>
-				1
-			</Size>
+			<Name>Enbl</Name>
+			<Size>1</Size>
 		</Input>
 		<Output>
-			<Name>
-				Nxt
-			</Name>
-			<Size>
-				1
-			</Size>
+			<Name>Nxt</Name>
+			<Size>1</Size>
 		</Output>
 	</BlockType>
 
 	<BlockType>
-		<Name>
-			Not
-		</Name>
-		<ID>
-			12
-		</ID>
+		<Name>Not</Name>
+		<ID>12</ID>
 		<Input>
-			<Name>
-				V
-			</Name>
-			<Size>
-				1
-			</Size>
+			<Name>V</Name>
+			<Size>1</Size>
 		</Input>
 		<Output>
-			<Name>
-				Res
-			</Name>
-			<Size>
-				1
-			</Size>
+			<Name>Res</Name>
+			<Size>1</Size>
 		</Output>
 	</BlockType>
 
 	<BlockType>
-		<Name>
-			LastErr
-		</Name>
-		<ID>
-			13
-		</ID>
+		<Name>LastErr</Name>
+		<ID>13</ID>
 		<Output>
-			<Name>
-				Err
-			</Name>
-			<Size>
-				1
-			</Size>
+			<Name>Err</Name>
+			<Size>1</Size>
 		</Output>
 	</BlockType>
 
 	<BlockType>
-		<Name>
-			SortBuff
-		</Name>
-		<ID>
-			14
-		</ID>
+		<Name>SortBuff</Name>
+		<ID>14</ID>
 		<Input>
-			<Name>
-				BId
-			</Name>
-			<Size>
-				1
-			</Size>
+			<Name>BId</Name>
+			<Size>1</Size>
 		</Input>
 		<Input>
-			<Name>
-				Enbl
-			</Name>
-			<Size>
-				1
-			</Size>
+			<Name>Enbl</Name>
+			<Size>1</Size>
 		</Input>
 		<Input>
-			<Name>
-				Nxt
-			</Name>
-			<Size>
-				1
-			</Size>
+			<Name>Nxt</Name>
+			<Size>1</Size>
 		</Input>
 		<Output>
-			<Name>
-				BId
-			</Name>
-			<Size>
-				1
-			</Size>
+			<Name>BId</Name>
+			<Size>1</Size>
 		</Output>
 	</BlockType>
 
 
 	<BlockType>
-		<Name>
-			And
+		<Name>And
 		</Name>
-		<ID>
-			15
-		</ID>
+		<ID>15</ID>
 		<Input>
-			<Name>
-				V1
-			</Name>
-			<Size>
-				1
-			</Size>
+			<Name>V1</Name>
+			<Size>1</Size>
 		</Input>
 		<Input>
-			<Name>
-				V2
-			</Name>
-			<Size>
-				1
-			</Size>
+			<Name>V2</Name>
+			<Size>1</Size>
 		</Input>
 		<Output>
-			<Name>
-				Res
-			</Name>
-			<Size>
-				1
-			</Size>
+			<Name>Res</Name>
+			<Size>1</Size>
 		</Output>
 	</BlockType>
 
 	<BlockType>
-		<Name>
-			CRC
-		</Name>
-		<ID>
-			16
-		</ID>
+		<Name>CRC</Name>
+		<ID>16</ID>
 		<Input>
-			<Name>
-				BId
-			</Name>
-			<Size>
-				1
-			</Size>
+			<Name>BId</Name>
+			<Size>1</Size>
 		</Input>
 		<Input>
-			<Name>
-				Sz
-			</Name>
-			<Size>
-				1
-			</Size>
+			<Name>Sz</Name>
+			<Size>1</Size>
 		</Input>
 		<Input>
-			<Name>
-				Enbl
-			</Name>
-			<Size>
-				1
-			</Size>
+			<Name>Enbl</Name>
+			<Size>1</Size>
 		</Input>
 		<Input>
-			<Name>
-				Nxt
-			</Name>
-			<Size>
-				1
-			</Size>
+			<Name>Nxt</Name>
+			<Size>1</Size>
 		</Input>
 		<Output>
-			<Name>
-				Res
-			</Name>
-			<Size>
-				1
-			</Size>
+			<Name>Res</Name>
+			<Size>1</Size>
 		</Output>
 	</BlockType>
 
 	<BlockType>
-		<Name>
-			CRCError
-		</Name>
-		<ID>
-			17
-		</ID>
+		<Name>CRCError</Name>
+		<ID>17</ID>
 		<Input>
-			<Name>
-				Enbl
-			</Name>
-			<Size>
-				1
-			</Size>
+			<Name>Enbl</Name>
+			<Size>1</Size>
 		</Input>
 		<Output>
-			<Name>
-				Nxt
-			</Name>
-			<Size>
-				1
-			</Size>
+			<Name>Nxt</Name>
+			<Size>1</Size>
 		</Output>
 	</BlockType>
 
@@ -1126,19 +950,11 @@
 	</BlockType>
 
 	<BlockType>
-		<Name>
-			Const3
-		</Name>
-		<ID>
-			32
-		</ID>
+		<Name>Const3</Name>
+		<ID>32</ID>
 		<Output>
-			<Name>
-				C3
-			</Name>
-			<Size>
-				1
-			</Size>
+			<Name>C3</Name>
+			<Size>1</Size>
 		</Output>
 	</BlockType>
 

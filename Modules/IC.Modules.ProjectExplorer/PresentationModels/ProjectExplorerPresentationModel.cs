@@ -1,5 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
+using IC.CoreInterfaces.Objects;
 using IC.Modules.ProjectExplorer.Interfaces.PresentationModels;
 using IC.Modules.ProjectExplorer.Interfaces.Views;
 using IC.UI.Infrastructure.Events;
@@ -10,8 +11,8 @@ namespace IC.Modules.ProjectExplorer.PresentationModels
 	public sealed class ProjectExplorerPresentationModel : IProjectExplorerPresentationModel, INotifyPropertyChanged
 	{
 		private readonly IEventAggregator _eventAggregator;
-	    private ObservableCollection<string> _schemasListItems;
-	    private string _currentSchemaItem;
+	    private ObservableCollection<ISchema> _schemasListItems;
+		private ISchema _currentSchemaItem;
 
 		#region Члены IProjectExplorerPresentationModel
 
@@ -22,30 +23,24 @@ namespace IC.Modules.ProjectExplorer.PresentationModels
 			get { return "Project Explorer - MyProject"; }
 		}
 
-	    public ObservableCollection<string> SchemasListItems
-	    {
-            get { return _schemasListItems; }
-            set
-            {
-                if (_schemasListItems != value)
-                {
-                    _schemasListItems = value;
-                    OnPropertyChanged("SchemasListItems");
-                }
-            }
-	    }
+		public ObservableCollection<ISchema> SchemasListItems
+		{
+			get { return _schemasListItems; }
+			set
+			{
+				_schemasListItems = value;
+				OnPropertyChanged("SchemasListItems");
+			}
+		}
 
-	    public string CurrentSchemaItem
+		public ISchema CurrentSchemaItem
 	    {
             get { return _currentSchemaItem; }
             set
             {
-                if (!string.IsNullOrEmpty(value) && (value != _currentSchemaItem))
-                {
-                    _currentSchemaItem = value;
-                    OnPropertyChanged("CurrentSchemaItem");
-					_eventAggregator.GetEvent<CurrentSchemaChangedEvent>().Publish(value);
-                }
+                _currentSchemaItem = value;
+                OnPropertyChanged("CurrentSchemaItem");
+				_eventAggregator.GetEvent<CurrentSchemaChangedEvent>().Publish(value);
             }
 	    }
 

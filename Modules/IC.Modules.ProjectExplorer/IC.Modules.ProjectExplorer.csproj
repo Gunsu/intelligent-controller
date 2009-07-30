@@ -47,6 +47,14 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\3rd party libraries\Microsoft\Unity\Microsoft.Practices.Unity.dll</HintPath>
     </Reference>
+    <Reference Include="PostSharp.Laos, Version=1.5.0.0, Culture=neutral, PublicKeyToken=b13fd38b8f9c99d7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\3rd party libraries\PostSharp\PostSharp.Laos.dll</HintPath>
+    </Reference>
+    <Reference Include="PostSharp.Public, Version=1.5.0.0, Culture=neutral, PublicKeyToken=b13fd38b8f9c99d7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\3rd party libraries\PostSharp\PostSharp.Public.dll</HintPath>
+    </Reference>
     <Reference Include="PresentationCore">
       <RequiredTargetFramework>3.0</RequiredTargetFramework>
     </Reference>
@@ -59,6 +67,14 @@
     </Reference>
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="ValidationAspects, Version=2.1.0.0, Culture=neutral, PublicKeyToken=128b7d78df51748b, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\3rd party libraries\PostSharp\ValidationAspects\ValidationAspects.dll</HintPath>
+    </Reference>
+    <Reference Include="ValidationAspects.PostSharp, Version=2.1.0.0, Culture=neutral, PublicKeyToken=128b7d78df51748b, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\3rd party libraries\PostSharp\ValidationAspects\ValidationAspects.PostSharp.dll</HintPath>
+    </Reference>
     <Reference Include="WindowsBase">
       <RequiredTargetFramework>3.0</RequiredTargetFramework>
     </Reference>
@@ -80,9 +96,9 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\IC.Core\IC.Core.csproj">
-      <Project>{321A0837-70B3-49A3-A842-DE690118153C}</Project>
-      <Name>IC.Core</Name>
+    <ProjectReference Include="..\..\IC.CoreInterfaces\IC.CoreInterfaces.csproj">
+      <Project>{868B244D-7777-4A70-9DC1-C9C10D1A99D4}</Project>
+      <Name>IC.CoreInterfaces</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\IC.UI.Infrastructure\IC.UI.Infrastructure.csproj">
       <Project>{8AE70E66-ADCC-4368-B348-8608E7A67658}</Project>
