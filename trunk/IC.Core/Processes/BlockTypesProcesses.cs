@@ -16,26 +16,25 @@ namespace IC.Core.Processes
 
 		public IList<IBlockType> LoadBlockTypesFromFile()
 		{
-
-			XmlDocument document = new XmlDocument();
+			var document = new XmlDocument();
 			document.Load(_blockTypesFilePath);
-			XmlNodeList nodeList = document.GetElementsByTagName("BlockTypes");
+			XmlNodeList nodeList = document.GetElementsByTagName("BlockType");
 			IList<IBlockType> blockTypes = new List<IBlockType>();
 			foreach (XmlNode node in nodeList)
 			{
-				string blockTypeName = node.FirstChild.ChildNodes[0].InnerText;
-				int id = int.Parse(node.FirstChild.ChildNodes[1].InnerText);
+				string blockTypeName = node.ChildNodes[0].InnerText;
+				int id = int.Parse(node.ChildNodes[1].InnerText);
 				IBlockType blockType = new BlockType(id, blockTypeName);
-				for (int i = 2; i < node.FirstChild.ChildNodes.Count; ++i)
+				for (int i = 2; i < node.ChildNodes.Count; ++i)
 				{
-					string name = node.FirstChild.ChildNodes[i].ChildNodes[0].InnerText;
-					int size = int.Parse(node.FirstChild.ChildNodes[i].ChildNodes[1].InnerText);
+					string name = node.ChildNodes[i].ChildNodes[0].InnerText;
+					int size = int.Parse(node.ChildNodes[i].ChildNodes[1].InnerText);
 					IBlockConnectionPoint blockConnectionPoint = new BlockConnectionPoint(name, size);
-					if (node.FirstChild.ChildNodes[i].Name == "Input")
+					if (node.ChildNodes[i].Name == "Input")
 					{
 						blockType.InputPoints.Add(blockConnectionPoint);
 					}
-					else if (node.FirstChild.ChildNodes[i].Name == "Output")
+					else if (node.ChildNodes[i].Name == "Output")
 					{
 						blockType.OutputPoints.Add(blockConnectionPoint);
 					}

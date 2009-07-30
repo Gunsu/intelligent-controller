@@ -6,12 +6,17 @@
 	public interface IBlockConnectionPoint
 	{
 		/// <summary>
-		/// Имя точки.
+		/// Название.
 		/// </summary>
 		string Name { get; }
 
 		/// <summary>
-		/// Размер выхода в байтах.
+		/// Описание о предназначении данной точки.
+		/// </summary>
+		string Description { get; }
+
+		/// <summary>
+		/// Размер в байтах.
 		/// </summary>
 		int Size { get; }
 	}

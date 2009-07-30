@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{146A212E-69AE-4426-A442-E8684364E677}</ProjectGuid>
+    <ProjectGuid>{BB5157DA-66BD-4BC8-AFDA-6B3AC23A7279}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>IC.Core.Tests</RootNamespace>
-    <AssemblyName>IC.Core.Tests</AssemblyName>
+    <RootNamespace>IC.Modules.Toolbox</RootNamespace>
+    <AssemblyName>IC.Modules.Toolbox</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -31,6 +31,18 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Practices.Composite, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\3rd party libraries\Microsoft\CAL\Microsoft.Practices.Composite.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Composite.Presentation, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\3rd party libraries\Microsoft\CAL\Microsoft.Practices.Composite.Presentation.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Composite.UnityExtensions, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\3rd party libraries\Microsoft\CAL\Microsoft.Practices.Composite.UnityExtensions.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Practices.ObjectBuilder2, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\3rd party libraries\Microsoft\Unity\Microsoft.Practices.ObjectBuilder2.dll</HintPath>
@@ -55,9 +67,19 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\3rd party libraries\Microsoft\Unity\Microsoft.Practices.Unity.StaticFactory.dll</HintPath>
     </Reference>
-    <Reference Include="nunit.framework, Version=2.5.0.9122, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+    <Reference Include="PostSharp.Laos, Version=1.5.0.0, Culture=neutral, PublicKeyToken=b13fd38b8f9c99d7, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\3rd party libraries\NUnit\nunit.framework.dll</HintPath>
+      <HintPath>..\..\3rd party libraries\PostSharp\PostSharp.Laos.dll</HintPath>
+    </Reference>
+    <Reference Include="PostSharp.Public, Version=1.5.0.0, Culture=neutral, PublicKeyToken=b13fd38b8f9c99d7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\3rd party libraries\PostSharp\PostSharp.Public.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="PresentationFramework">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
@@ -71,20 +93,59 @@
     </Reference>
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="UIAutomationProvider">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="ValidationAspects, Version=2.1.0.0, Culture=neutral, PublicKeyToken=128b7d78df51748b, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\3rd party libraries\PostSharp\ValidationAspects\ValidationAspects.dll</HintPath>
+    </Reference>
+    <Reference Include="ValidationAspects.PostSharp, Version=2.1.0.0, Culture=neutral, PublicKeyToken=128b7d78df51748b, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\3rd party libraries\PostSharp\ValidationAspects\ValidationAspects.PostSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="WindowsBase">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Processes\BlockTypesProcessesTest.cs" />
+    <Compile Include="Interfaces\PresentationModels\IToolboxPresentationModel.cs" />
+    <Compile Include="Interfaces\Services\IBlockTypesService.cs" />
+    <Compile Include="Interfaces\Views\IToolboxView.cs" />
+    <Compile Include="PresentationModels\ToolboxPresentationModel.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Services\BlockTypesService.cs" />
+    <Compile Include="ToolboxModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Views\ToolboxView.xaml.cs">
+      <DependentUpon>ToolboxView.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\IC.CoreInterfaces\IC.CoreInterfaces.csproj">
       <Project>{868B244D-7777-4A70-9DC1-C9C10D1A99D4}</Project>
       <Name>IC.CoreInterfaces</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\IC.Core\IC.Core.csproj">
-      <Project>{321A0837-70B3-49A3-A842-DE690118153C}</Project>
-      <Name>IC.Core</Name>
+    <ProjectReference Include="..\..\IC.UI.Infrastructure\IC.UI.Infrastructure.csproj">
+      <Project>{8AE70E66-ADCC-4368-B348-8608E7A67658}</Project>
+      <Name>IC.UI.Infrastructure</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Views\ToolboxView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

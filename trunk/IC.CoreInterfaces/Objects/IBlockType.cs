@@ -7,12 +7,20 @@ namespace IC.CoreInterfaces.Objects
 	/// </summary>
 	public interface IBlockType
 	{
+		/// <summary>
+		/// Название.
+		/// </summary>
 		string Name { get; }
 
 		/// <summary>
-		/// Идентификатор блока.
+		/// Идентификатор.
 		/// </summary>
 		int ID { get; }
+
+		/// <summary>
+		/// Описание о предназначении данного типа блока.
+		/// </summary>
+		string Description { get; }
 
 		/// <summary>
 		/// Входные точки.
