@@ -3,10 +3,10 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 	<Grid>
 		<Grid.ColumnDefinitions>
-			<ColumnDefinition />
-			<ColumnDefinition Width="auto"/>
+			<ColumnDefinition Width="auto" />
+			<ColumnDefinition/>
 		</Grid.ColumnDefinitions>
-		<Grid Grid.Column="1"
+		<Grid Grid.Column="0"
 			Name="_toolboxGrid">
 			<Grid.RowDefinitions>
 				<RowDefinition Height="auto" />
@@ -43,8 +43,8 @@
 				</ListView.View>
 			</ListView>
 		</Grid>
-		<GridSplitter Grid.Column="1"
-			HorizontalAlignment="Left"
+		<GridSplitter Grid.Column="0"
+			HorizontalAlignment="Right"
 			Width="5"/>
 	</Grid>
 </UserControl>

@@ -1,7 +1,4 @@
-﻿using System.Windows.Controls;
-
-using ValidationAspects;
-using IC.UI.PresentationModels;
+﻿using IC.UI.Infrastructure.Interfaces.ProjectExplorer;
 
 namespace IC.UI.Views
 {
@@ -13,12 +10,6 @@ namespace IC.UI.Views
 		public ProjectExplorerView()
 		{
 			InitializeComponent();
-
-#if Design
-			_projectsListBox.Items.Add("Schema1");
-			_projectsListBox.Items.Add("Schema2");
-			_projectsListBox.Items.Add("Schema3");
-#endif
 		}
 
 		public IProjectExplorerPresentationModel Model

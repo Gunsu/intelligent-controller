@@ -80,6 +80,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\..\Version.cs">
+      <Link>Version.cs</Link>
+    </Compile>
     <Compile Include="Interfaces\PresentationModels\IProjectExplorerPresentationModel.cs" />
     <Compile Include="PresentationModels\ProjectExplorerPresentationModel.cs" />
     <Compile Include="ProjectExplorerModule.cs" />

@@ -82,8 +82,7 @@
 		<Name>Const2</Name>
 		<ID>8</ID>
 		<Output>
-			<Name>C2
-			</Name>
+			<Name>C2</Name>
 			<Size>1</Size>
 		</Output>
 	</BlockType>
@@ -184,8 +183,7 @@
 
 
 	<BlockType>
-		<Name>And
-		</Name>
+		<Name>And</Name>
 		<ID>15</ID>
 		<Input>
 			<Name>V1</Name>
@@ -240,712 +238,365 @@
 	</BlockType>
 
 	<BlockType>
-		<Name>
-			InComBuf
-		</Name>
-		<ID>
-			18
-		</ID>
+		<Name>InComBuf</Name>
+		<ID>18</ID>
 		<Output>
-			<Name>
-				BId
-			</Name>
-			<Size>
-				1
-			</Size>
+			<Name>BId</Name>
+			<Size>1</Size>
 		</Output>
 	</BlockType>
 
 	<BlockType>
-		<Name>
-			ADC
-		</Name>
-		<ID>
-			19
-		</ID>
+		<Name>ADC</Name>
+		<ID>19</ID>
 		<Input>
-			<Name>
-				R0W1
-			</Name>
-			<Size>
-				1
-			</Size>
+			<Name>R0W1</Name>
+			<Size>1</Size>
 		</Input>
 		<Input>
-			<Name>
-				Nxt
-			</Name>
-			<Size>
-				1
-			</Size>
+			<Name>Nxt</Name>
+			<Size>1</Size>
 		</Input>
 		<Output>
-			<Name>
-				Nxt
-			</Name>
-			<Size>
-				1
-			</Size>
+			<Name>Nxt</Name>
+			<Size>1</Size>
 		</Output>
 		<Output>
-			<Name>
-				BId0
-			</Name>
-			<Size>
-				1
-			</Size>
+			<Name>BId0</Name>
+			<Size>1</Size>
 		</Output>
 		<Output>
-			<Name>
-				BId1
-			</Name>
-			<Size>
-				1
-			</Size>
+			<Name>BId1</Name>
+			<Size>1</Size>
 		</Output>
 		<Output>
-			<Name>
-				BId2
-			</Name>
-			<Size>
-				1
-			</Size>
+			<Name>BId2</Name>
+			<Size>1</Size>
 		</Output>
 		<Output>
-			<Name>
-				BId3
-			</Name>
-			<Size>
-				1
-			</Size>
+			<Name>BId3</Name>
+			<Size>1</Size>
 		</Output>
 		<Output>
-			<Name>
-				BId4
-			</Name>
-			<Size>
-				1
-			</Size>
+			<Name>BId4</Name>
+			<Size>1</Size>
 		</Output>
 		<Output>
-			<Name>
-				BId5
-			</Name>
-			<Size>
-				1
-			</Size>
+			<Name>BId5</Name>
+			<Size>1</Size>
 		</Output>
 		<Output>
-			<Name>
-				BId6
-			</Name>
-			<Size>
-				1
-			</Size>
+			<Name>BId6</Name>
+			<Size>1</Size>
 		</Output>
 		<Output>
-			<Name>
-				BId7
-			</Name>
-			<Size>
-				1
-			</Size>
+			<Name>BId7</Name>
+			<Size>1</Size>
 		</Output>
 	</BlockType>
 
 	<BlockType>
-		<Name>
-			ADCMask
-		</Name>
-		<ID>
-			20
-		</ID>
+		<Name>ADCMask</Name>
+		<ID>20</ID>
 		<Input>
-			<Name>
-				R0W1
+			<Name>R0W1
 			</Name>
-			<Size>
-				1
-			</Size>
+			<Size>1</Size>
 		</Input>
 		<Input>
-			<Name>
-				Mask
-			</Name>
-			<Size>
-				1
-			</Size>
+			<Name>Mask</Name>
+			<Size>1</Size>
 		</Input>
 		<Input>
-			<Name>
-				Nxt
-			</Name>
-			<Size>
-				1
-			</Size>
+			<Name>Nxt</Name>
+			<Size>1</Size>
 		</Input>
 		<Output>
-			<Name>
-				Mask
-			</Name>
-			<Size>
-				1
-			</Size>
+			<Name>Mask</Name>
+			<Size>1</Size>
 		</Output>
 		<Output>
-			<Name>
-				Nxt
-			</Name>
-			<Size>
-				1
-			</Size>
+			<Name>Nxt</Name>
+			<Size>1</Size>
 		</Output>
 	</BlockType>
 
 	<BlockType>
-		<Name>
-			ADCChnl
-		</Name>
-		<ID>
-			21
-		</ID>
+		<Name>ADCChnl</Name>
+		<ID>21</ID>
 		<Input>
-			<Name>
-				R0W1
-			</Name>
-			<Size>
-				1
-			</Size>
+			<Name>R0W1</Name>
+			<Size>1</Size>
 		</Input>
 		<Input>
-			<Name>
-				Chnl
-			</Name>
-			<Size>
-				1
-			</Size>
+			<Name>Chnl</Name>
+			<Size>1</Size>
 		</Input>
 		<Input>
-			<Name>
-				Mask
-			</Name>
-			<Size>
-				1
-			</Size>
+			<Name>Mask</Name>
+			<Size>1</Size>
 		</Input>
 		<Input>
-			<Name>
-				MaxL
-			</Name>
-			<Size>
-				2
-			</Size>
+			<Name>MaxL</Name>
+			<Size>2</Size>
 		</Input>
 		<Input>
-			<Name>
-				MinL
-			</Name>
-			<Size>
-				2
-			</Size>
+			<Name>MinL</Name>
+			<Size>2</Size>
 		</Input>
 		<Input>
-			<Name>
-				DSz
-			</Name>
-			<Size>
-				1
-			</Size>
+			<Name>DSz</Name>
+			<Size>1</Size>
 		</Input>
 		<Input>
-			<Name>
-				OpCod
-			</Name>
-			<Size>
-				1
-			</Size>
+			<Name>OpCod</Name>
+			<Size>1</Size>
 		</Input>
 		<Input>
-			<Name>
-				ApxTId
-			</Name>
-			<Size>
-				1
-			</Size>
+			<Name>ApxTId</Name>
+			<Size>1</Size>
 		</Input>
 		<Input>
-			<Name>
-				Nxt
-			</Name>
-			<Size>
-				1
-			</Size>
+			<Name>Nxt</Name>
+			<Size>1</Size>
 		</Input>
 		<Output>
-			<Name>
-				MaxL
-			</Name>
-			<Size>
-				2
-			</Size>
+			<Name>MaxL</Name>
+			<Size>2</Size>
 		</Output>
 		<Output>
-			<Name>
-				MinL
-			</Name>
-			<Size>
-				2
-			</Size>
+			<Name>MinL</Name>
+			<Size>2</Size>
 		</Output>
 		<Output>
-			<Name>
-				DSz
-			</Name>
-			<Size>
-				1
-			</Size>
+			<Name>DSz</Name>
+			<Size>1</Size>
 		</Output>
 		<Output>
-			<Name>
-				OpCod
-			</Name>
-			<Size>
-				1
-			</Size>
+			<Name>OpCod</Name>
+			<Size>1</Size>
 		</Output>
 		<Output>
-			<Name>
-				ApxTId
-			</Name>
-			<Size>
-				1
-			</Size>
+			<Name>ApxTId</Name>
+			<Size>1</Size>
 		</Output>
 		<Output>
-			<Name>
-				Nxt
-			</Name>
-			<Size>
-				1
-			</Size>
+			<Name>Nxt</Name>
+			<Size>1</Size>
 		</Output>
 	</BlockType>
 
 	<BlockType>
-		<Name>
-			Hex2Word
-		</Name>
-		<ID>
-			22
-		</ID>
+		<Name>Hex2Word</Name>
+		<ID>22</ID>
 		<Input>
-			<Name>
-				H
-			</Name>
-			<Size>
-				4
-			</Size>
+			<Name>H</Name>
+			<Size>4</Size>
 		</Input>
 		<Output>
-			<Name>
-				W
-			</Name>
-			<Size>
-				2
-			</Size>
+			<Name>W</Name>
+			<Size>2</Size>
 		</Output>
 	</BlockType>
 
 	<BlockType>
-		<Name>
-			Word2Hex
-		</Name>
-		<ID>
-			23
-		</ID>
+		<Name>Word2Hex</Name>
+		<ID>23</ID>
 		<Input>
-			<Name>
-				W
-			</Name>
-			<Size>
-				2
-			</Size>
+			<Name>W</Name>
+			<Size>2</Size>
 		</Input>
 		<Output>
-			<Name>
-				H
-			</Name>
-			<Size>
-				4
-			</Size>
+			<Name>H</Name>
+			<Size>4</Size>
 		</Output>
 	</BlockType>
 
 	<BlockType>
-		<Name>
-			Byte2Bit
-		</Name>
-		<ID>
-			24
-		</ID>
+		<Name>Byte2Bit</Name>
+		<ID>24</ID>
 		<Input>
-			<Name>
-				B
-			</Name>
-			<Size>
-				1
-			</Size>
+			<Name>B</Name>
+			<Size>1</Size>
 		</Input>
 		<Output>
-			<Name>
-				b0
-			</Name>
-			<Size>
-				1
-			</Size>
+			<Name>b0</Name>
+			<Size>1</Size>
 		</Output>
 		<Output>
-			<Name>
-				b1
-			</Name>
-			<Size>
-				1
-			</Size>
+			<Name>b1</Name>
+			<Size>1</Size>
 		</Output>
 		<Output>
-			<Name>
-				b2
-			</Name>
-			<Size>
-				1
-			</Size>
+			<Name>b2</Name>
+			<Size>1</Size>
 		</Output>
 		<Output>
-			<Name>
-				b3
-			</Name>
-			<Size>
-				1
-			</Size>
+			<Name>b3</Name>
+			<Size>1</Size>
 		</Output>
 		<Output>
-			<Name>
-				b4
-			</Name>
-			<Size>
-				1
-			</Size>
+			<Name>b4</Name>
+			<Size>1</Size>
 		</Output>
 		<Output>
-			<Name>
-				b5
-			</Name>
-			<Size>
-				1
-			</Size>
+			<Name>b5</Name>
+			<Size>1</Size>
 		</Output>
 		<Output>
-			<Name>
-				b6
-			</Name>
-			<Size>
-				1
-			</Size>
+			<Name>b6</Name>
+			<Size>1</Size>
 		</Output>
 		<Output>
-			<Name>
-				b7
-			</Name>
-			<Size>
-				1
-			</Size>
+			<Name>b7</Name>
+			<Size>1</Size>
 		</Output>
 	</BlockType>
 
 	<BlockType>
-		<Name>
-			Bit2Byte
-		</Name>
-		<ID>
-			25
-		</ID>
+		<Name>Bit2Byte</Name>
+		<ID>25</ID>
 		<Input>
-			<Name>
-				b0
-			</Name>
-			<Size>
-				1
-			</Size>
+			<Name>b0</Name>
+			<Size>1</Size>
 		</Input>
 		<Input>
-			<Name>
-				b1
-			</Name>
-			<Size>
-				1
-			</Size>
+			<Name>b1</Name>
+			<Size>1</Size>
 		</Input>
 		<Input>
-			<Name>
-				b2
-			</Name>
-			<Size>
-				1
-			</Size>
+			<Name>b2</Name>
+			<Size>1</Size>
 		</Input>
 		<Input>
-			<Name>
-				b3
-			</Name>
-			<Size>
-				1
-			</Size>
+			<Name>b3</Name>
+			<Size>1</Size>
 		</Input>
 		<Input>
-			<Name>
-				b4
-			</Name>
-			<Size>
-				1
-			</Size>
+			<Name>b4</Name>
+			<Size>1</Size>
 		</Input>
 		<Input>
-			<Name>
-				b5
-			</Name>
-			<Size>
-				1
-			</Size>
+			<Name>b5</Name>
+			<Size>1</Size>
 		</Input>
 		<Input>
-			<Name>
-				b6
-			</Name>
-			<Size>
-				1
-			</Size>
+			<Name>b6</Name>
+			<Size>1</Size>
 		</Input>
 		<Input>
-			<Name>
-				b7
-			</Name>
-			<Size>
-				1
-			</Size>
+			<Name>b7</Name>
+			<Size>1</Size>
 		</Input>
 		<Output>
-			<Name>
-				B
-			</Name>
-			<Size>
-				1
-			</Size>
+			<Name>B</Name>
+			<Size>1</Size>
 		</Output>
 	</BlockType>
 
 	<BlockType>
-		<Name>
-			BuffLen
-		</Name>
-		<ID>
-			26
-		</ID>
+		<Name>BuffLen</Name>
+		<ID>26</ID>
 		<Input>
-			<Name>
-				BId
-			</Name>
-			<Size>
-				1
-			</Size>
+			<Name>BId</Name>
+			<Size>1</Size>
 		</Input>
 		<Output>
-			<Name>
-				Len
-			</Name>
-			<Size>
-				1
-			</Size>
+			<Name>Len</Name>
+			<Size>1</Size>
 		</Output>
 	</BlockType>
 
 	<BlockType>
-		<Name>
-			Div
-		</Name>
-		<ID>
-			27
-		</ID>
+		<Name>Div</Name>
+		<ID>27</ID>
 		<Input>
-			<Name>
-				Enbl
-			</Name>
-			<Size>
-				1
-			</Size>
+			<Name>Enbl</Name>
+			<Size>1</Size>
 		</Input>
 		<Input>
-			<Name>
-				V1
-			</Name>
-			<Size>
-				1
-			</Size>
+			<Name>V1</Name>
+			<Size>1</Size>
 		</Input>
 		<Input>
-			<Name>
-				V2
-			</Name>
-			<Size>
-				1
-			</Size>
+			<Name>V2</Name>
+			<Size>1</Size>
 		</Input>
 		<Output>
-			<Name>
-				V1/V2
-			</Name>
-			<Size>
-				1
-			</Size>
+			<Name>V1/V2</Name>
+			<Size>1</Size>
 		</Output>
 	</BlockType>
 
 	<BlockType>
-		<Name>
-			AvgMean
-		</Name>
-		<ID>
-			28
-		</ID>
+		<Name>AvgMean</Name>
+		<ID>28</ID>
 		<Input>
-			<Name>
-				Enbl
-			</Name>
-			<Size>
-				1
-			</Size>
+			<Name>Enbl</Name>
+			<Size>1</Size>
 		</Input>
 		<Input>
-			<Name>
-				BId
-			</Name>
-			<Size>
-				1
-			</Size>
+			<Name>BId</Name>
+			<Size>1</Size>
 		</Input>
 		<Input>
-			<Name>
-				From
-			</Name>
-			<Size>
-				1
-			</Size>
+			<Name>From</Name>
+			<Size>1</Size>
 		</Input>
 		<Input>
-			<Name>
-				To
-			</Name>
-			<Size>
-				1
-			</Size>
+			<Name>To</Name>
+			<Size>1</Size>
 		</Input>
 		<Output>
-			<Name>
-				Avg
-			</Name>
-			<Size>
-				2
-			</Size>
+			<Name>Avg</Name>
+			<Size>2</Size>
 		</Output>
 	</BlockType>
 
 	<BlockType>
-		<Name>
-			Approx
-		</Name>
-		<ID>
-			29
-		</ID>
+		<Name>Approx</Name>
+		<ID>29</ID>
 		<Input>
-			<Name>
-				Enbl
-			</Name>
-			<Size>
-				1
-			</Size>
+			<Name>Enbl</Name>
+			<Size>1</Size>
 		</Input>
 		<Input>
-			<Name>
-				BId
-			</Name>
-			<Size>
-				1
-			</Size>
+			<Name>BId</Name>
+			<Size>1</Size>
 		</Input>
 		<Input>
-			<Name>
-				V
-			</Name>
-			<Size>
-				2
-			</Size>
+			<Name>V</Name>
+			<Size>2</Size>
 		</Input>
 		<Output>
-			<Name>
-				Res
-			</Name>
-			<Size>
-				2
-			</Size>
+			<Name>Res</Name>
+			<Size>2</Size>
 		</Output>
 	</BlockType>
 
 	<BlockType>
-		<Name>
-			Const00
-		</Name>
-		<ID>
-			30
-		</ID>
+		<Name>Const00</Name>
+		<ID>30</ID>
 		<Output>
-			<Name>
-				C
-			</Name>
-			<Size>
-				2
-			</Size>
+			<Name>C</Name>
+			<Size>2</Size>
 		</Output>
 	</BlockType>
 
 	<BlockType>
-		<Name>
-			Word2Dec
-		</Name>
-		<ID>
-			31
-		</ID>
+		<Name>Word2Dec</Name>
+		<ID>31</ID>
 		<Input>
-			<Name>
-				W
-			</Name>
-			<Size>
-				2
-			</Size>
+			<Name>W</Name>
+			<Size>2</Size>
 		</Input>
 		<Input>
-			<Name>
-				PPos
-			</Name>
-			<Size>
-				1
-			</Size>
+			<Name>PPos</Name>
+			<Size>1</Size>
 		</Input>
 		<Output>
-			<Name>
-				DStr
-			</Name>
-			<Size>
-				6
-			</Size>
+			<Name>DStr</Name>
+			<Size>6</Size>
 		</Output>
 	</BlockType>
 

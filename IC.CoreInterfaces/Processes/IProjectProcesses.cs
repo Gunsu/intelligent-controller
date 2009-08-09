@@ -10,6 +10,12 @@ namespace IC.CoreInterfaces.Processes
 	public interface IProjectProcesses
 	{
 		/// <summary>
+		/// Создание проекта.
+		/// </summary>
+		/// <returns>Только что созданный проект.</returns>
+		IProject CreateProject(string name, string filePath);
+
+		/// <summary>
 		/// Проверяет все схемы проекта.
 		/// </summary>
 		/// <param name="errorsToSchemaMap">Список ошибок всех схем, в случае их возникновения.</param>
