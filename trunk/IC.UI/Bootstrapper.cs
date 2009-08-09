@@ -1,40 +1,61 @@
-﻿using IC.Modules.ProjectExplorer;
-using IC.Modules.Toolbox;
+﻿using System.Windows;
+using Microsoft.Practices.Unity;
+using IC.UI.Windows;
+using IC.UI.Infrastructure.Interfaces.Menu;
 using IC.UI.Views;
-using Microsoft.Practices.Composite.Modularity;
-using Microsoft.Practices.Composite.UnityExtensions;
-using System.Windows;
+using IC.UI.Infrastructure.Interfaces.ProjectExplorer;
+using IC.UI.Infrastructure.Interfaces.Toolbox;
+using IC.PresentationModels;
 using IC.CoreInterfaces.Processes;
 using IC.Core.Processes;
 
 namespace IC.UI
 {
-	public sealed class Bootstrapper : UnityBootstrapper
+	public sealed class Bootstrapper
 	{
-		protected override DependencyObject CreateShell()
-		{
-			var shellPresenter = Container.Resolve<ShellPresenter>();
-			IShellView view = shellPresenter.View;
-			view.ShowView();
+		private readonly IUnityContainer _container;
 
-			return view as DependencyObject;
+
+		private void RegisterWindows()
+		{
+			_container.RegisterInstance(typeof (MainWindow));
 		}
 
-		protected override void ConfigureContainer()
+		private void RegisterViews()
 		{
-			Container.RegisterType<IShellView, Shell>();
-			Container.RegisterType<IC.Core.Core>();
-			Container.Resolve<IC.Core.Core>().Initialize();
-
-			base.ConfigureContainer();
+			_container.RegisterType<IMenuView, MenuView>();
+			_container.RegisterType<IProjectExplorerView, ProjectExplorerView>();
+			_container.RegisterType<IToolboxView, ToolboxView>();
 		}
 
-		protected override IModuleCatalog GetModuleCatalog()
+		private void RegisterPresentationModels()
 		{
-			var moduleCatalog = new ModuleCatalog();
-			moduleCatalog.AddModule(typeof (ProjectExplorerModule));
-			moduleCatalog.AddModule(typeof (ToolboxModule));
-			return moduleCatalog;
+			_container.RegisterType<IMenuPresentationModel, MenuPresentationModel>();
+			_container.RegisterType<IProjectExplorerPresentationModel, ProjectExplorerPresentationModel>();
+			_container.RegisterType<IToolboxPresentationModel, ToolboxPresentationModel>();
+		}
+
+		private void RegisterCoreObjectsAndProcesses()
+		{
+			_container.RegisterType<IBlockTypesProcesses, BlockTypesProcesses>();
+		}
+
+
+		public void Run()
+		{
+			var mainWindow = _container.Resolve<MainWindow>();
+			mainWindow.Show();
+		}
+
+
+		public Bootstrapper()
+		{
+			_container = new UnityContainer();
+
+			RegisterWindows();
+			RegisterViews();
+			RegisterPresentationModels();
+			RegisterCoreObjectsAndProcesses();
 		}
 	}
 }

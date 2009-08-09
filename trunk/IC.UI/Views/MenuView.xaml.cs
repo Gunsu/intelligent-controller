@@ -1,20 +1,25 @@
-﻿using System;
-using System.Windows.Controls;
-
-using IC.Presenters.ViewInterfaces;
+﻿using IC.UI.Infrastructure.Interfaces.Menu;
 
 namespace IC.UI.Views
 {
 	/// <summary>
 	/// Логика взаимодействия для MenuView.xaml
 	/// </summary>
-	public partial class MenuView : UserControl, IMenuView
+	public partial class MenuView : IMenuView
 	{
-		public MenuView()
+        public MenuView()
 		{
 			InitializeComponent();
 		}
 
-		public event EventHandler SaveProjectEventHandler;
+		#region IMenuView members
+
+		public IMenuPresentationModel Model
+		{
+			get { return DataContext as IMenuPresentationModel; }
+			set { DataContext = value; }
+		}
+
+		#endregion
 	}
 }

@@ -1,0 +1,15 @@
+﻿<UserControl x:Class="IC.Modules.Menu.Views.MenuView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+	<StackPanel>
+		<Menu>
+			<MenuItem Header="{Binding FileMenuItemHeader}" >
+				<MenuItem Header="{Binding CreateMenuItemHeader}">
+					<MenuItem Header="{Binding CreateProjectMenuItemHeader}"
+							  Command="{Binding DataContext.CreateProjectCommand}"
+							  AutomationProperties.AutomationId="CreateProjectButton" />
+				</MenuItem>
+			</MenuItem>
+		</Menu>
+	</StackPanel>
+</UserControl>

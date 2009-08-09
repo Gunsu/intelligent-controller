@@ -1,16 +1,15 @@
 ﻿<UserControl x:Class="IC.UI.Views.ProjectExplorerView"
 	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-	Height="auto" Width="auto">
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 	<Grid>
 		<Grid.ColumnDefinitions>
-			<ColumnDefinition />
-			<ColumnDefinition Width="auto"/>
+			<ColumnDefinition/>
+			<ColumnDefinition Width="auto" />
 		</Grid.ColumnDefinitions>
 		<Grid Grid.Column="1"
 			Name="_projectExplorerGrid">
 			<Grid.RowDefinitions>
-				<RowDefinition />
+				<RowDefinition Height="auto" />
 				<RowDefinition />
 			</Grid.RowDefinitions>
 			<TextBlock Grid.Row="0"
@@ -21,7 +20,9 @@
 				Background="LightBlue" />
 			<ListBox Grid.Row="1"
 				Name="_projectsListBox"
-				SelectionChanged="ProjectsListBox_SelectionChanged">
+				ItemsSource="{Binding SchemasListItems}"
+				SelectedItem="{Binding Mode=TwoWay, Path=CurrentSchemaItem}"
+				IsSynchronizedWithCurrentItem="True">
 			</ListBox>
 		</Grid>
 		<GridSplitter Grid.Column="1"

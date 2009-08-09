@@ -47,6 +47,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\Version.cs">
+      <Link>Version.cs</Link>
+    </Compile>
     <Compile Include="Objects\IBlock.cs" />
     <Compile Include="Objects\IBlockConnectionPoint.cs" />
     <Compile Include="Objects\IBlockType.cs" />

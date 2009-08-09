@@ -109,6 +109,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\..\Version.cs">
+      <Link>Version.cs</Link>
+    </Compile>
     <Compile Include="Interfaces\PresentationModels\IToolboxPresentationModel.cs" />
     <Compile Include="Interfaces\Services\IBlockTypesService.cs" />
     <Compile Include="Interfaces\Views\IToolboxView.cs" />
