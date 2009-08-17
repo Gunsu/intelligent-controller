@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using Microsoft.Practices.Composite.Events;
 using Microsoft.Practices.Unity;
 using IC.UI.Windows;
 using IC.UI.Infrastructure.Interfaces.Menu;
@@ -16,9 +17,15 @@ namespace IC.UI
 		private readonly IUnityContainer _container;
 
 
+		public IUnityContainer Container
+		{
+			get { return _container; }
+		}
+
+
 		private void RegisterWindows()
 		{
-			_container.RegisterInstance(typeof (MainWindow));
+			_container.RegisterType<IMainWindow, MainWindow>();
 		}
 
 		private void RegisterViews()
@@ -37,13 +44,14 @@ namespace IC.UI
 
 		private void RegisterCoreObjectsAndProcesses()
 		{
-			_container.RegisterType<IBlockTypesProcesses, BlockTypesProcesses>();
+			var blockTypesProcessesParams = new InjectionMember[] {new InjectionConstructor("BlockTypes.xml")};
+			_container.RegisterType<IBlockTypesProcesses, BlockTypesProcesses>(blockTypesProcessesParams);
 		}
 
 
 		public void Run()
 		{
-			var mainWindow = _container.Resolve<MainWindow>();
+			var mainWindow = _container.Resolve<IMainWindow>();
 			mainWindow.Show();
 		}
 
@@ -51,11 +59,11 @@ namespace IC.UI
 		public Bootstrapper()
 		{
 			_container = new UnityContainer();
-
-			RegisterWindows();
+            _container.RegisterType<IEventAggregator, EventAggregator>();
+			RegisterCoreObjectsAndProcesses();
 			RegisterViews();
 			RegisterPresentationModels();
-			RegisterCoreObjectsAndProcesses();
+			RegisterWindows();
 		}
 	}
 }

@@ -6,9 +6,40 @@
 			<MenuItem Header="{Binding FileMenuItemHeader}" >
 				<MenuItem Header="{Binding CreateMenuItemHeader}">
 					<MenuItem Header="{Binding CreateProjectMenuItemHeader}"
-							  Command="{Binding DataContext.CreateProjectCommand}"
-							  AutomationProperties.AutomationId="CreateProjectButton" />
+							  Command="{Binding CreateProjectCommand}" />
+					<MenuItem Header="{Binding CreateSchemaMenuItemHeader}"
+							  Command="{Binding CreateSchemaCommand}" />
 				</MenuItem>
+				<MenuItem Header="Открыть проект" />
+				<Separator />
+				<MenuItem Header="Сохранить">
+					<MenuItem Header="Проект" />
+					<MenuItem Header="Текущая схема" />
+				</MenuItem>
+				<MenuItem Header="Сохранить всё" />
+				<Separator />
+				<MenuItem Header="Выход" />
+			</MenuItem>
+			<MenuItem Header="Правка">
+				<MenuItem Header="Отменить" />
+				<MenuItem Header="Вернуть" />
+				<MenuItem Header="Отменить последнее глобальное действие" />
+				<MenuItem Header="Вернуть последнее глобальное действие" />
+				<Separator />
+				<MenuItem Header="Вырезать" />
+				<MenuItem Header="Копировать" />
+				<MenuItem Header="Вставить" />
+				<MenuItem Header="Удалить" />
+				<Separator />
+				<MenuItem Header="Выделить всё" />
+			</MenuItem>
+			<MenuItem Header="Построение">
+				<MenuItem Header="Построить проект" />
+				<MenuItem Header="Построить текущую схемы" />
+			</MenuItem>
+			<MenuItem Header="Справка">
+				<MenuItem Header="Инструкция" />
+				<MenuItem Header="О программе" />
 			</MenuItem>
 		</Menu>
 	</StackPanel>

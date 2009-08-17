@@ -18,14 +18,9 @@ namespace IC.Core.Tests.Processes
 		public void SetUpTests()
 		{
 			_container = new UnityContainer();
-			var core = new Core(_container);
-			core.Initialize();
-			//_container.RegisterType<IBlockTypesProcesses, BlockTypesProcesses>(new ContainerControlledLifetimeManager(),
-			//                                                                   new InjectionMember[]
-			//                                                                    {
-			//                                                                        new InjectionConstructor(
-			//                                                                            "BlockTypes.xml")
-			//                                                                    });
+
+			var blockTypesProcessesParams = new InjectionMember[] { new InjectionConstructor("BlockTypes.xml") };
+			_container.RegisterType<IBlockTypesProcesses, BlockTypesProcesses>(blockTypesProcessesParams);
 		}
 
 		[Test]

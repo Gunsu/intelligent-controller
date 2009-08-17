@@ -33,6 +33,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Practices.Composite, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\3rd party libraries\Microsoft\CAL\Microsoft.Practices.Composite.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Composite.Presentation, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\3rd party libraries\Microsoft\CAL\Microsoft.Practices.Composite.Presentation.dll</HintPath>
+    </Reference>
     <Reference Include="PresentationCore">
       <RequiredTargetFramework>3.0</RequiredTargetFramework>
     </Reference>
@@ -52,12 +60,18 @@
     <Compile Include="Events\CurrentSchemaChangedEvent.cs" />
     <Compile Include="Events\ProjectClosedEvent.cs" />
     <Compile Include="Events\ProjectClosingEvent.cs" />
+    <Compile Include="Events\ProjectCreatingEvent.cs" />
     <Compile Include="Events\ProjectOpenedEvent.cs" />
     <Compile Include="Events\ProjectOpeningEvent.cs" />
+    <Compile Include="Events\SchemaPreCreatingEvent.cs" />
     <Compile Include="Interfaces\Menu\IMenuPresentationModel.cs" />
     <Compile Include="Interfaces\Menu\IMenuView.cs" />
     <Compile Include="Interfaces\ProjectExplorer\IProjectExplorerPresentationModel.cs" />
     <Compile Include="Interfaces\ProjectExplorer\IProjectExplorerView.cs" />
+    <Compile Include="Interfaces\Schema\ISchemaPresentationModel.cs" />
+    <Compile Include="Interfaces\Schema\ISchemaView.cs" />
+    <Compile Include="Interfaces\Status\IStatusPresentationModel.cs" />
+    <Compile Include="Interfaces\Status\IStatusView.cs" />
     <Compile Include="Interfaces\Toolbox\IToolboxPresentationModel.cs" />
     <Compile Include="Interfaces\Toolbox\IToolboxView.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

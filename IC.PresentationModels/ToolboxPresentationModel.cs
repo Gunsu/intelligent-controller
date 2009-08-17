@@ -5,6 +5,9 @@ using IC.UI.Infrastructure.Events;
 using ValidationAspects;
 using ValidationAspects.PostSharp;
 using IC.UI.Infrastructure.Interfaces.Toolbox;
+using Microsoft.Practices.Composite.Events;
+using IC.CoreInterfaces.Processes;
+using IC.PresentationModels.Properties;
 
 namespace IC.PresentationModels
 {
@@ -54,14 +57,15 @@ namespace IC.PresentationModels
 
 
 		public ToolboxPresentationModel([NotNull] IToolboxView view,
-										[NotNull] IBlockTypesService blockTypesService,
+										[NotNull] IBlockTypesProcesses blockTypesProcesses,
 										[NotNull] IEventAggregator eventAggregator)
 			: base(eventAggregator)
 		{
 			View = view;
 			View.Model = this;
-			BlockTypes = blockTypesService.RetreiveBlockTypes();
-			Header = Resources.Header;
+			var blockTypesList = blockTypesProcesses.LoadBlockTypesFromFile();
+			BlockTypes = new ObservableCollection<IBlockType>(blockTypesList);
+			Header = Resources.ToolboxHeader;
 		}
 	}
 }
