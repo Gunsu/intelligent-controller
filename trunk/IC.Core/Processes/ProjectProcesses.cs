@@ -11,6 +11,11 @@ namespace IC.Core.Processes
 	/// </summary>
 	public sealed class ProjectProcesses : IProjectProcesses
 	{
+		public IProject CreateProject(string name, string filePath)
+		{
+			throw new NotImplementedException();
+		}
+
 		public bool Validate(out Dictionary<ISchema, string> errorsToSchemaMap)
 		{
 			throw new NotImplementedException();

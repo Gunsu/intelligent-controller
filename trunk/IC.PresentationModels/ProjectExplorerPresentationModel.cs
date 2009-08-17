@@ -2,6 +2,7 @@
 using IC.CoreInterfaces.Objects;
 using IC.UI.Infrastructure.Events;
 using IC.UI.Infrastructure.Interfaces.ProjectExplorer;
+using Microsoft.Practices.Composite.Events;
 
 namespace IC.PresentationModels
 {
