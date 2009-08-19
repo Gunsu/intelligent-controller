@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 using IC.CoreInterfaces.Objects;
 using IC.CoreInterfaces.Processes;
+using Project.Utils.Common;
 
 namespace IC.Core.Processes
 {
@@ -16,12 +17,12 @@ namespace IC.Core.Processes
 			throw new NotImplementedException();
 		}
 
-		public bool Validate(out Dictionary<ISchema, string> errorsToSchemaMap)
-		{
-			throw new NotImplementedException();
-		}
-
-		public bool Compile(out Dictionary<ISchema, string> errorsToSchemaMap)
+		/// <summary>
+		/// Сохраняет проект.
+		/// </summary>
+		/// <param name="project">Проект.</param>
+		/// <returns>Возвращает результат выполнения процесса.</returns>
+		public ProcessResult Save(IProject project)
 		{
 			throw new NotImplementedException();
 		}

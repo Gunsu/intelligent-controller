@@ -18,7 +18,7 @@ namespace IC.UI.Views
 		[NotNull]
 		public IStatusPresentationModel Model
 		{
-			get { return DataContext as IStatusPresentationModel }
+			get { return DataContext as IStatusPresentationModel; }
 			set { DataContext = value; }
 		}
 

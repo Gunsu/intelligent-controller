@@ -73,7 +73,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Mocks\MockProject.cs" />
+    <Compile Include="Mocks\MockSchema.cs" />
     <Compile Include="Processes\BlockTypesProcessesTest.cs" />
+    <Compile Include="Processes\ProjectProcessesTest.cs" />
+    <Compile Include="Processes\SchemaProcessesTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -84,6 +88,10 @@
     <ProjectReference Include="..\..\IC.Core\IC.Core.csproj">
       <Project>{321A0837-70B3-49A3-A842-DE690118153C}</Project>
       <Name>IC.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Project.Utils\Project.Utils.csproj">
+      <Project>{1FC836EA-429D-4826-A858-2DA01690EA78}</Project>
+      <Name>Project.Utils</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

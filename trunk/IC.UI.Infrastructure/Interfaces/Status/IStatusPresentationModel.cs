@@ -2,6 +2,5 @@
 {
 	public interface IStatusPresentationModel
 	{
-		IStatusView View { get; }
 	}
 }

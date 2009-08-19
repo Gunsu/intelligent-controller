@@ -9,6 +9,8 @@ using IC.UI.Infrastructure.Interfaces.Toolbox;
 using IC.PresentationModels;
 using IC.CoreInterfaces.Processes;
 using IC.Core.Processes;
+using IC.UI.Infrastructure.Interfaces.Manager;
+using IC.UI.Infrastructure.Interfaces.Windows;
 
 namespace IC.UI
 {
@@ -16,6 +18,10 @@ namespace IC.UI
 	{
 		private readonly IUnityContainer _container;
 
+		private static ContainerControlledLifetimeManager IsSingleton
+		{
+			get { return new ContainerControlledLifetimeManager(); }
+		}
 
 		public IUnityContainer Container
 		{
@@ -25,7 +31,8 @@ namespace IC.UI
 
 		private void RegisterWindows()
 		{
-			_container.RegisterType<IMainWindow, MainWindow>();
+			_container.RegisterType<IMainWindow, MainWindow>(IsSingleton);
+			_container.RegisterType<ICreateProjectWindow, CreateProjectWindow>();
 		}
 
 		private void RegisterViews()
@@ -33,6 +40,7 @@ namespace IC.UI
 			_container.RegisterType<IMenuView, MenuView>();
 			_container.RegisterType<IProjectExplorerView, ProjectExplorerView>();
 			_container.RegisterType<IToolboxView, ToolboxView>();
+			_container.RegisterType<IManagerView, ManagerView>();
 		}
 
 		private void RegisterPresentationModels()
@@ -40,12 +48,15 @@ namespace IC.UI
 			_container.RegisterType<IMenuPresentationModel, MenuPresentationModel>();
 			_container.RegisterType<IProjectExplorerPresentationModel, ProjectExplorerPresentationModel>();
 			_container.RegisterType<IToolboxPresentationModel, ToolboxPresentationModel>();
+			_container.RegisterType<IManagerPresentationModel, ManagerPresentationModel>();
 		}
 
 		private void RegisterCoreObjectsAndProcesses()
 		{
 			var blockTypesProcessesParams = new InjectionMember[] {new InjectionConstructor("BlockTypes.xml")};
-			_container.RegisterType<IBlockTypesProcesses, BlockTypesProcesses>(blockTypesProcessesParams);
+			_container.RegisterType<IBlockTypesProcesses, BlockTypesProcesses>(IsSingleton,
+				                                                               blockTypesProcessesParams);
+			_container.RegisterType<IProjectProcesses, ProjectProcesses>(IsSingleton);
 		}
 
 
@@ -59,9 +70,9 @@ namespace IC.UI
 		public Bootstrapper()
 		{
 			_container = new UnityContainer();
-            _container.RegisterType<IEventAggregator, EventAggregator>();
+			_container.RegisterType<IEventAggregator, EventAggregator>(IsSingleton);
 			RegisterCoreObjectsAndProcesses();
-			RegisterViews();
+			//RegisterViews();
 			RegisterPresentationModels();
 			RegisterWindows();
 		}

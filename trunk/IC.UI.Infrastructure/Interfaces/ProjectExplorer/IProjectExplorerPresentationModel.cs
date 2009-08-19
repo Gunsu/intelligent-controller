@@ -2,6 +2,5 @@
 {
 	public interface IProjectExplorerPresentationModel
 	{
-		IProjectExplorerView View { get; }
 	}
 }
