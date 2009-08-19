@@ -2,6 +2,5 @@
 {
 	public interface IToolboxPresentationModel
 	{
-		IToolboxView View { get; }
 	}
 }

@@ -11,9 +11,6 @@ namespace IC.PresentationModels
 	    private ObservableCollection<ISchema> _schemasListItems;
 		private ISchema _currentSchemaItem;
 
-		#region Члены IProjectExplorerPresentationModel
-
-		public IProjectExplorerView View { get; private set; }
 
 		public string ProjectName
 		{
@@ -41,14 +38,10 @@ namespace IC.PresentationModels
             }
 	    }
 
-		#endregion
 
-
-        public ProjectExplorerPresentationModel(IProjectExplorerView view, IEventAggregator eventAggregator)
+        public ProjectExplorerPresentationModel(IEventAggregator eventAggregator)
 			: base(eventAggregator)
         {
-            View = view;
-            view.Model = this;
         }
     }
 }

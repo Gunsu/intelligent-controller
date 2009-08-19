@@ -11,5 +11,10 @@ namespace IC.CoreInterfaces.Objects
 		/// Набор схем, входящих в проект.
 		/// </summary>
 		IList<ISchema> Schemas { get; }
+
+		/// <summary>
+		/// Определяет, сохранён ли проект.
+		/// </summary>
+		bool IsSaved { get; }
 	}
 }

@@ -89,6 +89,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Views\ManagerView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\MenuView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -108,6 +112,10 @@
     <Page Include="Views\ToolboxView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\CreateProjectWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\MainWindow.xaml">
       <SubType>Designer</SubType>
@@ -131,6 +139,9 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="Views\ManagerView.xaml.cs">
+      <DependentUpon>ManagerView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\MenuView.xaml.cs">
       <DependentUpon>MenuView.xaml</DependentUpon>
     </Compile>
@@ -145,6 +156,9 @@
     </Compile>
     <Compile Include="Views\ToolboxView.xaml.cs">
       <DependentUpon>ToolboxView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\CreateProjectWindow.xaml.cs">
+      <DependentUpon>CreateProjectWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>

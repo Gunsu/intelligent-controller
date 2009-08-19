@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Windows;
-using IC.UI.Infrastructure.Interfaces.Menu;
-using IC.UI.Infrastructure.Interfaces.ProjectExplorer;
-using IC.UI.Infrastructure.Interfaces.Toolbox;
 using Microsoft.Practices.Unity;
 
+using IC.UI.Infrastructure.Interfaces.Menu;
+using IC.UI.Infrastructure.Interfaces.ProjectExplorer;
+using IC.UI.Infrastructure.Interfaces.Manager;
+using IC.UI.Infrastructure.Interfaces.Toolbox;
 
 namespace IC.UI.Windows
 {
@@ -16,23 +17,33 @@ namespace IC.UI.Windows
 		private readonly IMenuPresentationModel _menuPresentationModel;
 		private readonly IProjectExplorerPresentationModel _projectExplorerPresentationModel;
 		private readonly IToolboxPresentationModel _toolboxPresentationModel;
+		private readonly IManagerPresentationModel _managerPresentationModel;
 
 		public MainWindow(IMenuPresentationModel menuPresentationModel,
 			              IProjectExplorerPresentationModel projectExplorerPresentationModel,
-			              IToolboxPresentationModel toolboxPresentationModel)
+			              IToolboxPresentationModel toolboxPresentationModel,
+						  IManagerPresentationModel managerPresentationModel)
 		{
 			_menuPresentationModel = menuPresentationModel;
 			_projectExplorerPresentationModel = projectExplorerPresentationModel;
 			_toolboxPresentationModel = toolboxPresentationModel;
+			_managerPresentationModel = managerPresentationModel;
 
 			InitializeComponent();
 		}
 
-		protected override void OnActivated(EventArgs e)
+		private void AttachModels()
 		{
-			_menuView.Model = _menuPresentationModel;
-			_projectExplorerView.Model = _projectExplorerPresentationModel;
-			_toolboxView.Model = _toolboxPresentationModel;
+			menuView.Model = _menuPresentationModel;
+			projectExplorerView.Model = _projectExplorerPresentationModel;
+			toolboxView.Model = _toolboxPresentationModel;
+
+			managerView.Model = _managerPresentationModel;
+		}
+
+		private void MainWindow_Initialized(object sender, EventArgs e)
+		{
+			AttachModels();
 		}
 	}
 

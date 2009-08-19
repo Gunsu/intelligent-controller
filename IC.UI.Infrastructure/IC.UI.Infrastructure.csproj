@@ -63,7 +63,9 @@
     <Compile Include="Events\ProjectCreatingEvent.cs" />
     <Compile Include="Events\ProjectOpenedEvent.cs" />
     <Compile Include="Events\ProjectOpeningEvent.cs" />
-    <Compile Include="Events\SchemaPreCreatingEvent.cs" />
+    <Compile Include="Events\SchemaCreatingEvent.cs" />
+    <Compile Include="Interfaces\Manager\IManagerPresentationModel.cs" />
+    <Compile Include="Interfaces\Manager\IManagerView.cs" />
     <Compile Include="Interfaces\Menu\IMenuPresentationModel.cs" />
     <Compile Include="Interfaces\Menu\IMenuView.cs" />
     <Compile Include="Interfaces\ProjectExplorer\IProjectExplorerPresentationModel.cs" />
@@ -74,6 +76,7 @@
     <Compile Include="Interfaces\Status\IStatusView.cs" />
     <Compile Include="Interfaces\Toolbox\IToolboxPresentationModel.cs" />
     <Compile Include="Interfaces\Toolbox\IToolboxView.cs" />
+    <Compile Include="Interfaces\Windows\ICreateProjectWindow.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

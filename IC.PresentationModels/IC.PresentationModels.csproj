@@ -41,6 +41,14 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\3rd party libraries\Microsoft\CAL\Microsoft.Practices.Composite.Presentation.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Practices.ObjectBuilder2, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\3rd party libraries\Microsoft\Unity\Microsoft.Practices.ObjectBuilder2.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity, Version=1.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\3rd party libraries\Microsoft\Unity\Microsoft.Practices.Unity.dll</HintPath>
+    </Reference>
     <Reference Include="PostSharp.Laos, Version=1.5.0.0, Culture=neutral, PublicKeyToken=b13fd38b8f9c99d7, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\3rd party libraries\PostSharp\PostSharp.Laos.dll</HintPath>
@@ -87,6 +95,7 @@
       <Link>Version.cs</Link>
     </Compile>
     <Compile Include="BasePresentationModel.cs" />
+    <Compile Include="ManagerPresentationModel.cs" />
     <Compile Include="MenuPresentationModel.cs" />
     <Compile Include="ProjectExplorerPresentationModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -95,6 +104,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="SchemaPresentationModel.cs" />
     <Compile Include="ToolboxPresentationModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -105,6 +115,10 @@
     <ProjectReference Include="..\IC.UI.Infrastructure\IC.UI.Infrastructure.csproj">
       <Project>{8AE70E66-ADCC-4368-B348-8608E7A67658}</Project>
       <Name>IC.UI.Infrastructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Project.Utils\Project.Utils.csproj">
+      <Project>{1FC836EA-429D-4826-A858-2DA01690EA78}</Project>
+      <Name>Project.Utils</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

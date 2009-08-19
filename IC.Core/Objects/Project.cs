@@ -22,9 +22,16 @@ namespace IC.Core.Objects
 			}
 		}
 
+		/// <summary>
+		/// Определяет, сохранён ли проект.
+		/// </summary>
+		public bool IsSaved { get; private set; }
+
+
 		private Project()
 		{
 			_schemas = new List<ISchema>();
+			IsSaved = true;
 		}
 	}
 }

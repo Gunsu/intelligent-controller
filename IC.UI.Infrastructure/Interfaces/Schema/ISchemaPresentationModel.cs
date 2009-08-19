@@ -2,6 +2,5 @@
 {
 	public interface ISchemaPresentationModel
 	{
-		ISchemaView View { get; }
 	}
 }

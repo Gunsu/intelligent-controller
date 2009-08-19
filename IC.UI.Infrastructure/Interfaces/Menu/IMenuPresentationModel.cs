@@ -2,6 +2,5 @@
 {
 	public interface IMenuPresentationModel
 	{
-		IMenuView View { get; }
 	}
 }

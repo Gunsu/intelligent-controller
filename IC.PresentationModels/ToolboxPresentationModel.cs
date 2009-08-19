@@ -49,20 +49,11 @@ namespace IC.PresentationModels
 			}
 		}
 
-		#region IToolboxPresentationModel members
 
-		public IToolboxView View { get; private set; }
-
-		#endregion
-
-
-		public ToolboxPresentationModel([NotNull] IToolboxView view,
-										[NotNull] IBlockTypesProcesses blockTypesProcesses,
+		public ToolboxPresentationModel([NotNull] IBlockTypesProcesses blockTypesProcesses,
 										[NotNull] IEventAggregator eventAggregator)
 			: base(eventAggregator)
 		{
-			View = view;
-			View.Model = this;
 			var blockTypesList = blockTypesProcesses.LoadBlockTypesFromFile();
 			BlockTypes = new ObservableCollection<IBlockType>(blockTypesList);
 			Header = Resources.ToolboxHeader;

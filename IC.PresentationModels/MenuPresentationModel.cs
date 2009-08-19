@@ -11,18 +11,14 @@ using IC.PresentationModels.Properties;
 namespace IC.PresentationModels
 {
 	public sealed class MenuPresentationModel : BasePresentationModel, IMenuPresentationModel
-	{
-		private IProject _currentProject;
-        
-		public IMenuView View { get; private set; }
-
+	{       
 		#region Commands
 		
 		private ICommand _createProjectCommand;
 		private ICommand _createSchemaCommand;
 
 
-		private ICommand CreateProjectCommand
+		public ICommand CreateProjectCommand
 		{
 			get { return _createProjectCommand; }
 			set
@@ -96,14 +92,14 @@ namespace IC.PresentationModels
 
 		#region Methods for publishing events
 
-		private void CreateProject(IProject project)
+		private void CreateProject(EventArgs args)
 		{
-			_eventAggregator.GetEvent<ProjectCreatingEvent>().Publish(_currentProject);
+			_eventAggregator.GetEvent<ProjectCreatingEvent>().Publish(EventArgs.Empty);
 		}
 
 		private void CreateSchema(ISchema schema)
 		{
-			_eventAggregator.GetEvent<SchemaPreCreatingEvent>().Publish(EventArgs.Empty);
+			_eventAggregator.GetEvent<SchemaCreatingEvent>().Publish(EventArgs.Empty);
 		}
 
 		#endregion
@@ -112,20 +108,19 @@ namespace IC.PresentationModels
 
 		private void ProjectOpened(IProject project)
 		{
+			throw new System.NotImplementedException();
 		}
 
 		private void ProjectClosed(IProject project)
 		{
+			throw new System.NotImplementedException();
 		}
 
 		#endregion
 
-		public MenuPresentationModel(IMenuView view, IEventAggregator eventAggregator)
+		public MenuPresentationModel(IEventAggregator eventAggregator)
 			: base(eventAggregator)
 		{
-			View = view;
-			View.Model = this;
-
 			FileMenuItemHeader = Resources.FileMenuItemHeader;
 			CreateMenuItemHeader = Resources.CreateMenuItemHeader;
 			CreateProjectMenuItemHeader = Resources.CreateProjectMenuItemHeader;
@@ -133,8 +128,8 @@ namespace IC.PresentationModels
 
 			_eventAggregator.GetEvent<ProjectOpenedEvent>().Subscribe(ProjectOpened, ThreadOption.UIThread);
 			_eventAggregator.GetEvent<ProjectClosedEvent>().Subscribe(ProjectClosed, ThreadOption.UIThread);
-			
-			CreateProjectCommand = new DelegateCommand<IProject>(CreateProject);
+
+			CreateProjectCommand = new DelegateCommand<EventArgs>(CreateProject);
 			CreateSchemaCommand = new DelegateCommand<ISchema>(CreateSchema);
 		}
 	}
