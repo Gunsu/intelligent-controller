@@ -28,7 +28,7 @@ namespace IC.PresentationModels
 			}
 		}
 
-		private ICommand CreateSchemaCommand
+		public ICommand CreateSchemaCommand
 		{
 			get { return _createSchemaCommand; }
 			set
@@ -97,7 +97,7 @@ namespace IC.PresentationModels
 			_eventAggregator.GetEvent<ProjectCreatingEvent>().Publish(EventArgs.Empty);
 		}
 
-		private void CreateSchema(ISchema schema)
+		private void CreateSchema(EventArgs args)
 		{
 			_eventAggregator.GetEvent<SchemaCreatingEvent>().Publish(EventArgs.Empty);
 		}
@@ -130,7 +130,7 @@ namespace IC.PresentationModels
 			_eventAggregator.GetEvent<ProjectClosedEvent>().Subscribe(ProjectClosed, ThreadOption.UIThread);
 
 			CreateProjectCommand = new DelegateCommand<EventArgs>(CreateProject);
-			CreateSchemaCommand = new DelegateCommand<ISchema>(CreateSchema);
+			CreateSchemaCommand = new DelegateCommand<EventArgs>(CreateSchema);
 		}
 	}
 }

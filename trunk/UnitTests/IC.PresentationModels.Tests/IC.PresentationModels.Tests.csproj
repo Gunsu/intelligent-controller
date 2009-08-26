@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{146A212E-69AE-4426-A442-E8684364E677}</ProjectGuid>
+    <ProjectGuid>{158DDCF9-5B37-4104-A0F5-6556E21A19F8}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>IC.Core.Tests</RootNamespace>
-    <AssemblyName>IC.Core.Tests</AssemblyName>
+    <RootNamespace>IC.PresentationModels.Tests</RootNamespace>
+    <AssemblyName>IC.PresentationModels.Tests</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -31,6 +31,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Practices.Composite, Version=2.0.0.0, Culture=neutral, PublicKeyToken=e83c1618e962f21d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\3rd party libraries\Microsoft\CAL\Microsoft.Practices.Composite.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Composite.Presentation, Version=2.0.0.0, Culture=neutral, PublicKeyToken=e83c1618e962f21d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\3rd party libraries\Microsoft\CAL\Microsoft.Practices.Composite.Presentation.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Practices.ObjectBuilder2, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\3rd party libraries\Microsoft\Unity\Microsoft.Practices.ObjectBuilder2.dll</HintPath>
@@ -42,6 +50,9 @@
     <Reference Include="nunit.framework, Version=2.5.0.9122, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\3rd party libraries\NUnit\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
@@ -57,11 +68,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Mocks\MockProject.cs" />
-    <Compile Include="Mocks\MockSchema.cs" />
-    <Compile Include="Processes\BlockTypesProcessesTest.cs" />
-    <Compile Include="Processes\ProjectProcessesTest.cs" />
-    <Compile Include="Processes\SchemaProcessesTest.cs" />
+    <Compile Include="MenuPresentationModelTest.cs" />
+    <Compile Include="Mocks\MockEventAggregator.cs" />
+    <Compile Include="Mocks\MockProjectCreatingEvent.cs" />
+    <Compile Include="Mocks\MockSchemaCreatingEvent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -69,9 +79,13 @@
       <Project>{868B244D-7777-4A70-9DC1-C9C10D1A99D4}</Project>
       <Name>IC.CoreInterfaces</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\IC.Core\IC.Core.csproj">
-      <Project>{321A0837-70B3-49A3-A842-DE690118153C}</Project>
-      <Name>IC.Core</Name>
+    <ProjectReference Include="..\..\IC.PresentationModels\IC.PresentationModels.csproj">
+      <Project>{030180C9-41A1-45D5-B95A-B905C9AA9B6B}</Project>
+      <Name>IC.PresentationModels</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\IC.UI.Infrastructure\IC.UI.Infrastructure.csproj">
+      <Project>{8AE70E66-ADCC-4368-B348-8608E7A67658}</Project>
+      <Name>IC.UI.Infrastructure</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Project.Utils\Project.Utils.csproj">
       <Project>{1FC836EA-429D-4826-A858-2DA01690EA78}</Project>
