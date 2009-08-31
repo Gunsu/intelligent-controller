@@ -1,11 +1,11 @@
-﻿using System.Collections;
-using System.Xml;
+﻿using System.Collections.Generic;
+using Microsoft.Practices.Unity;
+
 using IC.Core.Processes;
 using IC.CoreInterfaces.Objects;
 using IC.CoreInterfaces.Processes;
-using Microsoft.Practices.Unity;
+
 using NUnit.Framework;
-using System.Collections.Generic;
 
 namespace IC.Core.Tests.Processes
 {

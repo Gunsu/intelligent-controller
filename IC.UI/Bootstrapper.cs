@@ -11,6 +11,7 @@ using IC.CoreInterfaces.Processes;
 using IC.Core.Processes;
 using IC.UI.Infrastructure.Interfaces.Manager;
 using IC.UI.Infrastructure.Interfaces.Windows;
+using IC.UI.Infrastructure.Interfaces.Schema;
 
 namespace IC.UI
 {
@@ -48,6 +49,7 @@ namespace IC.UI
 			_container.RegisterType<IMenuPresentationModel, MenuPresentationModel>();
 			_container.RegisterType<IProjectExplorerPresentationModel, ProjectExplorerPresentationModel>();
 			_container.RegisterType<IToolboxPresentationModel, ToolboxPresentationModel>();
+			_container.RegisterType<ISchemaPresentationModel, SchemaPresentationModel>();
 			_container.RegisterType<IManagerPresentationModel, ManagerPresentationModel>();
 		}
 

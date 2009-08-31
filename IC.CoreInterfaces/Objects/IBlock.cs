@@ -1,5 +1,7 @@
-﻿using Project.Utils.Common;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+
+using IC.CoreInterfaces.Enums;
+using Project.Utils.Common;
 
 namespace IC.CoreInterfaces.Objects
 {
@@ -8,6 +10,10 @@ namespace IC.CoreInterfaces.Objects
 	/// </summary>
 	public interface IBlock
 	{
-
+		Coordinates Coordinates { get; set; }
+		IBlockType BlockType { get; }
+		Orientation Orientation { get; set; }
+		IList<IBlockConnectionPoint> InputPoints { get; }
+		IList<IBlockConnectionPoint> OutputPoints { get; }
 	}
 }
