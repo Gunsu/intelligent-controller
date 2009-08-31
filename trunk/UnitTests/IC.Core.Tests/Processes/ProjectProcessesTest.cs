@@ -6,7 +6,6 @@ using IC.CoreInterfaces.Objects;
 using IC.CoreInterfaces.Processes;
 
 using NUnit.Framework;
-using Project.Utils.Common;
 
 namespace IC.Core.Tests.Processes
 {

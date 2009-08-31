@@ -1,6 +1,7 @@
 ﻿using IC.CoreInterfaces.Objects;
 using System.Collections.Generic;
 using ValidationAspects;
+using System.Drawing;
 
 namespace IC.Core.Objects
 {
@@ -55,6 +56,14 @@ namespace IC.Core.Objects
 		/// Выходные точки.
 		/// </summary>
 		public IList<IBlockConnectionPoint> OutputPoints { get; private set; }
+
+		public Image Image
+		{
+			get
+			{
+				return new Bitmap(@"c:\1.bmp");
+			}
+		}
 
 		#endregion
 	}

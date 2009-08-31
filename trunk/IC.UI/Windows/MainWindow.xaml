@@ -9,6 +9,7 @@
 		<view:MenuView DockPanel.Dock="Top" x:Name="menuView" x:FieldModifier="private" />
 		<view:ProjectExplorerView DockPanel.Dock="Right" x:Name="projectExplorerView" x:FieldModifier="private" />
 		<view:ToolboxView DockPanel.Dock="Left" x:Name="toolboxView" x:FieldModifier="private" />
+		<view:SchemaView x:Name="schemaView" x:FieldModifier="private" />
 		
 		<view:ManagerView x:Name="managerView" x:FieldModifier="private" />
 	</DockPanel>

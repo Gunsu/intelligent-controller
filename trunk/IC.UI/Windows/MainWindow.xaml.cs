@@ -6,6 +6,7 @@ using IC.UI.Infrastructure.Interfaces.Menu;
 using IC.UI.Infrastructure.Interfaces.ProjectExplorer;
 using IC.UI.Infrastructure.Interfaces.Manager;
 using IC.UI.Infrastructure.Interfaces.Toolbox;
+using IC.UI.Infrastructure.Interfaces.Schema;
 
 namespace IC.UI.Windows
 {
@@ -17,16 +18,19 @@ namespace IC.UI.Windows
 		private readonly IMenuPresentationModel _menuPresentationModel;
 		private readonly IProjectExplorerPresentationModel _projectExplorerPresentationModel;
 		private readonly IToolboxPresentationModel _toolboxPresentationModel;
+		private readonly ISchemaPresentationModel _schemaPresentationModel;
 		private readonly IManagerPresentationModel _managerPresentationModel;
 
 		public MainWindow(IMenuPresentationModel menuPresentationModel,
 			              IProjectExplorerPresentationModel projectExplorerPresentationModel,
 			              IToolboxPresentationModel toolboxPresentationModel,
+						  ISchemaPresentationModel schemaPresentationModel,
 						  IManagerPresentationModel managerPresentationModel)
 		{
 			_menuPresentationModel = menuPresentationModel;
 			_projectExplorerPresentationModel = projectExplorerPresentationModel;
 			_toolboxPresentationModel = toolboxPresentationModel;
+			_schemaPresentationModel = schemaPresentationModel;
 			_managerPresentationModel = managerPresentationModel;
 
 			InitializeComponent();
@@ -37,6 +41,7 @@ namespace IC.UI.Windows
 			menuView.Model = _menuPresentationModel;
 			projectExplorerView.Model = _projectExplorerPresentationModel;
 			toolboxView.Model = _toolboxPresentationModel;
+			schemaView.Model = _schemaPresentationModel;
 
 			managerView.Model = _managerPresentationModel;
 		}

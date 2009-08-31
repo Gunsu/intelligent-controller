@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Drawing;
 
 namespace IC.CoreInterfaces.Objects
 {
@@ -31,5 +32,7 @@ namespace IC.CoreInterfaces.Objects
 		/// Выходные точки.
 		/// </summary>
 		IList<IBlockConnectionPoint> OutputPoints { get; }
+
+		Image Image { get; }
 	}
 }
