@@ -13,6 +13,8 @@ namespace IC.Core.Objects
 		public IList<IBlockConnectionPoint> InputPoints { get; private set; }
 		public IList<IBlockConnectionPoint> OutputPoints { get; private set; }
 		public Orientation Orientation { get; set; }
+		public int X { get; set; }
+		public int Y { get; set; }
 		
 		public Block(IBlockType blockType, Coordinates coordinates, Orientation orientation)
 		{

@@ -15,5 +15,7 @@ namespace IC.CoreInterfaces.Objects
 		Orientation Orientation { get; set; }
 		IList<IBlockConnectionPoint> InputPoints { get; }
 		IList<IBlockConnectionPoint> OutputPoints { get; }
+		int X { get; set; }
+		int Y { get; set; }
 	}
 }
