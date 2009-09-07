@@ -38,12 +38,12 @@ namespace IC.UI.Windows
 
 		private void AttachModels()
 		{
-			menuView.Model = _menuPresentationModel;
-			projectExplorerView.Model = _projectExplorerPresentationModel;
-			toolboxView.Model = _toolboxPresentationModel;
-			schemaView.Model = _schemaPresentationModel;
+			//menuView.Model = _menuPresentationModel;
+			//projectExplorerView.Model = _projectExplorerPresentationModel;
+			//toolboxView.Model = _toolboxPresentationModel;
+			//schemaView.Model = _schemaPresentationModel;
 
-			managerView.Model = _managerPresentationModel;
+			//managerView.Model = _managerPresentationModel;
 		}
 
 		private void MainWindow_Initialized(object sender, EventArgs e)
