@@ -2,15 +2,27 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:view="clr-namespace:IC.UI.Views"
-	xmlns:window="clr-namespace:IC.UI.Windows;assembly=IC.UI"
-    Title="MainWindow" Height="500" Width="500"
+    
+	Title="MainWindow"
+	WindowState="Maximized"
 	Initialized="MainWindow_Initialized">
 	<DockPanel>
 		<view:MenuView DockPanel.Dock="Top" x:Name="menuView" x:FieldModifier="private" />
 		<view:ProjectExplorerView DockPanel.Dock="Right" x:Name="projectExplorerView" x:FieldModifier="private" />
-		<view:ToolboxView DockPanel.Dock="Left" x:Name="toolboxView" x:FieldModifier="private" />
-		<view:SchemaView x:Name="schemaView" x:FieldModifier="private" />
-		
+		<Grid DockPanel.Dock="Left">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="auto" />
+				<ColumnDefinition Width="*" />
+			</Grid.ColumnDefinitions>
+			<view:ToolboxView x:Name="toolboxView" x:FieldModifier="private" Grid.Column="0" />
+			<ScrollViewer Grid.Column="1"
+						  HorizontalScrollBarVisibility="Visible"
+						  VerticalScrollBarVisibility="Visible"
+						  CanContentScroll="True">
+				<view:SchemaView x:Name="schemaView" x:FieldModifier="private"
+								 Width="2000" Height="2000" />
+			</ScrollViewer>
+		</Grid>
 		<view:ManagerView x:Name="managerView" x:FieldModifier="private" />
 	</DockPanel>
 </Window>
