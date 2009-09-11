@@ -12,7 +12,7 @@ namespace IC.UI.Controls
     [TemplatePart(Name = "PART_ResizeDecorator", Type = typeof(Control))]
     [TemplatePart(Name = "PART_ConnectorDecorator", Type = typeof(Control))]
     [TemplatePart(Name = "PART_ContentPresenter", Type = typeof(ContentPresenter))]
-    public class DesignerItem : ContentControl, ISelectable, IGroupable
+    public sealed class DesignerItem : ContentControl, ISelectable, IGroupable
     {
         #region ID
         private Guid id;
@@ -156,7 +156,7 @@ namespace IC.UI.Controls
             e.Handled = false;
         }
 
-        void DesignerItem_Loaded(object sender, RoutedEventArgs e)
+        private void DesignerItem_Loaded(object sender, RoutedEventArgs e)
         {
             if (base.Template != null)
             {

@@ -10,7 +10,7 @@ namespace IC.Core.Objects
 	/// </summary>
 	public class BlockType : IBlockType
 	{
-		private BlockType()
+		public BlockType()
 		{
 			InputPoints = new List<IBlockConnectionPoint>();
 			OutputPoints = new List<IBlockConnectionPoint>();
@@ -63,6 +63,11 @@ namespace IC.Core.Objects
 			{
 				return new Bitmap(@"c:\1.bmp");
 			}
+		}
+
+		public string ToolTip
+		{
+			get { return Name; }
 		}
 
 		#endregion

@@ -25,7 +25,7 @@
     <Setter Property="Stretch" Value="Fill"/>
     <Setter Property="IsHitTestVisible" Value="False"/>
     <Setter Property="SnapsToDevicePixels" Value="True"/>
-    <!--<Setter Property="BitmapEffect">
+		<!--<Setter Property="BitmapEffect">
       <Setter.Value>
         <DropShadowBitmapEffect Color="#AAA" Direction="315" ShadowDepth="10"
                                 Softness="0.5" Opacity="0.6"/>
@@ -268,8 +268,19 @@
     <Setter Property="Fill" Value="Transparent"/>
     <Setter Property="Stroke" Value="Transparent"/>
   </Style>
+	
+	<!-- TestBlock -->
+	<Style x:Key="TestBlock" TargetType="Path" BasedOn="{StaticResource FlowChartItemStyle}">
+		<Setter Property="Data" Value="M 9,2 11,7 17,7 12,10 14,15 9,12 4,15 6,10 1,7 7,7 Z" />
+	</Style>
 
-  <Controls:Toolbox x:Key="FlowChartStencils" ItemSize="60,50" SnapsToDevicePixels="True"
+	<Style x:Key="TestBlock_DragThumb" TargetType="Path" BasedOn="{StaticResource TestBlock}">
+		<Setter Property="IsHitTestVisible" Value="true"/>
+		<Setter Property="Fill" Value="Transparent"/>
+		<Setter Property="Stroke" Value="Transparent"/>
+	</Style>
+
+	<Controls:Toolbox x:Key="FlowChartStencils" ItemSize="60,50" SnapsToDevicePixels="True"
              ScrollViewer.HorizontalScrollBarVisibility="Disabled">
     <ItemsControl.Items>
 
@@ -492,7 +503,34 @@
           </ControlTemplate>
         </Controls:DesignerItem.DragThumbTemplate>
       </Path>
-
-    </ItemsControl.Items>
+			<StackPanel>
+				<Label>SomeText</Label>
+			<Path Style="{StaticResource TestBlock}" ToolTip="Test Block">
+				<Controls:DesignerItem.DragThumbTemplate>
+					<ControlTemplate>
+							<Path Style="{StaticResource TestBlock_DragThumb}" />
+					</ControlTemplate>
+				</Controls:DesignerItem.DragThumbTemplate>
+				<Controls:DesignerItem.ConnectorDecoratorTemplate>
+					<ControlTemplate>
+						<Controls:RelativePositionPanel Margin="-4">
+							<Controls:Connector x:Name="LeftConnector1"
+												Orientation="Left"
+												Controls:RelativePositionPanel.RelativePosition="0, 0.2"/>
+							<Controls:Connector x:Name="LeftConnector2"
+												Orientation="Left"
+												Controls:RelativePositionPanel.RelativePosition="0, 0.8"/>
+							<Controls:Connector x:Name="RightConnector1"
+												Orientation="Right"
+												Controls:RelativePositionPanel.RelativePosition="1, 0.2"/>
+							<Controls:Connector x:Name="RightConnector2"
+												Orientation="Right"
+												Controls:RelativePositionPanel.RelativePosition="1, 0.8"/>
+						</Controls:RelativePositionPanel>
+					</ControlTemplate>
+				</Controls:DesignerItem.ConnectorDecoratorTemplate>
+			</Path>
+			</StackPanel>
+		</ItemsControl.Items>
   </Controls:Toolbox>
 </ResourceDictionary>

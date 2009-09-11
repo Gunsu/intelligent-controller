@@ -8,13 +8,13 @@
       <Setter.Value>
         <ControlTemplate TargetType="{x:Type Controls:Toolbox}">
           <Border BorderThickness="{TemplateBinding Border.BorderThickness}"
-                  Padding="{TemplateBinding Control.Padding}"
+                  
                   BorderBrush="{TemplateBinding Border.BorderBrush}"
                   Background="{TemplateBinding Panel.Background}"
                   SnapsToDevicePixels="True">
             <ScrollViewer VerticalScrollBarVisibility="Auto">
-              <ItemsPresenter SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}" />
-            </ScrollViewer>
+				<ItemsPresenter SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}" />
+			</ScrollViewer>
           </Border>
         </ControlTemplate>
       </Setter.Value>
@@ -22,7 +22,7 @@
     <Setter Property="ItemsPanel">
       <Setter.Value>
         <ItemsPanelTemplate>
-          <WrapPanel Margin="0,5,0,5"
+          <WrapPanel Margin="0,0,0,0"
                      ItemHeight="{Binding Path=ItemSize.Height, RelativeSource={RelativeSource AncestorType=Controls:Toolbox}}"
                      ItemWidth="{Binding Path=ItemSize.Width, RelativeSource={RelativeSource AncestorType=Controls:Toolbox}}"/>
         </ItemsPanelTemplate>

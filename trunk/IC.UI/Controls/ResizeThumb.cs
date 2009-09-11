@@ -9,14 +9,14 @@ using IC.UI.Tools;
 
 namespace IC.UI.Controls
 {
-    public class ResizeThumb : Thumb
+    public sealed class ResizeThumb : Thumb
     {
         public ResizeThumb()
         {
             base.DragDelta += new DragDeltaEventHandler(ResizeThumb_DragDelta);
         }
 
-        void ResizeThumb_DragDelta(object sender, DragDeltaEventArgs e)
+        private void ResizeThumb_DragDelta(object sender, DragDeltaEventArgs e)
         {
             DesignerItem designerItem = this.DataContext as DesignerItem;
             DesignerCanvas designer = VisualTreeHelper.GetParent(designerItem) as DesignerCanvas;

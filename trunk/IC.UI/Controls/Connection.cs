@@ -273,7 +273,7 @@ namespace IC.UI.Controls
             e.Handled = false;
         }
 
-        void OnConnectorPositionChanged(object sender, PropertyChangedEventArgs e)
+        private void OnConnectorPositionChanged(object sender, PropertyChangedEventArgs e)
         {
             // whenever the 'Position' property of the source or sink Connector 
             // changes we must update the connection path geometry
@@ -350,7 +350,7 @@ namespace IC.UI.Controls
                 this.connectionAdorner.Visibility = Visibility.Collapsed;
         }
 
-        void Connection_Unloaded(object sender, RoutedEventArgs e)
+        private void Connection_Unloaded(object sender, RoutedEventArgs e)
         {
             // do some housekeeping when Connection is unloaded
 
