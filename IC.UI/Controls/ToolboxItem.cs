@@ -8,17 +8,17 @@ using System.Windows.Media;
 namespace IC.UI.Controls
 {
     // Represents a selectable item in the Toolbox/>.
-    public class ToolboxItem : ContentControl
+    public sealed class ToolboxItem : ContentControl
     {
         // caches the start point of the drag operation
         private Point? dragStartPoint = null;
 
-        static ToolboxItem()
-        {
-            // set the key to reference the style for this control
-            FrameworkElement.DefaultStyleKeyProperty.OverrideMetadata(
-                typeof(ToolboxItem), new FrameworkPropertyMetadata(typeof(ToolboxItem)));
-        }
+		static ToolboxItem()
+		{
+			// set the key to reference the style for this control
+			DefaultStyleKeyProperty.OverrideMetadata(
+				typeof(ToolboxItem), new FrameworkPropertyMetadata(typeof(ToolboxItem)));
+		}
 
         protected override void OnPreviewMouseDown(MouseButtonEventArgs e)
         {
@@ -56,7 +56,7 @@ namespace IC.UI.Controls
     }
 
     // Wraps info of the dragged object into a class
-    public class DragObject
+    public sealed class DragObject
     {
         // Xaml string that represents the serialized content
         public String Xaml { get; set; }

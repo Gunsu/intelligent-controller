@@ -118,21 +118,21 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="CreateMenuItemHeader" xml:space="preserve">
-    <value>Create</value>
+    <value>Создать</value>
   </data>
   <data name="CreateProjectMenuItemHeader" xml:space="preserve">
-    <value>Project</value>
+    <value>Проект</value>
   </data>
   <data name="CreateSchemaMenuItemHeader" xml:space="preserve">
-    <value>Schema</value>
+    <value>Схема</value>
   </data>
   <data name="FileMenuItemHeader" xml:space="preserve">
-    <value>File</value>
+    <value>Файл</value>
   </data>
   <data name="ProjectExplorerHeader" xml:space="preserve">
-    <value>Project Explorer</value>
+    <value>Обозреватель проекта</value>
   </data>
   <data name="ToolboxHeader" xml:space="preserve">
-    <value>Toolbox</value>
+    <value>Панель инструментов</value>
   </data>
 </root>

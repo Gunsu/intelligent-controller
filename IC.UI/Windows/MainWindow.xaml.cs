@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Media;
 using Microsoft.Practices.Unity;
 
 using IC.UI.Infrastructure.Interfaces.Menu;
@@ -7,6 +10,7 @@ using IC.UI.Infrastructure.Interfaces.ProjectExplorer;
 using IC.UI.Infrastructure.Interfaces.Manager;
 using IC.UI.Infrastructure.Interfaces.Toolbox;
 using IC.UI.Infrastructure.Interfaces.Schema;
+using IC.UI.Controls;
 
 namespace IC.UI.Windows
 {
@@ -38,12 +42,15 @@ namespace IC.UI.Windows
 
 		private void AttachModels()
 		{
-			//menuView.Model = _menuPresentationModel;
-			//projectExplorerView.Model = _projectExplorerPresentationModel;
+			menuView.Model = _menuPresentationModel;
+			projectExplorerView.Model = _projectExplorerPresentationModel;
 			//toolboxView.Model = _toolboxPresentationModel;
 			//schemaView.Model = _schemaPresentationModel;
 
-			//managerView.Model = _managerPresentationModel;
+			managerView.Model = _managerPresentationModel;
+
+			
+			this.DataContext = _toolboxPresentationModel;
 		}
 
 		private void MainWindow_Initialized(object sender, EventArgs e)

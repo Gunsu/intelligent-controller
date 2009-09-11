@@ -34,5 +34,7 @@ namespace IC.CoreInterfaces.Objects
 		IList<IBlockConnectionPoint> OutputPoints { get; }
 
 		Image Image { get; }
+
+		string ToolTip { get; }
 	}
 }

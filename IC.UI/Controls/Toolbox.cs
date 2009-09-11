@@ -4,7 +4,7 @@ using System.Windows.Controls;
 namespace IC.UI.Controls
 {
     // Implements ItemsControl for ToolboxItems    
-    public class Toolbox : ItemsControl
+    public sealed class Toolbox : ItemsControl
     {
         // Defines the ItemHeight and ItemWidth properties of
         // the WrapPanel used for this Toolbox
@@ -18,7 +18,7 @@ namespace IC.UI.Controls
         // Creates or identifies the element that is used to display the given item.        
         protected override DependencyObject GetContainerForItemOverride()
         {
-            return new ToolboxItem();
+			return new ToolboxItem();
         }
 
         // Determines if the specified item is (or is eligible to be) its own container.        
