@@ -1,7 +1,8 @@
 <BlockTypes>
 	<BlockType>
-		<Name>Plus</Name>
+		<Name>Sum</Name>
 		<ID>2</ID>
+		<Description>Суммирование 2-х однобайтных чисел.</Description>
 		<Input>
 			<Name>V1</Name>
 			<Size>1</Size>
@@ -19,6 +20,7 @@
 	<BlockType>
 		<Name>Minus</Name>
 		<ID>3</ID>
+		<Description></Description>
 		<Input>
 			<Name>V1</Name>
 			<Size>1</Size>
@@ -36,6 +38,7 @@
 	<BlockType>
 		<Name>Hex2Byte</Name>
 		<ID>4</ID>
+		<Description></Description>
 		<Input>
 			<Name>H</Name>
 			<Size>2</Size>
@@ -49,6 +52,7 @@
 	<BlockType>
 		<Name>Byte2Hex</Name>
 		<ID>5</ID>
+		<Description></Description>
 		<Input>
 			<Name>B</Name>
 			<Size>1</Size>
@@ -63,6 +67,7 @@
 	<BlockType>
 		<Name>Const0</Name>
 		<ID>6</ID>
+		<Description></Description>
 		<Output>
 			<Name>C0</Name>
 			<Size>1</Size>
@@ -72,6 +77,7 @@
 	<BlockType>
 		<Name>Const1</Name>
 		<ID>7</ID>
+		<Description></Description>
 		<Output>
 			<Name>C1</Name>
 			<Size>1</Size>
@@ -81,6 +87,7 @@
 	<BlockType>
 		<Name>Const2</Name>
 		<ID>8</ID>
+		<Description></Description>
 		<Output>
 			<Name>C2</Name>
 			<Size>1</Size>
@@ -90,6 +97,7 @@
 	<BlockType>
 		<Name>ModAddr</Name>
 		<ID>9</ID>
+		<Description></Description>
 		<Input>
 			<Name>R0W1</Name>
 			<Size>1</Size>
@@ -111,6 +119,7 @@
 	<BlockType>
 		<Name>Cmp</Name>
 		<ID>10</ID>
+		<Description></Description>
 		<Input>
 			<Name>V1</Name>
 			<Size>1</Size>
@@ -128,6 +137,7 @@
 	<BlockType>
 		<Name>Break</Name>
 		<ID>11</ID>
+		<Description></Description>
 		<Input>
 			<Name>Enbl</Name>
 			<Size>1</Size>
@@ -141,6 +151,7 @@
 	<BlockType>
 		<Name>Not</Name>
 		<ID>12</ID>
+		<Description></Description>
 		<Input>
 			<Name>V</Name>
 			<Size>1</Size>
@@ -154,6 +165,7 @@
 	<BlockType>
 		<Name>LastErr</Name>
 		<ID>13</ID>
+		<Description></Description>
 		<Output>
 			<Name>Err</Name>
 			<Size>1</Size>
@@ -163,6 +175,7 @@
 	<BlockType>
 		<Name>SortBuff</Name>
 		<ID>14</ID>
+		<Description></Description>
 		<Input>
 			<Name>BId</Name>
 			<Size>1</Size>
@@ -185,6 +198,7 @@
 	<BlockType>
 		<Name>And</Name>
 		<ID>15</ID>
+		<Description></Description>
 		<Input>
 			<Name>V1</Name>
 			<Size>1</Size>
@@ -202,6 +216,7 @@
 	<BlockType>
 		<Name>CRC</Name>
 		<ID>16</ID>
+		<Description></Description>
 		<Input>
 			<Name>BId</Name>
 			<Size>1</Size>
@@ -227,6 +242,7 @@
 	<BlockType>
 		<Name>CRCError</Name>
 		<ID>17</ID>
+		<Description></Description>
 		<Input>
 			<Name>Enbl</Name>
 			<Size>1</Size>
@@ -240,6 +256,7 @@
 	<BlockType>
 		<Name>InComBuf</Name>
 		<ID>18</ID>
+		<Description></Description>
 		<Output>
 			<Name>BId</Name>
 			<Size>1</Size>
@@ -249,6 +266,7 @@
 	<BlockType>
 		<Name>ADC</Name>
 		<ID>19</ID>
+		<Description></Description>
 		<Input>
 			<Name>R0W1</Name>
 			<Size>1</Size>
@@ -298,6 +316,7 @@
 	<BlockType>
 		<Name>ADCMask</Name>
 		<ID>20</ID>
+		<Description></Description>
 		<Input>
 			<Name>R0W1
 			</Name>
@@ -324,6 +343,7 @@
 	<BlockType>
 		<Name>ADCChnl</Name>
 		<ID>21</ID>
+		<Description></Description>
 		<Input>
 			<Name>R0W1</Name>
 			<Size>1</Size>
@@ -389,6 +409,7 @@
 	<BlockType>
 		<Name>Hex2Word</Name>
 		<ID>22</ID>
+		<Description></Description>
 		<Input>
 			<Name>H</Name>
 			<Size>4</Size>
@@ -402,6 +423,7 @@
 	<BlockType>
 		<Name>Word2Hex</Name>
 		<ID>23</ID>
+		<Description></Description>
 		<Input>
 			<Name>W</Name>
 			<Size>2</Size>
@@ -415,6 +437,7 @@
 	<BlockType>
 		<Name>Byte2Bit</Name>
 		<ID>24</ID>
+		<Description></Description>
 		<Input>
 			<Name>B</Name>
 			<Size>1</Size>
@@ -456,6 +479,7 @@
 	<BlockType>
 		<Name>Bit2Byte</Name>
 		<ID>25</ID>
+		<Description></Description>
 		<Input>
 			<Name>b0</Name>
 			<Size>1</Size>
@@ -497,6 +521,7 @@
 	<BlockType>
 		<Name>BuffLen</Name>
 		<ID>26</ID>
+		<Description></Description>
 		<Input>
 			<Name>BId</Name>
 			<Size>1</Size>
@@ -510,6 +535,7 @@
 	<BlockType>
 		<Name>Div</Name>
 		<ID>27</ID>
+		<Description></Description>
 		<Input>
 			<Name>Enbl</Name>
 			<Size>1</Size>
@@ -531,6 +557,7 @@
 	<BlockType>
 		<Name>AvgMean</Name>
 		<ID>28</ID>
+		<Description></Description>
 		<Input>
 			<Name>Enbl</Name>
 			<Size>1</Size>
@@ -556,6 +583,7 @@
 	<BlockType>
 		<Name>Approx</Name>
 		<ID>29</ID>
+		<Description></Description>
 		<Input>
 			<Name>Enbl</Name>
 			<Size>1</Size>
@@ -577,6 +605,7 @@
 	<BlockType>
 		<Name>Const00</Name>
 		<ID>30</ID>
+		<Description></Description>
 		<Output>
 			<Name>C</Name>
 			<Size>2</Size>
@@ -586,6 +615,7 @@
 	<BlockType>
 		<Name>Word2Dec</Name>
 		<ID>31</ID>
+		<Description></Description>
 		<Input>
 			<Name>W</Name>
 			<Size>2</Size>
@@ -603,6 +633,7 @@
 	<BlockType>
 		<Name>Const3</Name>
 		<ID>32</ID>
+		<Description></Description>
 		<Output>
 			<Name>C3</Name>
 			<Size>1</Size>
