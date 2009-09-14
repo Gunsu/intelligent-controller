@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Controls;
 using System.Windows.Input;
-using IC.UI.Controls;
+using IC.UI.Infrastructure.Controls;
 using IC.UI.Infrastructure.Interfaces.Schema;
 
 using ValidationAspects;
