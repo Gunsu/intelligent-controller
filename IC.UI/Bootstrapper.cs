@@ -36,14 +36,6 @@ namespace IC.UI
 			_container.RegisterType<ICreateProjectWindow, CreateProjectWindow>();
 		}
 
-		private void RegisterViews()
-		{
-			_container.RegisterType<IMenuView, MenuView>();
-			_container.RegisterType<IProjectExplorerView, ProjectExplorerView>();
-			_container.RegisterType<IToolboxView, ToolboxView>();
-			_container.RegisterType<IManagerView, ManagerView>();
-		}
-
 		private void RegisterPresentationModels()
 		{
 			_container.RegisterType<IMenuPresentationModel, MenuPresentationModel>();
@@ -74,7 +66,6 @@ namespace IC.UI
 			_container = new UnityContainer();
 			_container.RegisterType<IEventAggregator, EventAggregator>(IsSingleton);
 			RegisterCoreObjectsAndProcesses();
-			//RegisterViews();
 			RegisterPresentationModels();
 			RegisterWindows();
 		}

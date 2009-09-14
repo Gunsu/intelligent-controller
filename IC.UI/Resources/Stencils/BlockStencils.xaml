@@ -36,67 +36,30 @@
 		<Setter Property="IsHitTestVisible" Value="True"/>
 	</Style>
 
-	<Controls:Toolbox x:Key="BlockStencils" ItemSize="200,40" SnapsToDevicePixels="True">
+	<Controls:Toolbox x:Key="BlockStencils" ItemSize="40,40" SnapsToDevicePixels="True">
 		<ItemsControl.Items>
-				<!--<Label Style="{StaticResource BlockItemStyle}"
-				       ToolTip="{Binding BlockTypes[0].ToolTip}"
-				       Content="{Binding BlockTypes[0].Name}">
-					<Controls:DesignerItem.DragThumbTemplate>
-						<ControlTemplate>
-								<Label Style="{StaticResource BlockThumbItemStyle}"
-									   ToolTip="{Binding BlockTypes[0].ToolTip}"
-									   Content="{Binding BlockTypes[0].Name}"/>
-						</ControlTemplate>
-					</Controls:DesignerItem.DragThumbTemplate>
-				</Label>
-			<Image Source="../Images/Print.png" IsHitTestVisible="False" />-->
-			<Canvas IsHitTestVisible="False" Height="150" Width="200" SnapsToDevicePixels="True">
-				<!--<Rectangle Canvas.Top="0" Canvas.Left="10" Fill="LightSteelBlue"
-									   Width="80" Height="150" IsHitTestVisible="False"/>
-				<Rectangle Canvas.Top="70" Canvas.Left="90" Fill="LightSteelBlue"
-									   Width="10" Height="10" IsHitTestVisible="False" />
-				<Rectangle Canvas.Top="40" Canvas.Left="0" Fill="LightSteelBlue"
-									   Width="10" Height="10" IsHitTestVisible="False" />
-				<Rectangle Canvas.Top="110" Canvas.Left="0" Fill="LightSteelBlue"
-									   Width="10" Height="10" IsHitTestVisible="False" />-->
-				<Label FontSize="10"
-					   Canvas.Top="10"
-					   Canvas.Left="15"
-					   Width="170"
-					   FontWeight="Bold"
-					   HorizontalContentAlignment="Center"
-					   Background="#FF87AEFA">Plus</Label>
-			
+			<!--Sum-->
+			<Image Source="../Images/Sum.png"
+				   IsHitTestVisible="False"
+				   ToolTip="{Binding BlockTypes[0].Description}">
 				<Controls:DesignerItem.DragThumbTemplate>
 					<ControlTemplate>
-						<Canvas Height="150" Width="200" SnapsToDevicePixels="True">
-							<Rectangle Canvas.Top="0" Canvas.Left="10" Fill="LightSteelBlue"
-									   Height="150" Width="180" SnapsToDevicePixels="True" />
-							<Label Canvas.Top="73" Canvas.Left="150">Res(1)</Label>
-							<Rectangle Canvas.Top="70" Canvas.Left="140" Fill="LightSteelBlue"
-									   Width="10" Height="10" />
-							<Rectangle Canvas.Top="40" Canvas.Left="60" Fill="LightSteelBlue"
-									   Width="10" Height="10" />
-							<Label Canvas.Top="43" Canvas.Left="27">Arg1(1)</Label>
-							<Rectangle Canvas.Top="110" Canvas.Left="60" Fill="LightSteelBlue"
-									   Width="10" Height="10" />
-							<Label Canvas.Top="113" Canvas.Left="27">Arg2(1)</Label>
-						</Canvas>
+						<Image Source="../Images/Sum.png"
+							   IsHitTestVisible="True" />
 					</ControlTemplate>
 				</Controls:DesignerItem.DragThumbTemplate>
 				<Controls:DesignerItem.ConnectorDecoratorTemplate>
 					<ControlTemplate>
-						<Canvas Height="150" Width="200" SnapsToDevicePixels="True">
-							<Controls:Connector x:Name="right1" Orientation="Right"
-                                                Canvas.Top="70" Canvas.Left="140" />
-							<Controls:Connector x:Name="left1" Orientation="Left"
-                                                Canvas.Top="40" Canvas.Left="50" />
-							<Controls:Connector x:Name="left2" Orientation="Left"
-                                                Canvas.Top="110" Canvas.Left="50" />
-						</Canvas>
+						<Controls:RelativePositionPanel Margin="-4">
+							<Controls:Connector Orientation="Left" Controls:RelativePositionPanel.RelativePosition="0,0.2" />
+							<Controls:Connector Orientation="Left" Controls:RelativePositionPanel.RelativePosition="0,0.8" />
+							<Controls:Connector Orientation="Right" Controls:RelativePositionPanel.RelativePosition="1,0.5" />
+						</Controls:RelativePositionPanel>
 					</ControlTemplate>
 				</Controls:DesignerItem.ConnectorDecoratorTemplate>
-			</Canvas>
+			</Image>
+			
+			
 		</ItemsControl.Items>
 	</Controls:Toolbox>
 </ResourceDictionary>

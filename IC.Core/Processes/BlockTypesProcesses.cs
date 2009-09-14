@@ -24,8 +24,9 @@ namespace IC.Core.Processes
 			{
 				string blockTypeName = node.ChildNodes[0].InnerText;
 				int id = int.Parse(node.ChildNodes[1].InnerText);
-				IBlockType blockType = new BlockType(id, blockTypeName);
-				for (int i = 2; i < node.ChildNodes.Count; ++i)
+				string description = node.ChildNodes[2].InnerText;
+				IBlockType blockType = new BlockType(id, blockTypeName, description);
+				for (int i = 3; i < node.ChildNodes.Count; ++i)
 				{
 					string name = node.ChildNodes[i].ChildNodes[0].InnerText;
 					int size = int.Parse(node.ChildNodes[i].ChildNodes[1].InnerText);
