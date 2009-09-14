@@ -190,10 +190,6 @@
       <Link>Version.cs</Link>
     </Compile>
     <Compile Include="Bootstrapper.cs" />
-    <Compile Include="Controls\BlockView.cs" />
-    <Compile Include="Controls\DragThumb.cs" />
-    <Compile Include="Controls\RelativePositionPanel.cs" />
-    <Compile Include="Controls\ResizeThumb.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -202,20 +198,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="Controls\Connection.cs" />
-    <Compile Include="Controls\ConnectionAdorner.cs" />
-    <Compile Include="Controls\Connector.cs" />
-    <Compile Include="Controls\ConnectorAdorner.cs" />
-    <Compile Include="Controls\DesignerCanvas.Commands.cs" />
-    <Compile Include="Controls\DesignerCanvas.cs" />
-    <Compile Include="Controls\DesignerItem.cs" />
-    <Compile Include="Interfaces\IGroupable.cs" />
-    <Compile Include="Interfaces\ISelectable.cs" />
-    <Compile Include="Tools\PathFinder.cs" />
-    <Compile Include="Controls\RubberbandAdorner.cs" />
-    <Compile Include="Tools\SelectionService.cs" />
-    <Compile Include="Controls\Toolbox.cs" />
-    <Compile Include="Controls\ToolboxItem.cs" />
     <Compile Include="Views\ManagerView.xaml.cs">
       <DependentUpon>ManagerView.xaml</DependentUpon>
     </Compile>

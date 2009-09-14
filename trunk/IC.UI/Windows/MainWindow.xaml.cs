@@ -10,7 +10,7 @@ using IC.UI.Infrastructure.Interfaces.ProjectExplorer;
 using IC.UI.Infrastructure.Interfaces.Manager;
 using IC.UI.Infrastructure.Interfaces.Toolbox;
 using IC.UI.Infrastructure.Interfaces.Schema;
-using IC.UI.Controls;
+using IC.UI.Infrastructure.Controls;
 
 namespace IC.UI.Windows
 {
@@ -45,11 +45,8 @@ namespace IC.UI.Windows
 			menuView.Model = _menuPresentationModel;
 			projectExplorerView.Model = _projectExplorerPresentationModel;
 			//toolboxView.Model = _toolboxPresentationModel;
-			//schemaView.Model = _schemaPresentationModel;
-
+			schemaView.Model = _schemaPresentationModel;
 			managerView.Model = _managerPresentationModel;
-
-			
 			this.DataContext = _toolboxPresentationModel;
 		}
 

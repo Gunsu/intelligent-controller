@@ -1,69 +1,16 @@
 ﻿<UserControl x:Class="IC.UI.Views.SchemaView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-	xmlns:ctrl="clr-namespace:IC.UI.Controls" Height="auto" Width="auto">
-	<ListBox Name="listBox"
-			 ItemsSource="{Binding Blocks}"
-			 SelectedItem="{Binding Mode=TwoWay, Path=CurrentBlock}"
-			 IsSynchronizedWithCurrentItem="True">
-		<ListBox.ItemContainerStyle>
-			<Style TargetType="ListBoxItem">
-				<Setter Property="Canvas.Left" Value="{Binding Mode=TwoWay, Path=X}" />
-				<Setter Property="Canvas.Top" Value="{Binding Mode=TwoWay, Path=Y}" />
-				<!--<Setter Property="Template">
-					<Setter.Value>-->
-						<!--<ControlTemplate TargetType="{x:Type ListBoxItem}">-->
-							<!--<Grid>
-								<Rectangle x:Name="imageBorder"
-										   Margin="-3"
-										   StrokeThickness="2"
-										   StrokeStartLineCap="Round"
-										   StrokeEndLineCap="Round"
-										   StrokeDashArray="10"
-										   StrokeDashOffset="5" />
-								<ContentPresenter />
-							</Grid>
-							<ControlTemplate.Triggers>
-								<Trigger Property="IsSelected"
-										 Value="True">
-									<Setter TargetName="imageBorder"
-											Property="Stroke"
-											Value="Black" />
-								</Trigger>
-							</ControlTemplate.Triggers>-->
-						<!--</ControlTemplate>-->
-					<!--</Setter.Value>
-				</Setter>-->
-			</Style>
-		</ListBox.ItemContainerStyle>
-		<ListBox.ItemTemplate>
-			<DataTemplate>
-				<ListBoxItem>
-					<Grid>
-						<Rectangle x:Name="imageBorder" Stroke="Black"
-											   Margin="-3"
-											   StrokeThickness="2"
-											   StrokeStartLineCap="Round"
-											   StrokeEndLineCap="Round"
-											   StrokeDashArray="10"
-											   StrokeDashOffset="5" />
-						<Image Source="c:\1.bmp" />
-					</Grid>
-				</ListBoxItem>
-				<!--<DataTemplate.Triggers>
-					<DataTrigger Binding="{Binding RelativeSource={RelativeSource FindAncestor,
-						                                                          AncestorType={x:Type ListBoxItem}},
-						                                           Path=IsSelected}"
-								 Value="True">
-						<Setter Property="Visibility" Value="Hidden" />
-					</DataTrigger>
-				</DataTemplate.Triggers>-->
-			</DataTemplate>
-		</ListBox.ItemTemplate>
-		<ListBox.ItemsPanel>
-			<ItemsPanelTemplate>
-				<!--<ctrl:DragCanvas x:Name="dragCanvas" />-->
-			</ItemsPanelTemplate>
-		</ListBox.ItemsPanel>
-	</ListBox>
+    xmlns:Controls="clr-namespace:IC.UI.Infrastructure.Controls;assembly=IC.UI.Infrastructure">
+    <!-- Designer -->
+    <GroupBox Header="Схема" Margin="3,0,3,0">
+        <ScrollViewer HorizontalScrollBarVisibility="Auto"
+							  VerticalScrollBarVisibility="Auto">
+            <Controls:DesignerCanvas Focusable="True" x:Name="MyDesigner"
+                            Background="{StaticResource WindowBackgroundBrush}"
+                            Margin="10" FocusVisualStyle="{x:Null}"
+                            ContextMenu="{StaticResource DesignerCanvasContextMenu}" />
+        </ScrollViewer>
+    </GroupBox>
 </UserControl>
+
