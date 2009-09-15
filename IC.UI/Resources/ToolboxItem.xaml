@@ -2,9 +2,10 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:Controls="clr-namespace:IC.UI.Infrastructure.Controls;assembly=IC.UI.Infrastructure">
 	<Style TargetType="{x:Type Controls:ToolboxItem}">
-		<Setter Property="Control.Padding" Value="00"/>
+		<Setter Property="Control.Padding" Value="1"/>
 		<Setter Property="ContentControl.HorizontalContentAlignment" Value="Center"/>
 		<Setter Property="ContentControl.VerticalContentAlignment" Value="Top"/>
+		<Setter Property="ToolTip" Value="{Binding ToolTip}"/>
 		<Setter Property="Template">
 			<Setter.Value>
 				<ControlTemplate TargetType="{x:Type Controls:ToolboxItem}" >

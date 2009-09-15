@@ -92,7 +92,7 @@
 
     <!-- ResizeDecorator Default Template -->
     <ControlTemplate x:Key="ResizeDecoratorTemplate" TargetType="{x:Type Control}">
-        <!--<Grid Opacity="0.7" SnapsToDevicePixels="true">
+        <Grid Opacity="0.7" SnapsToDevicePixels="true">
             <Controls:ResizeThumb Height="3" Cursor="SizeNS" Margin="0 -4 0 0"
                      VerticalAlignment="Top" HorizontalAlignment="Stretch"/>
             <Controls:ResizeThumb Width="3" Cursor="SizeWE" Margin="-4 0 0 0"
@@ -109,7 +109,7 @@
                      VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
             <Controls:ResizeThumb Width="7" Height="7" Cursor="SizeNWSE" Margin="0 0 -6 -6"
                      VerticalAlignment="Bottom" HorizontalAlignment="Right"/>
-        </Grid>-->
+        </Grid>
     </ControlTemplate>
 
     <!-- DragThumb Default Template -->

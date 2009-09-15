@@ -17,7 +17,7 @@ namespace IC.UI.Infrastructure.Tools
         /// <summary>
         /// Отступ от connection point для линии.
         /// </summary>
-        private const double PATH_MARGIN = 0;
+        private const double PATH_MARGIN = 10;
 
         private const int margin = 20;
 

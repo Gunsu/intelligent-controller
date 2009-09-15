@@ -11,7 +11,9 @@
 				<ResourceDictionary Source="Resources/Toolbox.xaml" />
 				<ResourceDictionary Source="Resources/ToolboxItem.xaml" />
 
-				<ResourceDictionary Source="Resources/Stencils/BlockStencils.xaml" />
+				<ResourceDictionary Source="Resources/Stencils/ArithmeticBlocksStencils.xaml" />
+				<ResourceDictionary Source="Resources/Stencils/ConvertBlocksStencils.xaml" />
+				<ResourceDictionary Source="Resources/Stencils/ConstBlocksStencils.xaml" />
 				<ResourceDictionary Source="Resources/Stencils/FlowChartStencils.xaml" />
 				<ResourceDictionary Source="Resources/Stencils/ShapeStencils.xaml" />
 

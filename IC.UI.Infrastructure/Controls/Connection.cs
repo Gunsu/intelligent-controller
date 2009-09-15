@@ -156,7 +156,7 @@ namespace IC.UI.Infrastructure.Controls
             }
         }
 
-        private ArrowSymbol sourceArrowSymbol = ArrowSymbol.None;
+        private ArrowSymbol sourceArrowSymbol = ArrowSymbol.Diamond;
         public ArrowSymbol SourceArrowSymbol
         {
             get { return sourceArrowSymbol; }
@@ -170,7 +170,7 @@ namespace IC.UI.Infrastructure.Controls
             }
         }
 
-        public ArrowSymbol sinkArrowSymbol = ArrowSymbol.Arrow;
+        private ArrowSymbol sinkArrowSymbol = ArrowSymbol.Arrow;
         public ArrowSymbol SinkArrowSymbol
         {
             get { return sinkArrowSymbol; }

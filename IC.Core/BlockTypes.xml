@@ -2,7 +2,7 @@
 	<BlockType>
 		<Name>Sum</Name>
 		<ID>2</ID>
-		<Description>Суммирование 2-х однобайтных чисел.</Description>
+		<Description>Сумма 2-х однобайтных чисел.</Description>
 		<Input>
 			<Name>V1</Name>
 			<Size>1</Size>
@@ -18,9 +18,9 @@
 	</BlockType>
 
 	<BlockType>
-		<Name>Minus</Name>
+		<Name>Dif</Name>
 		<ID>3</ID>
-		<Description></Description>
+		<Description>Разница 2-х однобайтных чисел.</Description>
 		<Input>
 			<Name>V1</Name>
 			<Size>1</Size>
@@ -38,7 +38,7 @@
 	<BlockType>
 		<Name>Hex2Byte</Name>
 		<ID>4</ID>
-		<Description></Description>
+		<Description>Преобразует 2 байта в 1 байт.</Description>
 		<Input>
 			<Name>H</Name>
 			<Size>2</Size>
@@ -52,7 +52,7 @@
 	<BlockType>
 		<Name>Byte2Hex</Name>
 		<ID>5</ID>
-		<Description></Description>
+		<Description>Преобразует 1 байт в 2 байта.</Description>
 		<Input>
 			<Name>B</Name>
 			<Size>1</Size>
@@ -63,11 +63,10 @@
 		</Output>
 	</BlockType>
 
-
 	<BlockType>
 		<Name>Const0</Name>
 		<ID>6</ID>
-		<Description></Description>
+		<Description>Константа 0.</Description>
 		<Output>
 			<Name>C0</Name>
 			<Size>1</Size>
@@ -77,7 +76,7 @@
 	<BlockType>
 		<Name>Const1</Name>
 		<ID>7</ID>
-		<Description></Description>
+		<Description>Константа 1.</Description>
 		<Output>
 			<Name>C1</Name>
 			<Size>1</Size>
@@ -87,7 +86,7 @@
 	<BlockType>
 		<Name>Const2</Name>
 		<ID>8</ID>
-		<Description></Description>
+		<Description>Константа 2.</Description>
 		<Output>
 			<Name>C2</Name>
 			<Size>1</Size>
@@ -605,7 +604,7 @@
 	<BlockType>
 		<Name>Const00</Name>
 		<ID>30</ID>
-		<Description></Description>
+		<Description>Двухбайтная константа 0.</Description>
 		<Output>
 			<Name>C</Name>
 			<Size>2</Size>
@@ -633,7 +632,7 @@
 	<BlockType>
 		<Name>Const3</Name>
 		<ID>32</ID>
-		<Description></Description>
+		<Description>Константа 3.</Description>
 		<Output>
 			<Name>C3</Name>
 			<Size>1</Size>
