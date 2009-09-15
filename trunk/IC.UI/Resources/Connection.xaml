@@ -69,12 +69,12 @@
                 <Setter Property="Stretch" Value="Fill"/>
             </Style>
             <!-- Arrow -->
-            <!--<Style x:Key="Arrow" TargetType="Path" BasedOn="{StaticResource ArrowSymbolBaseStyle}">
+            <Style x:Key="Arrow" TargetType="Path" BasedOn="{StaticResource ArrowSymbolBaseStyle}">
                 <Setter Property="Data" Value="M0,0 8,4 0,8 Z"/>
-            </Style>-->
-			<Style x:Key="Arrow" TargetType="Path" BasedOn="{StaticResource ArrowSymbolBaseStyle}">
+            </Style>
+			<!--<Style x:Key="Arrow" TargetType="Path" BasedOn="{StaticResource ArrowSymbolBaseStyle}">
 				<Setter Property="Data" Value="M0,0 0,0 0,0 Z"/>
-			</Style>
+			</Style>-->
 			<!-- Diamond  -->
             <Style x:Key="Diamond" TargetType="Path" BasedOn="{StaticResource ArrowSymbolBaseStyle}">
                 <Setter Property="Data" Value="M-5,0 0,-5 5,0 0,5 Z"/>

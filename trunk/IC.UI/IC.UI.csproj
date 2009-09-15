@@ -108,7 +108,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Resources\Stencils\BlockStencils.xaml">
+    <Page Include="Resources\Stencils\ArithmeticBlocksStencils.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Stencils\ConstBlocksStencils.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Stencils\ConvertBlocksStencils.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -274,6 +282,30 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Images\Sum.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\Dif.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\Hex2Byte.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\Byte2Hex.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\Const0.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\Const2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\Const1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\Const3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\Const00.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
