@@ -7,12 +7,12 @@
 			<!--Const0-->
 			<Image Source="../Images/Const0.png"
 				   IsHitTestVisible="False"
-				   ToolTip="{Binding BlockTypes[5].Description}">
+				   ToolTip="{Binding BlockTypes[4].Description}">
 				<Controls:DesignerItem.DragThumbTemplate>
 					<ControlTemplate>
 						<Image Source="../Images/Const0.png"
 							   IsHitTestVisible="True" 
-							   ToolTip="{Binding BlockTypes[5].Description}"/>
+							   ToolTip="{Binding BlockTypes[4].Description}"/>
 					</ControlTemplate>
 				</Controls:DesignerItem.DragThumbTemplate>
 				<Controls:DesignerItem.ConnectorDecoratorTemplate>
@@ -27,12 +27,12 @@
 			<!--Const1-->
 			<Image Source="../Images/Const1.png"
 				   IsHitTestVisible="False"
-				   ToolTip="{Binding BlockTypes[6].Description}">
+				   ToolTip="{Binding BlockTypes[5].Description}">
 				<Controls:DesignerItem.DragThumbTemplate>
 					<ControlTemplate>
 						<Image Source="../Images/Const1.png"
 							   IsHitTestVisible="True" 
-							   ToolTip="{Binding BlockTypes[6].Description}"/>
+							   ToolTip="{Binding BlockTypes[5].Description}"/>
 					</ControlTemplate>
 				</Controls:DesignerItem.DragThumbTemplate>
 				<Controls:DesignerItem.ConnectorDecoratorTemplate>
@@ -47,12 +47,12 @@
 			<!--Const2-->
 			<Image Source="../Images/Const2.png"
 				   IsHitTestVisible="False"
-				   ToolTip="{Binding BlockTypes[7].Description}">
+				   ToolTip="{Binding BlockTypes[6].Description}">
 				<Controls:DesignerItem.DragThumbTemplate>
 					<ControlTemplate>
 						<Image Source="../Images/Const2.png"
 							   IsHitTestVisible="True" 
-							   ToolTip="{Binding BlockTypes[7].Description}"/>
+							   ToolTip="{Binding BlockTypes[6].Description}"/>
 					</ControlTemplate>
 				</Controls:DesignerItem.DragThumbTemplate>
 				<Controls:DesignerItem.ConnectorDecoratorTemplate>
@@ -67,12 +67,12 @@
 			<!--Const3-->
 			<Image Source="../Images/Const3.png"
 				   IsHitTestVisible="False"
-				   ToolTip="{Binding BlockTypes[31].Description}">
+				   ToolTip="{Binding BlockTypes[30].Description}">
 				<Controls:DesignerItem.DragThumbTemplate>
 					<ControlTemplate>
 						<Image Source="../Images/Const3.png"
 							   IsHitTestVisible="True" 
-							   ToolTip="{Binding BlockTypes[31].Description}"/>
+							   ToolTip="{Binding BlockTypes[30].Description}"/>
 					</ControlTemplate>
 				</Controls:DesignerItem.DragThumbTemplate>
 				<Controls:DesignerItem.ConnectorDecoratorTemplate>
@@ -87,12 +87,12 @@
 			<!--Const00-->
 			<Image Source="../Images/Const00.png"
 				   IsHitTestVisible="False"
-				   ToolTip="{Binding BlockTypes[29].Description}">
+				   ToolTip="{Binding BlockTypes[28].Description}">
 				<Controls:DesignerItem.DragThumbTemplate>
 					<ControlTemplate>
 						<Image Source="../Images/Const00.png"
 							   IsHitTestVisible="True" 
-							   ToolTip="{Binding BlockTypes[29].Description}"/>
+							   ToolTip="{Binding BlockTypes[28].Description}"/>
 					</ControlTemplate>
 				</Controls:DesignerItem.DragThumbTemplate>
 				<Controls:DesignerItem.ConnectorDecoratorTemplate>

@@ -21,5 +21,9 @@
 				  Header="Константы"
 				  Content="{StaticResource ConstBlocksStencils}"
 				  IsExpanded="True" />
+		<Expander x:Name="LogicBlocksStencils"
+				  Header="Логика"
+				  Content="{StaticResource LogicBlocsStencils}"
+				  IsExpanded="True" />
 	</StackPanel>
 </UserControl>
