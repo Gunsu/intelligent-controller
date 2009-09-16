@@ -118,7 +118,7 @@
 	<BlockType>
 		<Name>Cmp</Name>
 		<ID>10</ID>
-		<Description></Description>
+		<Description>Сравнение двух однобайтных чисел.</Description>
 		<Input>
 			<Name>V1</Name>
 			<Size>1</Size>
@@ -150,7 +150,7 @@
 	<BlockType>
 		<Name>Not</Name>
 		<ID>12</ID>
-		<Description></Description>
+		<Description>Инверсирование байта.</Description>
 		<Input>
 			<Name>V</Name>
 			<Size>1</Size>
