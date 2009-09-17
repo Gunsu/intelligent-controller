@@ -1,0 +1,69 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:Controls="clr-namespace:IC.UI.Infrastructure.Controls;assembly=IC.UI.Infrastructure">
+
+    <Controls:Toolbox x:Key="InputOutputBlocksStencils" ItemSize="25,25" SnapsToDevicePixels="True">
+        <ItemsControl.Items>
+
+            <!--In-->
+            <Canvas IsHitTestVisible="False">
+                <TextBox Canvas.Top="5" Canvas.Left="5" Height="30" Width="50" SnapsToDevicePixels="True" Text="In">
+                </TextBox>
+                <Controls:DesignerItem.ConnectorDecoratorTemplate>
+                    <ControlTemplate>
+                        <Controls:RelativePositionPanel Margin="-4">
+                            <Controls:Connector Orientation="Bottom" Controls:RelativePositionPanel.RelativePosition="0.5,1" />
+                            <Controls:Connector Orientation="Left" Controls:RelativePositionPanel.RelativePosition="0,0.5" />
+                            <Controls:Connector Orientation="Right" Controls:RelativePositionPanel.RelativePosition="1,0.5" />
+                        </Controls:RelativePositionPanel>
+                    </ControlTemplate>
+                </Controls:DesignerItem.ConnectorDecoratorTemplate>
+            </Canvas>
+
+            <!--Out-->
+            <Image Source="../Images/Out.png"
+				   IsHitTestVisible="False"
+				   ToolTip="">
+                <Controls:DesignerItem.DragThumbTemplate>
+                    <ControlTemplate>
+                        <Image Source="../Images/Out.png"
+							   IsHitTestVisible="True" 
+							   ToolTip=""/>
+                    </ControlTemplate>
+                </Controls:DesignerItem.DragThumbTemplate>
+                <Controls:DesignerItem.ConnectorDecoratorTemplate>
+                    <ControlTemplate>
+                        <Controls:RelativePositionPanel Margin="-4">
+                            <Controls:Connector Orientation="Left" Controls:RelativePositionPanel.RelativePosition="0,0.2" />
+                            <Controls:Connector Orientation="Left" Controls:RelativePositionPanel.RelativePosition="0,0.8" />
+                            <Controls:Connector Orientation="Right" Controls:RelativePositionPanel.RelativePosition="1,0.5" />
+                        </Controls:RelativePositionPanel>
+                    </ControlTemplate>
+                </Controls:DesignerItem.ConnectorDecoratorTemplate>
+            </Image>
+            
+            <!--OutConst-->
+            <Image Source="../Images/OutConst.png"
+				   IsHitTestVisible="False"
+				   ToolTip="">
+                <Controls:DesignerItem.DragThumbTemplate>
+                    <ControlTemplate>
+                        <Image Source="../Images/OutConst.png"
+							   IsHitTestVisible="True" 
+							   ToolTip=""/>
+                    </ControlTemplate>
+                </Controls:DesignerItem.DragThumbTemplate>
+                <Controls:DesignerItem.ConnectorDecoratorTemplate>
+                    <ControlTemplate>
+                        <Controls:RelativePositionPanel Margin="-4">
+                            <Controls:Connector Orientation="Left" Controls:RelativePositionPanel.RelativePosition="0,0.2" />
+                            <Controls:Connector Orientation="Left" Controls:RelativePositionPanel.RelativePosition="0,0.8" />
+                            <Controls:Connector Orientation="Right" Controls:RelativePositionPanel.RelativePosition="1,0.5" />
+                        </Controls:RelativePositionPanel>
+                    </ControlTemplate>
+                </Controls:DesignerItem.ConnectorDecoratorTemplate>
+            </Image>
+            
+        </ItemsControl.Items>
+    </Controls:Toolbox>
+</ResourceDictionary>

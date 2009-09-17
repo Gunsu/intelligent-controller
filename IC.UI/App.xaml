@@ -14,6 +14,7 @@
 				<ResourceDictionary Source="Resources/Stencils/ArithmeticBlocksStencils.xaml" />
 				<ResourceDictionary Source="Resources/Stencils/ConvertBlocksStencils.xaml" />
 				<ResourceDictionary Source="Resources/Stencils/ConstBlocksStencils.xaml" />
+                <ResourceDictionary Source="Resources/Stencils/InputOutputBlocksStencils.xaml" />
 				<ResourceDictionary Source="Resources/Stencils/LogicBlocksStencils.xaml" />
 				<ResourceDictionary Source="Resources/Stencils/FlowChartStencils.xaml" />
 				<ResourceDictionary Source="Resources/Stencils/ShapeStencils.xaml" />

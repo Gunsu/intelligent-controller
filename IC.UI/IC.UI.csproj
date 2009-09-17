@@ -124,6 +124,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Resources\Stencils\InputOutputBlocksStencils.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Resources\Stencils\LogicBlocksStencils.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -316,6 +320,11 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Images\Not.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\In.png" />
+    <Resource Include="Resources\Images\Out.png" />
+    <Resource Include="Resources\Images\OutConst.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
