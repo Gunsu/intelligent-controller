@@ -1,6 +1,5 @@
 ﻿using System.Collections.ObjectModel;
 using IC.CoreInterfaces.Objects;
-using IC.PresentationModels.Properties;
 using IC.UI.Infrastructure.Events;
 using IC.UI.Infrastructure.Interfaces.ProjectExplorer;
 using Microsoft.Practices.Composite.Events;
@@ -15,7 +14,7 @@ namespace IC.PresentationModels
 
 		public string ProjectName
 		{
-			get { return Resources.ProjectExplorerHeader; }
+			get { return "Обозреватель проектов"; }
 		}
 
 		public ObservableCollection<ISchema> SchemasListItems

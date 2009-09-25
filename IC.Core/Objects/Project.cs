@@ -31,7 +31,7 @@ namespace IC.Core.Objects
 		private Project()
 		{
 			_schemas = new List<ISchema>();
-			IsSaved = true;
+			IsSaved = false;
 		}
 	}
 }

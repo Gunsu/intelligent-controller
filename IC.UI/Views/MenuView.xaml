@@ -1,39 +1,65 @@
 ﻿<UserControl x:Class="IC.UI.Views.MenuView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-	xmlns:sys="clr-namespace:System;assembly=mscorlib">
+    xmlns:Properties="clr-namespace:IC.UI.Properties"
+    xmlns:System="clr-namespace:System;assembly=mscorlib">
+	<UserControl.Resources>
+		<ResourceDictionary>
+			<ResourceDictionary.MergedDictionaries>
+				<ResourceDictionary Source="../Resources/Styles/Icons.xaml" />
+			</ResourceDictionary.MergedDictionaries>
+		</ResourceDictionary>
+	</UserControl.Resources>
 	<StackPanel>
 		<Menu>
-			<MenuItem Header="{Binding FileMenuItemHeader}" >
-				<MenuItem Header="{Binding CreateMenuItemHeader}">
-					<MenuItem Header="{Binding CreateProjectMenuItemHeader}"
+			<!--File-->
+			<MenuItem Header="{Binding Source={x:Static Properties:MenuViewResources.File}}">
+				<MenuItem Header="{Binding Source={x:Static Properties:MenuViewResources.Create}}"
+						  Icon="{StaticResource GenericDocument}">
+					<MenuItem Header="{Binding Source={x:Static Properties:MenuViewResources.Project}}"
+							  Icon=""
 							  Command="{Binding CreateProjectCommand}" />
-					<MenuItem Header="{Binding CreateSchemaMenuItemHeader}"
+					<MenuItem Header="{Binding Source={x:Static Properties:MenuViewResources.Schema}}"
+							  Icon=""
 							  Command="{Binding CreateSchemaCommand}"
-							  CommandParameter="{Binding EventArgs.Empty}" />
+							  CommandParameter="{Binding Source={x:Static System:EventArgs.Empty}}"/>
 				</MenuItem>
-				<MenuItem Header="Открыть проект" />
+				<MenuItem Header="{Binding Source={x:Static Properties:MenuViewResources.OpenProject}}"
+						  Icon="{StaticResource OpenProject}" />
 				<Separator />
-				<MenuItem Header="Сохранить">
-					<MenuItem Header="Проект" />
-					<MenuItem Header="Текущая схема" />
+				<MenuItem Header="{Binding Source={x:Static Properties:MenuViewResources.Save}}"
+						  Icon="{StaticResource Save}">
+					<MenuItem Header="{Binding Source={x:Static Properties:MenuViewResources.Project}}"
+							  Icon="" />
+					<MenuItem Header="{Binding Source={x:Static Properties:MenuViewResources.Schema}}"
+							  Icon="" />
 				</MenuItem>
-				<MenuItem Header="Сохранить всё" />
+				<MenuItem Header="{Binding Source={x:Static Properties:MenuViewResources.SaveAll}}"
+						  Icon="" />
 				<Separator />
-				<MenuItem Header="Выход" />
+				<MenuItem Header="{Binding Source={x:Static Properties:MenuViewResources.Quit}}"
+						  Icon="" />
 			</MenuItem>
-			<MenuItem Header="Правка">
+			<!--Edit-->
+			<MenuItem Header="{Binding Source={x:Static Properties:MenuViewResources.Edit}}">
 				<MenuItem Header="Отменить" />
 				<MenuItem Header="Вернуть" />
 				<MenuItem Header="Отменить последнее глобальное действие" />
 				<MenuItem Header="Вернуть последнее глобальное действие" />
 				<Separator />
-				<MenuItem Header="Вырезать" />
-				<MenuItem Header="Копировать" />
-				<MenuItem Header="Вставить" />
-				<MenuItem Header="Удалить" />
+				<MenuItem Header="{Binding Source={x:Static Properties:MenuViewResources.Cut}}"
+						  Icon="{StaticResource Cut}"
+						  InputGestureText="Ctrl+X"/>
+				<MenuItem Header="{Binding Source={x:Static Properties:MenuViewResources.Copy}}"
+						  Icon="{StaticResource Copy}"
+						  InputGestureText="Ctrl+C"/>
+				<MenuItem Header="{Binding Source={x:Static Properties:MenuViewResources.Paste}}"
+						  Icon="{StaticResource Paste}"
+						  InputGestureText="Ctrl+V"/>
+				<MenuItem Header="{Binding Source={x:Static Properties:MenuViewResources.Delete}}"
+						  Icon="{StaticResource Delete}"
+						  InputGestureText="Del"/>
 				<Separator />
-				<MenuItem Header="Выделить всё" />
 			</MenuItem>
 			<MenuItem Header="Построение">
 				<MenuItem Header="Построить проект" />

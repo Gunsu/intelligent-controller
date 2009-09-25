@@ -22,7 +22,7 @@
                                 <RowDefinition Height="1*"/>
                             </Grid.RowDefinitions>
                             <Image Source="Images/GenericDocument.png" Width="45"/>
-                            <TextBlock Grid.Row="1" Text="New" VerticalAlignment="Bottom" HorizontalAlignment="Center"/>
+                            <TextBlock Grid.Row="1" Text="Новый" VerticalAlignment="Bottom" HorizontalAlignment="Center"/>
                         </Grid>
                     </Button.Content>
                 </Button>
@@ -38,7 +38,7 @@
                                     <ColumnDefinition/>
                                 </Grid.ColumnDefinitions>
                                 <Image Source="Images/OpenFolder.png" Width="16"/>
-                                <TextBlock Margin="3,0,3,0" Text="Open" VerticalAlignment="Center"  Grid.Column="1"/>
+                                <TextBlock Margin="3,0,3,0" Text="Открыть" VerticalAlignment="Center"  Grid.Column="1"/>
                             </Grid>
                         </Button.Content>
                     </Button>
@@ -53,7 +53,7 @@
                                     <ColumnDefinition />
                                 </Grid.ColumnDefinitions>
                                 <Image Source="Images/Save.png" Width="16"/>
-                                <TextBlock Margin="3,0,3,0" Text="Save" VerticalAlignment="Center" Grid.Column="1"/>
+                                <TextBlock Margin="3,0,3,0" Text="Сохранить" VerticalAlignment="Center" Grid.Column="1"/>
                             </Grid>
                         </Button.Content>
                     </Button>
@@ -68,7 +68,7 @@
                                     <ColumnDefinition />
                                 </Grid.ColumnDefinitions>
                                 <Image Source="Images/Print.png" Width="16"/>
-                                <TextBlock Margin="3,0,3,0" Text="Print" VerticalAlignment="Center" Grid.Column="1"/>
+                                <TextBlock Margin="3,0,3,0" Text="Печать" VerticalAlignment="Center" Grid.Column="1"/>
                             </Grid>
                         </Button.Content>
                     </Button>
@@ -90,7 +90,7 @@
                                 <RowDefinition Height="1*"/>
                             </Grid.RowDefinitions>
                             <Image Source="Images/PasteBig.png" Width="45"/>
-                            <TextBlock Grid.Row="1" Text="Paste" VerticalAlignment="Bottom" HorizontalAlignment="Center"/>
+                            <TextBlock Grid.Row="1" Text="Вставить" VerticalAlignment="Bottom" HorizontalAlignment="Center"/>
                         </Grid>
                     </Button.Content>
                 </Button>
@@ -121,7 +121,7 @@
                                     <ColumnDefinition />
                                 </Grid.ColumnDefinitions>
                                 <Image Source="Images/Copy.png" Width="16"/>
-                                <TextBlock Margin="3,0,3,0" Text="Copy" VerticalAlignment="Center" Grid.Column="1"/>
+                                <TextBlock Margin="3,0,3,0" Text="Копировать" VerticalAlignment="Center" Grid.Column="1"/>
                             </Grid>
                         </Button.Content>
                     </Button>
@@ -136,7 +136,7 @@
                                     <ColumnDefinition />
                                 </Grid.ColumnDefinitions>
                                 <Image Source="Images/Delete.png" Width="16"/>
-                                <TextBlock Margin="3,0,3,0" Text="Delete" VerticalAlignment="Center" Grid.Column="1"/>
+                                <TextBlock Margin="3,0,3,0" Text="Удалить" VerticalAlignment="Center" Grid.Column="1"/>
                             </Grid>
                         </Button.Content>
                     </Button>

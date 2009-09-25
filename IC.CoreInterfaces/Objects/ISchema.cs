@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace IC.CoreInterfaces.Objects
+﻿namespace IC.CoreInterfaces.Objects
 {
 	/// <summary>
 	/// Схема, являющаяся совокупностью связанных между собой блоков.
@@ -16,5 +14,10 @@ namespace IC.CoreInterfaces.Objects
         /// Имя схемы.
         /// </summary>
         string Name { get; set; }
+
+		/// <summary>
+		/// Определяет, сохранена ли схема.
+		/// </summary>
+		bool IsSaved { get; }
 	}
 }

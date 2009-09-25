@@ -6,6 +6,7 @@ using IC.CoreInterfaces.Objects;
 using IC.CoreInterfaces.Processes;
 
 using NUnit.Framework;
+using Project.Utils.Common;
 
 namespace IC.Core.Tests.Processes
 {
@@ -20,6 +21,15 @@ namespace IC.Core.Tests.Processes
 			var container = new UnityContainer();
 			container.RegisterType<IProjectProcesses, ProjectProcesses>();
 			_projectProcesses = container.Resolve<IProjectProcesses>();
+		}
+
+		[Test]
+		public void Open_GenericTest()
+		{
+			string pathToMockProject = string.Empty;
+			ProcessResult<IProject> result = _projectProcesses.Open(pathToMockProject);
+
+			Assert.IsNotNull(result.Result);
 		}
 
 		[Test]

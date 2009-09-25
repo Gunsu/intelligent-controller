@@ -12,8 +12,10 @@
 			<RowDefinition Height="*"/>
 		</Grid.RowDefinitions>
 
-		<!--<ContentControl Content="{StaticResource MyToolbar}"/>-->
-		<view:MenuView Grid.Row="0" x:Name="menuView" />
+		<StackPanel Grid.Row="0">
+			<view:MenuView x:Name="menuView" />
+			<!--<ContentControl Content="{StaticResource MyToolbar}"/>-->
+		</StackPanel>
 
 		<Grid Grid.Row="1" Margin="0,10,0,0">
 			<Grid.ColumnDefinitions>
@@ -22,14 +24,14 @@
 				<ColumnDefinition Width="150" />
 				<ColumnDefinition Width="0" />
 			</Grid.ColumnDefinitions>
-			<!-- Toolbox -->
+			<!--Toolbox-->
 			<view:ToolboxView Grid.Column="0" x:Name="toolboxView" />
-			<!-- GridSplitter -->
+			<!--GridSplitter-->
 			<GridSplitter Focusable="False" Width="2" Background="LightGray"
 						  VerticalAlignment="Stretch"
 						  Grid.Column="0" />
-            <view:SchemaView Grid.Column="1" x:Name="schemaView" />
-            <GridSplitter
+			<view:SchemaView Grid.Column="1" x:Name="schemaView" />
+			<GridSplitter
 						  Focusable="False" Grid.Column="1" Width="2" Background="LightGray"
 						  VerticalAlignment="Stretch" />
 			<view:ProjectExplorerView Margin="5,0,0,0" Grid.Column="2" x:Name="projectExplorerView" />
