@@ -144,6 +144,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Resources\Styles\Icons.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Resources\Styles\ScrollBar.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -206,13 +210,13 @@
       <Link>Version.cs</Link>
     </Compile>
     <Compile Include="Bootstrapper.cs" />
+    <Compile Include="Properties\MenuViewResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MenuViewResources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Properties\Settings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Settings.settings</DependentUpon>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="Views\ManagerView.xaml.cs">
       <DependentUpon>ManagerView.xaml</DependentUpon>
@@ -239,10 +243,6 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
     <None Include="key.snk" />
-    <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
@@ -264,29 +264,29 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Images\AlignObjectsBottom.png" />
-    <Resource Include="Resources\Images\AlignObjectsCenteredHorizontal.png" />
-    <Resource Include="Resources\Images\AlignObjectsCenteredVertical.png" />
-    <Resource Include="Resources\Images\AlignObjectsLeft.png" />
-    <Resource Include="Resources\Images\AlignObjectsRight.png" />
-    <Resource Include="Resources\Images\AlignObjectsTop.png" />
-    <Resource Include="Resources\Images\BringForward.png" />
-    <Resource Include="Resources\Images\BringToFront.png" />
-    <Resource Include="Resources\Images\Copy.png" />
-    <Resource Include="Resources\Images\Cut.png" />
-    <Resource Include="Resources\Images\Delete.png" />
-    <Resource Include="Resources\Images\DistributeObjectsHorizontal.png" />
-    <Resource Include="Resources\Images\DistributeObjectsVertical.png" />
-    <Resource Include="Resources\Images\GenericDocument.png" />
-    <Resource Include="Resources\Images\Group.png" />
-    <Resource Include="Resources\Images\OpenFolder.png" />
-    <Resource Include="Resources\Images\Paste.png" />
-    <Resource Include="Resources\Images\PasteBig.png" />
-    <Resource Include="Resources\Images\Print.png" />
-    <Resource Include="Resources\Images\Save.png" />
-    <Resource Include="Resources\Images\SendBackward.png" />
-    <Resource Include="Resources\Images\SendToBack.png" />
-    <Resource Include="Resources\Images\Ungroup.png" />
+    <Resource Include="Resources\Images\Icons\AlignObjectsBottom.png" />
+    <Resource Include="Resources\Images\Icons\AlignObjectsCenteredHorizontal.png" />
+    <Resource Include="Resources\Images\Icons\AlignObjectsCenteredVertical.png" />
+    <Resource Include="Resources\Images\Icons\AlignObjectsLeft.png" />
+    <Resource Include="Resources\Images\Icons\AlignObjectsRight.png" />
+    <Resource Include="Resources\Images\Icons\AlignObjectsTop.png" />
+    <Resource Include="Resources\Images\Icons\BringForward.png" />
+    <Resource Include="Resources\Images\Icons\BringToFront.png" />
+    <Resource Include="Resources\Images\Icons\Copy.png" />
+    <Resource Include="Resources\Images\Icons\Cut.png" />
+    <Resource Include="Resources\Images\Icons\Delete.png" />
+    <Resource Include="Resources\Images\Icons\DistributeObjectsHorizontal.png" />
+    <Resource Include="Resources\Images\Icons\DistributeObjectsVertical.png" />
+    <Resource Include="Resources\Images\Icons\GenericDocument.png" />
+    <Resource Include="Resources\Images\Icons\Group.png" />
+    <Resource Include="Resources\Images\Icons\OpenFolder.png" />
+    <Resource Include="Resources\Images\Icons\Paste.png" />
+    <Resource Include="Resources\Images\Icons\PasteBig.png" />
+    <Resource Include="Resources\Images\Icons\Print.png" />
+    <Resource Include="Resources\Images\Icons\Save.png" />
+    <Resource Include="Resources\Images\Icons\SendBackward.png" />
+    <Resource Include="Resources\Images\Icons\SendToBack.png" />
+    <Resource Include="Resources\Images\Icons\Ungroup.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Images\Sum.png" />
@@ -325,6 +325,12 @@
     <Resource Include="Resources\Images\In.png" />
     <Resource Include="Resources\Images\Out.png" />
     <Resource Include="Resources\Images\OutConst.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\MenuViewResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>MenuViewResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

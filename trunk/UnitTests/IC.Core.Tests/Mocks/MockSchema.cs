@@ -10,6 +10,11 @@ namespace IC.Core.Tests.Mocks
 			get { throw new System.NotImplementedException(); }
 		}
 
+		public bool IsSaved
+		{
+			get { throw new System.NotImplementedException(); }
+		}
+
 		public string Name
 		{
 			get

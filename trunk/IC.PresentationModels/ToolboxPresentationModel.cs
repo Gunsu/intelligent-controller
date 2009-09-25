@@ -6,7 +6,6 @@ using ValidationAspects.PostSharp;
 using IC.UI.Infrastructure.Interfaces.Toolbox;
 using Microsoft.Practices.Composite.Events;
 using IC.CoreInterfaces.Processes;
-using IC.PresentationModels.Properties;
 
 namespace IC.PresentationModels
 {

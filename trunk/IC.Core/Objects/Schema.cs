@@ -20,11 +20,17 @@ namespace IC.Core.Objects
         public string Name { get; set; }
 
 		/// <summary>
+		/// Определяет, сохранена ли схема.
+		/// </summary>
+		public bool IsSaved { get; private set; }
+
+		/// <summary>
 		/// Закрытый конструктор, выполняющий начальную инициализацию класса.
 		/// </summary>
 		private Schema()
 		{
 			Blocks = new Blocks();
+			IsSaved = false;
 		}
 	}
 }

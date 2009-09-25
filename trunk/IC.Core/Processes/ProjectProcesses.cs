@@ -18,6 +18,16 @@ namespace IC.Core.Processes
 		}
 
 		/// <summary>
+		/// Открывает проект по указанному пути.
+		/// </summary>
+		/// <param name="path">Путь к файлу проекта.</param>
+		/// <returns>Возвращает результат выполнения процесса и открытый проект.</returns>
+		public ProcessResult<IProject> Open(string path)
+		{
+			throw new NotImplementedException();
+		}
+
+		/// <summary>
 		/// Сохраняет проект.
 		/// </summary>
 		/// <param name="project">Проект.</param>
