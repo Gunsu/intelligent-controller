@@ -6,6 +6,9 @@ using System.Windows.Controls;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using Microsoft.Practices.Composite.Events;
+
+using IC.UI.Infrastructure.Events;
 using IC.UI.Infrastructure.Interfaces;
 using IC.UI.Infrastructure.Tools;
 
@@ -33,7 +36,7 @@ namespace IC.UI.Infrastructure.Controls
                 {
                     if (source != null)
                     {
-                        source.PropertyChanged -= new PropertyChangedEventHandler(OnConnectorPositionChanged);
+                        source.PropertyChanged -= OnConnectorPositionChanged;
                         source.Connections.Remove(this);
                     }
 
@@ -42,7 +45,7 @@ namespace IC.UI.Infrastructure.Controls
                     if (source != null)
                     {
                         source.Connections.Add(this);
-                        source.PropertyChanged += new PropertyChangedEventHandler(OnConnectorPositionChanged);
+                        source.PropertyChanged += OnConnectorPositionChanged;
                     }
 
                     UpdatePathGeometry();
@@ -61,7 +64,7 @@ namespace IC.UI.Infrastructure.Controls
                 {
                     if (sink != null)
                     {
-                        sink.PropertyChanged -= new PropertyChangedEventHandler(OnConnectorPositionChanged);
+                        sink.PropertyChanged -= OnConnectorPositionChanged;
                         sink.Connections.Remove(this);
                     }
 
@@ -70,7 +73,7 @@ namespace IC.UI.Infrastructure.Controls
                     if (sink != null)
                     {
                         sink.Connections.Add(this);
-                        sink.PropertyChanged += new PropertyChangedEventHandler(OnConnectorPositionChanged);
+                        sink.PropertyChanged += OnConnectorPositionChanged;
                     }
                     UpdatePathGeometry();
                 }
@@ -243,10 +246,11 @@ namespace IC.UI.Infrastructure.Controls
             Source = source;
             Sink = sink;
             base.Unloaded += Connection_Unloaded;
+			source.EventAggregator.GetEvent<BlocksConnectedEvent>().Publish(this);
         }
 
 
-        protected override void OnMouseDown(System.Windows.Input.MouseButtonEventArgs e)
+        protected override void OnMouseDown(MouseButtonEventArgs e)
         {
             base.OnMouseDown(e);
 

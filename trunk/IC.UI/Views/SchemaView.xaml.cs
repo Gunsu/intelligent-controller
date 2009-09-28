@@ -1,12 +1,8 @@
-﻿using System;
-using System.Windows.Controls;
-using System.Windows.Input;
-using IC.UI.Infrastructure.Controls;
+﻿using System.Windows.Controls;
 using IC.UI.Infrastructure.Interfaces.Schema;
 
 using ValidationAspects;
 using ValidationAspects.PostSharp;
-using System.Windows;
 
 namespace IC.UI.Views
 {
@@ -27,26 +23,9 @@ namespace IC.UI.Views
 
 		#endregion
 
-		public SchemaView()
+        public SchemaView()
 		{
 			InitializeComponent();
-		}
-
-		private void ContentPresenter_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-		{
-
-			////Model.OnMouseLeftButtonDown(sender, e);
-			//listBox.SelectedIndex = 0;
-		}
-
-		private void ContentPresenter_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
-		{
-			Model.OnMouseLeftButtonUp(sender, e);
-		}
-
-		private void ContentPresenter_MouseMove(object sender, MouseEventArgs e)
-		{
-			Model.OnMouseMove(sender, e);
 		}
 	}
 }

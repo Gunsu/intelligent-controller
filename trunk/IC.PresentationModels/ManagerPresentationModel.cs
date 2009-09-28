@@ -7,7 +7,7 @@ using IC.CoreInterfaces.Objects;
 using IC.UI.Infrastructure.Events;
 using IC.UI.Infrastructure.Interfaces.Manager;
 using IC.UI.Infrastructure.Interfaces.Windows;
-
+using Project.Utils.Common;
 using ValidationAspects;
 using ValidationAspects.PostSharp;
 using System.Windows;
@@ -48,8 +48,17 @@ namespace IC.PresentationModels
 						return;
 				}
 			}
-
+            
 			_container.Resolve<ICreateProjectWindow>().ShowDialog();
+		}
+
+		private void OnProjectSaving(EventArgs args)
+		{
+			ProcessResult result = _projectProcesses.Save(_currentProject);
+			if (result.Result == true)
+			{
+				_eventAggregator.GetEvent<ProjectSavedEvent>().Publish(EventArgs.Empty);
+			}
 		}
 
 		#endregion
@@ -63,6 +72,7 @@ namespace IC.PresentationModels
 			_projectProcesses = projectProcesses;
 
 			_eventAggregator.GetEvent<ProjectCreatingEvent>().Subscribe(OnProjectCreating, ThreadOption.UIThread);
+			_eventAggregator.GetEvent<ProjectSavingEvent>().Subscribe(OnProjectSaving);
 		}
 	}
 }

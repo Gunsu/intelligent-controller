@@ -1,9 +1,7 @@
-﻿using System.Windows;
-using Microsoft.Practices.Composite.Events;
+﻿using Microsoft.Practices.Composite.Events;
 using Microsoft.Practices.Unity;
 using IC.UI.Windows;
 using IC.UI.Infrastructure.Interfaces.Menu;
-using IC.UI.Views;
 using IC.UI.Infrastructure.Interfaces.ProjectExplorer;
 using IC.UI.Infrastructure.Interfaces.Toolbox;
 using IC.PresentationModels;

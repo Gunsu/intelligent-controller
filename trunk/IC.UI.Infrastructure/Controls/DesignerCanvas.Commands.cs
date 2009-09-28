@@ -768,7 +768,7 @@ namespace IC.UI.Infrastructure.Controls
             return null;
         }
 
-        void SaveFile(XElement xElement)
+        private void SaveFile(XElement xElement)
         {
             SaveFileDialog saveFile = new SaveFileDialog();
             saveFile.Filter = "Files (*.xml)|*.xml|All Files (*.*)|*.*";

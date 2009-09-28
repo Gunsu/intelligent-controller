@@ -47,6 +47,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\3rd party libraries\Microsoft\Unity\Microsoft.Practices.Unity.dll</HintPath>
     </Reference>
+    <Reference Include="Moq, Version=3.1.416.3, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\3rd party libraries\Moq\Moq.dll</HintPath>
+    </Reference>
     <Reference Include="nunit.framework, Version=2.5.0.9122, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\3rd party libraries\NUnit\nunit.framework.dll</HintPath>
@@ -69,10 +73,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MenuPresentationModelTest.cs" />
+    <Compile Include="Mocks\Events\MockProjectSavedEvent.cs" />
+    <Compile Include="Mocks\Events\MockProjectSavingEvent.cs" />
     <Compile Include="Mocks\MockEventAggregator.cs" />
-    <Compile Include="Mocks\MockProjectCreatingEvent.cs" />
-    <Compile Include="Mocks\MockSchemaCreatingEvent.cs" />
+    <Compile Include="Mocks\Events\MockProjectCreatingEvent.cs" />
+    <Compile Include="Mocks\Events\MockSchemaCreatingEvent.cs" />
+    <Compile Include="Mocks\MockUnityContainer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ManagerPresentationModelTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\IC.CoreInterfaces\IC.CoreInterfaces.csproj">

@@ -9,7 +9,7 @@
     
     <ToolBar x:Key="MyToolbar" Height="120">
         <!--File-->
-        <GroupBox Header="File" Style="{StaticResource ToolbarGroup}" Margin="5,3,3,3">
+        <!--<GroupBox Header="File" Style="{StaticResource ToolbarGroup}" Margin="5,3,3,3">
             <StackPanel Grid.Row="1" Orientation="Horizontal">
                 <Button Margin="3" Width="55" Style="{StaticResource ToolBarButtonBaseStyle}"
                         HorizontalContentAlignment="Center"
@@ -74,10 +74,10 @@
                     </Button>
                 </StackPanel>
             </StackPanel>
-        </GroupBox>
+        </GroupBox>-->
 
         <!--Edit-->
-        <GroupBox Header="Edit" Style="{StaticResource ToolbarGroup}" Margin="3">
+        <!--<GroupBox Header="Edit" Style="{StaticResource ToolbarGroup}" Margin="3">
             <StackPanel Grid.Row="1" Orientation="Horizontal">
                 <Button Margin="3" Width="55"
                         Style="{StaticResource ToolBarButtonBaseStyle}"
@@ -142,10 +142,10 @@
                     </Button>
                 </StackPanel>
             </StackPanel>
-        </GroupBox>
+        </GroupBox>-->
 
         <!--Alignment-->
-        <GroupBox Header="Alignment" Style="{StaticResource ToolbarGroup}" Margin="3">
+        <!--<GroupBox Header="Alignment" Style="{StaticResource ToolbarGroup}" Margin="3">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
@@ -238,10 +238,10 @@
                 <Line Stroke="{StaticResource ToolbarBorderBrush}" StrokeThickness="1" X1="0" Y1="0" X2="0" Y2="20" Stretch="Fill" HorizontalAlignment="Left"
               Margin="3,0,0,0" Grid.Column="1"/>
             </Grid>
-        </GroupBox>
+        </GroupBox>-->
 
         <!--Arrange-->
-        <GroupBox Header="Arrange" Style="{StaticResource ToolbarGroup}" Margin="3">
+        <!--<GroupBox Header="Arrange" Style="{StaticResource ToolbarGroup}" Margin="3">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
@@ -349,6 +349,6 @@
                     </Button>
                 </StackPanel>
             </Grid>
-        </GroupBox>
+        </GroupBox>-->
     </ToolBar>
 </ResourceDictionary>

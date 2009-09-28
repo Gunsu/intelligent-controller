@@ -78,6 +78,7 @@
     <Compile Include="Controls\RubberbandAdorner.cs" />
     <Compile Include="Controls\Toolbox.cs" />
     <Compile Include="Controls\ToolboxItem.cs" />
+    <Compile Include="Events\BlocksConnectedEvent.cs" />
     <Compile Include="Events\CurrentBlockTypeChangedEvent.cs" />
     <Compile Include="Events\CurrentSchemaChangedEvent.cs" />
     <Compile Include="Events\ProjectClosedEvent.cs" />
@@ -85,7 +86,11 @@
     <Compile Include="Events\ProjectCreatingEvent.cs" />
     <Compile Include="Events\ProjectOpenedEvent.cs" />
     <Compile Include="Events\ProjectOpeningEvent.cs" />
+    <Compile Include="Events\ProjectSavedEvent.cs" />
+    <Compile Include="Events\ProjectSavingEvent.cs" />
     <Compile Include="Events\SchemaCreatingEvent.cs" />
+    <Compile Include="Events\SchemaSavedEvent.cs" />
+    <Compile Include="Events\SchemaSavingEvent.cs" />
     <Compile Include="Interfaces\IGroupable.cs" />
     <Compile Include="Interfaces\ISelectable.cs" />
     <Compile Include="Interfaces\Manager\IManagerPresentationModel.cs" />

@@ -23,37 +23,14 @@ namespace IC.PresentationModels
 	[Validate]
 	public sealed class SchemaPresentationModel : BasePresentationModel, ISchemaPresentationModel
 	{
-		#region View Event Handlers
-
-		private bool _isDragging;
-
-		public void OnMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-		{
-			_isDragging = true;
-		}
-
-		public void OnMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
-		{
-			_isDragging = false;
-		}
-
-		public void OnMouseMove(object sender, MouseEventArgs e)
-		{
-			//if (_isDragging)
-			//{
-			//    if (CurrentBlock != null)
-			//    {
-			//        CurrentBlock.X = Convert.ToInt32(e.GetPosition(null).X);
-			//        CurrentBlock.Y = Convert.ToInt32(e.GetPosition(null).Y);
-			//    }
-			//}
-		}
-
-		#endregion
-
 		private ISchema _currentSchema;
 		private ObservableCollection<IBlock> _blocks;
 		private IBlock _currentBlock;
+
+		public IEventAggregator EventAggregator
+		{
+			get { return base._eventAggregator; }
+		}
 
 		[NotNull]
 		public ObservableCollection<IBlock> Blocks

@@ -18,7 +18,8 @@
 						  Icon="{StaticResource GenericDocument}">
 					<MenuItem Header="{Binding Source={x:Static Properties:MenuViewResources.Project}}"
 							  Icon=""
-							  Command="{Binding CreateProjectCommand}" />
+							  Command="{Binding CreateProjectCommand}"
+							  CommandParameter="{Binding Source={x:Static System:EventArgs.Empty}}" />
 					<MenuItem Header="{Binding Source={x:Static Properties:MenuViewResources.Schema}}"
 							  Icon=""
 							  Command="{Binding CreateSchemaCommand}"
@@ -30,7 +31,9 @@
 				<MenuItem Header="{Binding Source={x:Static Properties:MenuViewResources.Save}}"
 						  Icon="{StaticResource Save}">
 					<MenuItem Header="{Binding Source={x:Static Properties:MenuViewResources.Project}}"
-							  Icon="" />
+							  Icon=""
+							  Command="{Binding SaveProjectCommand}"
+							  CommandParameter="{Binding Source={x:Static System:EventArgs.Empty}}" />
 					<MenuItem Header="{Binding Source={x:Static Properties:MenuViewResources.Schema}}"
 							  Icon="" />
 				</MenuItem>

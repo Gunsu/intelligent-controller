@@ -5,6 +5,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Controls;
 using IC.UI.Infrastructure.Tools;
+using Microsoft.Practices.Composite.Events;
 
 namespace IC.UI.Infrastructure.Controls
 {
@@ -47,6 +48,8 @@ namespace IC.UI.Infrastructure.Controls
             }
         }
 
+		private IEventAggregator eventAggregator { get; set; }
+
         public ConnectorAdorner(DesignerCanvas designer, Connector sourceConnector)
             : base(designer)
         {
@@ -55,6 +58,7 @@ namespace IC.UI.Infrastructure.Controls
             drawingPen = new Pen(Brushes.LightSlateGray, 1);
             drawingPen.LineJoin = PenLineJoin.Round;
             this.Cursor = Cursors.Cross;
+        	this.eventAggregator = sourceConnector.EventAggregator;
         }
 
         protected override void OnMouseUp(MouseButtonEventArgs e)

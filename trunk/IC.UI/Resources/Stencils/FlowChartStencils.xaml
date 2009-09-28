@@ -2,7 +2,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:Controls="clr-namespace:IC.UI.Infrastructure.Controls;assembly=IC.UI.Infrastructure">
 
-  <Brush x:Key="ItemStroke">#FFD69436</Brush>
+  <!--<Brush x:Key="ItemStroke">#FFD69436</Brush>-->
   <LinearGradientBrush x:Key="ItemBrush" StartPoint="0,0" EndPoint="0,1">
     <LinearGradientBrush.GradientStops>
       <GradientStop Color="#FAFBE9" Offset="0" />
@@ -10,7 +10,7 @@
     </LinearGradientBrush.GradientStops>
   </LinearGradientBrush>
 
-  <Brush x:Key="ItemStroke1">#ACADCD</Brush>
+  <!--<Brush x:Key="ItemStroke1">#ACADCD</Brush>-->
   <LinearGradientBrush x:Key="ItemBrush1" StartPoint="0,0" EndPoint="0,1" >
     <GradientStop Color="#FEFEFE" Offset="0"/>
     <GradientStop Color="#BDBEDE" Offset="1"/>

@@ -120,7 +120,7 @@ namespace IC.UI.Infrastructure.Controls
         public DesignerItem(Guid id)
         {
             this.id = id;
-            this.Loaded += new RoutedEventHandler(DesignerItem_Loaded);
+            this.Loaded += DesignerItem_Loaded;
         }
 
         public DesignerItem()

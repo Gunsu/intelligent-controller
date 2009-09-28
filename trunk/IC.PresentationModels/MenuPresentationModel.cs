@@ -12,30 +12,14 @@ namespace IC.PresentationModels
 	public sealed class MenuPresentationModel : BasePresentationModel, IMenuPresentationModel
 	{       
 		#region Commands
-		
-		private ICommand _createProjectCommand;
-		private ICommand _createSchemaCommand;
 
+		public ICommand CreateProjectCommand { get; set; }
 
-		public ICommand CreateProjectCommand
-		{
-			get { return _createProjectCommand; }
-			set
-			{
-				_createProjectCommand = value;
-				OnPropertyChanged("CreateProjectCommand");
-			}
-		}
+		public ICommand CreateSchemaCommand { get; set; }
 
-		public ICommand CreateSchemaCommand
-		{
-			get { return _createSchemaCommand; }
-			set
-			{
-				_createSchemaCommand = value;
-				OnPropertyChanged("CreateSchemaCommand");
-			}
-		}
+		public ICommand SaveProjectCommand { get; set; }
+
+		public ICommand SaveSchemaCommand { get; set; }
 
 		#endregion
 
@@ -43,12 +27,22 @@ namespace IC.PresentationModels
 
 		private void CreateProject(EventArgs args)
 		{
-			_eventAggregator.GetEvent<ProjectCreatingEvent>().Publish(EventArgs.Empty);
+			_eventAggregator.GetEvent<ProjectCreatingEvent>().Publish(args);
 		}
 
 		private void CreateSchema(EventArgs args)
 		{
-			_eventAggregator.GetEvent<SchemaCreatingEvent>().Publish(EventArgs.Empty);
+			_eventAggregator.GetEvent<SchemaCreatingEvent>().Publish(args);
+		}
+
+		private void SaveProject(EventArgs args)
+		{
+			_eventAggregator.GetEvent<ProjectSavingEvent>().Publish(args);
+		}
+
+		private void SaveSchema(EventArgs args)
+		{
+			
 		}
 
 		#endregion
@@ -75,6 +69,8 @@ namespace IC.PresentationModels
 
 			CreateProjectCommand = new DelegateCommand<EventArgs>(CreateProject);
 			CreateSchemaCommand = new DelegateCommand<EventArgs>(CreateSchema);
+			SaveProjectCommand = new DelegateCommand<EventArgs>(SaveProject);
+			SaveSchemaCommand = new DelegateCommand<EventArgs>(SaveSchema);
 		}
 	}
 }
