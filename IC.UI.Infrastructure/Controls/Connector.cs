@@ -6,6 +6,7 @@ using System.Windows.Controls;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using Microsoft.Practices.Composite.Events;
 
 namespace IC.UI.Infrastructure.Controls
 {
@@ -58,14 +59,19 @@ namespace IC.UI.Infrastructure.Controls
             }
         }
 
+    	public IEventAggregator EventAggregator
+    	{
+			get { return GetDesignerCanvas(this).EventAggregator; }
+    	}
+
         public Connector()
         {
             // fired when layout changes
-            base.LayoutUpdated += new EventHandler(Connector_LayoutUpdated);            
+            base.LayoutUpdated += Connector_LayoutUpdated;
         }
 
         // when the layout changes we update the position property
-        void Connector_LayoutUpdated(object sender, EventArgs e)
+        private void Connector_LayoutUpdated(object sender, EventArgs e)
         {
             DesignerCanvas designer = GetDesignerCanvas(this);
             if (designer != null)

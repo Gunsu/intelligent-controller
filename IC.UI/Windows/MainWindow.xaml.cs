@@ -41,6 +41,7 @@ namespace IC.UI.Windows
 			projectExplorerView.Model = _projectExplorerPresentationModel;
 			toolboxView.Model = _toolboxPresentationModel;
 			schemaView.Model = _schemaPresentationModel;
+			schemaView.MyDesigner.EventAggregator = _schemaPresentationModel.EventAggregator;
 			managerView.Model = _managerPresentationModel;
 		}
 

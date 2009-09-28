@@ -2,7 +2,7 @@
 
 using IC.UI.Infrastructure.Events;
 
-namespace IC.PresentationModels.Tests.Mocks
+namespace IC.PresentationModels.Tests.Mocks.Events
 {
 	public sealed class MockProjectCreatingEvent : ProjectCreatingEvent
 	{
@@ -11,6 +11,7 @@ namespace IC.PresentationModels.Tests.Mocks
 		public override void Publish(EventArgs payload)
 		{
 			IsPublished = true;
+			base.Publish(payload);
 		}
 	}
 }

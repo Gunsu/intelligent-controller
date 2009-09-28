@@ -6,12 +6,29 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Markup;
 using System.Xml;
+using Microsoft.Practices.Composite.Events;
+
 using IC.UI.Infrastructure.Tools;
 
 namespace IC.UI.Infrastructure.Controls
 {
     public partial class DesignerCanvas : Canvas
     {
+		static DesignerCanvas()
+		{
+			_eventAggregatorProperty = DependencyProperty.Register("EventAggregator",
+			                                                       typeof (IEventAggregator),
+																   typeof (DesignerCanvas));
+		}
+
+    	private static DependencyProperty _eventAggregatorProperty;
+
+    	public IEventAggregator EventAggregator
+    	{
+			get { return (IEventAggregator) base.GetValue(_eventAggregatorProperty); }
+			set { base.SetValue(_eventAggregatorProperty, value); }
+    	}
+
         private Point? rubberbandSelectionStartPoint = null;
 
         private SelectionService selectionService;
@@ -25,7 +42,7 @@ namespace IC.UI.Infrastructure.Controls
                 return selectionService;
             }
         }
-
+		
         protected override void OnMouseDown(MouseButtonEventArgs e)
         {
             base.OnMouseDown(e);

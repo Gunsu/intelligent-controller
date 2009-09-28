@@ -13,7 +13,6 @@ namespace IC.PresentationModels
 	public sealed class ToolboxPresentationModel : BasePresentationModel, IToolboxPresentationModel
 	{
 		private ObservableCollection<IBlockType> _blockTypes;
-		private string _header;
 		private IBlockType _currentBlockType;
 
 		public ObservableCollection<IBlockType> BlockTypes
@@ -37,24 +36,12 @@ namespace IC.PresentationModels
 			}
 		}
 
-		public string Header
-		{
-			get { return _header; }
-			set
-			{
-				_header = value;
-				OnPropertyChanged("Header");
-			}
-		}
-
-
 		public ToolboxPresentationModel([NotNull] IBlockTypesProcesses blockTypesProcesses,
 										[NotNull] IEventAggregator eventAggregator)
 			: base(eventAggregator)
 		{
 			var blockTypesList = blockTypesProcesses.LoadBlockTypesFromFile();
 			BlockTypes = new ObservableCollection<IBlockType>(blockTypesList);
-			Header = Resources.ToolboxHeader;
 		}
 	}
 }
