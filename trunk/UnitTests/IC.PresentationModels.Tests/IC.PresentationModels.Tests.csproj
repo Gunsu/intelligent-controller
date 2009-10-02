@@ -75,12 +75,14 @@
     <Compile Include="MenuPresentationModelTest.cs" />
     <Compile Include="Mocks\Events\MockProjectSavedEvent.cs" />
     <Compile Include="Mocks\Events\MockProjectSavingEvent.cs" />
+    <Compile Include="Mocks\Events\MockSchemaSavingEvent.cs" />
     <Compile Include="Mocks\MockEventAggregator.cs" />
     <Compile Include="Mocks\Events\MockProjectCreatingEvent.cs" />
     <Compile Include="Mocks\Events\MockSchemaCreatingEvent.cs" />
     <Compile Include="Mocks\MockUnityContainer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ManagerPresentationModelTest.cs" />
+    <Compile Include="SchemaPresentationModelTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\IC.CoreInterfaces\IC.CoreInterfaces.csproj">

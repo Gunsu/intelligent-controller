@@ -4,7 +4,7 @@ using IC.UI.Infrastructure.Events;
 
 namespace IC.PresentationModels.Tests.Mocks.Events
 {
-	public sealed class MockSchemaCreatingEvent : SchemaCreatingEvent
+	public sealed class MockSchemaSavingEvent : SchemaSavingEvent
 	{
 		public bool IsPublished { get; private set; }
 

@@ -20,6 +20,8 @@ namespace IC.PresentationModels.Tests
 			_mockEventAggregator = new MockEventAggregator();
 			_mockEventAggregator.AddMapping(new ProjectOpenedEvent());
 			_mockEventAggregator.AddMapping(new ProjectClosedEvent());
+			_mockEventAggregator.AddMapping<SchemaSavingEvent>(new MockSchemaSavingEvent());
+			_mockEventAggregator.AddMapping<ProjectSavingEvent>(new MockProjectSavingEvent());
 			_model = new MenuPresentationModel(_mockEventAggregator);
 		}
 
@@ -46,11 +48,19 @@ namespace IC.PresentationModels.Tests
 		[Test]
 		public void SaveProjectCommandShouldFireProjectSavingEvent()
 		{
-			var projectSavingEvent = new MockProjectSavingEvent();
-			_mockEventAggregator.AddMapping<ProjectSavingEvent>(projectSavingEvent);
+			var projectSavingEvent = (MockProjectSavingEvent) _mockEventAggregator.GetEvent<ProjectSavingEvent>();
 			Assert.IsFalse(projectSavingEvent.IsPublished);
-			_model.SaveSchemaCommand.Execute(EventArgs.Empty);
+			_model.SaveProjectCommand.Execute(EventArgs.Empty);
 			Assert.IsTrue(projectSavingEvent.IsPublished);
+		}
+
+		[Test]
+		public void SaveSchemaCommandShouldFireSchemaSavingEvent()
+		{
+			var schemaSavingEvent = (MockSchemaSavingEvent) _mockEventAggregator.GetEvent<SchemaSavingEvent>();
+			Assert.IsFalse(schemaSavingEvent.IsPublished);
+			_model.SaveSchemaCommand.Execute(EventArgs.Empty);
+			Assert.IsTrue(schemaSavingEvent.IsPublished);
 		}
 	}
 }

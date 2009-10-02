@@ -1,4 +1,6 @@
-﻿using IC.CoreInterfaces.Objects;
+﻿using System.Xml.Linq;
+using IC.CoreInterfaces.Objects;
+
 namespace IC.Core.Tests.Mocks
 {
 	public sealed class MockSchema : ISchema
@@ -26,6 +28,11 @@ namespace IC.Core.Tests.Mocks
 				throw new System.NotImplementedException();
 			}
 		}
+
+		/// <summary>
+		/// Определяет структуру UI.
+		/// </summary>
+		public XElement UISchema { get; set; }
 
 		#endregion
 	}
