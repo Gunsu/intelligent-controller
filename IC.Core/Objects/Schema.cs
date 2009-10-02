@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-
+using System.Xml.Linq;
 using IC.CoreInterfaces.Objects;
 
 namespace IC.Core.Objects
@@ -23,6 +23,12 @@ namespace IC.Core.Objects
 		/// Определяет, сохранена ли схема.
 		/// </summary>
 		public bool IsSaved { get; private set; }
+
+		/// <summary>
+		/// Определяет структуру UI.
+		/// </summary>
+		public XElement UISchema { get; set; }
+
 
 		/// <summary>
 		/// Закрытый конструктор, выполняющий начальную инициализацию класса.

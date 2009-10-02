@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Collections.Specialized;
-
-using IC.CoreInterfaces.Objects;
+﻿using IC.CoreInterfaces.Objects;
 using Project.Utils.Common;
 
 namespace IC.CoreInterfaces.Processes
@@ -24,5 +21,12 @@ namespace IC.CoreInterfaces.Processes
 		/// <param name="schema">Схема для компилирования.</param>
 		/// <returns>Возвращает результат выполнения процесса.</returns>
 		ProcessResult Compile(ISchema schema);
+
+		/// <summary>
+		/// Сохраняет схему.
+		/// </summary>
+		/// <param name="schema">Схема.</param>
+		/// <returns>Возвращает результат выполнения процесса.</returns>
+		ProcessResult Save(ISchema schema);
 	}
 }

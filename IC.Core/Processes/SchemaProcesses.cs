@@ -76,5 +76,15 @@ namespace IC.Core.Processes
 
 			return new ProcessResult(noErrors, errors);
 		}
+
+		/// <summary>
+		/// Сохраняет схему.
+		/// </summary>
+		/// <param name="schema">Схема.</param>
+		/// <returns>Возвращает результат выполнения процесса.</returns>
+		public ProcessResult Save(ISchema schema)
+		{
+			throw new NotImplementedException();
+		}
 	}
 }

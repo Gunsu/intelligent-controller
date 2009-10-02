@@ -4,6 +4,7 @@ using System.Windows;
 using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Media;
+using IC.CoreInterfaces.Processes;
 using Microsoft.Practices.Composite.Events;
 using Microsoft.Practices.Composite.Presentation.Commands;
 
@@ -23,6 +24,8 @@ namespace IC.PresentationModels
 	[Validate]
 	public sealed class SchemaPresentationModel : BasePresentationModel, ISchemaPresentationModel
 	{
+		private readonly ISchemaProcesses _schemaProcesses;
+
 		private ISchema _currentSchema;
 		private ObservableCollection<IBlock> _blocks;
 		private IBlock _currentBlock;
@@ -70,6 +73,11 @@ namespace IC.PresentationModels
 			throw new System.NotImplementedException();
 		}
 
+		private void OnSchemaSaving(EventArgs args)
+		{
+			_schemaProcesses.Save(_currentSchema);
+		}
+
 		#endregion
 
 
@@ -90,22 +98,15 @@ namespace IC.PresentationModels
 		}
 
 
-		public SchemaPresentationModel([NotNull] IEventAggregator eventAggregator)
+		public SchemaPresentationModel([NotNull] IEventAggregator eventAggregator,
+			                           [NotNull] ISchemaProcesses schemaProcesses)
 			: base(eventAggregator)
 		{
+			_schemaProcesses = schemaProcesses;
+
 			_eventAggregator.GetEvent<CurrentSchemaChangedEvent>().Subscribe(OnCurrentSchemaChanged);
-#warning temp!
-			Blocks = new ObservableCollection<IBlock>();
-			var bt = new BlockType(10, "Lol");
-			var b = new Block(bt, new Coordinates(50, 50), Orientation.Horizontal);
-			b.X = 50;
-			b.Y = 50;
-			Blocks.Add(b);
-			var b2 = new Block(bt, new Coordinates(250, 250), Orientation.Horizontal);
-			b2.X = 250;
-			b2.Y = 250;
-			Blocks.Add(b2);
-#warning temp!
+			_eventAggregator.GetEvent<SchemaSavingEvent>().Subscribe(OnSchemaSaving);
+
 			PropertyChanged += OnPropertyChanged;
 		}
 	}

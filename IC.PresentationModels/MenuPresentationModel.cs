@@ -42,7 +42,7 @@ namespace IC.PresentationModels
 
 		private void SaveSchema(EventArgs args)
 		{
-			
+			_eventAggregator.GetEvent<SchemaSavingEvent>().Publish(args);
 		}
 
 		#endregion

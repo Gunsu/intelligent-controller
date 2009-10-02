@@ -1,4 +1,6 @@
-﻿namespace IC.CoreInterfaces.Objects
+﻿using System.Xml.Linq;
+
+namespace IC.CoreInterfaces.Objects
 {
 	/// <summary>
 	/// Схема, являющаяся совокупностью связанных между собой блоков.
@@ -19,5 +21,10 @@
 		/// Определяет, сохранена ли схема.
 		/// </summary>
 		bool IsSaved { get; }
+
+		/// <summary>
+		/// Определяет структуру UI.
+		/// </summary>
+		XElement UISchema { get; set; }
 	}
 }
