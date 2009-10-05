@@ -1,22 +1,16 @@
-﻿using IC.CoreInterfaces.Objects;
+﻿using System;
+using IC.CoreInterfaces.Objects;
 using System.Collections.Generic;
 
 namespace IC.Core.Tests.Mocks
 {
+	[Serializable]
 	public sealed class MockProject : IProject
 	{
-		#region IProject members
+		public IList<ISchema> Schemas { get; set; }
 
-		public IList<ISchema> Schemas
-		{
-			get { throw new System.NotImplementedException(); }
-		}
+		public bool IsSaved { get; set; }
 
-		public bool IsSaved
-		{
-			get { throw new System.NotImplementedException(); }
-		}
-
-		#endregion
+		public string Path { get; set; }
 	}
 }

@@ -1,4 +1,5 @@
 ﻿using System.Xml.Linq;
+
 using IC.CoreInterfaces.Objects;
 using IC.CoreInterfaces.Processes;
 using IC.PresentationModels.Tests.Mocks;
@@ -7,7 +8,6 @@ using IC.UI.Infrastructure.Events;
 
 using Moq;
 using NUnit.Framework;
-using Project.Utils.Common;
 
 namespace IC.PresentationModels.Tests
 {
@@ -21,6 +21,7 @@ namespace IC.PresentationModels.Tests
 		{
 			_mockEventAggregator = new MockEventAggregator();
 			_mockEventAggregator.AddMapping<SchemaSavingEvent>(new MockSchemaSavingEvent());
+			_mockEventAggregator.AddMapping<SchemaSavedEvent>(new MockSchemaSavedEvent());
 			_mockEventAggregator.AddMapping(new CurrentSchemaChangedEvent());
 		}
 
@@ -29,17 +30,21 @@ namespace IC.PresentationModels.Tests
 		{
 			//Имитируем удачное сохранение схемы
 			var mockSchemaProcesses = new Mock<ISchemaProcesses>();
-			mockSchemaProcesses.Setup(x => x.Save(It.IsAny<ISchema>(), It.IsAny<XElement>())).Returns(new ProcessResult());
+			mockSchemaProcesses.Setup(x => x.Save(It.IsAny<ISchema>(), It.IsAny<XElement>())).Returns(true);
 			
 			//Создаём нашу модель
 			var model = new SchemaPresentationModel(_mockEventAggregator, mockSchemaProcesses.Object);
 			model.CurrentSchema = new Mock<ISchema>().Object;
 
+			//Проверяем, что событие SchemaSavedEvent не опубликовано
+			Assert.IsFalse(((MockSchemaSavedEvent)(_mockEventAggregator.GetEvent<SchemaSavedEvent>())).IsPublished);
+
 			//Публикуем событие SchemaSavingEvent
 			_mockEventAggregator.GetEvent<SchemaSavingEvent>().Publish(new XElement("root"));
 
-			//Проверяем, что произошло сохранение схемы.
+			//Проверяем, что произошло сохранение схемы и событие SchemaSavedEvent опубликовано
 			mockSchemaProcesses.Verify(x => x.Save(It.IsAny<ISchema>(), It.IsAny<XElement>()), Times.Once());
+			Assert.IsTrue(((MockSchemaSavedEvent)(_mockEventAggregator.GetEvent<SchemaSavedEvent>())).IsPublished);
 		}
 	}
 }

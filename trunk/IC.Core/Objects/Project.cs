@@ -25,7 +25,12 @@ namespace IC.Core.Objects
 		/// <summary>
 		/// Определяет, сохранён ли проект.
 		/// </summary>
-		public bool IsSaved { get; private set; }
+		public bool IsSaved { get; set; }
+
+		/// <summary>
+		/// Путь на жёстком диске, где лежит файл.
+		/// </summary>
+		public string Path { get; set; }
 
 
 		private Project()

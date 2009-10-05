@@ -1,10 +1,12 @@
-﻿using Microsoft.Practices.Unity;
+﻿using System.Collections.Generic;
+using System.Xml.Linq;
+using Microsoft.Practices.Unity;
 
 using IC.Core.Processes;
 using IC.Core.Tests.Mocks;
 using IC.CoreInterfaces.Objects;
 using IC.CoreInterfaces.Processes;
-
+using Moq;
 using NUnit.Framework;
 using Project.Utils.Common;
 
@@ -35,10 +37,25 @@ namespace IC.Core.Tests.Processes
 		[Test]
 		public void Save_GenericTest()
 		{
-			IProject mockProject = new MockProject();
-			var result = _projectProcesses.Save(mockProject);
+			const string path = "testproject.prj";
 
-			Assert.IsTrue(result.Result);
+			var mockSchema1 = new MockSchema();
+			mockSchema1.IsSaved = true;
+			mockSchema1.Name = "schema1";
+			mockSchema1.UISchema = (new XElement("root"));
+
+			var mockSchema2 = new MockSchema();
+			mockSchema2.IsSaved = true;
+			mockSchema2.Name = "schema2";
+
+			var mockProject = new MockProject();
+			mockProject.IsSaved = false;
+			mockProject.Path = path;
+			mockProject.Schemas = new List<ISchema>() {mockSchema1, mockSchema2};
+
+			ProcessResult<List<ISchema>> result = _projectProcesses.Save(mockProject);
+
+			Assert.IsTrue(result.NoErrors);
 		}
 	}
 }

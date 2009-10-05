@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Microsoft.Practices.Unity;
 
 using IC.CoreInterfaces.Objects;
@@ -25,7 +26,9 @@ namespace IC.PresentationModels.Tests
 			_mockEventAggregator = new MockEventAggregator();
 			_mockEventAggregator.AddMapping(new ProjectCreatingEvent());
 			_mockEventAggregator.AddMapping(new ProjectSavingEvent());
+			_mockEventAggregator.AddMapping<SchemaSavedEvent>(new MockSchemaSavedEvent());
 			_mockEventAggregator.AddMapping<ProjectSavedEvent>(new MockProjectSavedEvent());
+			_mockEventAggregator.AddMapping<SchemaSavingEvent>(new MockSchemaSavingEvent());
 		}
 
 		/// <summary>
@@ -37,7 +40,8 @@ namespace IC.PresentationModels.Tests
 		{
 			//имитируем удачное сохранение проекта
 			var mockProjectProcesses = new Mock<IProjectProcesses>();
-			mockProjectProcesses.Setup(x => x.Save(It.IsAny<IProject>())).Returns(new ProcessResult());
+			mockProjectProcesses.Setup(x => x.Save(It.IsAny<IProject>()))
+				.Returns(new ProcessResult<List<ISchema>>() {NoErrors = true});
 			
 			//создаём нашу модель
 			var model = new ManagerPresentationModel(_mockEventAggregator,
@@ -64,7 +68,8 @@ namespace IC.PresentationModels.Tests
 		{
 			//имитируем неудачное сохранение проекта
 			var mockProjectProcesses = new Mock<IProjectProcesses>();
-			mockProjectProcesses.Setup(x => x.Save(It.IsAny<IProject>())).Returns(new ProcessResult("SomeErrorText"));
+			mockProjectProcesses.Setup(x => x.Save(It.IsAny<IProject>()))
+				.Returns(new ProcessResult<List<ISchema>>() { NoErrors = false });
 
 			//создаём нашу модель
 			var model = new ManagerPresentationModel(_mockEventAggregator,
@@ -80,6 +85,46 @@ namespace IC.PresentationModels.Tests
 			//проверяем, что сохранение было вызвано и событие ProjectSavingEvent по-прежнему не опубликовано
 			mockProjectProcesses.Verify(x => x.Save(It.IsAny<IProject>()), Times.Once());
 			Assert.IsFalse(((MockProjectSavedEvent)_mockEventAggregator.GetEvent<ProjectSavedEvent>()).IsPublished);
+		}
+
+		/// <summary>
+		/// Проверяет, что событие ProjectSavingEvent сделает всё необходимое для повторного сохранения проекта,
+		/// если сохранение не удалось и результат показал, что не все схемы сохранены.
+		/// </summary>
+		[Test]
+		public void ProjectSavingEventShouldSaveSchemaAndTryToSaveProjectAgainIfSchemasNotSaved()
+		{
+			//имитируем неудачное сохранение проекта, показывающее, что не все схемы сохранены
+			var mockProjectProcesses = new Mock<IProjectProcesses>();
+			var mockSchema = new Mock<ISchema>();
+			var notSavedSchemas = new List<ISchema>();
+			notSavedSchemas.Add(mockSchema.Object);
+			mockProjectProcesses.Setup(x => x.Save(It.IsAny<IProject>()))
+				.Returns(new ProcessResult<List<ISchema>>() { NoErrors = false, Result = notSavedSchemas});
+
+			//создаём нашу модель
+			var model = new ManagerPresentationModel(_mockEventAggregator,
+													 _mockContainer,
+													 mockProjectProcesses.Object);
+
+			//удостоверяемся, что событие SchemaSavingEvent не опубликовано и нет подписки на SchemaSavedEvent
+			Assert.IsFalse(((MockSchemaSavingEvent)_mockEventAggregator.GetEvent<SchemaSavingEvent>()).IsPublished);
+			Assert.IsFalse(((MockSchemaSavedEvent)_mockEventAggregator.GetEvent<SchemaSavedEvent>()).IsSubscribed);
+
+			//публикуем событие ProjectSavingEvent
+			_mockEventAggregator.GetEvent<ProjectSavingEvent>().Publish(EventArgs.Empty);
+
+			//проверяем, что сохранение было вызвано, событие SchemaSavingEvent опубликовано
+			//и произошла подписка на SchemaSavedEvent
+			mockProjectProcesses.Verify(x => x.Save(It.IsAny<IProject>()), Times.Once());
+			Assert.IsTrue(((MockSchemaSavingEvent)_mockEventAggregator.GetEvent<SchemaSavingEvent>()).IsPublished);
+			Assert.IsTrue(((MockSchemaSavedEvent)_mockEventAggregator.GetEvent<SchemaSavedEvent>()).IsSubscribed);
+
+			//публикеум событие SchemaSavedEvent
+			_mockEventAggregator.GetEvent<SchemaSavedEvent>().Publish(EventArgs.Empty);
+
+			//проверяем, что был вызван SaveProject ещё раз
+			mockProjectProcesses.Verify(x => x.Save(It.IsAny<IProject>()), Times.Exactly(2));
 		}
 	}
 }

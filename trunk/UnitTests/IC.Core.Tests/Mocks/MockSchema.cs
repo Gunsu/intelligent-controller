@@ -1,36 +1,25 @@
-﻿using System.Xml.Linq;
+﻿using System;
+using System.Xml.Linq;
 using IC.CoreInterfaces.Objects;
 
 namespace IC.Core.Tests.Mocks
 {
+	[Serializable]
 	public sealed class MockSchema : ISchema
 	{
-		#region ISchema members
-
-		public IBlocks Blocks
-		{
-			get { throw new System.NotImplementedException(); }
-		}
+		public IBlocks Blocks{ get; set; }
 
 		public bool IsSaved { get; set; }
 
-		public string Name
+		public string Name { get; set; }
+
+		[NonSerialized]
+		private XElement _uiSchema;
+
+		public XElement UISchema
 		{
-			get
-			{
-				throw new System.NotImplementedException();
-			}
-			set
-			{
-				throw new System.NotImplementedException();
-			}
+			get { return _uiSchema; }
+			set { _uiSchema = value; }
 		}
-
-		/// <summary>
-		/// Определяет структуру UI.
-		/// </summary>
-		public XElement UISchema { get; set; }
-
-		#endregion
 	}
 }

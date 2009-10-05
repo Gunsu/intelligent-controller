@@ -31,7 +31,7 @@ namespace IC.Core.Tests.Processes
 			
 			Assert.AreEqual(31, blockTypes.Count);
 			Assert.AreEqual(2, blockTypes[0].ID);
-			Assert.AreEqual("Plus", blockTypes[0].Name);
+			Assert.AreEqual("Sum", blockTypes[0].Name);
 			
 			Assert.AreEqual(2, blockTypes[0].InputPoints.Count);
 			Assert.AreEqual("V1", blockTypes[0].InputPoints[0].Name);

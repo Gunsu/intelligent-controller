@@ -1,24 +1,16 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Collections.ObjectModel;
-using System.Windows;
-using System.Windows.Data;
-using System.Windows.Input;
-using System.Windows.Media;
 using System.Xml.Linq;
 using IC.CoreInterfaces.Processes;
 using Microsoft.Practices.Composite.Events;
-using Microsoft.Practices.Composite.Presentation.Commands;
 
-using IC.Core.Objects;
-using IC.CoreInterfaces.Enums;
 using IC.CoreInterfaces.Objects;
 using IC.UI.Infrastructure.Events;
 using IC.UI.Infrastructure.Interfaces.Schema;
-using Project.Utils.Common;
 
 using ValidationAspects;
 using ValidationAspects.PostSharp;
-using System;
 
 namespace IC.PresentationModels
 {
@@ -79,6 +71,7 @@ namespace IC.PresentationModels
 			if (uiSchema != null)
 			{
 				_schemaProcesses.Save(CurrentSchema, uiSchema);
+				_eventAggregator.GetEvent<SchemaSavedEvent>().Publish(EventArgs.Empty);
 			}
 		}
 

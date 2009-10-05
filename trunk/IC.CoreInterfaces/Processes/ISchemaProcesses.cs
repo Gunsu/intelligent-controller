@@ -28,7 +28,7 @@ namespace IC.CoreInterfaces.Processes
 		/// </summary>
 		/// <param name="schema">Схема.</param>
 		/// <param name="uiSchema">Сериализованный набор компонентов в дизайнере.</param>
-		/// <returns>Возвращает результат выполнения процесса.</returns>
-		ProcessResult Save(ISchema schema, XElement uiSchema);
+		/// <returns>Возвращает true, если схема успешно сохранена.</returns>
+		bool Save(ISchema schema, XElement uiSchema);
 	}
 }

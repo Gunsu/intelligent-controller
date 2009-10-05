@@ -15,6 +15,11 @@ namespace IC.CoreInterfaces.Objects
 		/// <summary>
 		/// Определяет, сохранён ли проект.
 		/// </summary>
-		bool IsSaved { get; }
+		bool IsSaved { get; set; }
+
+		/// <summary>
+		/// Путь на жёстком диске, где лежит файл.
+		/// </summary>
+		string Path { get; set; }
 	}
 }

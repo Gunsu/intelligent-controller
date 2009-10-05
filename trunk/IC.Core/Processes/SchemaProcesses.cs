@@ -77,7 +77,7 @@ namespace IC.Core.Processes
 			//    }
 			//}
 
-			return new ProcessResult(noErrors, errors);
+			return new ProcessResult() {NoErrors = noErrors, ErrorMessages = errors};
 		}
 
 		/// <summary>
@@ -85,12 +85,12 @@ namespace IC.Core.Processes
 		/// </summary>
 		/// <param name="schema">Схема.</param>
 		/// <param name="uiSchema">Сериализованный набор компонентов в дизайнере.</param>
-		/// <returns>Возвращает результат выполнения процесса.</returns>
-		public ProcessResult Save([NotNull] ISchema schema, [NotNull] XElement uiSchema)
+		/// <returns>Возвращает true, если схема успешно сохранена.</returns>
+		public bool Save([NotNull] ISchema schema, [NotNull] XElement uiSchema)
 		{
 			schema.UISchema = uiSchema;
 			schema.IsSaved = true;
-			return new ProcessResult();
+			return true;
 		}
 	}
 }
