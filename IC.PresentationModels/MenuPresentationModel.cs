@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Input;
+using System.Xml.Linq;
 using IC.CoreInterfaces.Objects;
 using IC.UI.Infrastructure.Events;
 using IC.UI.Infrastructure.Interfaces.Menu;
@@ -42,7 +43,7 @@ namespace IC.PresentationModels
 
 		private void SaveSchema(EventArgs args)
 		{
-			_eventAggregator.GetEvent<SchemaSavingEvent>().Publish(args);
+			_eventAggregator.GetEvent<SchemaSavingEvent>().Publish(null);
 		}
 
 		#endregion

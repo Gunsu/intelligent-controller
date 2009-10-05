@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Xml.Linq;
 
 using IC.UI.Infrastructure.Events;
 
@@ -8,7 +8,7 @@ namespace IC.PresentationModels.Tests.Mocks.Events
 	{
 		public bool IsPublished { get; private set; }
 
-		public override void Publish(EventArgs payload)
+		public override void Publish(XElement payload)
 		{
 			IsPublished = true;
 			base.Publish(payload);

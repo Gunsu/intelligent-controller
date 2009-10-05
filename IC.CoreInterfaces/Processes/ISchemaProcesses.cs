@@ -1,4 +1,5 @@
-﻿using IC.CoreInterfaces.Objects;
+﻿using System.Xml.Linq;
+using IC.CoreInterfaces.Objects;
 using Project.Utils.Common;
 
 namespace IC.CoreInterfaces.Processes
@@ -26,7 +27,8 @@ namespace IC.CoreInterfaces.Processes
 		/// Сохраняет схему.
 		/// </summary>
 		/// <param name="schema">Схема.</param>
+		/// <param name="uiSchema">Сериализованный набор компонентов в дизайнере.</param>
 		/// <returns>Возвращает результат выполнения процесса.</returns>
-		ProcessResult Save(ISchema schema);
+		ProcessResult Save(ISchema schema, XElement uiSchema);
 	}
 }

@@ -21,7 +21,7 @@ namespace IC.UI.Infrastructure.Controls
 																   typeof (DesignerCanvas));
 		}
 
-    	private static DependencyProperty _eventAggregatorProperty;
+    	private readonly static DependencyProperty _eventAggregatorProperty;
 
     	public IEventAggregator EventAggregator
     	{

@@ -1,17 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
-
+using System.Xml.Linq;
 using IC.CoreInterfaces.Objects;
 using IC.CoreInterfaces.Processes;
 using Project.Utils.Common;
 using Project.Utils.DesignByContract;
+using ValidationAspects;
+using ValidationAspects.PostSharp;
 
 namespace IC.Core.Processes
 {
 	/// <summary>
 	/// Процессы для работы со схемой.
 	/// </summary>
+	[Validate]
 	public sealed class SchemaProcesses : ISchemaProcesses
 	{
 		private readonly IProject _project;
@@ -81,10 +84,13 @@ namespace IC.Core.Processes
 		/// Сохраняет схему.
 		/// </summary>
 		/// <param name="schema">Схема.</param>
+		/// <param name="uiSchema">Сериализованный набор компонентов в дизайнере.</param>
 		/// <returns>Возвращает результат выполнения процесса.</returns>
-		public ProcessResult Save(ISchema schema)
+		public ProcessResult Save([NotNull] ISchema schema, [NotNull] XElement uiSchema)
 		{
-			throw new NotImplementedException();
+			schema.UISchema = uiSchema;
+			schema.IsSaved = true;
+			return new ProcessResult();
 		}
 	}
 }

@@ -20,7 +20,7 @@ namespace IC.CoreInterfaces.Objects
 		/// <summary>
 		/// Определяет, сохранена ли схема.
 		/// </summary>
-		bool IsSaved { get; }
+		bool IsSaved { get; set; }
 
 		/// <summary>
 		/// Определяет структуру UI.
