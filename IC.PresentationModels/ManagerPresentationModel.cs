@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Microsoft.Practices.Composite.Events;
 using Microsoft.Practices.Composite.Presentation.Events;
 using Microsoft.Practices.Unity;
@@ -54,8 +55,26 @@ namespace IC.PresentationModels
 
 		private void OnProjectSaving(EventArgs args)
 		{
-			ProcessResult result = _projectProcesses.Save(_currentProject);
-			if (result.Result == true)
+			ProcessResult<List<ISchema>> result = _projectProcesses.Save(_currentProject);
+			if (result.NoErrors)
+			{
+				_eventAggregator.GetEvent<ProjectSavedEvent>().Publish(EventArgs.Empty);
+			}
+			else
+			{
+				if (result.Result != null)
+				{
+					_eventAggregator.GetEvent<SchemaSavedEvent>().Subscribe(OnSchemaSavedEvent);
+					_eventAggregator.GetEvent<SchemaSavingEvent>().Publish(null);
+				}
+			}
+		}
+
+		private void OnSchemaSavedEvent(EventArgs args)
+		{
+			_eventAggregator.GetEvent<SchemaSavedEvent>().Unsubscribe(OnSchemaSavedEvent);
+			ProcessResult<List<ISchema>> result = _projectProcesses.Save(_currentProject);
+			if (result.NoErrors)
 			{
 				_eventAggregator.GetEvent<ProjectSavedEvent>().Publish(EventArgs.Empty);
 			}
@@ -71,7 +90,7 @@ namespace IC.PresentationModels
 			_container = container;
 			_projectProcesses = projectProcesses;
 
-			_eventAggregator.GetEvent<ProjectCreatingEvent>().Subscribe(OnProjectCreating, ThreadOption.UIThread);
+			_eventAggregator.GetEvent<ProjectCreatingEvent>().Subscribe(OnProjectCreating);
 			_eventAggregator.GetEvent<ProjectSavingEvent>().Subscribe(OnProjectSaving);
 		}
 	}

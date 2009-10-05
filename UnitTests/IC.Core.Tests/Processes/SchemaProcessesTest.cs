@@ -45,10 +45,10 @@ namespace IC.Core.Tests.Processes
 		public void Save_GenericTest()
 		{
 			ISchema mockSchema = new MockSchema();
-			var result = _schemaProcesses.Save(mockSchema, new XElement("root"));
+			bool result = _schemaProcesses.Save(mockSchema, new XElement("root"));
 
 			Assert.IsTrue(mockSchema.IsSaved);
-			Assert.IsTrue(result.Result);
+			Assert.IsTrue(result);
 		}
 	}
 }

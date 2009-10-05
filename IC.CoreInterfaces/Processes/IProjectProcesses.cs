@@ -1,4 +1,5 @@
-﻿using System.Xml.Linq;
+﻿using System.Collections.Generic;
+using System.Xml.Linq;
 using IC.CoreInterfaces.Objects;
 using Project.Utils.Common;
 
@@ -37,10 +38,10 @@ namespace IC.CoreInterfaces.Processes
 		ProcessResult<IProject> Open(string path);
 
 		/// <summary>
-		/// Сохраняет проект.
+		/// Сохраняет проект, если сохранены все схемы.
 		/// </summary>
 		/// <param name="project">Проект.</param>
-		/// <returns>Возвращает результат выполнения процесса.</returns>
-		ProcessResult Save(IProject project);
+		/// <returns>Если сохранены не все схемы, то возвращает список несохранённых схем.</returns>
+		ProcessResult<List<ISchema>> Save(IProject project);
 	}
 }
