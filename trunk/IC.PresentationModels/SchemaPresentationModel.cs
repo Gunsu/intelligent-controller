@@ -4,6 +4,7 @@ using System.Windows;
 using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Xml.Linq;
 using IC.CoreInterfaces.Processes;
 using Microsoft.Practices.Composite.Events;
 using Microsoft.Practices.Composite.Presentation.Commands;
@@ -73,9 +74,12 @@ namespace IC.PresentationModels
 			throw new System.NotImplementedException();
 		}
 
-		private void OnSchemaSaving(EventArgs args)
+		private void OnSchemaSaving(XElement uiSchema)
 		{
-			_schemaProcesses.Save(_currentSchema);
+			if (uiSchema != null)
+			{
+				_schemaProcesses.Save(CurrentSchema, uiSchema);
+			}
 		}
 
 		#endregion

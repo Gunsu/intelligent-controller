@@ -1,5 +1,4 @@
-﻿using System;
-
+﻿using System.Xml.Linq;
 using IC.CoreInterfaces.Objects;
 using IC.CoreInterfaces.Processes;
 using IC.PresentationModels.Tests.Mocks;
@@ -30,16 +29,17 @@ namespace IC.PresentationModels.Tests
 		{
 			//Имитируем удачное сохранение схемы
 			var mockSchemaProcesses = new Mock<ISchemaProcesses>();
-			mockSchemaProcesses.Setup(x => x.Save(It.IsAny<ISchema>())).Returns(new ProcessResult());
+			mockSchemaProcesses.Setup(x => x.Save(It.IsAny<ISchema>(), It.IsAny<XElement>())).Returns(new ProcessResult());
 			
 			//Создаём нашу модель
 			var model = new SchemaPresentationModel(_mockEventAggregator, mockSchemaProcesses.Object);
+			model.CurrentSchema = new Mock<ISchema>().Object;
 
 			//Публикуем событие SchemaSavingEvent
-			_mockEventAggregator.GetEvent<SchemaSavingEvent>().Publish(EventArgs.Empty);
+			_mockEventAggregator.GetEvent<SchemaSavingEvent>().Publish(new XElement("root"));
 
 			//Проверяем, что произошло сохранение схемы.
-			mockSchemaProcesses.Verify(x => x.Save(It.IsAny<ISchema>()), Times.Once());
+			mockSchemaProcesses.Verify(x => x.Save(It.IsAny<ISchema>(), It.IsAny<XElement>()), Times.Once());
 		}
 	}
 }

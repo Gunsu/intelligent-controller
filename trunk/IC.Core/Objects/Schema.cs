@@ -22,7 +22,7 @@ namespace IC.Core.Objects
 		/// <summary>
 		/// Определяет, сохранена ли схема.
 		/// </summary>
-		public bool IsSaved { get; private set; }
+		public bool IsSaved { get; set; }
 
 		/// <summary>
 		/// Определяет структуру UI.

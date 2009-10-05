@@ -1,4 +1,5 @@
-﻿using Microsoft.Practices.Unity;
+﻿using System.Xml.Linq;
+using Microsoft.Practices.Unity;
 
 using IC.Core.Processes;
 using IC.Core.Tests.Mocks;
@@ -37,6 +38,16 @@ namespace IC.Core.Tests.Processes
 			ISchema mockSchema = new MockSchema();
 			var result = _schemaProcesses.Validate(mockSchema);
 
+			Assert.IsTrue(result.Result);
+		}
+
+		[Test]
+		public void Save_GenericTest()
+		{
+			ISchema mockSchema = new MockSchema();
+			var result = _schemaProcesses.Save(mockSchema, new XElement("root"));
+
+			Assert.IsTrue(mockSchema.IsSaved);
 			Assert.IsTrue(result.Result);
 		}
 	}
