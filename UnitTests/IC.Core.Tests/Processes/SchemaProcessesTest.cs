@@ -44,7 +44,7 @@ namespace IC.Core.Tests.Processes
 		[Test]
 		public void Save_GenericTest()
 		{
-			ISchema mockSchema = new MockSchema();
+			ISchema mockSchema = new MockSchema() {FilePath = "schema1.scm", UISchema = new XElement("root")};
 			bool result = _schemaProcesses.Save(mockSchema, new XElement("root"));
 
 			Assert.IsTrue(mockSchema.IsSaved);

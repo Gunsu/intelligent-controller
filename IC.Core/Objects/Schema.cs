@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Xml.Linq;
 using IC.CoreInterfaces.Objects;
 
@@ -7,6 +8,7 @@ namespace IC.Core.Objects
 	/// <summary>
 	/// Схема, являющаяся совокупностью связанных между собой блоков.
 	/// </summary>
+	[Serializable]
 	public class Schema : ISchema
 	{
 		/// <summary>
@@ -24,11 +26,22 @@ namespace IC.Core.Objects
 		/// </summary>
 		public bool IsSaved { get; set; }
 
+		[NonSerialized]
+		private XElement _uiSchema;
+
 		/// <summary>
 		/// Определяет структуру UI.
 		/// </summary>
-		public XElement UISchema { get; set; }
+		public XElement UISchema
+		{
+			get { return _uiSchema; }
+			set { _uiSchema = value; }
+		}
 
+		/// <summary>
+		/// Путь к файлу, в котором содержится структура UI данной схемы.
+		/// </summary>
+		public string FilePath { get; set; }
 
 		/// <summary>
 		/// Закрытый конструктор, выполняющий начальную инициализацию класса.

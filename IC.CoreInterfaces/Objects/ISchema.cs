@@ -26,5 +26,10 @@ namespace IC.CoreInterfaces.Objects
 		/// Определяет структуру UI.
 		/// </summary>
 		XElement UISchema { get; set; }
+
+		/// <summary>
+		/// Путь к файлу, в котором содержится структура UI данной схемы.
+		/// </summary>
+		string FilePath { get; set; }
 	}
 }
