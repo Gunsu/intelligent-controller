@@ -89,6 +89,7 @@ namespace IC.Core.Processes
 		public bool Save([NotNull] ISchema schema, [NotNull] XElement uiSchema)
 		{
 			schema.UISchema = uiSchema;
+			uiSchema.Save(schema.FilePath);
 			schema.IsSaved = true;
 			return true;
 		}

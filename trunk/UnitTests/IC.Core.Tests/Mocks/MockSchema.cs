@@ -21,5 +21,7 @@ namespace IC.Core.Tests.Mocks
 			get { return _uiSchema; }
 			set { _uiSchema = value; }
 		}
+
+		public string FilePath { get; set; }
 	}
 }
