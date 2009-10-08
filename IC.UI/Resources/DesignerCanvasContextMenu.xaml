@@ -7,10 +7,7 @@
 	<ContextMenu x:Key="DesignerCanvasContextMenu">
 		<MenuItem Header="{Binding Source={x:Static Properties:MenuViewResources.Schema}}"
 				  Icon="{StaticResource Paste}"
-				  InputGestureText="Ctrl+V"
-				  Command=""
-				   />
-		<MenuItem Header="{Binding Source={x:Static Properties:MenuViewResources.SelectAll}}"
-				  Command="" />
+				  InputGestureText="Ctrl+V" />
+		<MenuItem Header="{Binding Source={x:Static Properties:MenuViewResources.SelectAll}}" />
 	</ContextMenu>
 </ResourceDictionary>

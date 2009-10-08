@@ -83,6 +83,7 @@
     <Compile Include="Events\CurrentSchemaChangedEvent.cs" />
     <Compile Include="Events\ProjectClosedEvent.cs" />
     <Compile Include="Events\ProjectClosingEvent.cs" />
+    <Compile Include="Events\ProjectCreatedEvent.cs" />
     <Compile Include="Events\ProjectCreatingEvent.cs" />
     <Compile Include="Events\ProjectOpenedEvent.cs" />
     <Compile Include="Events\ProjectOpeningEvent.cs" />
