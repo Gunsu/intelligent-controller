@@ -3,13 +3,6 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:Controls="clr-namespace:IC.UI.Infrastructure.Controls;assembly=IC.UI.Infrastructure">
     <!-- Designer -->
-	<UserControl.Resources>
-		<ResourceDictionary>
-			<ResourceDictionary.MergedDictionaries>
-				<ResourceDictionary Source="../Resources/DesignerCanvasContextMenu.xaml" />
-			</ResourceDictionary.MergedDictionaries>
-		</ResourceDictionary>
-	</UserControl.Resources>
     <GroupBox Header="Схема" Margin="3,0,3,0">
         <ScrollViewer HorizontalScrollBarVisibility="Auto"
 							  VerticalScrollBarVisibility="Auto">

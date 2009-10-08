@@ -49,6 +49,7 @@ namespace IC.UI
 			_container.RegisterType<IBlockTypesProcesses, BlockTypesProcesses>(IsSingleton,
 				                                                               blockTypesProcessesParams);
 			_container.RegisterType<IProjectProcesses, ProjectProcesses>(IsSingleton);
+			_container.RegisterType<ISchemaProcesses, SchemaProcesses>(IsSingleton);
 		}
 
 
