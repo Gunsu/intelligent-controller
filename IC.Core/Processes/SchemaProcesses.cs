@@ -93,5 +93,15 @@ namespace IC.Core.Processes
 			schema.IsSaved = true;
 			return true;
 		}
+
+		/// <summary>
+		/// Создаёт схему.
+		/// </summary>
+		/// <param name="name">Название схемы.</param>
+		/// <returns>Созданная схема.</returns>
+		public ISchema Create([NotNullOrEmpty] string name)
+		{
+			throw new NotImplementedException();
+		}
 	}
 }

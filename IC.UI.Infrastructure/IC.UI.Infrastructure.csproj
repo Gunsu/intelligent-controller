@@ -89,6 +89,7 @@
     <Compile Include="Events\ProjectOpeningEvent.cs" />
     <Compile Include="Events\ProjectSavedEvent.cs" />
     <Compile Include="Events\ProjectSavingEvent.cs" />
+    <Compile Include="Events\SchemaCreatedEvent.cs" />
     <Compile Include="Events\SchemaCreatingEvent.cs" />
     <Compile Include="Events\SchemaSavedEvent.cs" />
     <Compile Include="Events\SchemaSavingEvent.cs" />
@@ -107,6 +108,7 @@
     <Compile Include="Interfaces\Toolbox\IToolboxPresentationModel.cs" />
     <Compile Include="Interfaces\Toolbox\IToolboxView.cs" />
     <Compile Include="Interfaces\Windows\ICreateProjectWindow.cs" />
+    <Compile Include="Interfaces\Windows\ICreateSchemaWindow.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tools\PathFinder.cs" />
     <Compile Include="Tools\SelectionService.cs" />

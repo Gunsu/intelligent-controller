@@ -50,5 +50,13 @@ namespace IC.Core.Tests.Processes
 			Assert.IsTrue(mockSchema.IsSaved);
 			Assert.IsTrue(result);
 		}
+
+		[Test]
+		public void Create_GenericTest()
+		{
+			var result = _schemaProcesses.Create(string.Empty);
+
+			Assert.IsNotNull(result);
+		}
 	}
 }

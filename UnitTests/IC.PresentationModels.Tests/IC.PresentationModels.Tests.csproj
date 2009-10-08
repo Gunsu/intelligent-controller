@@ -73,6 +73,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MenuPresentationModelTest.cs" />
+    <Compile Include="Mocks\Events\MockProjectCreatedEvent.cs" />
     <Compile Include="Mocks\Events\MockProjectSavedEvent.cs" />
     <Compile Include="Mocks\Events\MockProjectSavingEvent.cs" />
     <Compile Include="Mocks\Events\MockSchemaSavedEvent.cs" />

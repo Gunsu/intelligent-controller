@@ -18,7 +18,7 @@ namespace IC.Core.Processes
 	[Validate]
 	public sealed class ProjectProcesses : IProjectProcesses
 	{
-		public IProject CreateProject([NotNullOrEmpty] string name,
+		public IProject Create([NotNullOrEmpty] string name,
 			                          [NotNullOrEmpty] string filePath)
 		{
 			throw new NotImplementedException();
@@ -96,6 +96,17 @@ namespace IC.Core.Processes
 			}
 
 			return new ProcessResult<List<ISchema>>() {NoErrors = true};
+		}
+
+		/// <summary>
+		/// Добавляет схему к проекту.
+		/// </summary>
+		/// <param name="project">Проект.</param>
+		/// <param name="schema">Добавляемая схема.</param>
+		/// <returns>True, в случае успешного добавления.</returns>
+		public bool AddSchema([NotNull] IProject project, [NotNull] ISchema schema)
+		{
+			throw new NotImplementedException();
 		}
 	}
 }

@@ -26,7 +26,7 @@ namespace IC.UI.Windows
 
 		private void ChoosePath_Click(object sender, RoutedEventArgs e)
 		{
-			SaveFileDialog fileDialog = new SaveFileDialog();
+			var fileDialog = new SaveFileDialog();
 			fileDialog.AddExtension = true;
 			fileDialog.DefaultExt = "prj";
 			var result = fileDialog.ShowDialog();
@@ -50,7 +50,7 @@ namespace IC.UI.Windows
 				return;
 			}
 
-			IProject project = _projectProcesses.CreateProject(ProjectName.Text, ProjectPath.Text);
+			IProject project = _projectProcesses.Create(ProjectName.Text, ProjectPath.Text);
 			_eventAggregator.GetEvent<ProjectCreatedEvent>().Publish(project);
 			this.Close();
 		}

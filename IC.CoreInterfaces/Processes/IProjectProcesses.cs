@@ -14,7 +14,7 @@ namespace IC.CoreInterfaces.Processes
 		/// Создание проекта.
 		/// </summary>
 		/// <returns>Только что созданный проект.</returns>
-		IProject CreateProject(string name, string filePath);
+		IProject Create(string name, string filePath);
 
 		///// <summary>
 		///// Проверяет все схемы проекта.
@@ -43,5 +43,13 @@ namespace IC.CoreInterfaces.Processes
 		/// <param name="project">Проект.</param>
 		/// <returns>Если сохранены не все схемы, то возвращает список несохранённых схем.</returns>
 		ProcessResult<List<ISchema>> Save(IProject project);
+
+		/// <summary>
+		/// Добавляет схему к проекту.
+		/// </summary>
+		/// <param name="project">Проект.</param>
+		/// <param name="schema">Добавляемая схема.</param>
+		/// <returns>True, в случае успешного добавления.</returns>
+		bool AddSchema(IProject project, ISchema schema);
 	}
 }

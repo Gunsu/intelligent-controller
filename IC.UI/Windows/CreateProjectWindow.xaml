@@ -14,7 +14,7 @@
 			<ColumnDefinition Width="*" />
 		</Grid.ColumnDefinitions>
 		
-		<Label Grid.Row="0" Grid.Column="0">Название организации</Label>
+		<Label Grid.Row="0" Grid.Column="0">Название проекта</Label>
 		<TextBox Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"
 				 Name="ProjectName"></TextBox>
 		
