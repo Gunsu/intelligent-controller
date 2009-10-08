@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.Practices.Composite.Events;
-using Microsoft.Practices.Composite.Presentation.Events;
 using Microsoft.Practices.Unity;
-
 using IC.CoreInterfaces.Objects;
 using IC.UI.Infrastructure.Events;
 using IC.UI.Infrastructure.Interfaces.Manager;
@@ -27,14 +25,14 @@ namespace IC.PresentationModels
 		private readonly IUnityContainer _container;
 		private readonly IProjectProcesses _projectProcesses;
 
-		private IProject _currentProject;
+		public IProject CurrentProject;
 		
 		
 		#region Methods for handling subscribed events
 
 		private void OnProjectCreating(EventArgs args)
 		{
-			if (!_currentProject.IsSaved)
+			if ((CurrentProject != null) && (!CurrentProject.IsSaved))
 			{
 				var result = MessageBox.Show("Текущий проект не сохранён, создание нового проекта приведёт к закрытию текущего.\r\nСохранить изменения перед закрытием проекта?",
 											 "Сохранение",
@@ -43,19 +41,20 @@ namespace IC.PresentationModels
 				switch (result)
 				{
 					case MessageBoxResult.Yes:
-						_projectProcesses.Save(_currentProject);
+						_projectProcesses.Save(CurrentProject);
 						break;
 					case MessageBoxResult.Cancel:
 						return;
 				}
 			}
-            
-			_container.Resolve<ICreateProjectWindow>().ShowDialog();
+
+			var createProjectWindow = _container.Resolve<ICreateProjectWindow>();
+			createProjectWindow.ShowDialog();
 		}
 
 		private void OnProjectSaving(EventArgs args)
 		{
-			ProcessResult<List<ISchema>> result = _projectProcesses.Save(_currentProject);
+			ProcessResult<List<ISchema>> result = _projectProcesses.Save(CurrentProject);
 			if (result.NoErrors)
 			{
 				_eventAggregator.GetEvent<ProjectSavedEvent>().Publish(EventArgs.Empty);
@@ -64,20 +63,25 @@ namespace IC.PresentationModels
 			{
 				if (result.Result != null)
 				{
-					_eventAggregator.GetEvent<SchemaSavedEvent>().Subscribe(OnSchemaSavedEvent);
+					_eventAggregator.GetEvent<SchemaSavedEvent>().Subscribe(OnSchemaSaved);
 					_eventAggregator.GetEvent<SchemaSavingEvent>().Publish(null);
 				}
 			}
 		}
 
-		private void OnSchemaSavedEvent(EventArgs args)
+		private void OnSchemaSaved(EventArgs args)
 		{
-			_eventAggregator.GetEvent<SchemaSavedEvent>().Unsubscribe(OnSchemaSavedEvent);
-			ProcessResult<List<ISchema>> result = _projectProcesses.Save(_currentProject);
+			_eventAggregator.GetEvent<SchemaSavedEvent>().Unsubscribe(OnSchemaSaved);
+			ProcessResult<List<ISchema>> result = _projectProcesses.Save(CurrentProject);
 			if (result.NoErrors)
 			{
 				_eventAggregator.GetEvent<ProjectSavedEvent>().Publish(EventArgs.Empty);
 			}
+		}
+
+		private void OnProjectCreated(IProject project)
+		{
+			CurrentProject = project;
 		}
 
 		#endregion
@@ -92,6 +96,7 @@ namespace IC.PresentationModels
 
 			_eventAggregator.GetEvent<ProjectCreatingEvent>().Subscribe(OnProjectCreating);
 			_eventAggregator.GetEvent<ProjectSavingEvent>().Subscribe(OnProjectSaving);
+			_eventAggregator.GetEvent<ProjectCreatedEvent>().Subscribe(OnProjectCreated);
 		}
 	}
 }

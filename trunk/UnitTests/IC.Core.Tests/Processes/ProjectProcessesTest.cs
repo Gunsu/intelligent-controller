@@ -6,7 +6,6 @@ using IC.Core.Processes;
 using IC.Core.Tests.Mocks;
 using IC.CoreInterfaces.Objects;
 using IC.CoreInterfaces.Processes;
-using Moq;
 using NUnit.Framework;
 using Project.Utils.Common;
 
@@ -56,6 +55,22 @@ namespace IC.Core.Tests.Processes
 			ProcessResult<List<ISchema>> result = _projectProcesses.Save(mockProject);
 
 			Assert.IsTrue(result.NoErrors);
+		}
+
+		[Test]
+		public void Create_GenericTest()
+		{
+			var result = _projectProcesses.Create(string.Empty, string.Empty);
+
+			Assert.IsNotNull(result);
+		}
+
+		[Test]
+		public void AddSchemaTest()
+		{
+			bool result = _projectProcesses.AddSchema(null, null);
+
+			Assert.IsTrue(result);
 		}
 	}
 }

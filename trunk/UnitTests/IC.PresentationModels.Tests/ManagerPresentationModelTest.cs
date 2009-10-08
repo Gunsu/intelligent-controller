@@ -29,6 +29,7 @@ namespace IC.PresentationModels.Tests
 			_mockEventAggregator.AddMapping<SchemaSavedEvent>(new MockSchemaSavedEvent());
 			_mockEventAggregator.AddMapping<ProjectSavedEvent>(new MockProjectSavedEvent());
 			_mockEventAggregator.AddMapping<SchemaSavingEvent>(new MockSchemaSavingEvent());
+			_mockEventAggregator.AddMapping<ProjectCreatedEvent>(new MockProjectCreatedEvent());
 		}
 
 		/// <summary>
@@ -125,6 +126,27 @@ namespace IC.PresentationModels.Tests
 
 			//проверяем, что был вызван SaveProject ещё раз
 			mockProjectProcesses.Verify(x => x.Save(It.IsAny<IProject>()), Times.Exactly(2));
+		}
+
+		/// <summary>
+		/// Проверяет, что при событии ProjectCreatedEvent сменится CurrentProject.
+		/// </summary>
+		[Test]
+		public void ProjectCreatedEventShouldChangeCurrentProject()
+		{
+			//создаём модель
+			var mockProjectProcesses = new Mock<IProjectProcesses>();
+			var model = new ManagerPresentationModel(_mockEventAggregator,
+													 _mockContainer,
+													 mockProjectProcesses.Object);
+			//проверяем что текущий проект пуст
+			Assert.IsNull(model.CurrentProject);
+
+			//публикуем событие ProjectCreatedEvent
+			var mockProject = new Mock<IProject>();
+			_mockEventAggregator.GetEvent<ProjectCreatedEvent>().Publish(mockProject.Object);
+
+			Assert.IsNotNull(model.CurrentProject);
 		}
 	}
 }
