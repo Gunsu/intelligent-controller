@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using IC.UI.Infrastructure.Interfaces.Windows;
 using Microsoft.Practices.Unity;
 
 using IC.CoreInterfaces.Objects;
@@ -26,6 +27,7 @@ namespace IC.PresentationModels.Tests
 			_mockEventAggregator = new MockEventAggregator();
 			_mockEventAggregator.AddMapping(new ProjectCreatingEvent());
 			_mockEventAggregator.AddMapping(new ProjectSavingEvent());
+			_mockEventAggregator.AddMapping(new SchemaCreatingEvent());
 			_mockEventAggregator.AddMapping<SchemaSavedEvent>(new MockSchemaSavedEvent());
 			_mockEventAggregator.AddMapping<ProjectSavedEvent>(new MockProjectSavedEvent());
 			_mockEventAggregator.AddMapping<SchemaSavingEvent>(new MockSchemaSavingEvent());
@@ -46,8 +48,9 @@ namespace IC.PresentationModels.Tests
 			
 			//создаём нашу модель
 			var model = new ManagerPresentationModel(_mockEventAggregator,
-                                                     _mockContainer,
-													 mockProjectProcesses.Object);
+													 mockProjectProcesses.Object,
+													 Stubs.CreateProjectWindow,
+													 Stubs.CreateSchemaWindow);
 
 			//удостоверяемся, что событие ProjectSavedEvent не опубликовано
 			Assert.IsFalse(((MockProjectSavedEvent)_mockEventAggregator.GetEvent<ProjectSavedEvent>()).IsPublished);
@@ -74,8 +77,9 @@ namespace IC.PresentationModels.Tests
 
 			//создаём нашу модель
 			var model = new ManagerPresentationModel(_mockEventAggregator,
-													 _mockContainer,
-													 mockProjectProcesses.Object);
+													 mockProjectProcesses.Object,
+													 Stubs.CreateProjectWindow,
+													 Stubs.CreateSchemaWindow);
 
 			//удостоверяемся, что событие ProjectSavedEvent не опубликовано
 			Assert.IsFalse(((MockProjectSavedEvent) _mockEventAggregator.GetEvent<ProjectSavedEvent>()).IsPublished);
@@ -105,8 +109,9 @@ namespace IC.PresentationModels.Tests
 
 			//создаём нашу модель
 			var model = new ManagerPresentationModel(_mockEventAggregator,
-													 _mockContainer,
-													 mockProjectProcesses.Object);
+													 mockProjectProcesses.Object,
+													 Stubs.CreateProjectWindow,
+													 Stubs.CreateSchemaWindow);
 
 			//удостоверяемся, что событие SchemaSavingEvent не опубликовано и нет подписки на SchemaSavedEvent
 			Assert.IsFalse(((MockSchemaSavingEvent)_mockEventAggregator.GetEvent<SchemaSavingEvent>()).IsPublished);
@@ -135,10 +140,10 @@ namespace IC.PresentationModels.Tests
 		public void ProjectCreatedEventShouldChangeCurrentProject()
 		{
 			//создаём модель
-			var mockProjectProcesses = new Mock<IProjectProcesses>();
 			var model = new ManagerPresentationModel(_mockEventAggregator,
-													 _mockContainer,
-													 mockProjectProcesses.Object);
+													 Stubs.ProjectProcesses,
+													 Stubs.CreateProjectWindow,
+													 Stubs.CreateSchemaWindow);
 			//проверяем что текущий проект пуст
 			Assert.IsNull(model.CurrentProject);
 
@@ -147,6 +152,28 @@ namespace IC.PresentationModels.Tests
 			_mockEventAggregator.GetEvent<ProjectCreatedEvent>().Publish(mockProject.Object);
 
 			Assert.IsNotNull(model.CurrentProject);
+		}
+
+        /// <summary>
+		/// Проверяет, что при событии SchemaCreatingEvent будет показано окно CreateSchemaWindow.
+		/// </summary>
+		[Test]
+		public void SchemaCreatingEventShouldShowCreateSchemaWindow()
+		{
+        	//создаём модель
+			var mockCreateSchemaWindow = new Mock<ICreateSchemaWindow>();
+        	var model = new ManagerPresentationModel(_mockEventAggregator,
+        	                                         Stubs.ProjectProcesses,
+        	                                         Stubs.CreateProjectWindow,
+        	                                         mockCreateSchemaWindow.Object);
+        	var mockProject = new Mock<IProject>();
+        	model.CurrentProject = mockProject.Object;
+
+			//Публикуем событие SchemaCreatingEvent
+			_mockEventAggregator.GetEvent<SchemaCreatingEvent>().Publish(EventArgs.Empty);
+
+			//Проверяем, что вызвался метод ShowDialog()
+			mockCreateSchemaWindow.Verify(x => x.ShowDialog(mockProject.Object), Times.Once());
 		}
 	}
 }

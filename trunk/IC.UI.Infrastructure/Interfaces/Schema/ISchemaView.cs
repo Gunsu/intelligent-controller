@@ -1,4 +1,6 @@
-﻿namespace IC.UI.Infrastructure.Interfaces.Schema
+﻿using IC.UI.Infrastructure.Controls;
+
+namespace IC.UI.Infrastructure.Interfaces.Schema
 {
 	public interface ISchemaView
 	{

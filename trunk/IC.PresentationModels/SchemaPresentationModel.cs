@@ -63,7 +63,8 @@ namespace IC.PresentationModels
 
 		private void OnCurrentSchemaChanged(ISchema schema)
 		{
-			throw new System.NotImplementedException();
+			_eventAggregator.GetEvent<SchemaSavingEvent>().Publish(null);
+			CurrentSchema = schema;
 		}
 
 		private void OnSchemaSaving(XElement uiSchema)

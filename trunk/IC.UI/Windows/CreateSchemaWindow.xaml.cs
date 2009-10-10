@@ -18,6 +18,7 @@ namespace IC.UI.Windows
 		private readonly IEventAggregator _eventAggregator;
 		private readonly ISchemaProcesses _schemaProcesses;
 		private readonly IProjectProcesses _projectProcesses;
+		private IProject _currentProject;
 
 		public CreateSchemaWindow([NotNull] IEventAggregator eventAggregator,
 			                      [NotNull] ISchemaProcesses schemaProcesses,
@@ -38,9 +39,15 @@ namespace IC.UI.Windows
 			}
 
 			ISchema schema = _schemaProcesses.Create(SchemaName.Text);
-			_projectProcesses.AddSchema(project, schema);
+			_projectProcesses.AddSchema(_currentProject, schema);
 			_eventAggregator.GetEvent<SchemaCreatedEvent>().Publish(schema);
 			this.Close();
+		}
+
+		public bool? ShowDialog([NotNull] IProject project)
+		{
+			_currentProject = project;
+			return base.ShowDialog();
 		}
 	}
 }

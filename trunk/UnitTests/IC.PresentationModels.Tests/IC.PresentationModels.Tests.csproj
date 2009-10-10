@@ -62,6 +62,9 @@
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
+    <Reference Include="System.Windows.Presentation">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
     <Reference Include="System.Xml.Linq">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
@@ -70,9 +73,13 @@
     </Reference>
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MenuPresentationModelTest.cs" />
+    <Compile Include="Mocks\Events\MockCurrentSchemaChangedEvent.cs" />
     <Compile Include="Mocks\Events\MockProjectCreatedEvent.cs" />
     <Compile Include="Mocks\Events\MockProjectSavedEvent.cs" />
     <Compile Include="Mocks\Events\MockProjectSavingEvent.cs" />
@@ -82,6 +89,8 @@
     <Compile Include="Mocks\Events\MockProjectCreatingEvent.cs" />
     <Compile Include="Mocks\Events\MockSchemaCreatingEvent.cs" />
     <Compile Include="Mocks\MockUnityContainer.cs" />
+    <Compile Include="Mocks\Stubs.cs" />
+    <Compile Include="ProjectExplorerPresentationModelTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ManagerPresentationModelTest.cs" />
     <Compile Include="SchemaPresentationModelTest.cs" />
@@ -103,6 +112,9 @@
       <Project>{1FC836EA-429D-4826-A858-2DA01690EA78}</Project>
       <Name>Project.Utils</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Stubs\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

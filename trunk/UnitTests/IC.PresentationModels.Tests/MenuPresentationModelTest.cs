@@ -20,6 +20,7 @@ namespace IC.PresentationModels.Tests
 			_mockEventAggregator = new MockEventAggregator();
 			_mockEventAggregator.AddMapping(new ProjectOpenedEvent());
 			_mockEventAggregator.AddMapping(new ProjectClosedEvent());
+			_mockEventAggregator.AddMapping(new ProjectCreatedEvent());
 			_mockEventAggregator.AddMapping<SchemaSavingEvent>(new MockSchemaSavingEvent());
 			_mockEventAggregator.AddMapping<ProjectSavingEvent>(new MockProjectSavingEvent());
 			_model = new MenuPresentationModel(_mockEventAggregator);
@@ -33,6 +34,14 @@ namespace IC.PresentationModels.Tests
 			Assert.IsFalse(projectCreatingEvent.IsPublished);
 			_model.CreateProjectCommand.Execute(EventArgs.Empty);
 			Assert.IsTrue(projectCreatingEvent.IsPublished);
+		}
+
+		[Test]
+		public void ProjectCreatedEventShouldEnableCreateSchemaMenuItem()
+		{
+			Assert.IsFalse(_model.CreateSchemaCommandIsEnabled);
+			_mockEventAggregator.GetEvent<ProjectCreatedEvent>().Publish(Stubs.Project);
+			Assert.IsTrue(_model.CreateSchemaCommandIsEnabled);
 		}
 
 		[Test]

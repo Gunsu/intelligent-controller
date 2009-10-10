@@ -3,20 +3,20 @@ using IC.CoreInterfaces.Objects;
 using IC.UI.Infrastructure.Events;
 using IC.UI.Infrastructure.Interfaces.ProjectExplorer;
 using Microsoft.Practices.Composite.Events;
+using ValidationAspects;
+using ValidationAspects.PostSharp;
 
 namespace IC.PresentationModels
 {
+	[Validate]
 	public sealed class ProjectExplorerPresentationModel : BasePresentationModel, IProjectExplorerPresentationModel
 	{
-	    private ObservableCollection<ISchema> _schemasListItems;
-		private ISchema _currentSchemaItem;
-
-
-		public string ProjectName
+	    public string ProjectName
 		{
 			get { return "Обозреватель проектов"; }
 		}
 
+		private ObservableCollection<ISchema> _schemasListItems;
 		public ObservableCollection<ISchema> SchemasListItems
 		{
 			get { return _schemasListItems; }
@@ -27,6 +27,7 @@ namespace IC.PresentationModels
 			}
 		}
 
+		private ISchema _currentSchemaItem;
 		public ISchema CurrentSchemaItem
 	    {
             get { return _currentSchemaItem; }
@@ -36,12 +37,23 @@ namespace IC.PresentationModels
                 OnPropertyChanged("CurrentSchemaItem");
 				_eventAggregator.GetEvent<CurrentSchemaChangedEvent>().Publish(value);
             }
-	    }
+		}
 
 
-        public ProjectExplorerPresentationModel(IEventAggregator eventAggregator)
+		#region Methods for handling subscribed events
+
+		private void OnSchemaCreated([NotNull] ISchema schema)
+		{
+			SchemasListItems.Add(schema);
+			CurrentSchemaItem = schema;
+		}
+
+		#endregion
+
+		public ProjectExplorerPresentationModel([NotNull] IEventAggregator eventAggregator)
 			: base(eventAggregator)
         {
+			_eventAggregator.GetEvent<SchemaCreatedEvent>().Subscribe(OnSchemaCreated);
         }
     }
 }

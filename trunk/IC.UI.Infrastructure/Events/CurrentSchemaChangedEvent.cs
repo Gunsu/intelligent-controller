@@ -6,7 +6,7 @@ namespace IC.UI.Infrastructure.Events
 	/// <summary>
 	/// Событие, происходящее сразу после смены текущей схемы в ProjectExplorer.
 	/// </summary>
-	public sealed class CurrentSchemaChangedEvent : CompositePresentationEvent<ISchema>
+	public class CurrentSchemaChangedEvent : CompositePresentationEvent<ISchema>
 	{
 	}
 }
