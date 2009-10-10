@@ -31,8 +31,8 @@ namespace IC.UI
 		private void RegisterWindows()
 		{
 			_container.RegisterType<IMainWindow, MainWindow>(IsSingleton);
-			_container.RegisterType<ICreateProjectWindow, CreateProjectWindow>();
-			_container.RegisterType<ICreateSchemaWindow, CreateSchemaWindow>();
+			_container.RegisterType<ICreateProjectWindow, CreateProjectWindow>(IsSingleton);
+			_container.RegisterType<ICreateSchemaWindow, CreateSchemaWindow>(IsSingleton);
 		}
 
 		private void RegisterPresentationModels()

@@ -19,7 +19,7 @@ namespace IC.Core.Processes
 	public sealed class ProjectProcesses : IProjectProcesses
 	{
 		public IProject Create([NotNullOrEmpty] string name,
-			                          [NotNullOrEmpty] string filePath)
+			                   [NotNullOrEmpty] string filePath)
 		{
 			throw new NotImplementedException();
 		}

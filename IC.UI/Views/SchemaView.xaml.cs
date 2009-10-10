@@ -1,4 +1,5 @@
 ﻿using System.Windows.Controls;
+using IC.UI.Infrastructure.Controls;
 using IC.UI.Infrastructure.Interfaces.Schema;
 
 using ValidationAspects;
@@ -23,7 +24,7 @@ namespace IC.UI.Views
 
 		#endregion
 
-        public SchemaView()
+		public SchemaView()
 		{
 			InitializeComponent();
 		}

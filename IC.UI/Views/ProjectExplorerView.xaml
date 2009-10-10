@@ -19,7 +19,6 @@
 				Foreground="{DynamicResource {x:Static SystemColors.ActiveCaptionTextBrushKey}}"
 				Background="LightBlue" />
 			<ListBox Grid.Row="1"
-				Name="_projectsListBox"
 				ItemsSource="{Binding SchemasListItems}"
 				SelectedItem="{Binding Mode=TwoWay, Path=CurrentSchemaItem}"
 				IsSynchronizedWithCurrentItem="True">

@@ -23,7 +23,8 @@
 					<MenuItem Header="{Binding Source={x:Static Properties:MenuViewResources.Schema}}"
 							  Icon=""
 							  Command="{Binding CreateSchemaCommand}"
-							  CommandParameter="{Binding Source={x:Static System:EventArgs.Empty}}"/>
+							  CommandParameter="{Binding Source={x:Static System:EventArgs.Empty}}"
+							  IsEnabled="{Binding CreateSchemaCommandIsEnabled}" />
 				</MenuItem>
 				<MenuItem Header="{Binding Source={x:Static Properties:MenuViewResources.OpenProject}}"
 						  Icon="{StaticResource OpenProject}" />

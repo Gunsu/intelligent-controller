@@ -22,8 +22,9 @@ namespace IC.PresentationModels
 	[Validate]
 	public sealed class ManagerPresentationModel : BasePresentationModel, IManagerPresentationModel
 	{
-		private readonly IUnityContainer _container;
 		private readonly IProjectProcesses _projectProcesses;
+		private readonly ICreateProjectWindow _createProjectWindow;
+		private readonly ICreateSchemaWindow _createSchemaWindow;
 
 		public IProject CurrentProject;
 		
@@ -48,8 +49,7 @@ namespace IC.PresentationModels
 				}
 			}
 
-			var createProjectWindow = _container.Resolve<ICreateProjectWindow>();
-			createProjectWindow.ShowDialog();
+			_createProjectWindow.ShowDialog();
 		}
 
 		private void OnProjectSaving(EventArgs args)
@@ -67,6 +67,11 @@ namespace IC.PresentationModels
 					_eventAggregator.GetEvent<SchemaSavingEvent>().Publish(null);
 				}
 			}
+		}
+
+		private void OnSchemaCreating(EventArgs args)
+		{
+			_createSchemaWindow.ShowDialog(CurrentProject);
 		}
 
 		private void OnSchemaSaved(EventArgs args)
@@ -87,16 +92,19 @@ namespace IC.PresentationModels
 		#endregion
 
 		public ManagerPresentationModel([NotNull] IEventAggregator eventAggregator,
-										[NotNull] IUnityContainer container,
-										[NotNull] IProjectProcesses projectProcesses)
+										[NotNull] IProjectProcesses projectProcesses,
+										[NotNull] ICreateProjectWindow createProjectWindow,
+										[NotNull] ICreateSchemaWindow createSchemaWindow)
 			: base(eventAggregator)
 		{
-			_container = container;
 			_projectProcesses = projectProcesses;
+			_createProjectWindow = createProjectWindow;
+			_createSchemaWindow = createSchemaWindow;
 
 			_eventAggregator.GetEvent<ProjectCreatingEvent>().Subscribe(OnProjectCreating);
 			_eventAggregator.GetEvent<ProjectSavingEvent>().Subscribe(OnProjectSaving);
 			_eventAggregator.GetEvent<ProjectCreatedEvent>().Subscribe(OnProjectCreated);
+			_eventAggregator.GetEvent<SchemaCreatingEvent>().Subscribe(OnSchemaCreating);
 		}
 	}
 }
