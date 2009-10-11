@@ -60,13 +60,13 @@ namespace IC.PresentationModels
 
 		private void OnCurrentSchemaChanged(Schema schema)
 		{
-			_eventAggregator.GetEvent<SchemaSavingEvent>().Publish(null);
 			CurrentSchema = schema;
+			//_eventAggregator.GetEvent<CurrentSchemaChangedEvent>().Publish(schema);
 		}
 
 		private void OnSchemaSaving(XElement uiSchema)
 		{
-			if (uiSchema != null)
+			if (uiSchema != null && CurrentSchema != null)
 			{
 				CurrentSchema.Save(uiSchema);
 				_eventAggregator.GetEvent<SchemaSavedEvent>().Publish(EventArgs.Empty);
@@ -75,31 +75,11 @@ namespace IC.PresentationModels
 
 		#endregion
 
-
-        private void OnPropertyChanged(object sender, PropertyChangedEventArgs e)
-		{
-        	switch (e.PropertyName)
-        	{
-				case "CurrentBlock":
-        			{
-						
-        				break;
-        			}
-				default:
-        			{
-        				break;
-        			}
-        	}
-		}
-
-
 		public SchemaPresentationModel([NotNull] IEventAggregator eventAggregator)
 			: base(eventAggregator)
 		{
 			_eventAggregator.GetEvent<CurrentSchemaChangedEvent>().Subscribe(OnCurrentSchemaChanged);
 			_eventAggregator.GetEvent<SchemaSavingEvent>().Subscribe(OnSchemaSaving);
-
-			PropertyChanged += OnPropertyChanged;
 		}
 	}
 }

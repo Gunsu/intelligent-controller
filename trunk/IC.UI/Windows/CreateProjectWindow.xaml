@@ -1,31 +1,25 @@
 ﻿<Window x:Class="IC.UI.Windows.CreateProjectWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    Title="Создание проекта" Height="120" Width="600">
+    Title="Создание проекта" Height="95" Width="600">
 	<Grid>
 		<Grid.RowDefinitions>
 			<RowDefinition />
 			<RowDefinition />
-			<RowDefinition />
 		</Grid.RowDefinitions>
 		<Grid.ColumnDefinitions>
-			<ColumnDefinition Width="4*" />
-			<ColumnDefinition Width="8*" />
 			<ColumnDefinition Width="*" />
+			<ColumnDefinition Width="2*" />
 		</Grid.ColumnDefinitions>
 		
 		<Label Grid.Row="0" Grid.Column="0">Название проекта</Label>
-		<TextBox Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"
+		<TextBox Grid.Row="0" Grid.Column="1"
 				 Name="ProjectName"></TextBox>
 		
 		<Label Grid.Row="1" Grid.Column="0">Путь к файлу</Label>
-		<TextBox Grid.Row="1" Grid.Column="1"
-				 Name="ProjectPath"></TextBox>
-		<Button Grid.Row="1" Grid.Column="2"
-				Name="ChoosePath" Click="ChoosePath_Click">...</Button>
 		
-		<Button Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3"
-				Width="80"
+		<Button Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"
+				Width="80" Margin="3"
 				Name="Create" Click="Create_Click">Создать</Button>
 	</Grid>
 </Window>

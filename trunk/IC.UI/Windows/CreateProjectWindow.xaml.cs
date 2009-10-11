@@ -4,7 +4,6 @@ using IC.Core.Entities;
 using IC.UI.Infrastructure.Events;
 using IC.UI.Infrastructure.Interfaces.Windows;
 using Microsoft.Practices.Composite.Events;
-using Microsoft.Win32;
 
 namespace IC.UI.Windows
 {
@@ -23,18 +22,6 @@ namespace IC.UI.Windows
 			_projectsRepository = projectsRepository;
 		}
 
-		private void ChoosePath_Click(object sender, RoutedEventArgs e)
-		{
-			var fileDialog = new SaveFileDialog();
-			fileDialog.AddExtension = true;
-			fileDialog.DefaultExt = "prj";
-			var result = fileDialog.ShowDialog();
-			if (result == true)
-			{
-				ProjectPath.Text = fileDialog.FileName;
-			}
-		}
-
 		private void Create_Click(object sender, RoutedEventArgs e)
 		{
 			if (string.IsNullOrEmpty(ProjectName.Text))
@@ -43,14 +30,9 @@ namespace IC.UI.Windows
 				return;
 			}
 
-			if (string.IsNullOrEmpty(ProjectPath.Text))
-			{
-				MessageBox.Show("Необходимо указать путь к файлу проекта");
-				return;
-			}
-
 			Project project = _projectsRepository.Create(ProjectName.Text);
 			_eventAggregator.GetEvent<ProjectCreatedEvent>().Publish(project);
+			_eventAggregator.GetEvent<SchemaCreatedEvent>().Publish(project.Schemas[0]);
 			this.Close();
 		}
 	}

@@ -14,7 +14,7 @@ namespace IC.Core.Entities
 		/// <summary>
 		/// Блоки, входящие в схему.
 		/// </summary>
-		public Blocks Blocks { get; private set; }
+		public Blocks Blocks { get; set; }
 
         /// <summary>
         /// Имя схемы.
@@ -39,14 +39,9 @@ namespace IC.Core.Entities
 		}
 
 		/// <summary>
-		/// Путь к файлу, в котором содержится структура UI данной схемы.
-		/// </summary>
-		public string FilePath { get; set; }
-
-		/// <summary>
 		/// Закрытый конструктор, выполняющий начальную инициализацию класса.
 		/// </summary>
-		private Schema()
+		public Schema()
 		{
 			Blocks = new Blocks();
 			IsSaved = false;
@@ -117,7 +112,6 @@ namespace IC.Core.Entities
 		public bool Save([NotNull] XElement uiSchema)
 		{
 			UISchema = uiSchema;
-			uiSchema.Save(FilePath);
 			IsSaved = true;
 			return true;
 		}

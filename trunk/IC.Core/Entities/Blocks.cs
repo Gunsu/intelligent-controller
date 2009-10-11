@@ -6,24 +6,27 @@ namespace IC.Core.Entities
 	/// <summary>
 	/// Список блоков с возможностью получить список только нужных блоков, например, только входящих.
 	/// </summary>
+	[Serializable]
 	public class Blocks : List<Block>
 	{
 		/// <summary>
 		/// Получает список всех входных блоков из данного списка.
 		/// </summary>
 		/// <returns>Список всех входных блоков из данного списка.</returns>
-		public IList<CommandInputBlock> GetCommandInputBlocks()
+		public List<CommandInputBlock> GetCommandInputBlocks()
 		{
-			return GetBlocksByType(typeof(CommandInputBlock)) as IList<CommandInputBlock>;
+			throw new System.NotImplementedException();
+			//return GetBlocksByType(typeof(CommandInputBlock));
 		}
 
 		/// <summary>
 		/// Получает список всех выходных блоков из данного списка.
 		/// </summary>
 		/// <returns>Список всех выходных блоков из данного списка.</returns>
-		public IList<CommandOutputBlock> GetCommandOutputBlocks()
+		public List<CommandOutputBlock> GetCommandOutputBlocks()
 		{
-			return GetBlocksByType(typeof(CommandOutputBlock)) as IList<CommandOutputBlock>;
+			throw new System.NotImplementedException();
+			//return GetBlocksByType(typeof(CommandOutputBlock));
 		}
 
 		/// <summary>
@@ -31,9 +34,9 @@ namespace IC.Core.Entities
 		/// </summary>
 		/// <param name="type">Тип блоков, которые необходимо получить.</param>
 		/// <returns>Список всех блоков определенного типа.</returns>
-		private IList<Block> GetBlocksByType(Type type)
+		private List<Block> GetBlocksByType(Type type)
 		{
-			IList<Block> result = new List<Block>();
+			List<Block> result = new List<Block>();
 
 			foreach (var block in this)
 			{

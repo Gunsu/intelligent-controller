@@ -41,10 +41,12 @@
 							  Icon="" />
 				</MenuItem>
 				<MenuItem Header="{Binding Source={x:Static Properties:MenuViewResources.SaveAll}}"
-						  Icon="" />
+						  Icon=""
+						  IsEnabled="False"/>
 				<Separator />
 				<MenuItem Header="{Binding Source={x:Static Properties:MenuViewResources.Quit}}"
-						  Icon="" />
+						  Icon=""
+						  IsEnabled="False"/>
 			</MenuItem>
 			<!--Edit-->
 			<MenuItem Header="{Binding Source={x:Static Properties:MenuViewResources.Edit}}">
@@ -55,23 +57,30 @@
 				<Separator />
 				<MenuItem Header="{Binding Source={x:Static Properties:MenuViewResources.Cut}}"
 						  Icon="{StaticResource Cut}"
-						  InputGestureText="Ctrl+X"/>
+						  InputGestureText="Ctrl+X"
+						  IsEnabled="False"/>
 				<MenuItem Header="{Binding Source={x:Static Properties:MenuViewResources.Copy}}"
 						  Icon="{StaticResource Copy}"
-						  InputGestureText="Ctrl+C"/>
+						  InputGestureText="Ctrl+C"
+						  IsEnabled="False"/>
 				<MenuItem Header="{Binding Source={x:Static Properties:MenuViewResources.Paste}}"
 						  Icon="{StaticResource Paste}"
-						  InputGestureText="Ctrl+V"/>
+						  InputGestureText="Ctrl+V"
+						  IsEnabled="False"/>
 				<MenuItem Header="{Binding Source={x:Static Properties:MenuViewResources.Delete}}"
 						  Icon="{StaticResource Delete}"
-						  InputGestureText="Del"/>
+						  InputGestureText="Del"
+						  IsEnabled="False"/>
 				<Separator />
 			</MenuItem>
 			<MenuItem Header="Построение">
-				<MenuItem Header="Построить проект" />
-				<MenuItem Header="Построить текущую схемы" />
+				<MenuItem Header="Построить проект"
+						  IsEnabled="False"/>
+				<MenuItem Header="Построить текущую схемы"
+						  IsEnabled="False"/>
 			</MenuItem>
-			<MenuItem Header="Справка">
+			<MenuItem Header="Справка"
+					  IsEnabled="False">
 				<MenuItem Header="Инструкция" />
 				<MenuItem Header="О программе" />
 			</MenuItem>

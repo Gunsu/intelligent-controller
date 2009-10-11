@@ -1,4 +1,5 @@
-﻿using IC.Core.Abstract;
+﻿using System;
+using IC.Core.Abstract;
 using ValidationAspects.PostSharp;
 using ValidationAspects;
 
@@ -8,26 +9,26 @@ namespace IC.Core.Entities
 	/// Входная или выходная точка блока.
 	/// </summary>
 	[Validate]
+	[Serializable]
 	public sealed class BlockConnectionPoint
 	{
-		#region IBlockConnectionPoint Members
-
 		/// <summary>
 		/// Название.
 		/// </summary>
-		public string Name { get; private set; }
+		public string Name { get; set; }
 
 		/// <summary>
 		/// Описание о предназначении данной точки.
 		/// </summary>
-		public string Description { get; private set; }
+		public string Description { get; set; }
 
 		/// <summary>
 		/// Размер в байтах.
 		/// </summary>
-		public int Size { get; private set; }
+		public int Size { get; set; }
 
-		#endregion
+		public BlockConnectionPoint()
+		{}
 
 		public BlockConnectionPoint([NotNullOrEmpty] string name, [Minimum(1)] int size)
 		{
