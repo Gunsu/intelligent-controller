@@ -11,9 +11,15 @@ namespace IC.PresentationModels
 	[Validate]
 	public sealed class ProjectExplorerPresentationModel : BasePresentationModel, IProjectExplorerPresentationModel
 	{
-	    public string ProjectName
+		private string _header;
+		public string Header
 		{
-			get { return "Обозреватель проектов"; }
+			get { return _header; }
+			set
+			{
+				_header = value;
+				OnPropertyChanged("Header");
+			}
 		}
 
 		private ObservableCollection<Schema> _schemasListItems;
@@ -35,16 +41,33 @@ namespace IC.PresentationModels
             {
                 _currentSchemaItem = value;
                 OnPropertyChanged("CurrentSchemaItem");
-				_eventAggregator.GetEvent<CurrentSchemaChangedEvent>().Publish(value);
+				_eventAggregator.GetEvent<CurrentSchemaChangingEvent>().Publish(value);
             }
 		}
 
+		private Project _currentProject;
 
 		#region Methods for handling subscribed events
 
+		private void OnProjectCreated([NotNull] Project project)
+		{
+			Header = string.Format("Обозреватель проектов - {0}",
+			                       project.Name);
+			SchemasListItems = new ObservableCollection<Schema>(project.Schemas);
+			_currentProject = project;
+		}
+
+		private void OnProjectOpened([NotNull] Project project)
+		{
+			Header = string.Format("Обозреватель проектов - {0}",
+								   project.Name);
+			SchemasListItems = new ObservableCollection<Schema>(project.Schemas);
+			_currentProject = project;
+		}
+
 		private void OnSchemaCreated([NotNull] Schema schema)
 		{
-			SchemasListItems.Add(schema);
+			SchemasListItems = new ObservableCollection<Schema>(_currentProject.Schemas);
 			CurrentSchemaItem = schema;
 		}
 
@@ -53,6 +76,10 @@ namespace IC.PresentationModels
 		public ProjectExplorerPresentationModel([NotNull] IEventAggregator eventAggregator)
 			: base(eventAggregator)
         {
+			Header = "Обозреватель проектов";
+
+			_eventAggregator.GetEvent<ProjectCreatedEvent>().Subscribe(OnProjectCreated);
+			_eventAggregator.GetEvent<ProjectOpenedEvent>().Subscribe(OnProjectOpened);
 			_eventAggregator.GetEvent<SchemaCreatedEvent>().Subscribe(OnSchemaCreated);
         }
     }

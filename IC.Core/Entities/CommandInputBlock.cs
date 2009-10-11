@@ -1,9 +1,12 @@
-﻿namespace IC.Core.Entities
+﻿using System;
+
+namespace IC.Core.Entities
 {
 	/// <summary>
 	/// Блок входной команды.
 	/// </summary>
-	public class CommandInputBlock
+	[Serializable]
+	public class CommandInputBlock : Block
 	{
 	}
 }

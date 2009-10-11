@@ -10,6 +10,7 @@ using System.Windows.Markup;
 using System.Windows.Media;
 using System.Xml;
 using System.Xml.Linq;
+using IC.Core.Entities;
 using IC.UI.Infrastructure.Events;
 using IC.UI.Infrastructure.Interfaces;
 using Microsoft.Win32;
@@ -43,7 +44,7 @@ namespace IC.UI.Infrastructure.Controls
 			//this.CommandBindings.Add(new CommandBinding(ApplicationCommands.Cut, Cut_Executed, Cut_Enabled));
 			//this.CommandBindings.Add(new CommandBinding(ApplicationCommands.Copy, Copy_Executed, Copy_Enabled));
 			//this.CommandBindings.Add(new CommandBinding(ApplicationCommands.Paste, Paste_Executed, Paste_Enabled));
-			//this.CommandBindings.Add(new CommandBinding(ApplicationCommands.Delete, Delete_Executed, Delete_Enabled));
+			this.CommandBindings.Add(new CommandBinding(ApplicationCommands.Delete, Delete_Executed, Delete_Enabled));
 			//this.CommandBindings.Add(new CommandBinding(DesignerCanvas.Group, Group_Executed, Group_Enabled));
 			//this.CommandBindings.Add(new CommandBinding(DesignerCanvas.Ungroup, Ungroup_Executed, Ungroup_Enabled));
 			//this.CommandBindings.Add(new CommandBinding(DesignerCanvas.BringForward, BringForward_Executed, Order_Enabled));
@@ -71,15 +72,62 @@ namespace IC.UI.Infrastructure.Controls
 		public void SubscribeToEvents()
 		{
 			EventAggregator.GetEvent<SchemaSavingEvent>().Subscribe(OnSchemaSaving);
+			EventAggregator.GetEvent<CurrentSchemaChangingEvent>().Subscribe(OnCurrentSchemaChangingEvent);
+		}
+
+		private void OnCurrentSchemaChangingEvent(Schema schema)
+		{
+			try
+			{
+				EventAggregator.GetEvent<SchemaSavingEvent>().Publish(SerializeCurrentSchema());
+			}
+			finally
+			{
+                XElement root = schema.UISchema;
+
+				//if (root == null)
+				//    return;
+
+				this.Children.Clear();
+				this.SelectionService.ClearSelection();
+
+				IEnumerable<XElement> itemsXML = root.Elements("DesignerItems").Elements("DesignerItem");
+				foreach (XElement itemXML in itemsXML)
+				{
+					Guid id = new Guid(itemXML.Element("ID").Value);
+					DesignerItem item = DeserializeDesignerItem(itemXML, id, 0, 0);
+					this.Children.Add(item);
+					SetConnectorDecoratorTemplate(item);
+				}
+
+				this.InvalidateVisual();
+
+				IEnumerable<XElement> connectionsXML = root.Elements("Connections").Elements("Connection");
+				foreach (XElement connectionXML in connectionsXML)
+				{
+					Guid sourceID = new Guid(connectionXML.Element("SourceID").Value);
+					Guid sinkID = new Guid(connectionXML.Element("SinkID").Value);
+
+					String sourceConnectorName = connectionXML.Element("SourceConnectorName").Value;
+					String sinkConnectorName = connectionXML.Element("SinkConnectorName").Value;
+
+					Connector sourceConnector = GetConnector(sourceID, sourceConnectorName);
+					Connector sinkConnector = GetConnector(sinkID, sinkConnectorName);
+
+					Connection connection = new Connection(sourceConnector, sinkConnector);
+					Canvas.SetZIndex(connection, Int32.Parse(connectionXML.Element("zIndex").Value));
+					this.Children.Add(connection);
+				}
+
+				EventAggregator.GetEvent<CurrentSchemaChangedEvent>().Publish(schema);
+			}
 		}
 
 		private void OnSchemaSaving(XElement uiSchema)
 		{
 			if (uiSchema == null)
 			{
-				EventAggregator.GetEvent<SchemaSavingEvent>().Unsubscribe(OnSchemaSaving);
 				EventAggregator.GetEvent<SchemaSavingEvent>().Publish(SerializeCurrentSchema());
-				EventAggregator.GetEvent<SchemaSavingEvent>().Subscribe(OnSchemaSaving);
 			}
 		}
 

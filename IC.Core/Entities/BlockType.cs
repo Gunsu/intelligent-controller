@@ -29,38 +29,34 @@ namespace IC.Core.Entities
 			Description = description;
 		}
 
-		#region IBlock Members
-
 		/// <summary>
 		/// Название.
 		/// </summary>
-		public string Name { get; private set; }
+		public string Name { get; set; }
 
 		/// <summary>
 		/// Идентификатор.
 		/// </summary>
-		public int ID { get; private set; }
+		public int ID { get; set; }
 
 		/// <summary>
 		/// Описание о предназначении данного типа блока.
 		/// </summary>
-		public string Description { get; private set; }
+		public string Description { get; set; }
 
 		/// <summary>
 		/// Входные точки.
 		/// </summary>
-		public IList<BlockConnectionPoint> InputPoints { get; private set; }
+		public List<BlockConnectionPoint> InputPoints { get; set; }
 
 		/// <summary>
 		/// Выходные точки.
 		/// </summary>
-		public IList<BlockConnectionPoint> OutputPoints { get; private set; }
+		public List<BlockConnectionPoint> OutputPoints { get; set; }
 
 		public string ToolTip
 		{
 			get { return Name; }
 		}
-
-		#endregion
 	}
 }

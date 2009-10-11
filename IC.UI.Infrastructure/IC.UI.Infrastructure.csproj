@@ -80,6 +80,7 @@
     <Compile Include="Controls\ToolboxItem.cs" />
     <Compile Include="Events\BlocksConnectedEvent.cs" />
     <Compile Include="Events\CurrentSchemaChangedEvent.cs" />
+    <Compile Include="Events\CurrentSchemaChangingEvent.cs" />
     <Compile Include="Events\ProjectClosedEvent.cs" />
     <Compile Include="Events\ProjectClosingEvent.cs" />
     <Compile Include="Events\ProjectCreatedEvent.cs" />

@@ -1,8 +1,11 @@
-﻿namespace IC.Core.Entities
+﻿using System;
+
+namespace IC.Core.Entities
 {
 	/// <summary>
 	/// Маска команды.
 	/// </summary>
+	[Serializable]
 	public class CommandMask
 	{
 		private string _value;
@@ -10,7 +13,7 @@
 		/// <summary>
 		/// Размер маски в байтах.
 		/// </summary>
-		public uint Size { get; private set; }
+		public uint Size { get; set; }
 
 		/// <summary>
 		/// Значение маски.

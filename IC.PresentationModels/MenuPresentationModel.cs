@@ -9,13 +9,22 @@ using Microsoft.Practices.Composite.Presentation.Commands;
 namespace IC.PresentationModels
 {
 	public sealed class MenuPresentationModel : BasePresentationModel, IMenuPresentationModel
-	{       
+	{
 		#region Menu items commands and properties
 
 		public ICommand CreateProjectCommand { get; set; }
 
 		public ICommand CreateSchemaCommand { get; set; }
-		public bool CreateSchemaCommandIsEnabled { get; set; }
+		private bool _createSchemaCommandIsEnabled;
+		public bool CreateSchemaCommandIsEnabled
+		{
+			get { return _createSchemaCommandIsEnabled; }
+			set
+			{
+				_createSchemaCommandIsEnabled = value;
+				OnPropertyChanged("CreateSchemaCommandIsEnabled");
+			}
+		}
 
 		public ICommand OpenProjectCommand { get; set; }
 
@@ -58,7 +67,7 @@ namespace IC.PresentationModels
 
 		private void ProjectOpened(Project project)
 		{
-			throw new System.NotImplementedException();
+			CreateSchemaCommandIsEnabled = true;
 		}
 
 		private void ProjectClosed(Project project)
