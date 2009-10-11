@@ -90,36 +90,27 @@
     <Compile Include="..\Version.cs">
       <Link>Version.cs</Link>
     </Compile>
+    <Compile Include="Abstract\IBlockTypesRepository.cs" />
+    <Compile Include="Abstract\IProjectsRepository.cs" />
+    <Compile Include="Concrete\BlockTypesRepository.cs" />
+    <Compile Include="Concrete\ProjectsRepository.cs" />
     <Compile Include="Constants.cs" />
-    <Compile Include="Objects\Block.cs" />
-    <Compile Include="Objects\BlockType.cs" />
-    <Compile Include="Objects\BlockConnectionPoint.cs" />
-    <Compile Include="Objects\MemoryPool.cs" />
-    <Compile Include="Processes\BlockProcesses.cs" />
-    <Compile Include="Processes\BlockTypesProcesses.cs" />
-    <Compile Include="Processes\ProjectProcesses.cs" />
-    <Compile Include="Processes\SchemaProcesses.cs" />
+    <Compile Include="Entities\Block.cs" />
+    <Compile Include="Entities\BlockType.cs" />
+    <Compile Include="Entities\BlockConnectionPoint.cs" />
+    <Compile Include="Entities\MemoryPool.cs" />
+    <Compile Include="Enums\Orientation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Objects\BlockConnector.cs" />
-    <Compile Include="Objects\Blocks.cs" />
-    <Compile Include="Objects\CommandInputBlock.cs" />
-    <Compile Include="Objects\CommandOutputBlock.cs" />
-    <Compile Include="Objects\CommandMask.cs" />
-    <Compile Include="Objects\Project.cs" />
-    <Compile Include="Objects\Schema.cs" />
+    <Compile Include="Entities\BlockConnector.cs" />
+    <Compile Include="Entities\Blocks.cs" />
+    <Compile Include="Entities\CommandInputBlock.cs" />
+    <Compile Include="Entities\CommandOutputBlock.cs" />
+    <Compile Include="Entities\CommandMask.cs" />
+    <Compile Include="Entities\Project.cs" />
+    <Compile Include="Entities\Schema.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="key.snk" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\IC.CoreInterfaces\IC.CoreInterfaces.csproj">
-      <Project>{868B244D-7777-4A70-9DC1-C9C10D1A99D4}</Project>
-      <Name>IC.CoreInterfaces</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Project.Utils\Project.Utils.csproj">
-      <Project>{1FC836EA-429D-4826-A858-2DA01690EA78}</Project>
-      <Name>Project.Utils</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="BlockTypes.xml">

@@ -2,10 +2,9 @@
 using System.ComponentModel;
 using System.Collections.ObjectModel;
 using System.Xml.Linq;
-using IC.CoreInterfaces.Processes;
+using IC.Core.Entities;
 using Microsoft.Practices.Composite.Events;
 
-using IC.CoreInterfaces.Objects;
 using IC.UI.Infrastructure.Events;
 using IC.UI.Infrastructure.Interfaces.Schema;
 
@@ -17,11 +16,9 @@ namespace IC.PresentationModels
 	[Validate]
 	public sealed class SchemaPresentationModel : BasePresentationModel, ISchemaPresentationModel
 	{
-		private readonly ISchemaProcesses _schemaProcesses;
-
-		private ISchema _currentSchema;
-		private ObservableCollection<IBlock> _blocks;
-		private IBlock _currentBlock;
+		private Schema _currentSchema;
+		private ObservableCollection<Block> _blocks;
+		private Block _currentBlock;
 
 		public IEventAggregator EventAggregator
 		{
@@ -29,7 +26,7 @@ namespace IC.PresentationModels
 		}
 
 		[NotNull]
-		public ObservableCollection<IBlock> Blocks
+		public ObservableCollection<Block> Blocks
 		{
 			get { return _blocks; }
 			set
@@ -39,7 +36,7 @@ namespace IC.PresentationModels
 			}
 		}
 
-		public ISchema CurrentSchema
+		public Schema CurrentSchema
 		{
 			get { return _currentSchema; }
 			set
@@ -49,7 +46,7 @@ namespace IC.PresentationModels
 			}
 		}
 
-		public IBlock CurrentBlock
+		public Block CurrentBlock
 		{
 			get { return _currentBlock; }
 			set
@@ -61,7 +58,7 @@ namespace IC.PresentationModels
 
 		#region Methods for handling subscribed events
 
-		private void OnCurrentSchemaChanged(ISchema schema)
+		private void OnCurrentSchemaChanged(Schema schema)
 		{
 			_eventAggregator.GetEvent<SchemaSavingEvent>().Publish(null);
 			CurrentSchema = schema;
@@ -71,7 +68,7 @@ namespace IC.PresentationModels
 		{
 			if (uiSchema != null)
 			{
-				_schemaProcesses.Save(CurrentSchema, uiSchema);
+				CurrentSchema.Save(uiSchema);
 				_eventAggregator.GetEvent<SchemaSavedEvent>().Publish(EventArgs.Empty);
 			}
 		}
@@ -96,12 +93,9 @@ namespace IC.PresentationModels
 		}
 
 
-		public SchemaPresentationModel([NotNull] IEventAggregator eventAggregator,
-			                           [NotNull] ISchemaProcesses schemaProcesses)
+		public SchemaPresentationModel([NotNull] IEventAggregator eventAggregator)
 			: base(eventAggregator)
 		{
-			_schemaProcesses = schemaProcesses;
-
 			_eventAggregator.GetEvent<CurrentSchemaChangedEvent>().Subscribe(OnCurrentSchemaChanged);
 			_eventAggregator.GetEvent<SchemaSavingEvent>().Subscribe(OnSchemaSaving);
 

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Windows.Input;
-using System.Xml.Linq;
-using IC.CoreInterfaces.Objects;
+using IC.Core.Entities;
 using IC.UI.Infrastructure.Events;
 using IC.UI.Infrastructure.Interfaces.Menu;
 using Microsoft.Practices.Composite.Events;
@@ -17,6 +16,8 @@ namespace IC.PresentationModels
 
 		public ICommand CreateSchemaCommand { get; set; }
 		public bool CreateSchemaCommandIsEnabled { get; set; }
+
+		public ICommand OpenProjectCommand { get; set; }
 
 		public ICommand SaveProjectCommand { get; set; }
 
@@ -36,6 +37,11 @@ namespace IC.PresentationModels
 			_eventAggregator.GetEvent<SchemaCreatingEvent>().Publish(args);
 		}
 
+		private void OpenProject(EventArgs args)
+		{
+			_eventAggregator.GetEvent<ProjectOpeningEvent>().Publish(args);
+		}
+
 		private void SaveProject(EventArgs args)
 		{
 			_eventAggregator.GetEvent<ProjectSavingEvent>().Publish(args);
@@ -50,17 +56,17 @@ namespace IC.PresentationModels
 
 		#region Methods for handling subscribed events
 
-		private void ProjectOpened(IProject project)
+		private void ProjectOpened(Project project)
 		{
 			throw new System.NotImplementedException();
 		}
 
-		private void ProjectClosed(IProject project)
+		private void ProjectClosed(Project project)
 		{
 			throw new System.NotImplementedException();
 		}
 
-		private void ProjectCreated(IProject project)
+		private void ProjectCreated(Project project)
 		{
 			CreateSchemaCommandIsEnabled = true;
 		}
@@ -77,6 +83,7 @@ namespace IC.PresentationModels
 			CreateProjectCommand = new DelegateCommand<EventArgs>(CreateProject);
 			CreateSchemaCommand = new DelegateCommand<EventArgs>(CreateSchema);
 			CreateSchemaCommandIsEnabled = false;
+			OpenProjectCommand = new DelegateCommand<EventArgs>(OpenProject);
 			SaveProjectCommand = new DelegateCommand<EventArgs>(SaveProject);
 			SaveSchemaCommand = new DelegateCommand<EventArgs>(SaveSchema);
 		}

@@ -1,6 +1,6 @@
 ﻿using System.Windows;
-using IC.CoreInterfaces.Objects;
-using IC.CoreInterfaces.Processes;
+using IC.Core.Abstract;
+using IC.Core.Entities;
 using IC.UI.Infrastructure.Events;
 using IC.UI.Infrastructure.Interfaces.Windows;
 using Microsoft.Practices.Composite.Events;
@@ -16,18 +16,13 @@ namespace IC.UI.Windows
 	public partial class CreateSchemaWindow : Window, ICreateSchemaWindow
 	{
 		private readonly IEventAggregator _eventAggregator;
-		private readonly ISchemaProcesses _schemaProcesses;
-		private readonly IProjectProcesses _projectProcesses;
-		private IProject _currentProject;
+		
+		private Project _currentProject;
 
-		public CreateSchemaWindow([NotNull] IEventAggregator eventAggregator,
-			                      [NotNull] ISchemaProcesses schemaProcesses,
-			                      [NotNull] IProjectProcesses projectProcesses)
+		public CreateSchemaWindow([NotNull] IEventAggregator eventAggregator)
 		{
 			InitializeComponent();
 			_eventAggregator = eventAggregator;
-			_schemaProcesses = schemaProcesses;
-			_projectProcesses = projectProcesses;
 		}
 
 		private void Create_Click(object sender, RoutedEventArgs e)
@@ -38,13 +33,12 @@ namespace IC.UI.Windows
 				return;
 			}
 
-			ISchema schema = _schemaProcesses.Create(SchemaName.Text);
-			_projectProcesses.AddSchema(_currentProject, schema);
+			Schema schema = _currentProject.AddSchema(SchemaName.Text);
 			_eventAggregator.GetEvent<SchemaCreatedEvent>().Publish(schema);
 			this.Close();
 		}
 
-		public bool? ShowDialog([NotNull] IProject project)
+		public bool? ShowDialog([NotNull] Project project)
 		{
 			_currentProject = project;
 			return base.ShowDialog();

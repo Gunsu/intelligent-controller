@@ -1,4 +1,4 @@
-﻿using IC.CoreInterfaces.Objects;
+﻿using IC.Core.Entities;
 
 namespace IC.UI.Infrastructure.Interfaces.Windows
 {
@@ -9,6 +9,6 @@ namespace IC.UI.Infrastructure.Interfaces.Windows
 		/// </summary>
 		/// <param name="project">Текущий проект.</param>
 		/// <returns>Стандарнтый результат ShowDialog.</returns>
-		bool? ShowDialog(IProject project);
+		bool? ShowDialog(Project project);
 	}
 }
