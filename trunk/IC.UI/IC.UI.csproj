@@ -258,10 +258,6 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\IC.CoreInterfaces\IC.CoreInterfaces.csproj">
-      <Project>{868B244D-7777-4A70-9DC1-C9C10D1A99D4}</Project>
-      <Name>IC.CoreInterfaces</Name>
-    </ProjectReference>
     <ProjectReference Include="..\IC.Core\IC.Core.csproj">
       <Project>{321A0837-70B3-49A3-A842-DE690118153C}</Project>
       <Name>IC.Core</Name>

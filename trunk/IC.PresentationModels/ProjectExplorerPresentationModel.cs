@@ -1,5 +1,5 @@
 ﻿using System.Collections.ObjectModel;
-using IC.CoreInterfaces.Objects;
+using IC.Core.Entities;
 using IC.UI.Infrastructure.Events;
 using IC.UI.Infrastructure.Interfaces.ProjectExplorer;
 using Microsoft.Practices.Composite.Events;
@@ -16,8 +16,8 @@ namespace IC.PresentationModels
 			get { return "Обозреватель проектов"; }
 		}
 
-		private ObservableCollection<ISchema> _schemasListItems;
-		public ObservableCollection<ISchema> SchemasListItems
+		private ObservableCollection<Schema> _schemasListItems;
+		public ObservableCollection<Schema> SchemasListItems
 		{
 			get { return _schemasListItems; }
 			set
@@ -27,8 +27,8 @@ namespace IC.PresentationModels
 			}
 		}
 
-		private ISchema _currentSchemaItem;
-		public ISchema CurrentSchemaItem
+		private Schema _currentSchemaItem;
+		public Schema CurrentSchemaItem
 	    {
             get { return _currentSchemaItem; }
             set
@@ -42,7 +42,7 @@ namespace IC.PresentationModels
 
 		#region Methods for handling subscribed events
 
-		private void OnSchemaCreated([NotNull] ISchema schema)
+		private void OnSchemaCreated([NotNull] Schema schema)
 		{
 			SchemasListItems.Add(schema);
 			CurrentSchemaItem = schema;

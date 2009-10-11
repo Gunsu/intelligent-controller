@@ -27,7 +27,9 @@
 							  IsEnabled="{Binding CreateSchemaCommandIsEnabled}" />
 				</MenuItem>
 				<MenuItem Header="{Binding Source={x:Static Properties:MenuViewResources.OpenProject}}"
-						  Icon="{StaticResource OpenProject}" />
+						  Icon="{StaticResource OpenProject}"
+						  Command="{Binding OpenProjectCommand}"
+						  CommandParameter="{Binding Source={x:Static System:EventArgs.Empty}}" />
 				<Separator />
 				<MenuItem Header="{Binding Source={x:Static Properties:MenuViewResources.Save}}"
 						  Icon="{StaticResource Save}">

@@ -1,7 +1,6 @@
-﻿using System.IO;
-using System.Windows;
-using IC.CoreInterfaces.Objects;
-using IC.CoreInterfaces.Processes;
+﻿using System.Windows;
+using IC.Core.Abstract;
+using IC.Core.Entities;
 using IC.UI.Infrastructure.Events;
 using IC.UI.Infrastructure.Interfaces.Windows;
 using Microsoft.Practices.Composite.Events;
@@ -15,13 +14,13 @@ namespace IC.UI.Windows
 	public partial class CreateProjectWindow : Window, ICreateProjectWindow
 	{
 		private readonly IEventAggregator _eventAggregator;
-		private readonly IProjectProcesses _projectProcesses;
+		private readonly IProjectsRepository _projectsRepository;
 
-		public CreateProjectWindow(IEventAggregator eventAggregator, IProjectProcesses projectProcesses)
+		public CreateProjectWindow(IEventAggregator eventAggregator, IProjectsRepository projectsRepository)
 		{
 			InitializeComponent();
 			_eventAggregator = eventAggregator;
-			_projectProcesses = projectProcesses;
+			_projectsRepository = projectsRepository;
 		}
 
 		private void ChoosePath_Click(object sender, RoutedEventArgs e)
@@ -50,7 +49,7 @@ namespace IC.UI.Windows
 				return;
 			}
 
-			IProject project = _projectProcesses.Create(ProjectName.Text, ProjectPath.Text);
+			Project project = _projectsRepository.Create(ProjectName.Text);
 			_eventAggregator.GetEvent<ProjectCreatedEvent>().Publish(project);
 			this.Close();
 		}

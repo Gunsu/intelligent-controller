@@ -1,12 +1,12 @@
-﻿using Microsoft.Practices.Composite.Events;
+﻿using IC.Core.Abstract;
+using IC.Core.Concrete;
+using Microsoft.Practices.Composite.Events;
 using Microsoft.Practices.Unity;
 using IC.UI.Windows;
 using IC.UI.Infrastructure.Interfaces.Menu;
 using IC.UI.Infrastructure.Interfaces.ProjectExplorer;
 using IC.UI.Infrastructure.Interfaces.Toolbox;
 using IC.PresentationModels;
-using IC.CoreInterfaces.Processes;
-using IC.Core.Processes;
 using IC.UI.Infrastructure.Interfaces.Manager;
 using IC.UI.Infrastructure.Interfaces.Windows;
 using IC.UI.Infrastructure.Interfaces.Schema;
@@ -46,11 +46,13 @@ namespace IC.UI
 
 		private void RegisterCoreObjectsAndProcesses()
 		{
-			var blockTypesProcessesParams = new InjectionMember[] {new InjectionConstructor("BlockTypes.xml")};
-			_container.RegisterType<IBlockTypesProcesses, BlockTypesProcesses>(IsSingleton,
-				                                                               blockTypesProcessesParams);
-			_container.RegisterType<IProjectProcesses, ProjectProcesses>(IsSingleton);
-			_container.RegisterType<ISchemaProcesses, SchemaProcesses>(IsSingleton);
+			var blockTypesRepositoryParams = new InjectionMember[] {new InjectionConstructor("BlockTypes.xml")};
+			_container.RegisterType<IBlockTypesRepository, BlockTypesRepository>(IsSingleton,
+				                                                                 blockTypesRepositoryParams);
+			
+			var projectsRepositoryParams = new InjectionMember[] {new InjectionConstructor("Projects")};
+			_container.RegisterType<IProjectsRepository, ProjectsRepository>(IsSingleton,
+			                                                                 projectsRepositoryParams);
 		}
 
 
