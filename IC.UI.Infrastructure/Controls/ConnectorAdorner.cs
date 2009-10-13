@@ -71,20 +71,21 @@ namespace IC.UI.Infrastructure.Controls
 
                 Canvas.SetZIndex(newConnection, designerCanvas.Children.Count);
 
-				for (int i = 0; i < designerCanvas.Children.Count; ++i)
-				{
-					var child = designerCanvas.Children[i];
-					if (child is Connection)
-					{
-						var existingConnection = (Connection)child;
-						if (existingConnection.Source == sourceConnector ||
-							existingConnection.Sink == sinkConnector)
-						{
-							designerCanvas.Children.Remove(existingConnection);
-							--i;
-						}
-					}
-				}
+				//удаление повторных линий
+				//for (int i = 0; i < designerCanvas.Children.Count; ++i)
+				//{
+				//    var child = designerCanvas.Children[i];
+				//    if (child is Connection)
+				//    {
+				//        var existingConnection = (Connection)child;
+				//        if (existingConnection.Source == sourceConnector ||
+				//            existingConnection.Sink == sinkConnector)
+				//        {
+				//            designerCanvas.Children.Remove(existingConnection);
+				//            --i;
+				//        }
+				//    }
+				//}
 
                 this.designerCanvas.Children.Add(newConnection);
                 
