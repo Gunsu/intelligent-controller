@@ -31,5 +31,13 @@
 				  Header="Логика"
 				  Content="{StaticResource LogicBlocksStencils}"
 				  IsExpanded="True" />
+		<Expander x:Name="ModuleBlocksStencils"
+				  Header="Модуль"
+				  Content="{StaticResource ModuleBlocksStencils}"
+				  IsExpanded="True" />
+		<Expander x:Name="ADCBlocksStencils"
+				  Header="АЦП"
+				  Content="{StaticResource ADCBlocksStencils}"
+				  IsExpanded="True" />
 	</StackPanel>
 </UserControl>

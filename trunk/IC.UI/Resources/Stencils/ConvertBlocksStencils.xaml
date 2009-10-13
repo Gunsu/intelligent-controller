@@ -45,6 +45,34 @@
 					</ControlTemplate>
 				</Controls:DesignerItem.ConnectorDecoratorTemplate>
 			</Image>
+			
+			<!--Bits2Byte-->
+			<Image Source="../Images/Bits2Byte.png"
+				   IsHitTestVisible="False"
+				   ToolTip="">
+				<Controls:DesignerItem.DragThumbTemplate>
+					<ControlTemplate>
+						<Image Source="../Images/Bits2Byte.png"
+							   IsHitTestVisible="True" 
+							   ToolTip=""/>
+					</ControlTemplate>
+				</Controls:DesignerItem.DragThumbTemplate>
+				<Controls:DesignerItem.ConnectorDecoratorTemplate>
+					<ControlTemplate>
+						<Controls:RelativePositionPanel Margin="-4">
+							<Controls:Connector Orientation="Left" Controls:RelativePositionPanel.RelativePosition="0,0.2" />
+							<Controls:Connector Orientation="Left" Controls:RelativePositionPanel.RelativePosition="0,0.4" />
+							<Controls:Connector Orientation="Left" Controls:RelativePositionPanel.RelativePosition="0,0.6" />
+							<Controls:Connector Orientation="Left" Controls:RelativePositionPanel.RelativePosition="0,0.8" />
+							<Controls:Connector Orientation="Top" Controls:RelativePositionPanel.RelativePosition="0.3,0" />
+							<Controls:Connector Orientation="Top" Controls:RelativePositionPanel.RelativePosition="0.6,0" />
+							<Controls:Connector Orientation="Bottom" Controls:RelativePositionPanel.RelativePosition="0.3,1" />
+							<Controls:Connector Orientation="Bottom" Controls:RelativePositionPanel.RelativePosition="0.6,1" />
+							<Controls:Connector Orientation="Right" Controls:RelativePositionPanel.RelativePosition="1,0.5" />
+						</Controls:RelativePositionPanel>
+					</ControlTemplate>
+				</Controls:DesignerItem.ConnectorDecoratorTemplate>
+			</Image>
 		</ItemsControl.Items>
 	</Controls:Toolbox>
 </ResourceDictionary>
