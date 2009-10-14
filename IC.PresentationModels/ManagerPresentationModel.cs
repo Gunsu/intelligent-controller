@@ -7,6 +7,7 @@ using Microsoft.Practices.Composite.Events;
 using IC.UI.Infrastructure.Events;
 using IC.UI.Infrastructure.Interfaces.Manager;
 using IC.UI.Infrastructure.Interfaces.Windows;
+using Microsoft.Practices.Composite.Presentation.Events;
 using Microsoft.Win32;
 using ValidationAspects;
 using ValidationAspects.PostSharp;
@@ -57,11 +58,6 @@ namespace IC.PresentationModels
 			_createProjectWindow.ShowDialog();
 		}
 
-		private void OnProjectOpened(Project project)
-		{
-			CurrentProject = project;
-		}
-
 		private void OnProjectOpening(EventArgs args)
 		{
 			var dialog = new OpenFileDialog();
@@ -69,26 +65,21 @@ namespace IC.PresentationModels
 			if (dialog.ShowDialog() == true)
 			{
 				var result = _projectsRepository.Load(Path.GetFileNameWithoutExtension(dialog.FileName));
+				CurrentProject = result;
 				_eventAggregator.GetEvent<ProjectOpenedEvent>().Publish(result);
 			}
 		}
 
 		private void OnProjectSaving(EventArgs args)
 		{
-			_eventAggregator.GetEvent<SchemaSavedEvent>().Subscribe(OnSchemaSaved);
 			_eventAggregator.GetEvent<SchemaSavingEvent>().Publish(null);
+			_projectsRepository.Update(CurrentProject);
+			_eventAggregator.GetEvent<ProjectSavedEvent>().Publish(EventArgs.Empty);
 		}
 
 		private void OnSchemaCreating(EventArgs args)
 		{
 			_createSchemaWindow.ShowDialog(CurrentProject);
-		}
-
-		private void OnSchemaSaved(EventArgs args)
-		{
-			_eventAggregator.GetEvent<SchemaSavedEvent>().Unsubscribe(OnSchemaSaved);
-			_projectsRepository.Update(CurrentProject);
-			_eventAggregator.GetEvent<ProjectSavedEvent>().Publish(EventArgs.Empty);
 		}
 
 		#endregion
@@ -105,10 +96,9 @@ namespace IC.PresentationModels
 
 			_eventAggregator.GetEvent<ProjectCreatedEvent>().Subscribe(OnProjectCreated);
 			_eventAggregator.GetEvent<ProjectCreatingEvent>().Subscribe(OnProjectCreating);
-			_eventAggregator.GetEvent<ProjectOpenedEvent>().Subscribe(OnProjectOpened);
-			_eventAggregator.GetEvent<ProjectOpeningEvent>().Subscribe(OnProjectOpening);
+			_eventAggregator.GetEvent<ProjectOpeningEvent>().Subscribe(OnProjectOpening, ThreadOption.UIThread);
 			_eventAggregator.GetEvent<ProjectSavingEvent>().Subscribe(OnProjectSaving);
-			_eventAggregator.GetEvent<SchemaCreatingEvent>().Subscribe(OnSchemaCreating);
+			_eventAggregator.GetEvent<SchemaCreatingEvent>().Subscribe(OnSchemaCreating, ThreadOption.UIThread);
 		}
 	}
 }

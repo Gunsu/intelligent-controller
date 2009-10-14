@@ -26,9 +26,15 @@
 				<Controls:DesignerItem.ConnectorDecoratorTemplate>
 					<ControlTemplate>
 						<Controls:RelativePositionPanel Margin="-4">
-							<Controls:Connector Orientation="Bottom" Controls:RelativePositionPanel.RelativePosition="0.5,1" />
-							<Controls:Connector Orientation="Left" Controls:RelativePositionPanel.RelativePosition="0,0.5" />
-							<Controls:Connector Orientation="Right" Controls:RelativePositionPanel.RelativePosition="1,0.5" />
+							<Controls:Connector Name="Bottom"
+												Orientation="Bottom"
+												Controls:RelativePositionPanel.RelativePosition="0.5,1" />
+							<Controls:Connector Name="Left"
+												Orientation="Left"
+												Controls:RelativePositionPanel.RelativePosition="0,0.5" />
+							<Controls:Connector Name="Right"
+												Orientation="Right"
+												Controls:RelativePositionPanel.RelativePosition="1,0.5" />
 						</Controls:RelativePositionPanel>
 					</ControlTemplate>
 				</Controls:DesignerItem.ConnectorDecoratorTemplate>
@@ -55,9 +61,15 @@
 				<Controls:DesignerItem.ConnectorDecoratorTemplate>
 						<ControlTemplate>
 							<Controls:RelativePositionPanel Margin="-4">
-								<Controls:Connector Orientation="Top" Controls:RelativePositionPanel.RelativePosition="0.5,0" />
-								<Controls:Connector Orientation="Left" Controls:RelativePositionPanel.RelativePosition="0,0.5" />
-								<Controls:Connector Orientation="Right" Controls:RelativePositionPanel.RelativePosition="1,0.5" />
+								<Controls:Connector Name="Top"
+													Orientation="Top"
+													Controls:RelativePositionPanel.RelativePosition="0.5,0" />
+								<Controls:Connector Name="Left"
+													Orientation="Left"
+													Controls:RelativePositionPanel.RelativePosition="0,0.5" />
+								<Controls:Connector Name="Right"
+													Orientation="Right"
+													Controls:RelativePositionPanel.RelativePosition="1,0.5" />
 							</Controls:RelativePositionPanel>
 						</ControlTemplate>
 				</Controls:DesignerItem.ConnectorDecoratorTemplate>
@@ -84,8 +96,12 @@
 				<Controls:DesignerItem.ConnectorDecoratorTemplate>
 					<ControlTemplate>
 						<Controls:RelativePositionPanel Margin="-4">
-							<Controls:Connector Orientation="Left" Controls:RelativePositionPanel.RelativePosition="0,0.5" />
-							<Controls:Connector Orientation="Right" Controls:RelativePositionPanel.RelativePosition="1,0.5" />
+							<Controls:Connector Name="Left"
+												Orientation="Left"
+												Controls:RelativePositionPanel.RelativePosition="0,0.5" />
+							<Controls:Connector Name="Right"
+												Orientation="Right"
+												Controls:RelativePositionPanel.RelativePosition="1,0.5" />
 						</Controls:RelativePositionPanel>
 					</ControlTemplate>
 				</Controls:DesignerItem.ConnectorDecoratorTemplate>

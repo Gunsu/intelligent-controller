@@ -67,7 +67,7 @@ namespace IC.UI.Infrastructure.Controls
 		}
 
 		/// <summary>
-		/// Подписывает на события. Необходимо выхывать только после того, как инициализирован EventAggregator.
+		/// Подписывает на события. Необходимо вызывать только после того, как инициализирован EventAggregator.
 		/// </summary>
 		public void SubscribeToEvents()
 		{
@@ -77,12 +77,7 @@ namespace IC.UI.Infrastructure.Controls
 
 		private void OnCurrentSchemaChangingEvent(Schema schema)
 		{
-			try
-			{
 				EventAggregator.GetEvent<SchemaSavingEvent>().Publish(SerializeCurrentSchema());
-			}
-			finally
-			{
                 XElement root = schema.UISchema;
 
 				//if (root == null)
@@ -119,8 +114,9 @@ namespace IC.UI.Infrastructure.Controls
 					this.Children.Add(connection);
 				}
 
+				this.InvalidateVisual();
+
 				EventAggregator.GetEvent<CurrentSchemaChangedEvent>().Publish(schema);
-			}
 		}
 
 		private void OnSchemaSaving(XElement uiSchema)
