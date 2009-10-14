@@ -96,9 +96,9 @@
     <Compile Include="SchemaPresentationModelTest.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\IC.CoreInterfaces\IC.CoreInterfaces.csproj">
-      <Project>{868B244D-7777-4A70-9DC1-C9C10D1A99D4}</Project>
-      <Name>IC.CoreInterfaces</Name>
+    <ProjectReference Include="..\..\IC.Core\IC.Core.csproj">
+      <Project>{321A0837-70B3-49A3-A842-DE690118153C}</Project>
+      <Name>IC.Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\IC.PresentationModels\IC.PresentationModels.csproj">
       <Project>{030180C9-41A1-45D5-B95A-B905C9AA9B6B}</Project>
@@ -107,10 +107,6 @@
     <ProjectReference Include="..\..\IC.UI.Infrastructure\IC.UI.Infrastructure.csproj">
       <Project>{8AE70E66-ADCC-4368-B348-8608E7A67658}</Project>
       <Name>IC.UI.Infrastructure</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Project.Utils\Project.Utils.csproj">
-      <Project>{1FC836EA-429D-4826-A858-2DA01690EA78}</Project>
-      <Name>Project.Utils</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

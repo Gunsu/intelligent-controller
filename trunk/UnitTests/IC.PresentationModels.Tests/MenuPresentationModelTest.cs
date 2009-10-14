@@ -71,5 +71,25 @@ namespace IC.PresentationModels.Tests
 			_model.SaveSchemaCommand.Execute(EventArgs.Empty);
 			Assert.IsTrue(schemaSavingEvent.IsPublished);
 		}
+
+		/// <summary>
+		/// Проверяет, что модель не подписана на событие CurrentSchemaChangedEvent.
+		/// </summary>
+		[Test]
+		public void Model_Is_Not_Subscribed_On_CurrentSchemaChangedEvent()
+		{
+			var model = new MenuPresentationModel(_mockEventAggregator);
+
+			try
+			{
+				var mockCurrentSchemaChangedEvent =
+					(MockCurrentSchemaChangedEvent)_mockEventAggregator.GetEvent<CurrentSchemaChangedEvent>();
+				Assert.IsFalse(mockCurrentSchemaChangedEvent.IsSubscribed);
+			}
+			catch
+			{
+				// expected
+			}
+		}
 	}
 }

@@ -1,5 +1,5 @@
-﻿using IC.CoreInterfaces.Objects;
-using IC.CoreInterfaces.Processes;
+﻿using IC.Core.Abstract;
+using IC.Core.Entities;
 using IC.UI.Infrastructure.Interfaces.Windows;
 using Moq;
 
@@ -26,28 +26,28 @@ namespace IC.PresentationModels.Tests.Mocks
 
 		#region Processes
 
-		public static IProjectProcesses ProjectProcesses
+		public static IBlockTypesRepository BlockTypesRepository
 		{
-			get { return new Mock<IProjectProcesses>().Object; }
+			get { return new Mock<IBlockTypesRepository>().Object; }
 		}
 
-		public static ISchemaProcesses SchemaProcesses
+		public static IProjectsRepository ProjectsRepository
 		{
-			get { return new Mock<ISchemaProcesses>().Object; }
+			get { return new Mock<IProjectsRepository>().Object; }
 		}
 
 		#endregion
 
 		#region Objects
 
-		public static ISchema Schema
+		public static Schema Schema
 		{
-			get { return new Mock<ISchema>().Object; }
+			get { return new Mock<Schema>().Object; }
 		}
 
-		public static IProject Project
+		public static Project Project
 		{
-			get { return new Mock<IProject>().Object; }
+			get { return new Mock<Project>().Object; }
 		}
 
 		#endregion

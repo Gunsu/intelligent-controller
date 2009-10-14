@@ -18,10 +18,18 @@
 				<Controls:DesignerItem.ConnectorDecoratorTemplate>
 					<ControlTemplate>
 						<Controls:RelativePositionPanel Margin="-4">
-							<Controls:Connector Orientation="Left" Controls:RelativePositionPanel.RelativePosition="0,0.45" />
-							<Controls:Connector Orientation="Left" Controls:RelativePositionPanel.RelativePosition="0,0.65" />
-							<Controls:Connector Orientation="Left" Controls:RelativePositionPanel.RelativePosition="0,0.85" />
-							<Controls:Connector Orientation="Right" Controls:RelativePositionPanel.RelativePosition="1,0.65" />
+							<Controls:Connector Name="Left1"
+												Orientation="Left"
+												Controls:RelativePositionPanel.RelativePosition="0,0.45" />
+							<Controls:Connector Name="Left2"
+												Orientation="Left"
+												Controls:RelativePositionPanel.RelativePosition="0,0.65" />
+							<Controls:Connector Name="Left3"
+												Orientation="Left"
+												Controls:RelativePositionPanel.RelativePosition="0,0.85" />
+							<Controls:Connector Name="Right"
+												Orientation="Right"
+												Controls:RelativePositionPanel.RelativePosition="1,0.65" />
 						</Controls:RelativePositionPanel>
 					</ControlTemplate>
 				</Controls:DesignerItem.ConnectorDecoratorTemplate>

@@ -246,7 +246,7 @@ namespace IC.UI.Infrastructure.Controls
             Source = source;
             Sink = sink;
             base.Unloaded += Connection_Unloaded;
-			source.EventAggregator.GetEvent<BlocksConnectedEvent>().Publish(this);
+			//source.EventAggregator.GetEvent<BlocksConnectedEvent>().Publish(this);
         }
 
 

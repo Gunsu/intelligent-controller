@@ -1,5 +1,4 @@
 ﻿using System;
-using System.ComponentModel;
 using System.Collections.ObjectModel;
 using System.Xml.Linq;
 using IC.Core.Entities;
@@ -20,6 +19,9 @@ namespace IC.PresentationModels
 		private ObservableCollection<Block> _blocks;
 		private Block _currentBlock;
 
+		/// <summary>
+		/// Эта штука вынесена наружу, для того чтобы DesignerCanvas имела к ней доступ. Yep, it's a dirty hack.
+		/// </summary>
 		public IEventAggregator EventAggregator
 		{
 			get { return base._eventAggregator; }
@@ -61,7 +63,6 @@ namespace IC.PresentationModels
 		private void OnCurrentSchemaChanged(Schema schema)
 		{
 			CurrentSchema = schema;
-			//_eventAggregator.GetEvent<CurrentSchemaChangedEvent>().Publish(schema);
 		}
 
 		private void OnSchemaSaving(XElement uiSchema)
