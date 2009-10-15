@@ -9,8 +9,7 @@ namespace IC.Core.Entities
 	/// Входная или выходная точка блока.
 	/// </summary>
 	[Validate]
-	[Serializable]
-	public sealed class BlockConnectionPoint
+	public sealed class BlockConnectionPoint : ConnectionPoint
 	{
 		/// <summary>
 		/// Название.
@@ -26,9 +25,6 @@ namespace IC.Core.Entities
 		/// Размер в байтах.
 		/// </summary>
 		public int Size { get; set; }
-
-		public BlockConnectionPoint()
-		{}
 
 		public BlockConnectionPoint([NotNullOrEmpty] string name, [Minimum(1)] int size)
 		{

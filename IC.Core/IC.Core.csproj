@@ -98,7 +98,11 @@
     <Compile Include="Entities\Block.cs" />
     <Compile Include="Entities\BlockType.cs" />
     <Compile Include="Entities\BlockConnectionPoint.cs" />
+    <Compile Include="Entities\ConnectionPoint.cs" />
     <Compile Include="Entities\MemoryPool.cs" />
+    <Compile Include="Entities\MemoryPoolVariable.cs" />
+    <Compile Include="Entities\ROMData.cs" />
+    <Compile Include="Enums\ObjectType.cs" />
     <Compile Include="Enums\Orientation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Entities\BlockConnector.cs" />
