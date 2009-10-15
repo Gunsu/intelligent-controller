@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Xml.Linq;
+using System.Xml.Serialization;
 using ValidationAspects;
 
 namespace IC.Core.Entities
@@ -20,6 +21,7 @@ namespace IC.Core.Entities
 		/// <summary>
 		/// Определяет, сохранён ли проект.
 		/// </summary>
+		[XmlIgnore]
 		public bool IsSaved { get; set; }
 
 		/// <summary>
@@ -29,11 +31,18 @@ namespace IC.Core.Entities
 
 		public string Name { get; set; }
 
+		[XmlIgnore]
+		public ROMData ROMData { get; private set; }
+
+		[XmlIgnore]
+		public MemoryPool MemoryPool { get; private set; }
 
 		public Project()
 		{
 			Schemas = new List<Schema>();
 			IsSaved = false;
+			this.ROMData = new ROMData(Constants.ROM_DATA_SIZE);
+			this.MemoryPool = new MemoryPool(Constants.MEMORY_POOL_SIZE);
 		}
 
 		/// <summary>
@@ -46,6 +55,7 @@ namespace IC.Core.Entities
 			var schema = new Schema();
 			schema.Name = name;
 			schema.Save(new XElement("root"));
+			schema.Project = this;
 			Schemas.Add(schema);
 			return schema;
 		}
