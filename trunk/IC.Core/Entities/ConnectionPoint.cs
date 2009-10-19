@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using IC.Core.Enums;
 
 namespace IC.Core.Entities
 {
@@ -8,6 +9,8 @@ namespace IC.Core.Entities
 
 		internal int VariableIndex { get; set; }
 		internal bool Processed { get; set; }
+		internal int DataSize { get; set; }
+		internal ObjectType ObjectType { get; set; }
 
 		public ConnectionPoint()
 		{
@@ -23,6 +26,16 @@ namespace IC.Core.Entities
 			{
 				output.SetProcessedFlagRecursive();
 			}
+		}
+
+		/// <summary>
+		/// Какскадно вешает индекс переменной на все дочерние точеи
+		/// </summary>
+		public void SetCompileVariableRecursive(int index)
+		{
+			VariableIndex = index;
+			foreach (var point in Outputs)
+				SetCompileVariableRecursive(index);
 		}
 	}
 }

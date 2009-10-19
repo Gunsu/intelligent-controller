@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using IC.Core.Entities;
+using NUnit.Framework;
 
 namespace IC.Core.Tests
 {
@@ -8,7 +9,10 @@ namespace IC.Core.Tests
 		[Test]
 		public void Compile_Should_Make_Correct_Result()
 		{
-			Assert.Fail("Not Implemented");
+			var project = new Project();
+			project.AddSchema("");
+			short pos = 0;
+			project.Schemas[0].Compile(ref pos);
 		}
 	}
 }
