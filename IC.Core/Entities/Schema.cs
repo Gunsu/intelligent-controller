@@ -18,10 +18,10 @@ namespace IC.Core.Entities
 		/// </summary>
 		public Blocks Blocks { get; set; }
 
-        /// <summary>
-        /// Имя схемы.
-        /// </summary>
-        public string Name { get; set; }
+		/// <summary>
+		/// Имя схемы.
+		/// </summary>
+		public string Name { get; set; }
 
 		public List<ConnectionPoint> Points { get; set; }
 
@@ -38,13 +38,13 @@ namespace IC.Core.Entities
 
 		internal Project Project { get; set; }
 
-		internal List<MemoryPoolVariable> Variables{ get; private set; }
+		internal List<MemoryPoolVariable> Variables { get; private set; }
 
 		public Schema()
 		{
 			Blocks = new Blocks();
 			IsSaved = false;
-			
+
 			Variables = new List<MemoryPoolVariable>();
 			Points = new List<ConnectionPoint>();
 		}
@@ -64,7 +64,7 @@ namespace IC.Core.Entities
 			BlockConnectionPoint point;
 			int order;
 			int blocksCount;
-			
+
 			// Подготовка
 
 			Project.MemoryPool.Free();
@@ -76,24 +76,24 @@ namespace IC.Core.Entities
 			block = GetBlockWithProcessedInputs();
 			while (block != null)
 			{
-			    if (block.ObjectType == ObjectType.Block)
-			    {
-			        block.Order = sortedBlocks.Count;
-			        sortedBlocks.Add(block);
-			    }
-			    block = GetBlockWithProcessedInputs();
+				if (block.ObjectType == ObjectType.Block)
+				{
+					block.Order = sortedBlocks.Count;
+					sortedBlocks.Add(block);
+				}
+				block = GetBlockWithProcessedInputs();
 
-			    // Зададим порядок обработки выходных блоков самыми последними цифрами
-			    order = sortedBlocks.Count;
-			    for (int i = 0; i < Blocks.Count; ++i)
-			    {
-			        if (Blocks[i].ObjectType == ObjectType.OutputCommandBlock)
-			        {
-			            Blocks[i].Processed = true;
-			            Blocks[i].Order = order;
-			            order++;
-			        }
-			    }
+				// Зададим порядок обработки выходных блоков самыми последними цифрами
+				order = sortedBlocks.Count;
+				for (int i = 0; i < Blocks.Count; ++i)
+				{
+					if (Blocks[i].ObjectType == ObjectType.OutputCommandBlock)
+					{
+						Blocks[i].Processed = true;
+						Blocks[i].Order = order;
+						order++;
+					}
+				}
 			}
 
 			// Заголовок схемы
@@ -104,7 +104,7 @@ namespace IC.Core.Entities
 			Project.ROMData[schemaHeaderPos] = Convert.ToByte(blocksCount);
 
 			// пропустим заголовок схемы
-            pos += Convert.ToInt16(1 + blocksCount*3);
+			pos += Convert.ToInt16(1 + blocksCount * 3);
 			// 1 байт количества блоков + 3 байта на каждый блок (1 байт id блока + 2 байта адрес параметров)
 
 			// Выходная команда. Спецблок 0
@@ -125,35 +125,32 @@ namespace IC.Core.Entities
 			inMaskPos = 0;
 			schemaBlockHeaderPos = pos;
 			pos++;
-			block = FindBlockWithoutInputs(ObjectType.InputCommandBlock);
+			block = GetBlockWithoutInputs(ObjectType.InputCommandBlock);
 			while (block != null)
 			{
-			    // если выход блока с чем-нибудь соединён, то можно добавлять переменную
-			    if (block.GetOutputPoint(1).GetFirstOutputPoint())
-			    {
-			        // добавим переменную
-			        var varka = AddVariable(block.GetOutputPoint(1));
-			        blocksCount++;
+				// если выход блока с чем-нибудь соединён, то можно добавлять переменную
+				if (block.OutputPoints[1].Outputs.Count != 0)
+				{
+					// добавим переменную
+					var varka = AddVariable(block.OutputPoints[1]);
+					blocksCount++;
 
-			        // пишем информацию по спецблоку 0 в ROM
-			        romData[pos] = (char) inMaskPos; // откуда
-			        pos++;
-			        romData[pos] = (char) varka.address; // куда
-			        pos++;
-			        romData[pos] = (char) varka.size; // сколько
-			        pos++;
-			    }
+					// пишем информацию по спецблоку 0 в ROM
+					Project.ROMData[pos] = (byte)inMaskPos; // откуда
+					pos++;
+					Project.ROMData[pos] = (byte)varka.Address; // куда
+					pos++;
+					Project.ROMData[pos] = (byte)varka.Size; // сколько
+					pos++;
+				}
 
-			    inMaskPos += ((InputCommandBlock) block).Mask.Length;
+				inMaskPos += ((InputCommandBlock)block).Mask.Length;
 
-			    point = (BlockConnectionPoint) block.GetOutputPoint(0).GetFirstOutputPoint();
-			    if (point != null)
-			        block = (InputCommandBlock) point.GetBlock();
-			    else
-			        block = null;
+				point = (BlockConnectionPoint)block.OutputPoints[0].Outputs[0];
+				block = point != null ? point.Block : null;
 			}
 			// количество параметров спецблока 0
-			romData[schemaBlockHeaderPos] = blocksCount;
+			Project.ROMData[schemaBlockHeaderPos] = (byte)blocksCount;
 
 			// Основные блоки
 
@@ -162,44 +159,44 @@ namespace IC.Core.Entities
 
 			for (int i = 0; i < sortedBlocks.Count; ++i)
 			{
-			    // запишем блок в заголовок схемы
-			    int xxx = sortedBlocks[i].BlockType.ID;
-			    romData[schemaHeaderPos] = xxx;
-			    schemaHeaderPos++;
-			    // адрес параметров
-			    romData[schemaHeaderPos] = (char) (pos >> 8); // старший байт адреса
-			    schemaHeaderPos++;
-			    romData[schemaHeaderPos] = (char) pos; // младший байт адреса
-			    schemaHeaderPos++;
+				// запишем блок в заголовок схемы
+				int xxx = sortedBlocks[i].BlockType.ID;
+				Project.ROMData[schemaHeaderPos] = (byte)xxx;
+				schemaHeaderPos++;
+				// адрес параметров
+				Project.ROMData[schemaHeaderPos] = (byte)(pos >> 8); // старший байт адреса
+				schemaHeaderPos++;
+				Project.ROMData[schemaHeaderPos] = (byte)pos; // младший байт адреса
+				schemaHeaderPos++;
 
-			    // входные параметры
-			    for (int j = 0; j < sortedBlocks[i].GetInputPointsCount; ++j)
-			    {
-			        romData[pos] = (char) variables[sortedBlocks[i].GetInputPoint(j).CompileData.VariableIndex].address;
-			        pos++;
-			    }
+				// входные параметры
+				for (int j = 0; j < sortedBlocks[i].InputPoints.Count; ++j)
+				{
+					Project.ROMData[pos] = (byte)Variables[sortedBlocks[i].InputPoints[j].VariableIndex].Address;
+					pos++;
+				}
 
-			    // навешиваем переменные на выход и сразу добавляем выходные параметры
-			    for (int j = 0; j < sortedBlocks[i].GetOutputPointsCount; ++j)
-			    {
-			        varka = AddVariable(sortedBlocks[i].GetOutputPoint(j));
-			        romData[pos] = (char) varka.Address;
-			        pos++;
-			    }
+				// навешиваем переменные на выход и сразу добавляем выходные параметры
+				for (int j = 0; j < sortedBlocks[i].OutputPoints.Count; ++j)
+				{
+					var varka = AddVariable(sortedBlocks[i].OutputPoints[j]);
+					Project.ROMData[pos] = (byte)varka.Address;
+					pos++;
+				}
 
-			    // переменные, входящие только в данный блок больше не нужны
-			    GarbageCollect(sortedBlocks[i].CompileData.Order);
+				// переменные, входящие только в данный блок больше не нужны
+				GarbageCollect(sortedBlocks[i].Order);
 			}
 
 			// Выходная команда. Спецблок 1
 
 			// запишем спецблок 1 в заголовок схемы
-			romData[schemaHeaderPos] = 1; // id блока
+			Project.ROMData[schemaHeaderPos] = 1; // id блока
 			schemaHeaderPos++;
 			// адрес параметров
-			romData[schemaHeaderPos] = (char) (pos >> 8); // старший байт адреса
+			Project.ROMData[schemaHeaderPos] = (byte)(pos >> 8); // старший байт адреса
 			schemaHeaderPos++;
-			romData[schemaHeaderPos] = (char) pos; // младший байт адреса
+			Project.ROMData[schemaHeaderPos] = (byte)pos; // младший байт адреса
 			schemaHeaderPos++;
 
 			// обработаем последовательно блоки выходной команды
@@ -207,65 +204,171 @@ namespace IC.Core.Entities
 			blocksCount = 0;
 			schemaBlockHeaderPos = pos;
 			pos++;
-			block = FindFirstOutputCommandBlock();
+			block = GetFirstOutputCommandBlock();
 			while (block != null)
 			{
-			    // пишем информацию по спецблоку 1 в ром
-			    // для трех типов выходных блоков пишется разная информация
-			    if (block.GetType() == ObjectType.OutputCommandBlock)
-			    {
-			        blocksCount++;
+				// пишем информацию по спецблоку 1 в ром
+				// для трех типов выходных блоков пишется разная информация
+				if (block.ObjectType == ObjectType.OutputCommandBlock)
+				{
+					blocksCount++;
 
-			        varka = variable[block.GetInputPoint(1).compileData.variableIndex];
+					var varka = Variables[block.InputPoints[1].VariableIndex];
 
-			        romData[pos] = (char) varka.address; // откуда
-			        pos++;
-			        romData[pos] = OutParamModifier.outVar; // модификатор параметра
-			        pos++;
-			        romData[pos] = (char) varka.size; // сколько
-			        pos++;
-			    }
-			    else if (block.GetType() == ObjectType.OutputCommandBufBlock)
-			    {
-			        blocksCount++;
+					Project.ROMData[pos] = (byte)varka.Address; // откуда
+					pos++;
+					Project.ROMData[pos] = (byte)OutParamType.Variable; // модификатор параметра
+					pos++;
+					Project.ROMData[pos] = (byte)varka.Size; // сколько
+					pos++;
+				}
+				else if (block.ObjectType == ObjectType.OutputCommandBufBlock)
+				{
+					blocksCount++;
 
-			        // для буфера все аналогично выводу переменной
-			        varka = variables[block.GetInputPoint(1).compileData.variableIndex];
+					// для буфера все аналогично выводу переменной
+					var varka = Variables[block.InputPoints[1].VariableIndex];
 
-			        romData[pos] = (char) varka.address; // откуда
-			        pos++;
-			        romData[pos] = OutParamModifier.outBuf; // модификатор параметра
-			        pos++;
-			        romData[pos] = (char) var.size; // сколько
-			        pos++;
-			    }
-			    else if (block.GetType() == ObjectType.OutputCommandConstBlock)
-			    {
-			        // для константы данные берутся прямо из ПЗУ
+					Project.ROMData[pos] = (byte)varka.Address; // откуда
+					pos++;
+					Project.ROMData[pos] = (byte)OutParamType.Buf; // модификатор параметра
+					pos++;
+					Project.ROMData[pos] = (byte)varka.Size; // сколько
+					pos++;
+				}
+				else if (block.ObjectType == ObjectType.OutputCommandConstBlock)
+				{
+					// для константы данные берутся прямо из ПЗУ
 
-			        for (int i = 0; i < ((OutputCommandConstBlock) block).Mask.Length; i++)
-			        {
-			            blocksCount++;
+					for (int i = 0; i < ((OutputCommandBlock)block).Mask.Length; i++)
+					{
+						blocksCount++;
 
-			            romData[pos] = (char) ((OutputCommandConstBlock) block).GetMask.c_str()[i];
-			            // откуда (на самом деле конкретный байт константы)
-			            pos++;
-			            romData[pos] = OutParamModifier.outConst; // модификатор параметра
-			            pos++;
-			            romData[pos] = (char) 1; // сколько
-			            pos++;
-			        }
-			    }
+						Project.ROMData[pos] = (byte)((OutputCommandBlock)block).Mask[i];
+						// откуда (на самом деле конкретный байт константы)
+						pos++;
+						Project.ROMData[pos] = (byte)OutParamType.Const; // модификатор параметра
+						pos++;
+						Project.ROMData[pos] = 1; // сколько
+						pos++;
+					}
+				}
 
-			    point = (BlockConnectionPoint) block.GetOutputPoint(0).GetFirstOutputPoint();
-			    if (point != null)
-			        block = (OutputCommandBlock) point.GetBlock();
-			    else
-			        block = NULL;
+				point = (BlockConnectionPoint)block.OutputPoints[0].Outputs[0];
+				if (point != null)
+					block = (OutputCommandBlock)point.Block;
+				else
+					block = null;
 			}
 
 			// кол-во параметров спецблока 1
-			romData[schemaBlockHeaderPos] = blocksCount;
+			Project.ROMData[schemaBlockHeaderPos] = (byte)blocksCount;
+		}
+
+		private void GarbageCollect(int lifeTime)
+		{
+			foreach (var variable in Variables)
+			{
+				if (variable.Active && variable.LifeTime <= lifeTime)
+				{
+					variable.Active = false;
+					for (int i = variable.Address; i < variable.Address + variable.Size; ++i)
+					{
+						Project.MemoryPool.FreeByte(i);
+					}
+				}
+			}
+		}
+
+		private MemoryPoolVariable AddVariable(ConnectionPoint point)
+		{
+			var oldestBlock = GetOldestBlockOrderRecursive(point);
+			var variable = new MemoryPoolVariable();
+			variable.Size = point.DataSize;
+			variable.Address = AllocateMemoryForVariable(variable.Size);
+			variable.Active = true;
+			variable.LifeTime = oldestBlock != null ? oldestBlock.Order : 0;
+			Variables.Add(variable);
+
+			// рекурсивно повесим переменную на данную и все дочерние точки
+			point.SetCompileVariableRecursive(Variables.Count);
+
+			return variable;
+		}
+
+		/// <summary>
+		/// Захватывает память в пуле памяти под новую переменную
+		/// возвращает адрес захваченной памяти
+		/// </summary>
+		private int AllocateMemoryForVariable(int variableSize)
+		{
+			int freeBytesCount = 0;
+			for (int i = 0; i < Project.MemoryPool.Size; ++i)
+			{
+				if (Project.MemoryPool.IsFreeByte(i))
+				{
+					freeBytesCount++;
+
+					if (freeBytesCount == variableSize)
+					{
+						int freeBlockAddress = i - variableSize + 1;
+						for (int j = freeBlockAddress; j < freeBlockAddress + variableSize; j++)
+							Project.MemoryPool.AllocateByte(j);
+						return freeBlockAddress;
+					}
+				}
+				else
+					freeBytesCount = 0;
+			}
+			throw new InvalidOperationException("Невозможно выделить память по переменную. Пул памяти исчерпан. Размер пула памяти" + Project.MemoryPool.Size + "байт. Необходимо уменьшить количество блоков в схеме.");
+		}
+
+		/// <summary>
+		/// Возвращает для заданной точки соединения самый старший в порядке обработки блок
+		/// </summary>
+		private Block GetOldestBlockOrderRecursive(ConnectionPoint point)
+		{
+			List<Block> endBlocks = new List<Block>();
+			GetEndBlocksRecursive(point, endBlocks);
+			Block result = (endBlocks.Count > 0) ? endBlocks[0] : null;
+			foreach (var block in endBlocks)
+			{
+				if (block.Order > result.Order)
+					result = block;
+			}
+
+			return result;
+		}
+
+		private OutputCommandBlock GetFirstOutputCommandBlock()
+		{
+			foreach(var block in Blocks)
+			{
+				if (block.ObjectType == ObjectType.OutputCommandBlock)
+				{
+					if (GetParentPoint(block.InputPoints[0]) == null)
+						return (OutputCommandBlock)block;
+				}
+			}
+
+			return null;
+		}
+
+		/// <summary>
+		/// Возвращает для заданной точки соединения массив блоков, с которыми она соединена
+		/// </summary>
+		private void GetEndBlocksRecursive(ConnectionPoint point, List<Block> endBlocks)
+		{
+			if (point.ObjectType == ObjectType.BlockOutputPoint)
+			{
+				endBlocks.Add(((BlockConnectionPoint)point).Block);
+				return;
+			}
+
+			foreach (var outputPoint in point.Outputs)
+			{
+				GetEndBlocksRecursive(outputPoint, endBlocks);
+			}
 		}
 
 		/// <summary>
@@ -277,15 +380,21 @@ namespace IC.Core.Entities
 
 			foreach (var block in Blocks)
 			{
-				
+
 				block.Processed = false;
 				block.Order = -1;
 
-				block.InputPoints.ForEach(x => { x.Processed = false;
-				                               	 x.VariableIndex = -1; });
+				block.InputPoints.ForEach(x =>
+				{
+					x.Processed = false;
+					x.VariableIndex = -1;
+				});
 
-				block.OutputPoints.ForEach(x => { x.Processed = false;
-				                               	  x.VariableIndex = -1; });
+				block.OutputPoints.ForEach(x =>
+				{
+					x.Processed = false;
+					x.VariableIndex = -1;
+				});
 			}
 		}
 
@@ -325,6 +434,62 @@ namespace IC.Core.Entities
 				}
 
 				return block;
+			}
+
+			return null;
+		}
+
+
+		private Block GetBlockWithoutInputs(ObjectType objectType)
+		{
+			foreach (var block in Blocks)
+			{
+				if (block.ObjectType == objectType)
+				{
+					int inputPointIndex;
+					for (inputPointIndex = 0; inputPointIndex < block.InputPoints.Count; ++inputPointIndex)
+					{
+						if (GetParentPoint(block.InputPoints[inputPointIndex]) != null)
+							break;
+					}
+
+					if (inputPointIndex < block.InputPoints.Count)
+						continue;
+
+					return block;
+				}
+			}
+
+			return null;
+		}
+
+		private ConnectionPoint GetParentPoint(ConnectionPoint connectionPoint)
+		{
+			foreach (var block in Blocks)
+			{
+				var outputPoint = GetNeededOutputPointFromPoints(connectionPoint, block.InputPoints) ??
+								  (GetNeededOutputPointFromPoints(connectionPoint, block.OutputPoints) ??
+								  GetNeededOutputPointFromPoints(connectionPoint, this.Points));
+
+				if (outputPoint != null)
+					return outputPoint;
+			}
+
+			return null;
+		}
+
+		/// <summary>
+		/// Ищет нужную точку среди OutputPoints каждой точки.
+		/// </summary>
+		/// <param name="neededPoint">Точка, которую ищем.</param>
+		/// <param name="points">Точки, в которых ищем.</param>
+		/// <returns>Найденная точка или null если не найдена.</returns>
+		private static ConnectionPoint GetNeededOutputPointFromPoints<T>(ConnectionPoint neededPoint, IEnumerable<T> points)
+			where T : ConnectionPoint
+		{
+			foreach (var point in points)
+			{
+				return point.Outputs.Find(x => (x == neededPoint));
 			}
 
 			return null;

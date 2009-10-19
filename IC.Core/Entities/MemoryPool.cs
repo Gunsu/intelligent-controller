@@ -23,7 +23,7 @@ namespace IC.Core.Entities
 		{
 			for(int i = 0; i < Memory.Length; ++i)
 			{
-				Memory[i] = (char)0;
+				Memory[i] = 0;
 			}
 		}
 

@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using IC.Core.Enums;
 
 namespace IC.Core.Entities
 {
 	/// <summary>
 	/// Список блоков с возможностью получить список только нужных блоков, например, только входящих.
 	/// </summary>
-	[Serializable]
 	public class Blocks : List<Block>
 	{
 		/// <summary>
