@@ -29,6 +29,7 @@ namespace IC.Core.Entities
 		{
 			Order = -1;
 			Processed = false;
+			ObjectType = IC.Core.Enums.ObjectType.Block;
 		}
 
 		public Block(BlockType blockType)

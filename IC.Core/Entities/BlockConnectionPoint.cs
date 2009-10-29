@@ -31,6 +31,11 @@ namespace IC.Core.Entities
 		/// </summary>
 		public Block Block { get; set; }
 
+		public BlockConnectionPoint()
+		{
+			this.ObjectType = IC.Core.Enums.ObjectType.ConnectionPoint;
+		}
+
 		public BlockConnectionPoint([NotNullOrEmpty] string name, [Minimum(1)] int size)
 		{
 			Name = name;
