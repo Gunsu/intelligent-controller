@@ -103,6 +103,7 @@
     <Compile Include="Entities\MemoryPool.cs" />
     <Compile Include="Entities\MemoryPoolVariable.cs" />
     <Compile Include="Entities\OutputCommandBlock.cs" />
+    <Compile Include="Entities\OutputCommandConstBlock.cs" />
     <Compile Include="Entities\ROMData.cs" />
     <Compile Include="Enums\ObjectType.cs" />
     <Compile Include="Enums\Orientation.cs" />
@@ -110,8 +111,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Entities\BlockConnector.cs" />
     <Compile Include="Entities\Blocks.cs" />
-    <Compile Include="Entities\CommandInputBlock.cs" />
-    <Compile Include="Entities\CommandOutputBlock.cs" />
     <Compile Include="Entities\CommandMask.cs" />
     <Compile Include="Entities\Project.cs" />
     <Compile Include="Entities\Schema.cs" />
