@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using IC.Core.Enums;
 using ValidationAspects.PostSharp;
+using ValidationAspects;
 
 namespace IC.Core.Entities
 {
@@ -43,6 +44,20 @@ namespace IC.Core.Entities
 
 
 		#region Methods
+
+        public BlockConnectionPoint AddInputPoint([NotNull] BlockConnectionPoint point)
+        {
+            InputPoints.Add(point);
+            point.Block = this;
+            return point;
+        }
+
+        public BlockConnectionPoint AddOutputPoint([NotNull] BlockConnectionPoint point)
+        {
+            OutputPoints.Add(point);
+            point.Block = this;
+            return point;
+        }
 
 		/// <summary>
 		/// Проверяет блок на висячие входы.

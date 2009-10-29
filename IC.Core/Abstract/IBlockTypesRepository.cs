@@ -5,6 +5,6 @@ namespace IC.Core.Abstract
 {
 	public interface IBlockTypesRepository
 	{
-		IList<BlockType> LoadBlockTypesFromFile();
+		List<BlockType> LoadBlockTypesFromFile();
 	}
 }

@@ -10,12 +10,12 @@ namespace IC.Core.Concrete
 	{
 		private string _blockTypesFilePath;
 
-		public IList<BlockType> LoadBlockTypesFromFile()
+		public List<BlockType> LoadBlockTypesFromFile()
 		{
 			var document = new XmlDocument();
 			document.Load(_blockTypesFilePath);
 			XmlNodeList nodeList = document.GetElementsByTagName("BlockType");
-			IList<BlockType> blockTypes = new List<BlockType>();
+			List<BlockType> blockTypes = new List<BlockType>();
 			foreach (XmlNode node in nodeList)
 			{
 				string blockTypeName = node.ChildNodes[0].InnerText;
