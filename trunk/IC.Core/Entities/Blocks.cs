@@ -13,7 +13,7 @@ namespace IC.Core.Entities
 		/// Получает список всех входных блоков из данного списка.
 		/// </summary>
 		/// <returns>Список всех входных блоков из данного списка.</returns>
-		public List<CommandInputBlock> GetCommandInputBlocks()
+		public List<InputCommandBlock> GetCommandInputBlocks()
 		{
 			throw new System.NotImplementedException();
 			//return GetBlocksByType(typeof(CommandInputBlock));
@@ -23,7 +23,7 @@ namespace IC.Core.Entities
 		/// Получает список всех выходных блоков из данного списка.
 		/// </summary>
 		/// <returns>Список всех выходных блоков из данного списка.</returns>
-		public List<CommandOutputBlock> GetCommandOutputBlocks()
+		public List<OutputCommandBlock> GetCommandOutputBlocks()
 		{
 			throw new System.NotImplementedException();
 			//return GetBlocksByType(typeof(CommandOutputBlock));
