@@ -103,5 +103,146 @@ namespace IC.Core.Tests
             schema.Blocks[13].AddInputPoint(new BlockConnectionPoint() { Size = 2 });
             schema.Blocks[13].AddOutputPoint(new BlockConnectionPoint() { Size = -2 });
 		}
+
+        private void AddOutputsToBlockConnectionPoints(Schema schema)
+        {
+            schema.Blocks[1].OutputPoints[0].Outputs.Add(new BlockConnectionPoint()
+            {
+                Size = 1,
+                Block = schema.Blocks[12],
+                Name = "B"
+            });
+
+            schema.Blocks[2].OutputPoints[0].Outputs.Add(new BlockConnectionPoint()
+            {
+                Size = 1,
+                Block = schema.Blocks[1],
+                Name = "R0W1"
+            });
+            schema.Blocks[2].OutputPoints[0].Outputs.Add(new BlockConnectionPoint()
+            {
+                Size = 1,
+                Block = schema.Blocks[1],
+                Name = "Nxt"
+            });
+
+            schema.Blocks[3].OutputPoints[0].Outputs.Add(new BlockConnectionPoint()
+            {
+                Size = 1,
+                Block = schema.Blocks[1],
+                Name = "Mask"
+            });
+
+            schema.Blocks[4].OutputPoints[0].Outputs.Add(new BlockConnectionPoint()
+            {
+                Size = 1,
+                Block = schema.Blocks[3],
+                Name = "b4"
+            });
+            schema.Blocks[4].OutputPoints[0].Outputs.Add(new BlockConnectionPoint()
+            {
+                Size = 1,
+                Block = schema.Blocks[3],
+                Name = "b5"
+            });
+            schema.Blocks[4].OutputPoints[0].Outputs.Add(new BlockConnectionPoint()
+            {
+                Size = 1,
+                Block = schema.Blocks[3],
+                Name = "b6"
+            });
+            schema.Blocks[4].OutputPoints[0].Outputs.Add(new BlockConnectionPoint()
+            {
+                Size = 1,
+                Block = schema.Blocks[3],
+                Name = "b7"
+            });
+
+            schema.Blocks[5].OutputPoints[0].Outputs.Add(new BlockConnectionPoint()
+            {
+                Size = 1,
+                Block = schema.Blocks[3],
+                Name = "b0"
+            });
+            schema.Blocks[5].OutputPoints[0].Outputs.Add(new BlockConnectionPoint()
+            {
+                Size = 1,
+                Block = schema.Blocks[3],
+                Name = "b1"
+            });
+            schema.Blocks[5].OutputPoints[0].Outputs.Add(new BlockConnectionPoint()
+            {
+                Size = 1,
+                Block = schema.Blocks[3],
+                Name = "b2"
+            });
+            schema.Blocks[5].OutputPoints[0].Outputs.Add(new BlockConnectionPoint()
+            {
+                Size = 1,
+                Block = schema.Blocks[3],
+                Name = "b3"
+            });
+
+            schema.Blocks[6].OutputPoints[0].Outputs.Add(new BlockConnectionPoint()
+            {
+                Size = -2,
+                Block = schema.Blocks[7],
+                Name = ""
+            });
+
+            schema.Blocks[7].OutputPoints[0].Outputs.Add(new BlockConnectionPoint()
+            {
+                Size = -2,
+                Block = schema.Blocks[11],
+                Name = ""
+            });
+
+            schema.Blocks[8].OutputPoints[0].Outputs.Add(new BlockConnectionPoint()
+            {
+                Size = 1,
+                Block = schema.Blocks[9],
+                Name = "B"
+            });
+
+            schema.Blocks[9].OutputPoints[0].Outputs.Add(new BlockConnectionPoint()
+            {
+                Size = 2,
+                Block = schema.Blocks[7],
+                Name = "Out"
+            });
+
+            schema.Blocks[10].OutputPoints[0].Outputs.Add(new BlockConnectionPoint()
+            {
+                Size = 1,
+                Block = schema.Blocks[8],
+                Name = "Nxt"
+            });
+            schema.Blocks[10].OutputPoints[0].Outputs.Add(new BlockConnectionPoint()
+            {
+                Size = 1,
+                Block = schema.Blocks[8],
+                Name = "Addr"
+            });
+            schema.Blocks[10].OutputPoints[0].Outputs.Add(new BlockConnectionPoint()
+            {
+                Size = 1,
+                Block = schema.Blocks[8],
+                Name = "R0W1"
+            });
+
+            schema.Blocks[11].OutputPoints[0].Outputs.Add(new BlockConnectionPoint()
+            {
+                Size = -2,
+                Block = schema.Blocks[13],
+                Name = ""
+            });
+
+            schema.Blocks[12].OutputPoints[0].Outputs.Add(new BlockConnectionPoint()
+            {
+                Size = 2,
+                Block = schema.Blocks[13],
+                Name = "Out"
+            });
+        }
 	}
 }
