@@ -32,7 +32,7 @@ namespace IC.Core.Entities
 		public string Name { get; set; }
 
 		[XmlIgnore]
-		internal ROMData ROMData { get; private set; }
+		public ROMData ROMData { get; private set; }
 
 		[XmlIgnore]
 		internal MemoryPool MemoryPool { get; private set; }

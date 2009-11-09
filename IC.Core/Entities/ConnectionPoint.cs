@@ -9,7 +9,7 @@ namespace IC.Core.Entities
 
 		internal int VariableIndex { get; set; }
 		internal bool Processed { get; set; }
-		internal int DataSize { get; set; }
+		public int Size { get; set; }
 		internal ObjectType ObjectType { get; set; }
 
 		public ConnectionPoint()
@@ -35,7 +35,7 @@ namespace IC.Core.Entities
 		{
 			VariableIndex = index;
 			foreach (var point in Outputs)
-				SetCompileVariableRecursive(index);
+				point.SetCompileVariableRecursive(index);
 		}
 	}
 }
