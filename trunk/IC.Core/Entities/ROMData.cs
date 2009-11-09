@@ -1,8 +1,9 @@
 ﻿using System;
+using System.IO;
 
 namespace IC.Core.Entities
 {
-	internal class ROMData
+	public class ROMData
 	{
 		public int Size { get; private set; }
 		public int UsedSize { get; private set; }
@@ -22,7 +23,7 @@ namespace IC.Core.Entities
 
 		public void SaveToBin(string filePath)
 		{
-			throw new NotImplementedException();
+			File.WriteAllBytes(filePath, Data);
 		}
 	}
 }

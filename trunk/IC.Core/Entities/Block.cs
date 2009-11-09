@@ -31,13 +31,14 @@ namespace IC.Core.Entities
 			Order = -1;
 			Processed = false;
 			ObjectType = IC.Core.Enums.ObjectType.Block;
+			InputPoints = new List<BlockConnectionPoint>();
+			OutputPoints = new List<BlockConnectionPoint>();
 		}
 
 		public Block(BlockType blockType)
+			: this()
 		{
 			BlockType = blockType;
-			InputPoints = new List<BlockConnectionPoint>();
-			OutputPoints = new List<BlockConnectionPoint>();
 		}
 
 		#endregion

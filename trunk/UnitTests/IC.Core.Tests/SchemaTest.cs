@@ -1,6 +1,7 @@
 ﻿using IC.Core.Entities;
 using NUnit.Framework;
 using IC.Core.Enums;
+using System.IO;
 
 namespace IC.Core.Tests
 {
@@ -10,13 +11,21 @@ namespace IC.Core.Tests
 		[Test]
 		public void Compile_Should_Make_Correct_Result()
 		{
+			byte[] correctCompileResult = File.ReadAllBytes("correctCompileResult.txt");
+
 			var project = new Project();
 			var schema = project.AddSchema("AdcConfig");
             AddBlocks(schema);
             AddBlockConnectionPoints(schema);
             AddOutputsToBlockConnectionPoints(schema);
-			short pos = 0;
+			short pos = 7;
 			project.Schemas[0].Compile(ref pos);
+			project.ROMData.SaveToBin(@"c:\1.txt");
+			
+			//проверяем с 7-го адреса, потому что до этого идёт данные проекта, а не схемы
+			for (int i = 7; i < project.ROMData.Data.Length; ++i)
+				Assert.AreEqual(correctCompileResult[i], project.ROMData.Data[i],
+					string.Format("Несовпадение с верным результатом компиляции по адресу {0}", i));
 		}
 
 		private void AddBlocks(Schema schema)
@@ -26,9 +35,13 @@ namespace IC.Core.Tests
             var sumBlockType = new BlockType(2, "Sum");
 
 			var block0 = new InputCommandBlock() {BlockType = inBlockType, Mask = "_"};
+			schema.Blocks.Add(block0);
             var block1 = new OutputCommandBlock() { BlockType = outBlockType, Mask = "_" };
+			schema.Blocks.Add(block1);
             var block2 = new InputCommandBlock() { BlockType = inBlockType, Mask = "_" };
+			schema.Blocks.Add(block2);
 			var block3 = new Block() {BlockType = sumBlockType};
+			schema.Blocks.Add(block3);
 		}
 
 		private void AddBlockConnectionPoints(Schema schema)

@@ -15,8 +15,7 @@ namespace IC.Core.Entities
 		/// <returns>Список всех входных блоков из данного списка.</returns>
 		public List<InputCommandBlock> GetCommandInputBlocks()
 		{
-			throw new System.NotImplementedException();
-			//return GetBlocksByType(typeof(CommandInputBlock));
+			return GetBlocksByType<InputCommandBlock>();
 		}
 
 		/// <summary>
@@ -25,8 +24,16 @@ namespace IC.Core.Entities
 		/// <returns>Список всех выходных блоков из данного списка.</returns>
 		public List<OutputCommandBlock> GetCommandOutputBlocks()
 		{
-			throw new System.NotImplementedException();
-			//return GetBlocksByType(typeof(CommandOutputBlock));
+			return GetBlocksByType<OutputCommandBlock>();
+		}
+
+		/// <summary>
+		/// Получает список обычных блоков, являющихся не входными и не выходными.
+		/// </summary>
+		/// <returns>Список обычных блоков.</returns>
+		public List<Block> GetSimpleBlocks()
+		{
+			return GetBlocksByType<Block>();
 		}
 
 		/// <summary>
@@ -34,15 +41,14 @@ namespace IC.Core.Entities
 		/// </summary>
 		/// <param name="type">Тип блоков, которые необходимо получить.</param>
 		/// <returns>Список всех блоков определенного типа.</returns>
-		private List<Block> GetBlocksByType(Type type)
+		private List<T> GetBlocksByType<T>() where T: Block
 		{
-			List<Block> result = new List<Block>();
-
-			foreach (var block in this)
+			List<T> result = new List<T>();
+			foreach (Block block in this)
 			{
-				if (block.GetType() == type)
+				if (block.GetType() == typeof(T))
 				{
-					result.Add(block);
+					result.Add((T)block);
 				}
 			}
 

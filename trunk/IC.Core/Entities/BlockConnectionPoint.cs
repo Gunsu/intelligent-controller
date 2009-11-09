@@ -22,11 +22,6 @@ namespace IC.Core.Entities
 		public string Description { get; set; }
 
 		/// <summary>
-		/// Размер в байтах.
-		/// </summary>
-		public int Size { get; set; }
-
-		/// <summary>
 		/// Блок, к которому подсоединена данная связь.
 		/// </summary>
 		public Block Block { get; set; }

@@ -54,7 +54,6 @@ namespace IC.Core.Entities
 		/// </summary>
 		public void Compile(ref short pos)
 		{
-			//throw new NotImplementedException();
 			List<Block> sortedBlocks = new List<Block>(); // массив блоков, упорядоченный по очерёдности обработки блоков
 			int schemaHeaderPos; // позиция в ROM описания блоков схемы
 			int schemaBlockHeaderPos; // позиция в ROM описания блока
@@ -98,7 +97,7 @@ namespace IC.Core.Entities
 
 			// Заголовок схемы
 
-			blocksCount = Blocks.Count + 2;
+			blocksCount = Blocks.GetSimpleBlocks().Count + 2;
 			schemaHeaderPos = pos;
 			// первый байт заголовка схемы содержит количество блоков (+2 служебных блока 0 и 1)
 			Project.ROMData[schemaHeaderPos] = Convert.ToByte(blocksCount);
@@ -146,8 +145,8 @@ namespace IC.Core.Entities
 
 				inMaskPos += ((InputCommandBlock)block).Mask.Length;
 
-				point = (BlockConnectionPoint)block.OutputPoints[0].Outputs[0];
-				block = point != null ? point.Block : null;
+				point = block.OutputPoints[0];
+				block = point.Outputs.Count != 0 ? ((BlockConnectionPoint)point.Outputs[0]).Block : null;
 			}
 			// количество параметров спецблока 0
 			Project.ROMData[schemaBlockHeaderPos] = (byte)blocksCount;
@@ -254,11 +253,8 @@ namespace IC.Core.Entities
 					}
 				}
 
-				point = (BlockConnectionPoint)block.OutputPoints[0].Outputs[0];
-				if (point != null)
-					block = (OutputCommandBlock)point.Block;
-				else
-					block = null;
+				point = block.OutputPoints[0];
+				block = point.Outputs.Count != 0 ? ((BlockConnectionPoint)point.Outputs[0]).Block : null;
 			}
 
 			// кол-во параметров спецблока 1
@@ -284,14 +280,14 @@ namespace IC.Core.Entities
 		{
 			var oldestBlock = GetOldestBlockOrderRecursive(point);
 			var variable = new MemoryPoolVariable();
-			variable.Size = point.DataSize;
+			variable.Size = point.Size;
 			variable.Address = AllocateMemoryForVariable(variable.Size);
 			variable.Active = true;
 			variable.LifeTime = oldestBlock != null ? oldestBlock.Order : 0;
 			Variables.Add(variable);
 
 			// рекурсивно повесим переменную на данную и все дочерние точки
-			point.SetCompileVariableRecursive(Variables.Count);
+			point.SetCompileVariableRecursive(Variables.Count - 1);
 
 			return variable;
 		}
@@ -320,7 +316,7 @@ namespace IC.Core.Entities
 				else
 					freeBytesCount = 0;
 			}
-			throw new InvalidOperationException("Невозможно выделить память по переменную. Пул памяти исчерпан. Размер пула памяти" + Project.MemoryPool.Size + "байт. Необходимо уменьшить количество блоков в схеме.");
+			throw new InvalidOperationException("Невозможно выделить память по переменную. Пул памяти исчерпан. Размер пула памяти " + Project.MemoryPool.Size + " байт. Необходимо уменьшить количество блоков в схеме.");
 		}
 
 		/// <summary>
