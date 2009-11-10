@@ -59,5 +59,47 @@ namespace IC.Core.Entities
 			Schemas.Add(schema);
 			return schema;
 		}
+
+		public void Compile()
+		{
+			this.ROMData = new ROMData(Constants.ROM_DATA_SIZE);
+			this.MemoryPool = new MemoryPool(Constants.MEMORY_POOL_SIZE);
+
+			int pos = 1; // текущая позиция в ПЗУ со схемами обработки команд
+			int posInMasksArray = 1; // текущая позиция в ПЗУ со списком масок
+
+			// первый байт ПЗУ содержит количество масок команд
+			ROMData[0] = Convert.ToByte(Schemas.Count);
+
+			// получаем позицию в ПЗУ после описания масок команд
+			foreach (var schema in Schemas)
+			{
+				// 1 байт длины маски + сама маска + 2 байта адреса схемы обработки команды
+				pos += schema.Mask.Length + 3;
+			}
+
+			// компилируем каждую схему обработки команды
+			foreach (var schema in Schemas)
+			{
+				ROMData[posInMasksArray] = Convert.ToByte(schema.Mask.Length);
+				posInMasksArray++;
+				
+				// пишем в ПЗУ тело	текущей маски
+				for (int j = 0; j < schema.Mask.Length; ++j)
+					ROMData[posInMasksArray + j] = (byte)schema.Mask[j];
+				posInMasksArray += schema.Mask.Length;
+
+				// пишем в ПЗУ 2 байта адреса схемы обработки команды
+				ROMData[posInMasksArray] = Convert.ToByte(pos >> 8);
+				posInMasksArray++;
+				ROMData[posInMasksArray] = Convert.ToByte(pos);
+				posInMasksArray++;
+
+				// компилируем схемы обработки команды
+				//schema.Compile(ref pos);
+			}
+
+			ROMData.SaveToBin("rom.bin");
+		}
 	}
 }

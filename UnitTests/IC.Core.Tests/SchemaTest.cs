@@ -18,12 +18,12 @@ namespace IC.Core.Tests
             AddBlocks(schema);
             AddBlockConnectionPoints(schema);
             AddOutputsToBlockConnectionPoints(schema);
-			short pos = 7;
+			short pos = 6;
+			project.ROMData.Data = File.ReadAllBytes("startROMData.txt");
 			project.Schemas[0].Compile(ref pos);
 			project.ROMData.SaveToBin(@"c:\1.txt");
 			
-			//проверяем с 7-го адреса, потому что до этого идёт данные проекта, а не схемы
-			for (int i = 7; i < project.ROMData.Data.Length; ++i)
+			for (int i = 0; i < project.ROMData.Data.Length; ++i)
 				Assert.AreEqual(correctCompileResult[i], project.ROMData.Data[i],
 					string.Format("Несовпадение с верным результатом компиляции по адресу {0}", i));
 		}

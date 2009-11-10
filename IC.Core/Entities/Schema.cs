@@ -36,7 +36,9 @@ namespace IC.Core.Entities
 		/// </summary>
 		public XElement UISchema { get; set; }
 
-		internal Project Project { get; set; }
+		public Project Project { get; set; }
+
+		public string Mask { get; set; }
 
 		internal List<MemoryPoolVariable> Variables { get; private set; }
 
@@ -101,6 +103,7 @@ namespace IC.Core.Entities
 			schemaHeaderPos = pos;
 			// первый байт заголовка схемы содержит количество блоков (+2 служебных блока 0 и 1)
 			Project.ROMData[schemaHeaderPos] = Convert.ToByte(blocksCount);
+			schemaHeaderPos++;
 
 			// пропустим заголовок схемы
 			pos += Convert.ToInt16(1 + blocksCount * 3);
