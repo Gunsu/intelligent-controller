@@ -29,7 +29,7 @@ namespace IC.Core.Entities
 		}
 
 		/// <summary>
-		/// Какскадно вешает индекс переменной на все дочерние точеи
+		/// Какскадно вешает индекс переменной на все дочерние точки
 		/// </summary>
 		public void SetCompileVariableRecursive(int index)
 		{

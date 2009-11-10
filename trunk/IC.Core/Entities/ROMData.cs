@@ -7,7 +7,7 @@ namespace IC.Core.Entities
 	{
 		public int Size { get; private set; }
 		public int UsedSize { get; private set; }
-		public byte[] Data { get; private set; }
+		public byte[] Data { get; set; }
 		public byte this[int index]
 		{
 			get { return Data[index]; }
