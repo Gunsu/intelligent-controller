@@ -75,19 +75,19 @@ namespace IC.Core.Entities
 			foreach (var schema in Schemas)
 			{
 				// 1 байт длины маски + сама маска + 2 байта адреса схемы обработки команды
-				pos += schema.Mask.Length + 3;
+				pos += schema.GetMask().Length + 3;
 			}
 
 			// компилируем каждую схему обработки команды
 			foreach (var schema in Schemas)
 			{
-				ROMData[posInMasksArray] = Convert.ToByte(schema.Mask.Length);
+				ROMData[posInMasksArray] = Convert.ToByte(schema.GetMask().Length);
 				posInMasksArray++;
 				
 				// пишем в ПЗУ тело	текущей маски
-				for (int j = 0; j < schema.Mask.Length; ++j)
-					ROMData[posInMasksArray + j] = (byte)schema.Mask[j];
-				posInMasksArray += schema.Mask.Length;
+				for (int j = 0; j < schema.GetMask().Length; ++j)
+					ROMData[posInMasksArray + j] = (byte)schema.GetMask()[j];
+				posInMasksArray += schema.GetMask().Length;
 
 				// пишем в ПЗУ 2 байта адреса схемы обработки команды
 				ROMData[posInMasksArray] = Convert.ToByte(pos >> 8);
@@ -96,7 +96,7 @@ namespace IC.Core.Entities
 				posInMasksArray++;
 
 				// компилируем схемы обработки команды
-				//schema.Compile(ref pos);
+				schema.Compile(ref pos);
 			}
 
 			ROMData.SaveToBin("rom.bin");

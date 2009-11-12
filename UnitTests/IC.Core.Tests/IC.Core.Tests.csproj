@@ -61,6 +61,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ProjectTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SchemaTest.cs" />
   </ItemGroup>
@@ -71,10 +72,13 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="correctCompileResult.txt">
+    <Content Include="correctCompilationResultForProjectTest.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="startROMData.txt">
+    <Content Include="correctCompilationResultForSchemaTest.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="correctProjectCompilationForSchemaTest.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

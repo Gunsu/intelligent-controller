@@ -5,6 +5,7 @@ using System.Xml.Linq;
 using System.Xml.Serialization;
 using IC.Core.Enums;
 using ValidationAspects;
+using System.Text;
 
 namespace IC.Core.Entities
 {
@@ -38,7 +39,21 @@ namespace IC.Core.Entities
 
 		public Project Project { get; set; }
 
-		public string Mask { get; set; }
+		public string GetMask()
+		{
+			var maskBuilder = new StringBuilder();
+			var block = (InputCommandBlock)GetBlockWithoutInputs(ObjectType.InputCommandBlock);
+			while (block != null)
+			{
+				maskBuilder.Append(block.Mask);
+				var point = block.OutputPoints[0];
+				block = point.Outputs.Count != 0
+					? (InputCommandBlock)((BlockConnectionPoint)point.Outputs[0]).Block
+					: null;
+			}
+
+			return maskBuilder.ToString();
+		}
 
 		internal List<MemoryPoolVariable> Variables { get; private set; }
 
@@ -54,7 +69,7 @@ namespace IC.Core.Entities
 		/// <summary>
 		/// Компилирует схему.
 		/// </summary>
-		public void Compile(ref short pos)
+		public void Compile(ref int pos)
 		{
 			List<Block> sortedBlocks = new List<Block>(); // массив блоков, упорядоченный по очерёдности обработки блоков
 			int schemaHeaderPos; // позиция в ROM описания блоков схемы
@@ -211,7 +226,7 @@ namespace IC.Core.Entities
 			{
 				// пишем информацию по спецблоку 1 в ром
 				// для трех типов выходных блоков пишется разная информация
-				if (block.ObjectType == ObjectType.OutputCommandBlock)
+				if (block.GetType() == typeof(OutputCommandBlock))
 				{
 					blocksCount++;
 
@@ -224,21 +239,21 @@ namespace IC.Core.Entities
 					Project.ROMData[pos] = (byte)varka.Size; // сколько
 					pos++;
 				}
-				else if (block.ObjectType == ObjectType.OutputCommandBufBlock)
-				{
-					blocksCount++;
+				//else if (block.GetType() == typeof(OutputCommandBufBlock))
+				//{
+				//    blocksCount++;
 
-					// для буфера все аналогично выводу переменной
-					var varka = Variables[block.InputPoints[1].VariableIndex];
+				//    // для буфера все аналогично выводу переменной
+				//    var varka = Variables[block.InputPoints[1].VariableIndex];
 
-					Project.ROMData[pos] = (byte)varka.Address; // откуда
-					pos++;
-					Project.ROMData[pos] = (byte)OutParamType.Buf; // модификатор параметра
-					pos++;
-					Project.ROMData[pos] = (byte)varka.Size; // сколько
-					pos++;
-				}
-				else if (block.ObjectType == ObjectType.OutputCommandConstBlock)
+				//    Project.ROMData[pos] = (byte)varka.Address; // откуда
+				//    pos++;
+				//    Project.ROMData[pos] = (byte)OutParamType.Buf; // модификатор параметра
+				//    pos++;
+				//    Project.ROMData[pos] = (byte)varka.Size; // сколько
+				//    pos++;
+				//}
+				else if (block.GetType() == typeof(OutputCommandConstBlock))
 				{
 					// для константы данные берутся прямо из ПЗУ
 
@@ -343,7 +358,7 @@ namespace IC.Core.Entities
 		{
 			foreach(var block in Blocks)
 			{
-				if (block.ObjectType == ObjectType.OutputCommandBlock)
+				if (block is OutputCommandBlock)
 				{
 					if (GetParentPoint(block.InputPoints[0]) == null)
 						return (OutputCommandBlock)block;
