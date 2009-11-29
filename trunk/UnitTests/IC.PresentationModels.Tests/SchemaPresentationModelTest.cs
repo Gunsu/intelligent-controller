@@ -35,7 +35,7 @@ namespace IC.PresentationModels.Tests
 			var model = new SchemaPresentationModel(_mockEventAggregator);
 
 			var schemaStub = Stubs.Schema;
-			_mockEventAggregator.GetEvent<CurrentSchemaChangingEvent>().Publish(schemaStub);
+			_mockEventAggregator.GetEvent<CurrentSchemaChangedEvent>().Publish(schemaStub);
 			
 			Assert.AreSame(schemaStub, model.CurrentSchema);
 			var mockSchemaSavingEvent = (MockSchemaSavingEvent)_mockEventAggregator.GetEvent<SchemaSavingEvent>();

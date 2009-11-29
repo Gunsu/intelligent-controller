@@ -1,6 +1,6 @@
-﻿using IC.Core.Entities;
+﻿using System.Xml.Serialization;
+using IC.Core.Entities;
 using NUnit.Framework;
-using IC.Core.Enums;
 using System.IO;
 
 namespace IC.Core.Tests

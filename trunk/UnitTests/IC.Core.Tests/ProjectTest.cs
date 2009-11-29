@@ -1,7 +1,9 @@
-﻿using NUnit.Framework;
+﻿using System.Runtime.Serialization.Formatters.Binary;
+using System.Xml.Serialization;
+using NUnit.Framework;
 using IC.Core.Entities;
 using System.IO;
-using System.Diagnostics;
+
 namespace IC.Core.Tests
 {
 	[TestFixture]
@@ -43,6 +45,38 @@ namespace IC.Core.Tests
 			for (int i = projectCompilationBytesCount; i < correctCompilationResult.Length; ++i)
 				Assert.AreEqual(correctCompilationResult[i], project.ROMData.Data[i],
 					string.Format("Несовпадение с верным результатом компиляции схем по адресу {0}", i));
+		}
+
+		[Test]
+		public void Project_Can_Be_Serialized()
+		{
+			// Настраиваем окружение
+			var project = new Project();
+			var schema1 = project.AddSchema("Schema1");
+			AddBlocks(schema1, 0);
+			AddBlockConnectionPoints(schema1);
+			var schema2 = project.AddSchema("Schema2");
+			AddBlocks(schema2, 1);
+			AddBlockConnectionPoints(schema2);
+
+			var stream = new MemoryStream();
+			var xmlSerializer = new XmlSerializer(typeof(Project));
+			xmlSerializer.Serialize(stream, project);
+			Assert.IsNotNull(stream);
+		}
+
+		[Test]
+		public void UIProject_Can_Be_Serialized()
+		{
+			// Настраиваем окружение
+			var project = new Entities.UI.Project() { Name = "Test" };
+			var schema = project.AddSchema("Schema1");
+			schema.AddBlock(new Entities.UI.BlockType(-1, "In"), new Coordinates() {X = 0, Y = 0});
+
+			var stream = new MemoryStream();
+			var binarySerializer = new BinaryFormatter();
+			binarySerializer.Serialize(stream, project);
+			Assert.IsNotNull(stream);
 		}
 
 		/// <summary>
