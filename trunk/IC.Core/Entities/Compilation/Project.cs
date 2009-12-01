@@ -10,18 +10,13 @@ namespace IC.Core.Entities
 	/// <summary>
 	/// Проект, являющийся совокупностью схем, с возможностью сохранения и загрузки.
 	/// </summary>
-	[Serializable]
 	public class Project
 	{
-		private List<Schema> _schemas;
 
 		/// <summary>
 		/// Набор схем, входящих в проект.
 		/// </summary>
-		public ReadOnlyCollection<Schema> Schemas
-		{
-			get { return _schemas.AsReadOnly(); }
-		}
+		public List<Schema> Schemas { get; set; }
 
 		/// <summary>
 		/// Определяет, сохранён ли проект.
@@ -44,7 +39,7 @@ namespace IC.Core.Entities
 
 		public Project()
 		{
-			_schemas = new List<Schema>();
+			Schemas = new List<Schema>();
 			IsSaved = false;
 			this.ROMData = new ROMData(Constants.ROM_DATA_SIZE);
 			this.MemoryPool = new MemoryPool(Constants.MEMORY_POOL_SIZE);
@@ -61,7 +56,7 @@ namespace IC.Core.Entities
 			schema.Name = name;
 			schema.Save(new XElement("root"));
 			schema.Project = this;
-			_schemas.Add(schema);
+			Schemas.Add(schema);
 			return schema;
 		}
 

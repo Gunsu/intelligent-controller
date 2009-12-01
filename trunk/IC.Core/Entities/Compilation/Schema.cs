@@ -58,6 +58,7 @@ namespace IC.Core.Entities
 			return maskBuilder.ToString();
 		}
 
+		[XmlIgnore]
 		internal List<MemoryPoolVariable> Variables { get; private set; }
 
 		public Schema()
