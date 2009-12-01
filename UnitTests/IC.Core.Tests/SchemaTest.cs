@@ -1,5 +1,4 @@
-﻿using System.Xml.Serialization;
-using IC.Core.Entities;
+﻿using IC.Core.Entities;
 using NUnit.Framework;
 using System.IO;
 

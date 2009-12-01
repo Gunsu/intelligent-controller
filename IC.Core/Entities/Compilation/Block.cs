@@ -12,21 +12,12 @@ namespace IC.Core.Entities
 	{
 		#region Fields and properties
 
-		private List<BlockConnectionPoint> _inputPoints;
-		private List<BlockConnectionPoint> _outputPoints;
-
 		internal int Order { get; set; }
 		internal bool Processed { get; set; }
 
 		public BlockType BlockType { get; set; }
-		public ReadOnlyCollection<BlockConnectionPoint> InputPoints
-		{
-			get { return _inputPoints.AsReadOnly(); }
-		}
-		public ReadOnlyCollection<BlockConnectionPoint> OutputPoints
-		{
-			get { return _outputPoints.AsReadOnly(); }
-		}
+		public List<BlockConnectionPoint> InputPoints{ get; set; }
+		public List<BlockConnectionPoint> OutputPoints { get; set; }
 		public int X { get; set; }
 		public int Y { get; set; }
         public ObjectType ObjectType { get; set; }
@@ -41,8 +32,8 @@ namespace IC.Core.Entities
 			Order = -1;
 			Processed = false;
 			ObjectType = IC.Core.Enums.ObjectType.Block;
-			_inputPoints = new List<BlockConnectionPoint>();
-			_outputPoints = new List<BlockConnectionPoint>();
+			InputPoints = new List<BlockConnectionPoint>();
+			OutputPoints = new List<BlockConnectionPoint>();
 		}
 
 		public Block(BlockType blockType)
@@ -58,14 +49,14 @@ namespace IC.Core.Entities
 
         public BlockConnectionPoint AddInputPoint([NotNull] BlockConnectionPoint point)
         {
-            _inputPoints.Add(point);
+            InputPoints.Add(point);
             point.Block = this;
             return point;
         }
 
         public BlockConnectionPoint AddOutputPoint([NotNull] BlockConnectionPoint point)
         {
-            _outputPoints.Add(point);
+            OutputPoints.Add(point);
             point.Block = this;
             return point;
         }
