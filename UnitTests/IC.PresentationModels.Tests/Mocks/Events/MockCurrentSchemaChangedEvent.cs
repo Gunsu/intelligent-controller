@@ -1,5 +1,6 @@
-﻿using IC.Core.Entities;
+﻿using IC.Core.Entities.UI;
 using IC.UI.Infrastructure.Events;
+using Microsoft.Practices.Composite.Events;
 
 namespace IC.PresentationModels.Tests.Mocks.Events
 {
@@ -10,7 +11,7 @@ namespace IC.PresentationModels.Tests.Mocks.Events
 
 		public bool IsSubscribed { get; private set; }
 
-		public override Microsoft.Practices.Composite.Events.SubscriptionToken Subscribe(System.Action<Schema> action, Microsoft.Practices.Composite.Presentation.Events.ThreadOption threadOption, bool keepSubscriberReferenceAlive, System.Predicate<Schema> filter)
+		public override SubscriptionToken Subscribe(System.Action<Schema> action, Microsoft.Practices.Composite.Presentation.Events.ThreadOption threadOption, bool keepSubscriberReferenceAlive, System.Predicate<Schema> filter)
 		{
 			IsSubscribed = true;
 			return base.Subscribe(action, threadOption, keepSubscriberReferenceAlive, filter);

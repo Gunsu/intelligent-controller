@@ -45,21 +45,6 @@ namespace IC.Core.Entities
 			this.MemoryPool = new MemoryPool(Constants.MEMORY_POOL_SIZE);
 		}
 
-		/// <summary>
-		/// Добавляет схему к проекту.
-		/// </summary>
-		/// <param name="name">Название схемы.</param>
-		/// <returns>True, в случае успешного добавления.</returns>
-		public Schema AddSchema([NotNull] string name)
-		{
-			var schema = new Schema();
-			schema.Name = name;
-			schema.Save(new XElement("root"));
-			schema.Project = this;
-			Schemas.Add(schema);
-			return schema;
-		}
-
 		public void Compile()
 		{
 			this.ROMData = new ROMData(Constants.ROM_DATA_SIZE);

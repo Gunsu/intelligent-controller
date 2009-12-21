@@ -559,17 +559,5 @@ namespace IC.Core.Entities
 			if (!noErrors)
 				throw new NotImplementedException();
 		}
-
-		/// <summary>
-		/// Сохраняет схему.
-		/// </summary>
-		/// <param name="uiSchema">Сериализованный набор компонентов в дизайнере.</param>
-		/// <returns>Возвращает true, если схема успешно сохранена.</returns>
-		public bool Save([NotNull] XElement uiSchema)
-		{
-			UISchema = uiSchema;
-			IsSaved = true;
-			return true;
-		}
 	}
 }

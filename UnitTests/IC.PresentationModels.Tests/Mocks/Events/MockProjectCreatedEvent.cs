@@ -1,4 +1,4 @@
-﻿using IC.Core.Entities;
+﻿using IC.Core.Entities.UI;
 using IC.UI.Infrastructure.Events;
 
 namespace IC.PresentationModels.Tests.Mocks.Events

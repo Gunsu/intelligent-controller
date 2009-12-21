@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using IC.Core.Abstract;
-using IC.Core.Entities;
+using IC.Core.Entities.UI;
 using Microsoft.Practices.Composite.Events;
 using IC.UI.Infrastructure.Events;
 using IC.UI.Infrastructure.Interfaces.Manager;

@@ -4,7 +4,7 @@ using System.IO;
 using System.Reflection;
 using System.Xml.Serialization;
 using IC.Core.Abstract;
-using IC.Core.Entities;
+using IC.Core.Entities.UI;
 using ValidationAspects;
 using ValidationAspects.PostSharp;
 using System.Runtime.Serialization.Formatters.Binary;

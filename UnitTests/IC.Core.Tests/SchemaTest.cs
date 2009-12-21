@@ -16,7 +16,8 @@ namespace IC.Core.Tests
 		{
 			// Настраиваем окружение
 			var project = new Project();
-			var schema = project.AddSchema("TestSchema");
+			var schema = new Schema() { Name = "TestSchema", Project = project };
+			project.Schemas.Add(schema);
 			AddBlocks(schema);
 			AddBlockConnectionPoints(schema);
 			AddOutputsToBlockConnectionPoints(schema);

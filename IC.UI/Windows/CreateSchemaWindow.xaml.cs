@@ -1,6 +1,5 @@
 ﻿using System.Windows;
-using IC.Core.Abstract;
-using IC.Core.Entities;
+using IC.Core.Entities.UI;
 using IC.UI.Infrastructure.Events;
 using IC.UI.Infrastructure.Interfaces.Windows;
 using Microsoft.Practices.Composite.Events;

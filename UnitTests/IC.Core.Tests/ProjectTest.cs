@@ -1,4 +1,5 @@
 ﻿using System.Runtime.Serialization.Formatters.Binary;
+using System.Xml.Linq;
 using System.Xml.Serialization;
 using NUnit.Framework;
 using IC.Core.Entities;
@@ -22,10 +23,12 @@ namespace IC.Core.Tests
 		{
 			// Настраиваем окружение
 			var project = new Project();
-			var schema1 = project.AddSchema("Schema1");
+			var schema1 = new Schema() {Name = "Schema1", Project = project };
+			project.Schemas.Add(schema1);
 			AddBlocks(schema1, 0);
 			AddBlockConnectionPoints(schema1);
-			var schema2 = project.AddSchema("Schema2");
+			var schema2 = new Schema() { Name = "Schema2", Project = project };
+			project.Schemas.Add(schema2);
 			AddBlocks(schema2, 1);
 			AddBlockConnectionPoints(schema2);
 
@@ -50,26 +53,22 @@ namespace IC.Core.Tests
 		[Test]
 		public void Project_Can_Be_Serialized()
 		{
-			try
-			{
-				// Настраиваем окружение
-				var project = new Project();
-				var schema1 = project.AddSchema("Schema1");
-				AddBlocks(schema1, 0);
-				AddBlockConnectionPoints(schema1);
-				var schema2 = project.AddSchema("Schema2");
-				AddBlocks(schema2, 1);
-				AddBlockConnectionPoints(schema2);
+			// Настраиваем окружение
+			var project = new Project();
+			var schema1 = new Schema() { Name = "Schema1", Project = project };
+			project.Schemas.Add(schema1);
 
-				var stream = new MemoryStream();
-				var xmlSerializer = new XmlSerializer(typeof (Project));
-				xmlSerializer.Serialize(stream, project);
-				Assert.IsNotNull(stream);
-			}
-			catch (System.Exception ex)
-			{
-				
-			}
+			AddBlocks(schema1, 0);
+			AddBlockConnectionPoints(schema1);
+			var schema2 = new Schema() { Name = "Schema1", Project = project };
+			project.Schemas.Add(schema2);
+			AddBlocks(schema2, 1);
+			AddBlockConnectionPoints(schema2);
+
+			var stream = new MemoryStream();
+			var xmlSerializer = new XmlSerializer(typeof (Project));
+			xmlSerializer.Serialize(stream, project);
+			Assert.IsNotNull(stream);
 		}
 
 		[Test]
@@ -78,8 +77,8 @@ namespace IC.Core.Tests
 			// Настраиваем окружение
 			var project = new Entities.UI.Project() { Name = "Test" };
 			var schema = project.AddSchema("Schema1");
-			schema.AddBlock(new Entities.UI.BlockType(-1, "In"), new Coordinates() {X = 0, Y = 0});
-
+			schema.CurrentUISchema = new XElement("root");
+            
 			var stream = new MemoryStream();
 			var binarySerializer = new BinaryFormatter();
 			binarySerializer.Serialize(stream, project);
