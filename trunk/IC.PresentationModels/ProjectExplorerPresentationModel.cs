@@ -1,5 +1,5 @@
 ﻿using System.Collections.ObjectModel;
-using IC.Core.Entities;
+using IC.Core.Entities.UI;
 using IC.UI.Infrastructure.Events;
 using IC.UI.Infrastructure.Interfaces.ProjectExplorer;
 using Microsoft.Practices.Composite.Events;

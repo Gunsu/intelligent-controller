@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Xml.Linq;
-using IC.Core.Entities;
-using Microsoft.Practices.Composite.Events;
-
+using IC.Core.Entities.UI;
 using IC.UI.Infrastructure.Events;
 using IC.UI.Infrastructure.Interfaces.Schema;
-
+using Microsoft.Practices.Composite.Events;
 using ValidationAspects;
 using ValidationAspects.PostSharp;
 
@@ -16,26 +14,13 @@ namespace IC.PresentationModels
 	public sealed class SchemaPresentationModel : BasePresentationModel, ISchemaPresentationModel
 	{
 		private Schema _currentSchema;
-		private ObservableCollection<Block> _blocks;
-		private Block _currentBlock;
-
+		
 		/// <summary>
 		/// Эта штука вынесена наружу, для того чтобы DesignerCanvas имела к ней доступ. Yep, it's a dirty hack.
 		/// </summary>
 		public IEventAggregator EventAggregator
 		{
 			get { return base._eventAggregator; }
-		}
-
-		[NotNull]
-		public ObservableCollection<Block> Blocks
-		{
-			get { return _blocks; }
-			set
-			{
-				_blocks = value;
-				OnPropertyChanged("Blocks");
-			}
 		}
 
 		public Schema CurrentSchema
@@ -45,16 +30,6 @@ namespace IC.PresentationModels
 			{
 				_currentSchema = value;
 				OnPropertyChanged("CurrentSchema");
-			}
-		}
-
-		public Block CurrentBlock
-		{
-			get { return _currentBlock; }
-			set
-			{
-				_currentBlock = value;
-				OnPropertyChanged("CurrentBlock");
 			}
 		}
 
@@ -69,7 +44,7 @@ namespace IC.PresentationModels
 		{
 			if (uiSchema != null && CurrentSchema != null)
 			{
-				CurrentSchema.Save(uiSchema);
+				CurrentSchema.CurrentUISchema = uiSchema;
 				_eventAggregator.GetEvent<SchemaSavedEvent>().Publish(EventArgs.Empty);
 			}
 		}

@@ -1,5 +1,5 @@
 ﻿using IC.Core.Abstract;
-using IC.Core.Entities;
+using IC.Core.Entities.UI;
 using IC.UI.Infrastructure.Interfaces.Windows;
 using Moq;
 

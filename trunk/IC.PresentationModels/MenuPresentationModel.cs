@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Windows.Input;
-using IC.Core.Entities;
+using IC.Core.Entities.UI;
 using IC.UI.Infrastructure.Events;
 using IC.UI.Infrastructure.Interfaces.Menu;
 using Microsoft.Practices.Composite.Events;

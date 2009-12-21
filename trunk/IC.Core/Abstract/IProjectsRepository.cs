@@ -1,4 +1,4 @@
-﻿using IC.Core.Entities;
+﻿using IC.Core.Entities.UI;
 
 namespace IC.Core.Abstract
 {

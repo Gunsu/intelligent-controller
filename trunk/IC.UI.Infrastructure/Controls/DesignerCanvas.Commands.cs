@@ -10,7 +10,7 @@ using System.Windows.Markup;
 using System.Windows.Media;
 using System.Xml;
 using System.Xml.Linq;
-using IC.Core.Entities;
+using IC.Core.Entities.UI;
 using IC.UI.Infrastructure.Events;
 using IC.UI.Infrastructure.Interfaces;
 using Microsoft.Win32;
@@ -78,10 +78,7 @@ namespace IC.UI.Infrastructure.Controls
 		private void OnCurrentSchemaChangingEvent(Schema schema)
 		{
 				EventAggregator.GetEvent<SchemaSavingEvent>().Publish(SerializeCurrentSchema());
-                XElement root = schema.UISchema;
-
-				//if (root == null)
-				//    return;
+                XElement root = schema.CurrentUISchema;
 
 				this.Children.Clear();
 				this.SelectionService.ClearSelection();

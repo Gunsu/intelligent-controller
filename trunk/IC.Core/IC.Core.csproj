@@ -106,9 +106,6 @@
     <Compile Include="Entities\Compilation\OutputCommandConstBlock.cs" />
     <Compile Include="Entities\Compilation\ROMData.cs" />
     <Compile Include="Entities\Coordinates.cs" />
-    <Compile Include="Entities\UI\Block.cs" />
-    <Compile Include="Entities\UI\BlockType.cs" />
-    <Compile Include="Entities\UI\ConnectionPoint.cs" />
     <Compile Include="Entities\UI\Project.cs" />
     <Compile Include="Entities\UI\Schema.cs" />
     <Compile Include="Enums\ObjectType.cs" />
@@ -118,6 +115,7 @@
     <Compile Include="Entities\Compilation\CommandMask.cs" />
     <Compile Include="Entities\Compilation\Project.cs" />
     <Compile Include="Entities\Compilation\Schema.cs" />
+    <Compile Include="UISchemaParser.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="key.snk" />

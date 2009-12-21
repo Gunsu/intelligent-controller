@@ -51,10 +51,15 @@ namespace IC.Core.Entities.UI
 		{
 			var schema = new Schema();
 			schema.Name = name;
-			schema.Save(new XElement("root"));
-			schema.Project = this;
+			schema.CurrentUISchema = new XElement("root");
 			_schemas.Add(schema);
 			return schema;
+		}
+
+		public void Compile()
+		{
+			var compilationProject = new Entities.Project();
+			compilationProject.Compile();
 		}
 	}
 }

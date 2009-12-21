@@ -13,16 +13,6 @@ namespace IC.Core.Entities.UI
 	[Serializable]
 	public class Schema
 	{
-		private readonly List<Block> _blocks;
-
-		/// <summary>
-		/// Блоки, входящие в схему.
-		/// </summary>
-		public ReadOnlyCollection<Block> Blocks
-		{
-			get { return _blocks.AsReadOnly(); }
-		}
-
 		/// <summary>
 		/// Имя схемы.
 		/// </summary>
@@ -35,40 +25,48 @@ namespace IC.Core.Entities.UI
 		public bool IsSaved { get; set; }
 
 		/// <summary>
-		/// Определяет структуру UI.
+		/// Текущая сериализованная схема UI.
 		/// </summary>
-		[NonSerialized] private XElement _uiSchema;
-		public XElement UISchema
+		[NonSerialized] private XElement _currentUISchema;
+		public XElement CurrentUISchema
 		{
-			get { return _uiSchema; }
-			set { _uiSchema = value; }
-		}
-
-		public Project Project { get; set; }
-
-		public Schema()
-		{
-			_blocks = new List<Block>();
-			IsSaved = false;
+			get { return _currentUISchema; }
+			set
+			{
+                _currentUISchema = value;
+				if (_lastStates.Count > 10)
+					_lastStates.RemoveFirst();
+				_lastStates.AddLast(value);
+			}
 		}
 
 		/// <summary>
-		/// Сохраняет схему.
+		/// Последняя сохранённая схема.
+		/// </summary>
+		[NonSerialized] private XElement _savedUISchema;
+
+		/// <summary>
+		/// Последние изменения в схеме.
+		/// </summary>
+		[NonSerialized] private LinkedList<XElement> _lastStates;
+
+		public Schema()
+		{
+			IsSaved = false;
+			_lastStates = new LinkedList<XElement>();
+		}
+
+		/// <summary>
+		/// Сохраняет схему на жёстком диске.
 		/// </summary>
 		/// <param name="uiSchema">Сериализованный набор компонентов в дизайнере.</param>
 		/// <returns>Возвращает true, если схема успешно сохранена.</returns>
 		public bool Save([NotNull] XElement uiSchema)
 		{
-			UISchema = uiSchema;
+			CurrentUISchema = uiSchema;
+			_savedUISchema = uiSchema;
 			IsSaved = true;
 			return true;
-		}
-
-		public Block AddBlock(BlockType blockType, Coordinates coordinates)
-		{
-			var block = new Block(blockType, coordinates);
-			_blocks.Add(block);
-			return block;
 		}
 	}
 }
