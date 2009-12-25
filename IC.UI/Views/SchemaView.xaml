@@ -5,7 +5,7 @@
     <!-- Designer -->
     <GroupBox Header="Схема" Margin="3,0,3,0">
         <ScrollViewer HorizontalScrollBarVisibility="Auto"
-							  VerticalScrollBarVisibility="Auto">
+					  VerticalScrollBarVisibility="Auto">
             <Controls:DesignerCanvas x:Name="MyDesigner"
 									 Focusable="True"
 									 Background="{StaticResource WindowBackgroundBrush}"
