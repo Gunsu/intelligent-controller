@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
-using System.Xml.Serialization;
+using System.Xml;
+using System.Xml.Linq;
 using IC.Core.Abstract;
 using IC.Core.Entities.UI;
 using ValidationAspects;
@@ -16,73 +17,44 @@ namespace IC.Core.Concrete
 	{
 		private readonly string _folderPath;
 
-		public Project Load(string name)
+		public Project Load([NotNullOrEmpty] string fileName)
 		{
-			FileStream stream;
-			stream = new FileStream(Path.Combine(_folderPath, name + ".prj"), FileMode.Open);
-			var serializer = new XmlSerializer(typeof (Project));
-			var project = (Project) serializer.Deserialize(stream);
-			stream.Dispose();
-			
-			return project;
+			using (var stream = new FileStream(fileName, FileMode.Open))
+			{
+				var serializer = new BinaryFormatter();
+				//var serializer = new XmlSerializer(typeof (Project));
+				var project = (Project) serializer.Deserialize(stream);
+
+				return project;
+			}
 		}
 		
-		public Project Create(string name)
+		public Project Create([NotNullOrEmpty] string name)
 		{
 			var project = new Project();
 			project.Name = name;
-			project.FilePath = Path.Combine(_folderPath, name + ".prj");
-
-			project.AddSchema("Schema1");
 			project.IsSaved = true;
+            project.AddSchema("Schema1");
 
-			FileStream stream;
-			stream = new FileStream(project.FilePath, FileMode.Create);
-			//var serializer = new BinaryFormatter();
-			var serializer = new XmlSerializer(typeof (Project));
-            serializer.Serialize(stream, project);
-			stream.Dispose();
+			Update(project);
 
 			return project;
 		}
 		
-		public void Update(Project project)
+		public void Update([NotNull] Project project)
 		{
 			project.IsSaved = true;
+			foreach(var schema in project.Schemas)
+			{
+				schema.Save(schema.CurrentUISchema);
+			}
 
-			FileStream stream;
-			stream = new FileStream(Path.Combine(_folderPath,project.Name + ".prj"), FileMode.Create);
-			var serializer = new XmlSerializer(typeof(Project));
-			serializer.Serialize(stream, project);
-			stream.Dispose();
-
-			////Сериализуем объект и сохраняем в файл
-			//FileStream stream;
-			//try
-			//{
-			//    stream = new FileStream(project.FilePath, FileMode.Create);
-			//}
-			//catch (Exception ex)
-			//{
-			//    throw new InvalidOperationException("Невозможно получить доступ к файлу проекта.", ex);
-			//}
-
-			//try
-			//{
-			//    var serializer = new BinaryFormatter();
-			//    serializer.Serialize(stream, this);
-			//}
-			//catch (Exception ex)
-			//{
-			//    throw new InvalidOperationException(
-			//        string.Format("Не удалось сериализовать или сохранить сериализованный объект в файл.\r\n" +
-			//                      "Детали: {0}, StackTrace: {1}",
-			//                      ex.Message, ex.StackTrace));
-			//}
-			//finally
-			//{
-			//    stream.Dispose();
-			//}
+			using (var stream = new FileStream(Path.Combine(_folderPath, project.FileName), FileMode.Create))
+			{
+				var serializer = new BinaryFormatter();
+				//var serializer = new XmlSerializer(typeof(Project));
+				serializer.Serialize(stream, project);
+			}
 		}
 
 		public ProjectsRepository([NotNullOrEmpty] string folderPath)

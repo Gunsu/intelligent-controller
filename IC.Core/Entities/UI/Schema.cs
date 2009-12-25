@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Xml.Linq;
-using System.Xml.Serialization;
 using ValidationAspects;
+using System.Runtime.Serialization;
 
 namespace IC.Core.Entities.UI
 {
@@ -21,7 +20,6 @@ namespace IC.Core.Entities.UI
 		/// <summary>
 		/// Определяет, сохранена ли схема.
 		/// </summary>
-		[XmlIgnore]
 		public bool IsSaved { get; set; }
 
 		/// <summary>
@@ -50,14 +48,15 @@ namespace IC.Core.Entities.UI
 		/// </summary>
 		[NonSerialized] private LinkedList<XElement> _lastStates;
 
+		private string _serializedUISchema;
+
 		public Schema()
 		{
-			IsSaved = false;
 			_lastStates = new LinkedList<XElement>();
 		}
 
 		/// <summary>
-		/// Сохраняет схему на жёстком диске.
+		/// Сохраняет схему.
 		/// </summary>
 		/// <param name="uiSchema">Сериализованный набор компонентов в дизайнере.</param>
 		/// <returns>Возвращает true, если схема успешно сохранена.</returns>
@@ -67,6 +66,20 @@ namespace IC.Core.Entities.UI
 			_savedUISchema = uiSchema;
 			IsSaved = true;
 			return true;
+		}
+
+		[OnSerializing]
+		private void OnSerializing(StreamingContext context)
+		{
+			_serializedUISchema = _savedUISchema.ToString();
+		}
+
+		[OnDeserialized]
+		private void OnDeserialized(StreamingContext context)
+		{
+			_savedUISchema = XElement.Parse(_serializedUISchema);
+			_lastStates = new LinkedList<XElement>();
+			CurrentUISchema = _savedUISchema;
 		}
 	}
 }

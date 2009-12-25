@@ -64,7 +64,7 @@ namespace IC.PresentationModels
 			dialog.CheckPathExists = true;
 			if (dialog.ShowDialog() == true)
 			{
-				var result = _projectsRepository.Load(Path.GetFileNameWithoutExtension(dialog.FileName));
+				var result = _projectsRepository.Load(dialog.FileName);
 				CurrentProject = result;
 				_eventAggregator.GetEvent<ProjectOpenedEvent>().Publish(result);
 			}

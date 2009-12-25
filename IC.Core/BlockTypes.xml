@@ -96,7 +96,7 @@
 	<BlockType>
 		<Name>ModAddr</Name>
 		<ID>9</ID>
-		<Description></Description>
+		<Description>ModAddr</Description>
 		<Input>
 			<Name>R0W1</Name>
 			<Size>1</Size>
@@ -315,7 +315,7 @@
 	<BlockType>
 		<Name>ADCMask</Name>
 		<ID>20</ID>
-		<Description></Description>
+		<Description>ADCMask description</Description>
 		<Input>
 			<Name>R0W1
 			</Name>
@@ -436,7 +436,7 @@
 	<BlockType>
 		<Name>Byte2Bit</Name>
 		<ID>24</ID>
-		<Description></Description>
+		<Description>Преобразование 1 байта в 8 бит.</Description>
 		<Input>
 			<Name>B</Name>
 			<Size>1</Size>

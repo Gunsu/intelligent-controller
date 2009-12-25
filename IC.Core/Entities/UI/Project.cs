@@ -26,20 +26,17 @@ namespace IC.Core.Entities.UI
 		/// <summary>
 		/// Определяет, сохранён ли проект.
 		/// </summary>
-		[XmlIgnore]
 		public bool IsSaved { get; set; }
 
-		/// <summary>
-		/// Путь на жёстком диске, где лежит файл.
-		/// </summary>
-		public string FilePath { get; set; }
-
 		public string Name { get; set; }
+		public string FileName
+		{
+			get { return Name + ".prj"; }
+		}
 
 		public Project()
 		{
 			_schemas = new List<Schema>();
-			IsSaved = false;
 		}
 
 		/// <summary>

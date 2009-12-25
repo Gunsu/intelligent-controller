@@ -7,12 +7,13 @@
 			<!--ADCMask-->
 			<Image Source="../Images/ADCMask.png"
 				   IsHitTestVisible="False"
-				   ToolTip="">
+				   ToolTip="{Binding BlockTypes[18].Description}"
+				   Tag="{Binding BlockTypes[18].ID}">
 				<Controls:DesignerItem.DragThumbTemplate>
 					<ControlTemplate>
 						<Image Source="../Images/ADCMask.png"
 							   IsHitTestVisible="True" 
-							   ToolTip=""/>
+							   ToolTip="{Binding BlockTypes[18].Description}"/>
 					</ControlTemplate>
 				</Controls:DesignerItem.DragThumbTemplate>
 				<Controls:DesignerItem.ConnectorDecoratorTemplate>

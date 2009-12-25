@@ -4,15 +4,17 @@
 
 	<Controls:Toolbox x:Key="ModuleBlocksStencils" ItemSize="70,70" SnapsToDevicePixels="True">
 		<ItemsControl.Items>
-			<!--Const0-->
+			<!--ModAddr-->
 			<Image Source="../Images/ModAddr.png"
 				   IsHitTestVisible="False"
-				   ToolTip="">
+				   ToolTip="{Binding BlockTypes[7].Description}"
+				   Tag="{Binding BlockTypes[7].ID}">
 				<Controls:DesignerItem.DragThumbTemplate>
 					<ControlTemplate>
 						<Image Source="../Images/ModAddr.png"
 							   IsHitTestVisible="True" 
-							   ToolTip=""/>
+							   ToolTip="{Binding BlockTypes[7].Description}"
+							   Tag="{Binding BlockTypes[7].ID}"/>
 					</ControlTemplate>
 				</Controls:DesignerItem.DragThumbTemplate>
 				<Controls:DesignerItem.ConnectorDecoratorTemplate>
