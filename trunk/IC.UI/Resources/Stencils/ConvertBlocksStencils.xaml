@@ -7,7 +7,8 @@
 			<!--Hex2Byte-->
 			<Image Source="../Images/Hex2Byte.png"
 				   IsHitTestVisible="False"
-				   ToolTip="{Binding BlockTypes[2].Description}">
+				   ToolTip="{Binding BlockTypes[2].Description}"
+				   Tag="{Binding BlockTypes[2].ID}">
 				<Controls:DesignerItem.DragThumbTemplate>
 					<ControlTemplate>
 						<Image Source="../Images/Hex2Byte.png"
@@ -32,7 +33,8 @@
 			<!--Byte2Hex-->
 			<Image Source="../Images/Byte2Hex.png"
 				   IsHitTestVisible="False"
-				   ToolTip="{Binding BlockTypes[3].Description}">
+				   ToolTip="{Binding BlockTypes[3].Description}"
+				   Tag="{Binding BlockTypes[3].ID}">
 				<Controls:DesignerItem.DragThumbTemplate>
 					<ControlTemplate>
 						<Image Source="../Images/Byte2Hex.png"
@@ -57,12 +59,14 @@
 			<!--Bits2Byte-->
 			<Image Source="../Images/Bits2Byte.png"
 				   IsHitTestVisible="False"
-				   ToolTip="">
+				   ToolTip="{Binding BlockTypes[22].Description}"
+				   Tag="{Binding BlockTypes[22].ID}">
 				<Controls:DesignerItem.DragThumbTemplate>
 					<ControlTemplate>
 						<Image Source="../Images/Bits2Byte.png"
 							   IsHitTestVisible="True" 
-							   ToolTip=""/>
+							   ToolTip="{Binding BlockTypes[22].Description}"
+							   Tag="{Binding BlockTypes[22].ID}"/>
 					</ControlTemplate>
 				</Controls:DesignerItem.DragThumbTemplate>
 				<Controls:DesignerItem.ConnectorDecoratorTemplate>

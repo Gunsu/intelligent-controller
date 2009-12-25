@@ -7,7 +7,8 @@
 			<!--Const0-->
 			<Image Source="../Images/Const0.png"
 				   IsHitTestVisible="False"
-				   ToolTip="{Binding BlockTypes[4].Description}">
+				   ToolTip="{Binding BlockTypes[4].Description}"
+				   Tag="{Binding BlockTypes[4].ID}">
 				<Controls:DesignerItem.DragThumbTemplate>
 					<ControlTemplate>
 						<Image Source="../Images/Const0.png"
@@ -29,7 +30,8 @@
 			<!--Const1-->
 			<Image Source="../Images/Const1.png"
 				   IsHitTestVisible="False"
-				   ToolTip="{Binding BlockTypes[5].Description}">
+				   ToolTip="{Binding BlockTypes[5].Description}"
+				   Tag="{Binding BlockTypes[5].ID}">
 				<Controls:DesignerItem.DragThumbTemplate>
 					<ControlTemplate>
 						<Image Source="../Images/Const1.png"
@@ -51,7 +53,8 @@
 			<!--Const2-->
 			<Image Source="../Images/Const2.png"
 				   IsHitTestVisible="False"
-				   ToolTip="{Binding BlockTypes[6].Description}">
+				   ToolTip="{Binding BlockTypes[6].Description}"
+				   Tag="{Binding BlockTypes[6].ID}">
 				<Controls:DesignerItem.DragThumbTemplate>
 					<ControlTemplate>
 						<Image Source="../Images/Const2.png"
@@ -73,7 +76,8 @@
 			<!--Const3-->
 			<Image Source="../Images/Const3.png"
 				   IsHitTestVisible="False"
-				   ToolTip="{Binding BlockTypes[30].Description}">
+				   ToolTip="{Binding BlockTypes[30].Description}"
+				   Tag="{Binding BlockTypes[30].ID}">
 				<Controls:DesignerItem.DragThumbTemplate>
 					<ControlTemplate>
 						<Image Source="../Images/Const3.png"
@@ -95,7 +99,8 @@
 			<!--Const00-->
 			<Image Source="../Images/Const00.png"
 				   IsHitTestVisible="False"
-				   ToolTip="{Binding BlockTypes[28].Description}">
+				   ToolTip="{Binding BlockTypes[28].Description}"
+				   Tag="{Binding BlockTypes[28].ID}">
 				<Controls:DesignerItem.DragThumbTemplate>
 					<ControlTemplate>
 						<Image Source="../Images/Const00.png"

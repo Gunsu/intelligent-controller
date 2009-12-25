@@ -7,7 +7,8 @@
 			<!--Sum-->
 			<Image Source="../Images/Sum.png"
 				   IsHitTestVisible="False"
-				   ToolTip="{Binding BlockTypes[0].Description}">
+				   ToolTip="{Binding BlockTypes[0].Description}"
+				   Tag="{Binding BlockTypes[0].ID}">
 				<Controls:DesignerItem.DragThumbTemplate>
 					<ControlTemplate>
 						<Image Source="../Images/Sum.png"
@@ -35,7 +36,8 @@
 			<!--Dif-->
 			<Image Source="../Images/Dif.png"
 				   IsHitTestVisible="False"
-				   ToolTip="{Binding BlockTypes[1].Description}">
+				   ToolTip="{Binding BlockTypes[1].Description}"
+				   Tag="{Binding BlockTypes[1].ID}">
 				<Controls:DesignerItem.DragThumbTemplate>
 					<ControlTemplate>
 						<Image Source="../Images/Dif.png"

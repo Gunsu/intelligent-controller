@@ -8,12 +8,14 @@
 			<!--Cmp-->
 			<Image Source="../Images/Cmp.png"
 				   IsHitTestVisible="False"
-				   ToolTip="{Binding BlockTypes[8].Description}">
+				   ToolTip="{Binding BlockTypes[8].Description}"
+				   Tag="{Binding BlockTypes[8].ID}">
 				<Controls:DesignerItem.DragThumbTemplate>
 					<ControlTemplate>
 						<Image Source="../Images/Cmp.png"
 							   IsHitTestVisible="True" 
-							   ToolTip="{Binding BlockTypes[8].Description}"/>
+							   ToolTip="{Binding BlockTypes[8].Description}"
+							   Tag="{Binding BlockTypes[8].ID}"/>
 					</ControlTemplate>
 				</Controls:DesignerItem.DragThumbTemplate>
 				<Controls:DesignerItem.ConnectorDecoratorTemplate>
@@ -36,12 +38,14 @@
 			<!--Not-->
 			<Image Source="../Images/Not.png"
 				   IsHitTestVisible="False"
-				   ToolTip="{Binding BlockTypes[10].Description}">
+				   ToolTip="{Binding BlockTypes[10].Description}"
+				   Tag="{Binding BlockTypes[10].ID}">
 				<Controls:DesignerItem.DragThumbTemplate>
 					<ControlTemplate>
 						<Image Source="../Images/Not.png"
 							   IsHitTestVisible="True" 
-							   ToolTip="{Binding BlockTypes[10].Description}"/>
+							   ToolTip="{Binding BlockTypes[10].Description}"
+							   Tag="{Binding BlockTypes[10].ID}"/>
 					</ControlTemplate>
 				</Controls:DesignerItem.DragThumbTemplate>
 				<Controls:DesignerItem.ConnectorDecoratorTemplate>

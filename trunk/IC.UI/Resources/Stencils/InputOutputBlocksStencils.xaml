@@ -6,7 +6,10 @@
 		<ItemsControl.Items>
 
 			<!--In-->
-			<Border BorderThickness="2" BorderBrush="Black">
+			<Border BorderThickness="2"
+					BorderBrush="Black"
+					ToolTip="Входной блок"
+					Tag="0">
 				<Grid>
 					<Grid.RowDefinitions>
 						<RowDefinition Height="3*" />
@@ -41,7 +44,11 @@
 			</Border>
 
 			<!--Out-->
-			<Border BorderThickness="2" BorderBrush="Black">
+			<Border
+				BorderThickness="2"
+				BorderBrush="Black"
+				ToolTip="Выходной блок"
+				Tag="1">
 				<Grid>
 					<Grid.RowDefinitions>
 						<RowDefinition Height="3*" />
@@ -76,7 +83,10 @@
 			</Border>
 
 			<!--OutConst-->
-			<Border BorderThickness="2" BorderBrush="Black">
+			<Border BorderThickness="2"
+					BorderBrush="Black"
+					ToolTip="Выходной блок"
+					Tag="1">
 				<Grid>
 					<Grid.RowDefinitions>
 						<RowDefinition Height="3*" />

@@ -1,4 +1,6 @@
-﻿using IC.Core.Entities;
+﻿using System.Runtime.Serialization.Formatters.Binary;
+using System.Xml.Linq;
+using IC.Core.Entities;
 using NUnit.Framework;
 using System.IO;
 
@@ -8,7 +10,7 @@ namespace IC.Core.Tests
 	public class SchemaTest
 	{
 		/// <summary>
-		/// Проверка компилирования схемы.
+		/// Проверяет компилирование схемы.
 		/// Схема представляет собой два входных блока, суммирующий блок и выходной блок.
 		/// </summary>
 		[Test]
@@ -36,6 +38,29 @@ namespace IC.Core.Tests
 			for (int i = 0; i < project.ROMData.Data.Length; ++i)
 				Assert.AreEqual(correctCompilationResult[i], project.ROMData.Data[i],
 					string.Format("Несовпадение с верным результатом компиляции по адресу {0}", i));
+		}
+
+		/// <summary>
+		/// Проверяет, что бинарная сериализация и десериализация сохраняют и загружают UISchema верно.
+		/// </summary>
+		[Test]
+		public void BinaryFormatter_Works_With_UISchema()
+		{
+			var savedElement = new XElement("almostRoot");
+			var schemaBeforeSerialization = new Entities.UI.Schema() {CurrentUISchema = savedElement};
+			schemaBeforeSerialization.Save(schemaBeforeSerialization.CurrentUISchema);
+
+			using (var stream = new MemoryStream())
+			{
+				var serializer = new BinaryFormatter();
+
+				serializer.Serialize(stream, schemaBeforeSerialization);
+				stream.Position = 0;
+				var schemaAfterDeserialization = (Entities.UI.Schema) serializer.Deserialize(stream);
+
+				Assert.AreEqual(schemaBeforeSerialization.CurrentUISchema.ToString(),
+					            schemaAfterDeserialization.CurrentUISchema.ToString());
+			}
 		}
 
 		private static void AddBlocks(Schema schema)

@@ -8,6 +8,7 @@ namespace IC.Core
 		public Entities.Project Parse(Project uiProject)
 		{
 			var compilationProject = new Project();
+
 			throw new NotImplementedException();
 		}
 	}
