@@ -150,9 +150,6 @@
   <data name="Save" xml:space="preserve">
     <value>Сохранить</value>
   </data>
-  <data name="SaveAll" xml:space="preserve">
-    <value>Сохранить всё</value>
-  </data>
   <data name="Schema" xml:space="preserve">
     <value>Схема</value>
   </data>

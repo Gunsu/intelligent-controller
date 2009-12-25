@@ -30,19 +30,12 @@
 						  Icon="{StaticResource OpenProject}"
 						  Command="{Binding OpenProjectCommand}"
 						  CommandParameter="{Binding Source={x:Static System:EventArgs.Empty}}" />
-				<Separator />
-				<MenuItem Header="{Binding Source={x:Static Properties:MenuViewResources.Save}}"
-						  Icon="{StaticResource Save}">
-					<MenuItem Header="{Binding Source={x:Static Properties:MenuViewResources.Project}}"
-							  Icon=""
-							  Command="{Binding SaveProjectCommand}"
-							  CommandParameter="{Binding Source={x:Static System:EventArgs.Empty}}" />
-					<MenuItem Header="{Binding Source={x:Static Properties:MenuViewResources.Schema}}"
-							  Icon="" />
-				</MenuItem>
-				<MenuItem Header="{Binding Source={x:Static Properties:MenuViewResources.SaveAll}}"
-						  Icon=""
-						  IsEnabled="False"/>
+				<MenuItem Name="SaveMenuItem"
+					      Header="{Binding Source={x:Static Properties:MenuViewResources.Save}}"
+						  Icon="{StaticResource Save}"
+						  Command="{Binding SaveProjectCommand}"
+						  CommandParameter="{Binding Source={x:Static System:EventArgs.Empty}}"
+						  IsEnabled="{Binding SaveProjectCommandIsEnabled}" />
 				<Separator />
 				<MenuItem Header="{Binding Source={x:Static Properties:MenuViewResources.Quit}}"
 						  Icon=""

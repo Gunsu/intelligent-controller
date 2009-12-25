@@ -63,15 +63,6 @@ namespace IC.PresentationModels.Tests
 			Assert.IsTrue(projectSavingEvent.IsPublished);
 		}
 
-		[Test]
-		public void SaveSchemaCommandShouldFireSchemaSavingEvent()
-		{
-			var schemaSavingEvent = (MockSchemaSavingEvent) _mockEventAggregator.GetEvent<SchemaSavingEvent>();
-			Assert.IsFalse(schemaSavingEvent.IsPublished);
-			_model.SaveSchemaCommand.Execute(EventArgs.Empty);
-			Assert.IsTrue(schemaSavingEvent.IsPublished);
-		}
-
 		/// <summary>
 		/// Проверяет, что модель не подписана на событие CurrentSchemaChangedEvent.
 		/// </summary>

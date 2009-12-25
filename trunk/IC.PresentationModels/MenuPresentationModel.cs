@@ -29,8 +29,16 @@ namespace IC.PresentationModels
 		public ICommand OpenProjectCommand { get; set; }
 
 		public ICommand SaveProjectCommand { get; set; }
-
-		public ICommand SaveSchemaCommand { get; set; }
+		private bool _saveProjectCommandIsEnabled;
+		public bool SaveProjectCommandIsEnabled
+		{
+			get { return _saveProjectCommandIsEnabled; }
+			set
+			{
+				_saveProjectCommandIsEnabled = value;
+				OnPropertyChanged("SaveProjectCommandIsEnabled");
+			}
+		}
 
 		#endregion
 
@@ -39,6 +47,7 @@ namespace IC.PresentationModels
 		private void CreateProject(EventArgs args)
 		{
 			_eventAggregator.GetEvent<ProjectCreatingEvent>().Publish(args);
+			SaveProjectCommandIsEnabled = true;
 		}
 
 		private void CreateSchema(EventArgs args)
@@ -49,16 +58,12 @@ namespace IC.PresentationModels
 		private void OpenProject(EventArgs args)
 		{
 			_eventAggregator.GetEvent<ProjectOpeningEvent>().Publish(args);
+			SaveProjectCommandIsEnabled = true;
 		}
 
 		private void SaveProject(EventArgs args)
 		{
 			_eventAggregator.GetEvent<ProjectSavingEvent>().Publish(args);
-		}
-
-		private void SaveSchema(EventArgs args)
-		{
-			_eventAggregator.GetEvent<SchemaSavingEvent>().Publish(null);
 		}
 
 		#endregion
@@ -94,7 +99,7 @@ namespace IC.PresentationModels
 			CreateSchemaCommandIsEnabled = false;
 			OpenProjectCommand = new DelegateCommand<EventArgs>(OpenProject);
 			SaveProjectCommand = new DelegateCommand<EventArgs>(SaveProject);
-			SaveSchemaCommand = new DelegateCommand<EventArgs>(SaveSchema);
+			SaveProjectCommandIsEnabled = false;
 		}
 	}
 }
