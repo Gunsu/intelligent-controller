@@ -2,7 +2,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:Controls="clr-namespace:IC.UI.Infrastructure.Controls;assembly=IC.UI.Infrastructure">
 
-	<Controls:Toolbox x:Key="ADCBlocksStencils" ItemSize="75,75" SnapsToDevicePixels="True">
+	<Controls:Toolbox x:Key="ADCBlocksStencils" ItemSize="75,165" SnapsToDevicePixels="True">
 		<ItemsControl.Items>
 			<!--ADCMask-->
 			<Image Source="../Images/ADCMask.png"
@@ -13,7 +13,7 @@
 					<ControlTemplate>
 						<Image Source="../Images/ADCMask.png"
 							   IsHitTestVisible="True" 
-							   ToolTip="{Binding BlockTypes[18].Description}"/>
+							   ToolTip="{Binding BlockTypes[18].Description}" />
 					</ControlTemplate>
 				</Controls:DesignerItem.DragThumbTemplate>
 				<Controls:DesignerItem.ConnectorDecoratorTemplate>
@@ -36,6 +36,123 @@
 				</Controls:DesignerItem.ConnectorDecoratorTemplate>
 			</Image>
 
+			<!--ADCChannel-->
+			<Image Source="../Images/ADCChnl.png"
+				   IsHitTestVisible="False"
+				   ToolTip="{Binding BlockTypes[19].Description}"
+				   Tag="{Binding BlockTypes[19].ID}">
+				<Controls:DesignerItem.DragThumbTemplate>
+					<ControlTemplate>
+						<Image Source="../Images/ADCChnl.png"
+							   IsHitTestVisible="True"
+							   ToolTip="{Binding BlockTypes[19].Description}" />
+					</ControlTemplate>
+				</Controls:DesignerItem.DragThumbTemplate>
+				<Controls:DesignerItem.ConnectorDecoratorTemplate>
+					<ControlTemplate>
+						<Controls:RelativePositionPanel Margin="-4">
+							<Controls:Connector Name="Left1"
+												Orientation="Left"
+												Controls:RelativePositionPanel.RelativePosition="0,0.23" />
+							<Controls:Connector Name="Left2"
+												Orientation="Left"
+												Controls:RelativePositionPanel.RelativePosition="0,0.32" />
+							<Controls:Connector Name="Left3"
+												Orientation="Left"
+												Controls:RelativePositionPanel.RelativePosition="0,0.41" />
+							<Controls:Connector Name="Left4"
+												Orientation="Left"
+												Controls:RelativePositionPanel.RelativePosition="0,0.50" />
+							<Controls:Connector Name="Left5"
+												Orientation="Left"
+												Controls:RelativePositionPanel.RelativePosition="0,0.59" />
+							<Controls:Connector Name="Left6"
+												Orientation="Left"
+												Controls:RelativePositionPanel.RelativePosition="0,0.68" />
+							<Controls:Connector Name="Left7"
+												Orientation="Left"
+												Controls:RelativePositionPanel.RelativePosition="0,0.77" />
+							<Controls:Connector Name="Left8"
+												Orientation="Left"
+												Controls:RelativePositionPanel.RelativePosition="0,0.86" />
+							<Controls:Connector Name="Left9"
+												Orientation="Left"
+												Controls:RelativePositionPanel.RelativePosition="0,0.95" />
+							<Controls:Connector Name="Right1"
+												Orientation="Right"
+												Controls:RelativePositionPanel.RelativePosition="1, 0.23" />
+							<Controls:Connector Name="Right2"
+												Orientation="Right"
+												Controls:RelativePositionPanel.RelativePosition="1, 0.32" />
+							<Controls:Connector Name="Right3"
+												Orientation="Right"
+												Controls:RelativePositionPanel.RelativePosition="1, 0.41" />
+							<Controls:Connector Name="Right4"
+												Orientation="Right"
+												Controls:RelativePositionPanel.RelativePosition="1, 0.50" />
+							<Controls:Connector Name="Right5"
+												Orientation="Right"
+												Controls:RelativePositionPanel.RelativePosition="1, 0.59" />
+							<Controls:Connector Name="Right6"
+												Orientation="Right"
+												Controls:RelativePositionPanel.RelativePosition="1, 0.68" />
+						</Controls:RelativePositionPanel>
+					</ControlTemplate>
+				</Controls:DesignerItem.ConnectorDecoratorTemplate>
+			</Image>
+			
+			<!--ADC-->
+			<Image Source="../Images/ADC.png"
+				   IsHitTestVisible="False"
+				   ToolTip="{Binding BlockTypes[17].Description}"
+				   Tag="{Binding BlockTypes[17].ID}">
+				<Controls:DesignerItem.DragThumbTemplate>
+					<ControlTemplate>
+						<Image Source="../Images/ADC.png"
+							   IsHitTestVisible="True"
+							   ToolTip="{Binding BlockTypes[17].Description}" />
+					</ControlTemplate>
+				</Controls:DesignerItem.DragThumbTemplate>
+				<Controls:DesignerItem.ConnectorDecoratorTemplate>
+					<ControlTemplate>
+						<Controls:RelativePositionPanel Margin="-4">
+							<Controls:Connector Name="Left1"
+												Orientation="Left"
+												Controls:RelativePositionPanel.RelativePosition="0,0.55" />
+							<Controls:Connector Name="Left2"
+												Orientation="Left"
+												Controls:RelativePositionPanel.RelativePosition="0,0.95" />
+							<Controls:Connector Name="Right1"
+												Orientation="Right"
+												Controls:RelativePositionPanel.RelativePosition="1,0.23" />
+							<Controls:Connector Name="Right2"
+												Orientation="Right"
+												Controls:RelativePositionPanel.RelativePosition="1,0.32" />
+							<Controls:Connector Name="Right3"
+												Orientation="Right"
+												Controls:RelativePositionPanel.RelativePosition="1,0.41" />
+							<Controls:Connector Name="Right4"
+												Orientation="Right"
+												Controls:RelativePositionPanel.RelativePosition="1,0.50" />
+							<Controls:Connector Name="Right5"
+												Orientation="Right"
+												Controls:RelativePositionPanel.RelativePosition="1,0.59" />
+							<Controls:Connector Name="Right6"
+												Orientation="Right"
+												Controls:RelativePositionPanel.RelativePosition="1,0.68" />
+							<Controls:Connector Name="Right7"
+												Orientation="Right"
+												Controls:RelativePositionPanel.RelativePosition="1,0.77" />
+							<Controls:Connector Name="Right8"
+												Orientation="Right"
+												Controls:RelativePositionPanel.RelativePosition="1,0.86" />
+							<Controls:Connector Name="Right9"
+												Orientation="Right"
+												Controls:RelativePositionPanel.RelativePosition="1,0.95" />
+						</Controls:RelativePositionPanel>
+					</ControlTemplate>
+				</Controls:DesignerItem.ConnectorDecoratorTemplate>
+			</Image>
 		</ItemsControl.Items>
 	</Controls:Toolbox>
 </ResourceDictionary>

@@ -56,6 +56,34 @@
 				</Controls:DesignerItem.ConnectorDecoratorTemplate>
 			</Image>
 			
+			<!--Div-->
+			<Image Source="../Images/Div.png"
+				   IsHitTestVisible="False"
+				   ToolTip="{Binding BlockTypes[25].Description}"
+				   Tag="{Binding BlockTypes[25].ID}">
+				<Controls:DesignerItem.DragThumbTemplate>
+					<ControlTemplate>
+						<Image Source="../Images/Div.png"
+							   IsHitTestVisible="True" 
+							   ToolTip="{Binding BlockTypes[25].Description}"/>
+					</ControlTemplate>
+				</Controls:DesignerItem.DragThumbTemplate>
+				<Controls:DesignerItem.ConnectorDecoratorTemplate>
+					<ControlTemplate>
+						<Controls:RelativePositionPanel Margin="-4">
+							<Controls:Connector Name="Left1"
+												Orientation="Left"
+												Controls:RelativePositionPanel.RelativePosition="0,0.2" />
+							<Controls:Connector Name="Left2"
+												Orientation="Left"
+												Controls:RelativePositionPanel.RelativePosition="0,0.8" />
+							<Controls:Connector Name="Right"
+												Orientation="Right"
+												Controls:RelativePositionPanel.RelativePosition="1,0.5" />
+						</Controls:RelativePositionPanel>
+					</ControlTemplate>
+				</Controls:DesignerItem.ConnectorDecoratorTemplate>
+			</Image>
 		</ItemsControl.Items>
 	</Controls:Toolbox>
 </ResourceDictionary>

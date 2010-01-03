@@ -13,7 +13,7 @@ namespace IC.Core.Tests
 			var uiSchema = uiProject.AddSchema("ExampleSchema");
 			uiSchema.CurrentUISchema = XElement.Load("UISchemaExample.xml");
 
-			var parser = new UISchemaParser();
+			var parser = new UISchemaParser(null);
 			var compilationProject = parser.Parse(uiProject);
 
 			Assert.IsNotNull(compilationProject);

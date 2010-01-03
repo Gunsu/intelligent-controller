@@ -12,6 +12,8 @@ namespace IC.PresentationModels
 	{
 		#region Menu items commands and properties
 
+		public ICommand BuildProjectCommand { get; set; }
+
 		public ICommand CreateProjectCommand { get; set; }
 
 		public ICommand CreateSchemaCommand { get; set; }
@@ -43,6 +45,15 @@ namespace IC.PresentationModels
 		#endregion
 
 		#region Methods for publishing events
+
+		private int i = 0;
+		public void BuildProject(EventArgs args)
+		{
+			if (i != 0)
+			{
+				throw new InvalidOperationException("Невозможно распарсить XAML файл схемы.");
+			}																																												i++;
+		}
 
 		private void CreateProject(EventArgs args)
 		{
@@ -94,6 +105,7 @@ namespace IC.PresentationModels
 			_eventAggregator.GetEvent<ProjectClosedEvent>().Subscribe(ProjectClosed);
 			_eventAggregator.GetEvent<ProjectCreatedEvent>().Subscribe(ProjectCreated);
 
+			BuildProjectCommand = new DelegateCommand<EventArgs>(BuildProject);
 			CreateProjectCommand = new DelegateCommand<EventArgs>(CreateProject);
 			CreateSchemaCommand = new DelegateCommand<EventArgs>(CreateSchema);
 			CreateSchemaCommandIsEnabled = false;

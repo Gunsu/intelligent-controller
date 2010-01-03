@@ -13,8 +13,7 @@
 					<ControlTemplate>
 						<Image Source="../Images/ModAddr.png"
 							   IsHitTestVisible="True" 
-							   ToolTip="{Binding BlockTypes[7].Description}"
-							   Tag="{Binding BlockTypes[7].ID}"/>
+							   ToolTip="{Binding BlockTypes[7].Description}"/>
 					</ControlTemplate>
 				</Controls:DesignerItem.DragThumbTemplate>
 				<Controls:DesignerItem.ConnectorDecoratorTemplate>
@@ -32,6 +31,57 @@
 							<Controls:Connector Name="Right"
 												Orientation="Right"
 												Controls:RelativePositionPanel.RelativePosition="1,0.65" />
+						</Controls:RelativePositionPanel>
+					</ControlTemplate>
+				</Controls:DesignerItem.ConnectorDecoratorTemplate>
+			</Image>
+			
+			<!--InComBuf-->
+			<Image Source="../Images/InComBuf.png"
+				   IsHitTestVisible="False"
+				   ToolTip="{Binding BlockTypes[16].Description}"
+				   Tag="{Binding BlockTypes[16].ID}">
+				<Controls:DesignerItem.DragThumbTemplate>
+					<ControlTemplate>
+						<Image Source="../Images/InComBuf.png"
+							   IsHitTestVisible="True"
+							   ToolTip="{Binding BlockTypes[16].Description}">
+						</Image>
+					</ControlTemplate>
+				</Controls:DesignerItem.DragThumbTemplate>
+				<Controls:DesignerItem.ConnectorDecoratorTemplate>
+					<ControlTemplate>
+						<Controls:RelativePositionPanel Margin="-4">
+							<Controls:Connector Name="Right"
+												Orientation="Right"
+												Controls:RelativePositionPanel.RelativePosition="1,0.52" />
+						</Controls:RelativePositionPanel>
+					</ControlTemplate>
+				</Controls:DesignerItem.ConnectorDecoratorTemplate>
+			</Image>
+			
+			<!--SortBuff-->
+			<Image Source="../Images/SortBuff.png"
+				   IsHitTestVisible="False"
+				   ToolTip="{Binding BlockTypes[12].Description}"
+				   Tag="{Binding BlockTypes[12].ID}">
+				<Controls:DesignerItem.DragThumbTemplate>
+					<ControlTemplate>
+						<Image Source="../Images/SortBuff.png"
+							   IsHitTestVisible="True"
+							   ToolTip="{Binding BlockTypes[12].Description}">
+						</Image>
+					</ControlTemplate>
+				</Controls:DesignerItem.DragThumbTemplate>
+				<Controls:DesignerItem.ConnectorDecoratorTemplate>
+					<ControlTemplate>
+						<Controls:RelativePositionPanel Margin="-4">
+							<Controls:Connector Name="Left"
+												Orientation="Left"
+												Controls:RelativePositionPanel.RelativePosition="0,0.52" />
+							<Controls:Connector Name="Right"
+												Orientation="Right"
+												Controls:RelativePositionPanel.RelativePosition="1,0.52" />
 						</Controls:RelativePositionPanel>
 					</ControlTemplate>
 				</Controls:DesignerItem.ConnectorDecoratorTemplate>

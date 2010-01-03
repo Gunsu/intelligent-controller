@@ -124,6 +124,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Resources\Stencils\DataIntegrityBlocksStencils.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Resources\Stencils\InputOutputBlocksStencils.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -214,6 +218,11 @@
       <Link>Version.cs</Link>
     </Compile>
     <Compile Include="Bootstrapper.cs" />
+    <Compile Include="Properties\ProjectExplorerViewResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ProjectExplorerViewResources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\MenuViewResources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -335,6 +344,10 @@
     <Resource Include="Resources\Images\OutConst.png" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Properties\ProjectExplorerViewResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ProjectExplorerViewResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\MenuViewResources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>MenuViewResources.Designer.cs</LastGenOutput>
@@ -350,6 +363,33 @@
   <ItemGroup>
     <Resource Include="Resources\Images\ADCMask.png" />
     <Resource Include="Resources\Images\Bits2Byte.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\CRC.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\InComBuf.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\ADCChnl.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\ADC.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\Word2Dec.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\Div.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\SortBuff.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\AvgMean.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\Word2Hex.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
