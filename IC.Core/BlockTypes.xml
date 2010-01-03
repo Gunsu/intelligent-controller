@@ -174,7 +174,7 @@
 	<BlockType>
 		<Name>SortBuff</Name>
 		<ID>14</ID>
-		<Description></Description>
+		<Description>Сортировка по возрастанию массива данных.</Description>
 		<Input>
 			<Name>BId</Name>
 			<Size>1</Size>
@@ -215,7 +215,7 @@
 	<BlockType>
 		<Name>CRC</Name>
 		<ID>16</ID>
-		<Description></Description>
+		<Description>Вычислеие CRC.</Description>
 		<Input>
 			<Name>BId</Name>
 			<Size>1</Size>
@@ -255,7 +255,7 @@
 	<BlockType>
 		<Name>InComBuf</Name>
 		<ID>18</ID>
-		<Description></Description>
+		<Description>InComBuf nDescription</Description>
 		<Output>
 			<Name>BId</Name>
 			<Size>1</Size>
@@ -265,7 +265,7 @@
 	<BlockType>
 		<Name>ADC</Name>
 		<ID>19</ID>
-		<Description></Description>
+		<Description>ADC nDescription</Description>
 		<Input>
 			<Name>R0W1</Name>
 			<Size>1</Size>
@@ -342,7 +342,7 @@
 	<BlockType>
 		<Name>ADCChnl</Name>
 		<ID>21</ID>
-		<Description></Description>
+		<Description>ADCChnl description</Description>
 		<Input>
 			<Name>R0W1</Name>
 			<Size>1</Size>
@@ -534,7 +534,7 @@
 	<BlockType>
 		<Name>Div</Name>
 		<ID>27</ID>
-		<Description></Description>
+		<Description>Частное двух однобайтных чисел (X div Y).</Description>
 		<Input>
 			<Name>Enbl</Name>
 			<Size>1</Size>
@@ -614,7 +614,7 @@
 	<BlockType>
 		<Name>Word2Dec</Name>
 		<ID>31</ID>
-		<Description></Description>
+		<Description>Преобразование 2-х байтов в десятичное число.</Description>
 		<Input>
 			<Name>W</Name>
 			<Size>2</Size>

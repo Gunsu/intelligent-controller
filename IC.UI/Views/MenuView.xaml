@@ -68,9 +68,9 @@
 			</MenuItem>
 			<MenuItem Header="Построение">
 				<MenuItem Header="Построить проект"
-						  IsEnabled="False"/>
-				<MenuItem Header="Построить текущую схемы"
-						  IsEnabled="False"/>
+						  IsEnabled="True"
+						  Command="{Binding BuildProjectCommand}"
+						  CommandParameter="{Binding Source={x:Static System:EventArgs.Empty}}" />
 			</MenuItem>
 			<MenuItem Header="Справка"
 					  IsEnabled="False">

@@ -5,7 +5,7 @@
 		<ResourceDictionary Source="Styles/Icons.xaml" />
 	</ResourceDictionary.MergedDictionaries>
 	<ContextMenu x:Key="DesignerCanvasContextMenu">
-		<MenuItem Header="{Binding Source={x:Static Properties:MenuViewResources.Schema}}"
+		<MenuItem Header="{Binding Source={x:Static Properties:MenuViewResources.Paste}}"
 				  Icon="{StaticResource Paste}"
 				  InputGestureText="Ctrl+V" />
 		<MenuItem Header="{Binding Source={x:Static Properties:MenuViewResources.SelectAll}}" />

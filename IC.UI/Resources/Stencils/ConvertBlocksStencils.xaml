@@ -103,6 +103,58 @@
 					</ControlTemplate>
 				</Controls:DesignerItem.ConnectorDecoratorTemplate>
 			</Image>
+			
+			<!--Word2Dec-->
+			<Image Source="../Images/Word2Dec.png"
+				   IsHitTestVisible="False"
+				   ToolTip="{Binding BlockTypes[29].Description}"
+				   Tag="{Binding BlockTypes[29].ID}">
+				<Controls:DesignerItem.DragThumbTemplate>
+					<ControlTemplate>
+						<Image Source="../Images/Word2Dec.png"
+							   IsHitTestVisible="True" 
+							   ToolTip="{Binding BlockTypes[29].Description}"/>
+					</ControlTemplate>
+				</Controls:DesignerItem.DragThumbTemplate>
+				<Controls:DesignerItem.ConnectorDecoratorTemplate>
+					<ControlTemplate>
+						<Controls:RelativePositionPanel Margin="-4">
+							<Controls:Connector Name="Left"
+												Orientation="Left"
+												Controls:RelativePositionPanel.RelativePosition="0,0.5" />
+							<Controls:Connector Name="Right"
+												Orientation="Right"
+												Controls:RelativePositionPanel.RelativePosition="1,0.5" />
+						</Controls:RelativePositionPanel>
+					</ControlTemplate>
+				</Controls:DesignerItem.ConnectorDecoratorTemplate>
+			</Image>
+			
+			<!--Word2Hex-->
+			<Image Source="../Images/Word2Hex.png"
+				   IsHitTestVisible="False"
+				   ToolTip="{Binding BlockTypes[21].Description}"
+				   Tag="{Binding BlockTypes[21].ID}">
+				<Controls:DesignerItem.DragThumbTemplate>
+					<ControlTemplate>
+						<Image Source="../Images/Word2Hex.png"
+							   IsHitTestVisible="True" 
+							   ToolTip="{Binding BlockTypes[21].Description}"/>
+					</ControlTemplate>
+				</Controls:DesignerItem.DragThumbTemplate>
+				<Controls:DesignerItem.ConnectorDecoratorTemplate>
+					<ControlTemplate>
+						<Controls:RelativePositionPanel Margin="-4">
+							<Controls:Connector Name="Left"
+												Orientation="Left"
+												Controls:RelativePositionPanel.RelativePosition="0,0.5" />
+							<Controls:Connector Name="Right"
+												Orientation="Right"
+												Controls:RelativePositionPanel.RelativePosition="1,0.5" />
+						</Controls:RelativePositionPanel>
+					</ControlTemplate>
+				</Controls:DesignerItem.ConnectorDecoratorTemplate>
+			</Image>
 		</ItemsControl.Items>
 	</Controls:Toolbox>
 </ResourceDictionary>

@@ -37,6 +37,10 @@
 					  Header="АЦП"
 					  Content="{StaticResource ADCBlocksStencils}"
 					  IsExpanded="True" />
+			<Expander x:Name="DataIntegrityBlocksStencils"
+					  Header="Целостность данных"
+					  Content="{StaticResource DataIntegrityBlocksStencils}"
+					  IsExpanded="True" />
 			</StackPanel>
 		</ScrollViewer>
 </UserControl>

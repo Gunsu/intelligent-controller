@@ -100,7 +100,6 @@
 					<TextBox IsHitTestVisible="True"
                              Text="[Const]"
 							 HorizontalContentAlignment="Center"
-							 MaxLength="7"
 							 Grid.Row="2" />
 				</Grid>
 				<Controls:DesignerItem.ConnectorDecoratorTemplate>

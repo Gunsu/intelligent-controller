@@ -1,9 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Xml.Linq;
-using System.Xml.Serialization;
-using ValidationAspects;
 
 namespace IC.Core.Entities
 {
@@ -18,29 +14,13 @@ namespace IC.Core.Entities
 		/// </summary>
 		public List<Schema> Schemas { get; set; }
 
-		/// <summary>
-		/// Определяет, сохранён ли проект.
-		/// </summary>
-		[XmlIgnore]
-		public bool IsSaved { get; set; }
-
-		/// <summary>
-		/// Путь на жёстком диске, где лежит файл.
-		/// </summary>
-		public string FilePath { get; set; }
-
-		public string Name { get; set; }
-
-		[XmlIgnore]
 		public ROMData ROMData { get; private set; }
 
-		[XmlIgnore]
 		internal MemoryPool MemoryPool { get; private set; }
 
 		public Project()
 		{
 			Schemas = new List<Schema>();
-			IsSaved = false;
 			this.ROMData = new ROMData(Constants.ROM_DATA_SIZE);
 			this.MemoryPool = new MemoryPool(Constants.MEMORY_POOL_SIZE);
 		}
