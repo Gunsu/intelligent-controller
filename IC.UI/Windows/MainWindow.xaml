@@ -5,7 +5,8 @@
 	xmlns:Controls="clr-namespace:IC.UI.Infrastructure.Controls;assembly=IC.UI.Infrastructure"
 	Title="Редактор схем"
 	WindowState="Maximized"
-	Initialized="MainWindow_Initialized">
+	Initialized="MainWindow_Initialized"
+	Closed="Window_Closed">
 	<Grid Margin="10">
 		<Grid.RowDefinitions>
 			<RowDefinition Height="Auto"/>

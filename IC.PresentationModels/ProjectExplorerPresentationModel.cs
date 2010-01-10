@@ -34,6 +34,7 @@ namespace IC.PresentationModels
                 _currentSchemaItem = value;
                 OnPropertyChanged("CurrentSchemaItem");
 				_eventAggregator.GetEvent<CurrentSchemaChangingEvent>().Publish(value);
+				RemoveSchemaCommandIsEnabled = (value == null);
             }
 		}
 
@@ -41,10 +42,7 @@ namespace IC.PresentationModels
 
 		public ICommand CreateSchemaCommand { get; set; }
 		public ICommand RemoveSchemaCommand { get; set; }
-		public bool RemoveSchemaCommandIsEnabled
-		{
-			get { return CurrentSchemaItem != null; }
-		}
+		public bool RemoveSchemaCommandIsEnabled { get; set; }
 
 		#region Methods for handling subscribed events
 

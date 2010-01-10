@@ -38,17 +38,22 @@ namespace IC.UI.Windows
 		private void AttachModels()
 		{
 			menuView.Model = _menuPresentationModel;
+			managerView.Model = _managerPresentationModel;
 			projectExplorerView.Model = _projectExplorerPresentationModel;
 			toolboxView.Model = _toolboxPresentationModel;
 			schemaView.Model = _schemaPresentationModel;
 			schemaView.MyDesigner.EventAggregator = _schemaPresentationModel.EventAggregator;
 			schemaView.MyDesigner.SubscribeToEvents();
-			managerView.Model = _managerPresentationModel;
 		}
 
 		private void MainWindow_Initialized(object sender, EventArgs e)
 		{
 			AttachModels();
+		}
+
+		private void Window_Closed(object sender, EventArgs e)
+		{
+			Application.Current.Shutdown(0);
 		}
 	}
 
