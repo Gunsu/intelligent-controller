@@ -27,7 +27,7 @@
 					<MenuItem Header="{Binding Source={x:Static Properties:ProjectExplorerViewResources.Remove}}"
 									  Command="{Binding RemoveSchemaCommand}"
 									  CommandParameter="{Binding Source={x:Static System:EventArgs.Empty}}"
-									  IsEnabled="{Binding RemoveSchemaCommandIsEnabled}" />
+									  IsEnabled="True" />
 				</ContextMenu>
 			</ListBox.ContextMenu>
 			<ListBox.ItemTemplate>

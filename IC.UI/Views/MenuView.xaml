@@ -39,7 +39,7 @@
 				<Separator />
 				<MenuItem Header="{Binding Source={x:Static Properties:MenuViewResources.Quit}}"
 						  Icon=""
-						  IsEnabled="False"/>
+						  IsEnabled="True"/>
 			</MenuItem>
 			<!--Edit-->
 			<MenuItem Header="{Binding Source={x:Static Properties:MenuViewResources.Edit}}">
@@ -73,7 +73,7 @@
 						  CommandParameter="{Binding Source={x:Static System:EventArgs.Empty}}" />
 			</MenuItem>
 			<MenuItem Header="Справка"
-					  IsEnabled="False">
+					  IsEnabled="True">
 				<MenuItem Header="Инструкция" />
 				<MenuItem Header="О программе" />
 			</MenuItem>
