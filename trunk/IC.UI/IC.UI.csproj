@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{F4E618C7-C56D-45F3-B40C-50D4795F8A33}</ProjectGuid>
     <OutputType>WinExe</OutputType>
@@ -391,6 +391,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Images\Word2Hex.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\Approx.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -82,6 +82,12 @@ namespace IC.PresentationModels
 			_createSchemaWindow.ShowDialog(CurrentProject);
 		}
 
+		private void OnSchemaCompiling(EventArgs args)
+		{
+			//MessageBox.Show("Компиляция завершена успешно.\r\n\r\nВ ПЗУ записано 54 байт.\r\nПиковая нагрузка на пул памяти 4 байта.\r\nРазмер пула памяти 64 байт.");
+			MessageBox.Show("В схеме Test обнаружены ошибки:\r\n  - необходим хотя бы один блок входной команды;\r\n  - необходим хотя бы один блок выходной команды.\r\nВ схеме Test2 обнаружены ошибки:\r\n  - не все блоки выходной команды соединены в цепочку.");
+		}
+
 		#endregion
 
 		public ManagerPresentationModel([NotNull] IEventAggregator eventAggregator,
@@ -99,6 +105,7 @@ namespace IC.PresentationModels
 			_eventAggregator.GetEvent<ProjectOpeningEvent>().Subscribe(OnProjectOpening, ThreadOption.UIThread);
 			_eventAggregator.GetEvent<ProjectSavingEvent>().Subscribe(OnProjectSaving);
 			_eventAggregator.GetEvent<SchemaCreatingEvent>().Subscribe(OnSchemaCreating, ThreadOption.UIThread);
+			_eventAggregator.GetEvent<SchemaCompilingEvent>().Subscribe(OnSchemaCompiling, ThreadOption.UIThread);
 		}
 	}
 }
