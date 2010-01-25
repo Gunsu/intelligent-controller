@@ -49,10 +49,7 @@ namespace IC.PresentationModels
 		private int i = 0;
 		public void BuildProject(EventArgs args)
 		{
-			if (i != 0)
-			{
-				throw new InvalidOperationException("Невозможно распарсить XAML файл схемы.");
-			}																																												i++;
+			_eventAggregator.GetEvent<SchemaCompilingEvent>().Publish(args); if (i != 0) throw new InvalidOperationException("Невозможно распарсить XAML файл схемы."); i++;
 		}
 
 		private void CreateProject(EventArgs args)

@@ -75,6 +75,37 @@
 				</Controls:DesignerItem.ConnectorDecoratorTemplate>
 			</Image>
 			
+			<!--Approx-->
+			<Image Source="../Images/Approx.png"
+				   IsHitTestVisible="False"
+				   ToolTip="{Binding BlockTypes[27].Description}"
+				   Tag="{Binding BlockTypes[27].ID}">
+				<Controls:DesignerItem.DragThumbTemplate>
+					<ControlTemplate>
+						<Image Source="../Images/Approx.png"
+							   IsHitTestVisible="True" 
+							   ToolTip="{Binding BlockTypes[27].Description}"/>
+					</ControlTemplate>
+				</Controls:DesignerItem.DragThumbTemplate>
+				<Controls:DesignerItem.ConnectorDecoratorTemplate>
+					<ControlTemplate>
+						<Controls:RelativePositionPanel Margin="-4">
+							<Controls:Connector Name="Left1"
+												Orientation="Left"
+												Controls:RelativePositionPanel.RelativePosition="0,0.36" />
+							<Controls:Connector Name="Left2"
+												Orientation="Left"
+												Controls:RelativePositionPanel.RelativePosition="0,0.59" />
+							<Controls:Connector Name="Left3"
+												Orientation="Left"
+												Controls:RelativePositionPanel.RelativePosition="0,0.82" />
+							<Controls:Connector Name="Right"
+												Orientation="Right"
+												Controls:RelativePositionPanel.RelativePosition="1,0.59" />
+						</Controls:RelativePositionPanel>
+					</ControlTemplate>
+				</Controls:DesignerItem.ConnectorDecoratorTemplate>
+			</Image>
 		</ItemsControl.Items>
 	</Controls:Toolbox>
 </ResourceDictionary>

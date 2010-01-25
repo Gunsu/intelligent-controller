@@ -582,7 +582,7 @@
 	<BlockType>
 		<Name>Approx</Name>
 		<ID>29</ID>
-		<Description></Description>
+		<Description>Approx description</Description>
 		<Input>
 			<Name>Enbl</Name>
 			<Size>1</Size>
